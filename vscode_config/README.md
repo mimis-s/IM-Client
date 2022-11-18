@@ -1,1 +1,2 @@
 vscode编写qt代码需要.vscode文件夹内容
+如果想在vscode里面使用qt designer编辑.ui文件,就要把qt/bin路径加入环境变量, 同时下载qt tools插件
