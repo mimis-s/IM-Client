@@ -3,8 +3,9 @@
 
 #include <QWidget>
 
-namespace Ui {
-class IMClient;
+namespace Ui
+{
+    class IMClient;
 }
 
 class IMClient : public QWidget

@@ -1,0 +1,1 @@
+vscode编写qt代码需要.vscode文件夹内容
