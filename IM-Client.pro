@@ -25,10 +25,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        im_client.cpp
+        im_client.cpp \
+    cmd/main.cpp \
+    cmd/im_client.cpp
 
 HEADERS += \
-        im_client.h
+        im_client.h \
+    cmd/im_client.h
 
 FORMS += \
-        im_client.ui
+        im_client.ui \
+    cmd/im_client.ui
+
+DISTFILES += \
+    cmd/IM-Client
