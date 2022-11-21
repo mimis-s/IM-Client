@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-
+QT       += network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = IM-Client
@@ -24,18 +24,34 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    common/commonproto/errors.pb.cc \
+    common/commonproto/home_account.pb.cc \
+    common/commonproto/home_chat.pb.cc \
+    common/commonproto/home_friends.pb.cc \
+    common/commonproto/home_relay.pb.cc \
+    common/crc32/crc32.cpp \
+    common/log/im_log.cpp \
+    common/socket/socket.cpp \
         main.cpp \
-        im_client.cpp \
-    cmd/main.cpp \
-    cmd/im_client.cpp
+        im_client.cpp \ \
+    src/register/register.cpp
 
 HEADERS += \
-        im_client.h \
-    cmd/im_client.h
+    common/commonproto/errors.pb.h \
+    common/commonproto/home_account.pb.h \
+    common/commonproto/home_chat.pb.h \
+    common/commonproto/home_friends.pb.h \
+    common/commonproto/home_relay.pb.h \
+    common/log/im_log.h \
+    common/socket/socket.h \
+        im_client.h \ \
+    src/register/register.h
 
 FORMS += \
-        im_client.ui \
-    cmd/im_client.ui
+        im_client.ui \ \
+    src/register/register.ui
 
 DISTFILES += \
-    cmd/IM-Client
+    Makefile \
+    README.md \
+    make_proto.sh

@@ -4,14 +4,6 @@
 
 IMLog *IMLog::m_pLog = nullptr;
 
-IMLog::IMLog()
-{
-}
-
-IMLog::~IMLog()
-{
-}
-
 void IMLog::Info(QString log)
 {
     qDebug() << "Info"
