@@ -33,10 +33,10 @@ gen_client_proto_go() {
     # 上一个命令执行退出状态不等于0, 则说明出错了
     if [ $? -ne 0 ]; then
         # errCode="1"
-        echo_red "[ERROR] ==> compile $proto golang not ok."
+        echo_red "[ERROR] ==> compile $proto c++ not ok."
         exit 1
     else
-        echo "[INFO] ==> compile $proto golang ok."
+        echo "[INFO] ==> compile $proto c++ ok."
     fi
 }
 

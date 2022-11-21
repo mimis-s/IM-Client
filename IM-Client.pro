@@ -33,7 +33,8 @@ SOURCES += \
     common/log/im_log.cpp \
     common/socket/socket.cpp \
         main.cpp \
-        im_client.cpp \ \
+        im_client.cpp \
+    src/login/login.cpp \
     src/register/register.cpp
 
 HEADERS += \
@@ -44,14 +45,19 @@ HEADERS += \
     common/commonproto/home_relay.pb.h \
     common/log/im_log.h \
     common/socket/socket.h \
-        im_client.h \ \
+        im_client.h \
+    src/login/login.h \
     src/register/register.h
 
 FORMS += \
-        im_client.ui \ \
+        im_client.ui \
+    src/login/login.ui \
     src/register/register.ui
 
 DISTFILES += \
-    Makefile \
     README.md \
     make_proto.sh
+
+#protobuf lib and include
+INCLUDEPATH += /usr/local/protobuf/include
+LIBS += /usr/local/protobuf/lib/libprotobuf.a -lpthread
