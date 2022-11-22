@@ -5,6 +5,7 @@
 #include "../../common/socket/socket.h"
 #include "../../common/define/define.h"
 #include "../../common/commonproto/home_account.pb.h"
+#include "../../common/log/im_log.h"
 
 login::login(QWidget *parent) :
     QWidget(parent),
@@ -33,6 +34,8 @@ void login::slot_btn_login()
 
 //    std::string byteArray;
 //    loginReq->SerializeToString(&byteArray);
+    IMLog::Instance()->Info(QString("send loginreq %1").arg(MessageTag_Login.Req));
+
     Socket::Instance()->SendMessage(MessageTag_Login.Req, loginReq->SerializeAsString());
 }
 

@@ -34,7 +34,8 @@ SOURCES += \
         main.cpp \
         im_client.cpp \
     src/login/login.cpp \
-    src/register/register.cpp
+    src/register/register.cpp \
+    common/crc32/crc32.cpp
 
 HEADERS += \
     common/commonproto/errors.pb.h \

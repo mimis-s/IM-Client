@@ -2,6 +2,8 @@
 -------网络相关功能的类------------
 -------单例类----------------------
 */
+#pragma once
+
 #include <QWidget>
 #include <QtNetwork/QTcpServer>
 #include <QtNetwork/QTcpSocket>
@@ -50,12 +52,12 @@ public:
     }
 
     // 注册各个功能的recv函数(回调函数)
-    void RegisterRecvFunc(int type, std::function<void(char *)> func)
+    void RegisterRecvFunc(uint32_t type, std::function<void(char *)> func)
     {
         mapCallBackFunc[type] = new MethodClosure2(func);
     }
 
-    void SendMessage(int type, std::string message); // 外部调用发送消息
+    void SendMessage(uint32_t type, std::string message); // 外部调用发送消息
 
 public slots:
     void slot_Connected();   // 处理成功连接到服务器的槽
@@ -67,5 +69,5 @@ private:
     static Socket *m_this;
     QTcpSocket *TCP_SendMesSocket; //发送消息套接字
 
-    std::map<int, Closure *> mapCallBackFunc;
+    std::map<uint32_t, Closure *> mapCallBackFunc;
 };

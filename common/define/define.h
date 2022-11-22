@@ -1,6 +1,5 @@
-#include <inttypes.h>
-#include <stdio.h>
-#include <string>
+#pragma once
+
 #include "../crc32/crc32.h"
 
 struct MessageTag {
@@ -9,7 +8,5 @@ struct MessageTag {
     uint32_t Relay;
 };
 
-MessageTag MessageTag_Login = {
-    Req: CRC32("loginReq"),
-    Res: CRC32("loginRes"),
-};
+const MessageTag MessageTag_Error = {Res: CRC32("CommonError")};
+const MessageTag MessageTag_Login = {Req: CRC32("LoginReq"), Res: CRC32("LoginRes")};

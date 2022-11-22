@@ -2,6 +2,7 @@
     日志类
     暂时作为一个单例类实现, 不能支持多线程读写
 */
+#pragma once
 
 #include <QString>
 

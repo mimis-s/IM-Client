@@ -1,7 +1,9 @@
 #include "socket.h"
 #include "../log/im_log.h"
 #include <QDateTime>
-// #include "define.h"
+#include "../define/define.h"
+#include "../commonproto/errors.pb.h"
+#include <QMessageBox>
 
 Socket *Socket::m_this = nullptr;
 
@@ -34,21 +36,21 @@ void Socket::slot_Disconnect()
     TCP_SendMesSocket->deleteLater();
 }
 
-void Socket::SendMessage(int type, std::string arrayMessage)
+void Socket::SendMessage(uint32_t type, std::string arrayMessage)
 {
     QByteArray messages;
     // 消息类型
-    messages[0] = type;
-    messages[1] = type >> 8;
-    messages[2] = type >> 16;
-    messages[3] = type >> 24;
+    messages[3] = type;
+    messages[2] = type >> 8;
+    messages[1] = type >> 16;
+    messages[0] = type >> 24;
 
     // 消息长度
     int byteLen = arrayMessage.size();
-    messages[4] = byteLen;
-    messages[5] = byteLen >> 8;
-    messages[6] = byteLen >> 16;
-    messages[7] = byteLen >> 24;
+    messages[7] = byteLen;
+    messages[6] = byteLen >> 8;
+    messages[5] = byteLen >> 16;
+    messages[4] = byteLen >> 24;
 
     QByteArray msg =  QByteArray::fromStdString(arrayMessage);
     messages.append(msg);
@@ -60,23 +62,35 @@ void Socket::slot_RecvMessage()
 {
     // 消息类型
     QByteArray messageType = TCP_SendMesSocket->read(4);
-    int type = 0;
-    type += (unsigned char)messageType[0];
-    type += (unsigned char)messageType[1] << 8;
-    type += (unsigned char)messageType[2] << 16;
-    type += (unsigned char)messageType[3] << 24;
+    uint32_t type = 0;
+    type += (unsigned char)messageType[3];
+    type += (unsigned char)messageType[2] << 8;
+    type += (unsigned char)messageType[1] << 16;
+    type += (unsigned char)messageType[0] << 24;
 
     // 消息长度
     QByteArray messageLen = TCP_SendMesSocket->read(4);
     int byteLen = 0;
-    byteLen += (unsigned char)messageLen[0];
-    byteLen += (unsigned char)messageLen[1] << 8;
-    byteLen += (unsigned char)messageLen[2] << 16;
-    byteLen += (unsigned char)messageLen[3] << 24;
+    byteLen += (unsigned char)messageLen[3];
+    byteLen += (unsigned char)messageLen[2] << 8;
+    byteLen += (unsigned char)messageLen[1] << 16;
+    byteLen += (unsigned char)messageLen[0] << 24;
 
     // 消息体
     char *messages_recv = new char[byteLen];
     TCP_SendMesSocket->read(messages_recv, byteLen);
 
-    mapCallBackFunc[type]->Run(messages_recv);
+    if (MessageTag_Error.Res == type) {
+//         error
+        im_error_proto::CommonError *commonError = new im_error_proto::CommonError;
+        commonError->ParseFromString(messages_recv);
+        QString errMessage = QString("ErrCode:%1").arg(commonError->code());
+        QMessageBox::information(NULL,  "error",  errMessage, QMessageBox::Yes);
+    }
+
+    if (mapCallBackFunc[type]) {
+        mapCallBackFunc[type]->Run(messages_recv);
+    }else{
+        IMLog::Instance()->Warn(QString("recv message[%1] but message is not define").arg(type));
+    }
 }
