@@ -2,6 +2,7 @@
 #define LOGIN_H
 
 #include <QWidget>
+#include "../home/home.h"
 
 namespace Ui {
 class login;
@@ -22,6 +23,7 @@ private slots:
 
 private:
     Ui::login *ui;
+    Home *m_pHomeWidget;
 };
 
 #endif // LOGIN_H

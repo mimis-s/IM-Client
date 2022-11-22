@@ -16,6 +16,9 @@ login::login(QWidget *parent) :
     connect(ui->btn_login, SIGNAL(clicked(void)), this, SLOT(slot_btn_login()));
     connect(ui->btn_login_register, SIGNAL(clicked(void)), this, SLOT(slot_btn_register()));
 
+    ui->edit_login_id->setText("1668391776");
+    ui->edit_login_password->setText("123");
+
     // socket
     Socket::Instance()->RegisterRecvFunc(MessageTag_Login.Res, std::bind(&login::LoginBack, this, std::placeholders::_1));
 }
@@ -32,8 +35,6 @@ void login::slot_btn_login()
     loginReq->set_userid(ui->edit_login_id->text().toInt());
     loginReq->set_password(ui->edit_login_password->text().toStdString());
 
-//    std::string byteArray;
-//    loginReq->SerializeToString(&byteArray);
     IMLog::Instance()->Info(QString("send loginreq %1").arg(MessageTag_Login.Req));
 
     Socket::Instance()->SendMessage(MessageTag_Login.Req, loginReq->SerializeAsString());
@@ -51,7 +52,8 @@ void login::LoginBack(char * recvMessage)
 {
     im_home_proto::LoginRes *loginRes = new im_home_proto::LoginRes;
     loginRes->ParseFromString(recvMessage);
+    this->hide();
 
-    qDebug() << loginRes->userid();
-    qDebug() << loginRes->username().size();
+    m_pHomeWidget = new Home();
+    m_pHomeWidget->show();
 }

@@ -33,6 +33,7 @@ SOURCES += \
     common/socket/socket.cpp \
         main.cpp \
         im_client.cpp \
+    src/home/home.cpp \
     src/login/login.cpp \
     src/register/register.cpp \
     common/crc32/crc32.cpp
@@ -47,6 +48,7 @@ HEADERS += \
     common/socket/socket.h \
     common/crc32/crc32.h \
         im_client.h \
+    src/home/home.h \
     src/login/login.h \
     src/register/register.h \
     common/define/define.h
@@ -54,6 +56,7 @@ HEADERS += \
 
 FORMS += \
         im_client.ui \
+    src/home/home.ui \
     src/login/login.ui \
     src/register/register.ui
 

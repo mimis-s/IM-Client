@@ -16,6 +16,10 @@ class CUserRegister : public QDialog
 public:
     explicit CUserRegister(QDialog *parent = 0);
     ~CUserRegister();
+    void RegisterBack(char * recvMessage);
+
+public slots:
+    void slot_btn_register();
 
 private:
     Ui::CUserRegister *ui;
