@@ -33,6 +33,8 @@ SOURCES += \
     common/socket/socket.cpp \
         main.cpp \
         im_client.cpp \
+    src/chat/chat.cpp \
+    src/friends/friends.cpp \
     src/home/home.cpp \
     src/login/login.cpp \
     src/register/register.cpp \
@@ -48,6 +50,8 @@ HEADERS += \
     common/socket/socket.h \
     common/crc32/crc32.h \
         im_client.h \
+    src/chat/chat.h \
+    src/friends/friends.h \
     src/home/home.h \
     src/login/login.h \
     src/register/register.h \
@@ -56,13 +60,16 @@ HEADERS += \
 
 FORMS += \
         im_client.ui \
+    src/chat/chat.ui \
+    src/friends/friends.ui \
     src/home/home.ui \
     src/login/login.ui \
     src/register/register.ui
 
 DISTFILES += \
     README.md \
-    make_proto.sh
+    make_proto.sh \
+    Makefile
 
 #protobuf lib and include
 INCLUDEPATH += /usr/local/protobuf/include
