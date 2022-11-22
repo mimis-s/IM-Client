@@ -28,6 +28,5 @@ uint32_t CRC32(std::string buff)
     {
         crc = (crc >> 8) ^ CRC_32_Table[(crc ^ buff[i]) & 0xff];
     }
-    qDebug() << "name:" << QString::fromStdString(buff) << " id:" <<~crc;
     return ~crc;
 }
