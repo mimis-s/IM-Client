@@ -29,7 +29,6 @@ SOURCES += \
     common/commonproto/home_chat.pb.cc \
     common/commonproto/home_friends.pb.cc \
     common/commonproto/home_relay.pb.cc \
-    common/crc32/crc32.cpp \
     common/log/im_log.cpp \
     common/socket/socket.cpp \
         main.cpp \
@@ -45,9 +44,12 @@ HEADERS += \
     common/commonproto/home_relay.pb.h \
     common/log/im_log.h \
     common/socket/socket.h \
+    common/crc32/crc32.h \
         im_client.h \
     src/login/login.h \
-    src/register/register.h
+    src/register/register.h \
+    common/define/define.h
+
 
 FORMS += \
         im_client.ui \

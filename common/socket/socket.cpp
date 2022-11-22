@@ -5,12 +5,12 @@
 
 Socket *Socket::m_this = nullptr;
 
-Socket::Socket(QWidget *parent)
+Socket::Socket(QWidget *parent, QString ip, int port)
     : QWidget(parent)
 {
     TCP_SendMesSocket = new QTcpSocket();
     TCP_SendMesSocket->abort();                          //终止之前的连接，重置套接字
-    TCP_SendMesSocket->connectToHost("localhost", 8888); //给定IP和端口号，连接服务器
+    TCP_SendMesSocket->connectToHost(ip, port); //给定IP和端口号，连接服务器
 
     connect(TCP_SendMesSocket, SIGNAL(connected()), this, SLOT(slot_Connected()));
     connect(TCP_SendMesSocket, SIGNAL(readyRead()), this, SLOT(slot_RecvMessage()));
@@ -34,7 +34,7 @@ void Socket::slot_Disconnect()
     TCP_SendMesSocket->deleteLater();
 }
 
-void Socket::SendMessage(int type, char *arrayMessage)
+void Socket::SendMessage(int type, std::string arrayMessage)
 {
     QByteArray messages;
     // 消息类型
@@ -44,13 +44,13 @@ void Socket::SendMessage(int type, char *arrayMessage)
     messages[3] = type >> 24;
 
     // 消息长度
-    int byteLen = strlen(arrayMessage);
+    int byteLen = arrayMessage.size();
     messages[4] = byteLen;
     messages[5] = byteLen >> 8;
     messages[6] = byteLen >> 16;
     messages[7] = byteLen >> 24;
 
-    QByteArray msg = arrayMessage;
+    QByteArray msg =  QByteArray::fromStdString(arrayMessage);
     messages.append(msg);
 
     TCP_SendMesSocket->write(messages);

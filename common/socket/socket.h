@@ -39,13 +39,12 @@ class Socket : public QWidget
     Q_OBJECT
 
 public:
-    Socket(QWidget *parent = nullptr);
     ~Socket();
-    static Socket *Instance()
+    static Socket *Instance(QString ip = "", int port = 0)
     {
-        if (Socket::m_this == nullptr)
+        if (Socket::m_this == nullptr && ip != "" && port != 0)
         {
-            m_this = new Socket();
+            m_this = new Socket(nullptr, ip, port);
         }
         return m_this;
     }
@@ -56,13 +55,15 @@ public:
         mapCallBackFunc[type] = new MethodClosure2(func);
     }
 
-    void SendMessage(int type, char *arrayMessage); // 外部调用发送消息
+    void SendMessage(int type, std::string message); // 外部调用发送消息
 
 public slots:
     void slot_Connected();   // 处理成功连接到服务器的槽
     void slot_RecvMessage(); // 接收来自服务器的消息的槽
     void slot_Disconnect();  // 取消与服务器连接的槽
 private:
+    Socket(QWidget *parent = nullptr, QString ip = "", int port = 0);
+
     static Socket *m_this;
     QTcpSocket *TCP_SendMesSocket; //发送消息套接字
 

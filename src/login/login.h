@@ -14,6 +14,11 @@ class login : public QWidget
 public:
     explicit login(QWidget *parent = nullptr);
     ~login();
+    void LoginBack(char * recvMessage);
+
+private slots:
+    void slot_btn_login();
+    void slot_btn_register();
 
 private:
     Ui::login *ui;

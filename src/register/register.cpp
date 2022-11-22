@@ -1,7 +1,7 @@
 #include "register.h"
 #include "ui_register.h"
 
-CUserRegister::CUserRegister(QWidget *parent) : QWidget(parent),
+CUserRegister::CUserRegister(QDialog *parent) : QDialog(parent),
     ui(new Ui::CUserRegister)
 {
     ui->setupUi(this);

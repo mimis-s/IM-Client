@@ -2,18 +2,19 @@
 #define REGISTER_H
 
 #include <QWidget>
+#include <QDialog>
 
 namespace Ui
 {
     class CUserRegister;
 }
 
-class CUserRegister : public QWidget
+class CUserRegister : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit CUserRegister(QWidget *parent = 0);
+    explicit CUserRegister(QDialog *parent = 0);
     ~CUserRegister();
 
 private:
