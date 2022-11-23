@@ -24,6 +24,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    common/base_widget/circlelabel.cpp \
     common/commonproto/errors.pb.cc \
     common/commonproto/home_account.pb.cc \
     common/commonproto/home_chat.pb.cc \
@@ -38,9 +39,11 @@ SOURCES += \
     src/home/home.cpp \
     src/login/login.cpp \
     src/register/register.cpp \
-    common/crc32/crc32.cpp
+    common/crc32/crc32.cpp \
+    common/base_widget/friendchatbox.cpp
 
 HEADERS += \
+    common/base_widget/circlelabel.h \
     common/commonproto/errors.pb.h \
     common/commonproto/home_account.pb.h \
     common/commonproto/home_chat.pb.h \
@@ -55,8 +58,8 @@ HEADERS += \
     src/home/home.h \
     src/login/login.h \
     src/register/register.h \
-    common/define/define.h
-
+    common/define/define.h \
+    common/base_widget/friendchatbox.h
 
 FORMS += \
         im_client.ui \
