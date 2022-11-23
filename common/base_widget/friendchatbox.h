@@ -31,7 +31,6 @@ class FriendChatBox : public QWidget
 public:
     explicit FriendChatBox(QWidget *parent = nullptr);
 
-    void SetStyleModel(ENUM_StyleModel model = ENUM_StyleModel::ENUM_WHITE); //设置样式(黑夜/白昼)
     // 更新数据
     void UpdateData(FriendChatBoxData data);
 signals:
@@ -40,7 +39,7 @@ private:
     CircleLabel *m_pLbHead;     // 头像
     QLabel *m_pLbName;          // 好友名字
     QLabel *m_pLbMessage;       // 最新消息
-    QLabel *m_pLbTips;          // 未读消息提示
+    CircleLabel *m_pLbTips;     // 未读消息提示
     QLabel *m_pLbTime;          // 最后消息的时间
 
     ENUM_OnLineStatus m_OnlineStatus;        // 在线提示
