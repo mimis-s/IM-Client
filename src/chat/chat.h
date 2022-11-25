@@ -35,6 +35,11 @@ public:
 
     void AddOneChat(ChatShortFrameData data);
 
+protected slots:
+    void slot_ChatSingleRes(char *pMessage);
+    void slot_ChatSingleRelay(char *pMessage);
+
+
 private:
     Ui::Chat *ui;
 

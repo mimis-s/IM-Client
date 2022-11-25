@@ -3,6 +3,10 @@
 #include <QHBoxLayout>
 #include <QAbstractItemView>
 #include <QListWidgetItem>
+#include "../../common/commonproto/home_chat.pb.h"
+#include "../../common/commonproto/home_relay.pb.h"
+#include "../../common/define/define.h"
+#include "../../common/socket/socket.h"
 
 Chat::Chat(QWidget *parent) :
     QWidget(parent),
@@ -27,11 +31,27 @@ Chat::Chat(QWidget *parent) :
 
     pHBoxLayout->addWidget(m_pChatShortFrameList, 3);
     pHBoxLayout->addWidget(m_pRightChatBox, 7);
+
+    // socket
+    Socket::Instance()->RegisterRecvFunc(MessageTag_ChatSingle.Res, std::bind(&Chat::slot_ChatSingleRes, this, std::placeholders::_1));
+    Socket::Instance()->RegisterRecvFunc(MessageTag_ChatSingle.Relay, std::bind(&Chat::slot_ChatSingleRelay, this, std::placeholders::_1));
 }
 
 Chat::~Chat()
 {
     delete ui;
+}
+
+void Chat::slot_ChatSingleRes(char *pMessage)
+{
+    im_home_proto::ChatSingleRes *chatSingleRes = new im_home_proto::ChatSingleRes;
+    chatSingleRes->ParseFromString(pMessage);
+}
+
+void Chat::slot_ChatSingleRelay(char *pMessage)
+{
+    im_home_proto::ChatSingleToReceiver *chatSingleToReceiver = new im_home_proto::ChatSingleToReceiver;
+    chatSingleToReceiver->ParseFromString(pMessage);
 }
 
 void Chat::AddOneChat(ChatShortFrameData data)
