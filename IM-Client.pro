@@ -43,6 +43,7 @@ SOURCES += \
     src/friends/friends.cpp \
     src/home/home.cpp \
     src/login/login.cpp \
+    src/login/logininfo.cpp \
     src/register/register.cpp \
     common/crc32/crc32.cpp
 
@@ -66,6 +67,7 @@ HEADERS += \
     src/friends/friends.h \
     src/home/home.h \
     src/login/login.h \
+    src/login/logininfo.h \
     src/register/register.h \
     common/define/define.h
 

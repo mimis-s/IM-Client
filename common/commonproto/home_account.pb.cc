@@ -36,8 +36,7 @@ struct LoginReqDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LoginReqDefaultTypeInternal _LoginReq_default_instance_;
 PROTOBUF_CONSTEXPR LoginRes::LoginRes(
     ::_pbi::ConstantInitialized)
-  : username_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , userid_(int64_t{0}){}
+  : info_(nullptr){}
 struct LoginResDefaultTypeInternal {
   PROTOBUF_CONSTEXPR LoginResDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -158,8 +157,7 @@ const uint32_t TableStruct_home_5faccount_2eproto::offsets[] PROTOBUF_SECTION_VA
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::im_home_proto::LoginRes, userid_),
-  PROTOBUF_FIELD_OFFSET(::im_home_proto::LoginRes, username_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::LoginRes, info_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::im_home_proto::RegisterReq, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -223,12 +221,12 @@ const uint32_t TableStruct_home_5faccount_2eproto::offsets[] PROTOBUF_SECTION_VA
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::im_home_proto::LoginReq)},
   { 8, -1, -1, sizeof(::im_home_proto::LoginRes)},
-  { 16, -1, -1, sizeof(::im_home_proto::RegisterReq)},
-  { 24, -1, -1, sizeof(::im_home_proto::RegisterRes)},
-  { 32, -1, -1, sizeof(::im_home_proto::ClientOnlineInfo)},
-  { 48, -1, -1, sizeof(::im_home_proto::UserInfo)},
-  { 60, -1, -1, sizeof(::im_home_proto::GetUserInfoReq)},
-  { 67, -1, -1, sizeof(::im_home_proto::GetUserInfoRes)},
+  { 15, -1, -1, sizeof(::im_home_proto::RegisterReq)},
+  { 23, -1, -1, sizeof(::im_home_proto::RegisterRes)},
+  { 31, -1, -1, sizeof(::im_home_proto::ClientOnlineInfo)},
+  { 47, -1, -1, sizeof(::im_home_proto::UserInfo)},
+  { 59, -1, -1, sizeof(::im_home_proto::GetUserInfoReq)},
+  { 66, -1, -1, sizeof(::im_home_proto::GetUserInfoRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -245,33 +243,34 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_home_5faccount_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\022home_account.proto\022\rim_home_proto\",\n\010L"
   "oginReq\022\016\n\006UserID\030\001 \001(\003\022\020\n\010Password\030\002 \001("
-  "\t\",\n\010LoginRes\022\016\n\006UserID\030\001 \001(\003\022\020\n\010UserNam"
-  "e\030\002 \001(\t\"1\n\013RegisterReq\022\020\n\010UserName\030\001 \001(\t"
-  "\022\020\n\010Password\030\002 \001(\t\"/\n\013RegisterRes\022\016\n\006Use"
-  "rID\030\001 \001(\003\022\020\n\010UserName\030\002 \001(\t\"\360\001\n\020ClientOn"
-  "lineInfo\022\016\n\006UserID\030\001 \001(\003\022\020\n\010UserName\030\002 \001"
-  "(\t\022\016\n\006Region\030\003 \001(\005\022\016\n\006IPAddr\030\004 \001(\t\022\017\n\007Ne"
-  "tType\030\005 \001(\005\022\036\n\026CreateAccountTimestamp\030\006 "
-  "\001(\003\022\031\n\021PreLoginTimestamp\030\007 \001(\003\022\032\n\022PreLog"
-  "outTimestamp\030\010 \001(\003\022\031\n\021CurLoginTimestamp\030"
-  "\t \001(\003\022\027\n\017ClientLocalZone\030\n \001(\005\"\220\001\n\010UserI"
-  "nfo\022\016\n\006UserID\030\001 \001(\003\022\020\n\010UserName\030\002 \001(\t\022\016\n"
-  "\006Region\030\003 \001(\005\022\021\n\tAutograph\030\004 \001(\t\022.\n\006Stat"
-  "us\030\005 \001(\0162\036.im_home_proto.Enum_UserStatus"
-  "\022\017\n\007HeadImg\030\006 \001(\t\" \n\016GetUserInfoReq\022\016\n\006U"
-  "serID\030\001 \001(\003\"k\n\016GetUserInfoRes\022%\n\004Data\030\001 "
-  "\001(\0132\027.im_home_proto.UserInfo\0222\n\010Relation"
-  "\030\002 \001(\0162 .im_home_proto.Enum_UserRelation"
-  "*J\n\017Enum_UserStatus\022\033\n\027Enum_UserStatus_O"
-  "utline\020\000\022\032\n\026Enum_UserStatus_Online\020\001*Q\n\021"
-  "Enum_UserRelation\022\036\n\032Enum_UserRelation_S"
-  "tranger\020\000\022\034\n\030Enum_UserRelation_Friend\020\001B"
-  "DZBgithub.com/mimis-s/IM-Service/src/com"
-  "mon/commonproto/im_home_protob\006proto3"
+  "\t\"1\n\010LoginRes\022%\n\004Info\030\001 \001(\0132\027.im_home_pr"
+  "oto.UserInfo\"1\n\013RegisterReq\022\020\n\010UserName\030"
+  "\001 \001(\t\022\020\n\010Password\030\002 \001(\t\"/\n\013RegisterRes\022\016"
+  "\n\006UserID\030\001 \001(\003\022\020\n\010UserName\030\002 \001(\t\"\360\001\n\020Cli"
+  "entOnlineInfo\022\016\n\006UserID\030\001 \001(\003\022\020\n\010UserNam"
+  "e\030\002 \001(\t\022\016\n\006Region\030\003 \001(\005\022\016\n\006IPAddr\030\004 \001(\t\022"
+  "\017\n\007NetType\030\005 \001(\005\022\036\n\026CreateAccountTimesta"
+  "mp\030\006 \001(\003\022\031\n\021PreLoginTimestamp\030\007 \001(\003\022\032\n\022P"
+  "reLogoutTimestamp\030\010 \001(\003\022\031\n\021CurLoginTimes"
+  "tamp\030\t \001(\003\022\027\n\017ClientLocalZone\030\n \001(\005\"\220\001\n\010"
+  "UserInfo\022\016\n\006UserID\030\001 \001(\003\022\020\n\010UserName\030\002 \001"
+  "(\t\022\016\n\006Region\030\003 \001(\005\022\021\n\tAutograph\030\004 \001(\t\022.\n"
+  "\006Status\030\005 \001(\0162\036.im_home_proto.Enum_UserS"
+  "tatus\022\017\n\007HeadImg\030\006 \001(\t\" \n\016GetUserInfoReq"
+  "\022\016\n\006UserID\030\001 \001(\003\"k\n\016GetUserInfoRes\022%\n\004Da"
+  "ta\030\001 \001(\0132\027.im_home_proto.UserInfo\0222\n\010Rel"
+  "ation\030\002 \001(\0162 .im_home_proto.Enum_UserRel"
+  "ation*J\n\017Enum_UserStatus\022\033\n\027Enum_UserSta"
+  "tus_Outline\020\000\022\032\n\026Enum_UserStatus_Online\020"
+  "\001*Q\n\021Enum_UserRelation\022\036\n\032Enum_UserRelat"
+  "ion_Stranger\020\000\022\034\n\030Enum_UserRelation_Frie"
+  "nd\020\001BDZBgithub.com/mimis-s/IM-Service/sr"
+  "c/common/commonproto/im_home_protob\006prot"
+  "o3"
   ;
 static ::_pbi::once_flag descriptor_table_home_5faccount_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_home_5faccount_2eproto = {
-    false, false, 997, descriptor_table_protodef_home_5faccount_2eproto,
+    false, false, 1002, descriptor_table_protodef_home_5faccount_2eproto,
     "home_account.proto",
     &descriptor_table_home_5faccount_2eproto_once, nullptr, 0, 8,
     schemas, file_default_instances, TableStruct_home_5faccount_2eproto::offsets,
@@ -539,8 +538,13 @@ void LoginReq::InternalSwap(LoginReq* other) {
 
 class LoginRes::_Internal {
  public:
+  static const ::im_home_proto::UserInfo& info(const LoginRes* msg);
 };
 
+const ::im_home_proto::UserInfo&
+LoginRes::_Internal::info(const LoginRes* msg) {
+  return *msg->info_;
+}
 LoginRes::LoginRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -550,24 +554,16 @@ LoginRes::LoginRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
 LoginRes::LoginRes(const LoginRes& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  username_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    username_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (!from._internal_username().empty()) {
-    username_.Set(from._internal_username(), 
-      GetArenaForAllocation());
+  if (from._internal_has_info()) {
+    info_ = new ::im_home_proto::UserInfo(*from.info_);
+  } else {
+    info_ = nullptr;
   }
-  userid_ = from.userid_;
   // @@protoc_insertion_point(copy_constructor:im_home_proto.LoginRes)
 }
 
 inline void LoginRes::SharedCtor() {
-username_.InitDefault();
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  username_.Set("", GetArenaForAllocation());
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-userid_ = int64_t{0};
+info_ = nullptr;
 }
 
 LoginRes::~LoginRes() {
@@ -581,7 +577,7 @@ LoginRes::~LoginRes() {
 
 inline void LoginRes::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  username_.Destroy();
+  if (this != internal_default_instance()) delete info_;
 }
 
 void LoginRes::SetCachedSize(int size) const {
@@ -594,8 +590,10 @@ void LoginRes::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  username_.ClearToEmpty();
-  userid_ = int64_t{0};
+  if (GetArenaForAllocation() == nullptr && info_ != nullptr) {
+    delete info_;
+  }
+  info_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -605,21 +603,11 @@ const char* LoginRes::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // int64 UserID = 1;
+      // .im_home_proto.UserInfo Info = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          userid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_info(), ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // string UserName = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          auto str = _internal_mutable_username();
-          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(ptr);
-          CHK_(::_pbi::VerifyUTF8(str, "im_home_proto.LoginRes.UserName"));
         } else
           goto handle_unusual;
         continue;
@@ -652,20 +640,11 @@ uint8_t* LoginRes::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int64 UserID = 1;
-  if (this->_internal_userid() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt64ToArray(1, this->_internal_userid(), target);
-  }
-
-  // string UserName = 2;
-  if (!this->_internal_username().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_username().data(), static_cast<int>(this->_internal_username().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "im_home_proto.LoginRes.UserName");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_username(), target);
+  // .im_home_proto.UserInfo Info = 1;
+  if (this->_internal_has_info()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::info(this),
+        _Internal::info(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -684,16 +663,11 @@ size_t LoginRes::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // string UserName = 2;
-  if (!this->_internal_username().empty()) {
+  // .im_home_proto.UserInfo Info = 1;
+  if (this->_internal_has_info()) {
     total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_username());
-  }
-
-  // int64 UserID = 1;
-  if (this->_internal_userid() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_userid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *info_);
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
@@ -718,11 +692,8 @@ void LoginRes::MergeFrom(const LoginRes& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (!from._internal_username().empty()) {
-    _internal_set_username(from._internal_username());
-  }
-  if (from._internal_userid() != 0) {
-    _internal_set_userid(from._internal_userid());
+  if (from._internal_has_info()) {
+    _internal_mutable_info()->::im_home_proto::UserInfo::MergeFrom(from._internal_info());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -740,14 +711,8 @@ bool LoginRes::IsInitialized() const {
 
 void LoginRes::InternalSwap(LoginRes* other) {
   using std::swap;
-  auto* lhs_arena = GetArenaForAllocation();
-  auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &username_, lhs_arena,
-      &other->username_, rhs_arena
-  );
-  swap(userid_, other->userid_);
+  swap(info_, other->info_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata LoginRes::GetMetadata() const {

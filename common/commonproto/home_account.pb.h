@@ -413,31 +413,25 @@ class LoginRes final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kUserNameFieldNumber = 2,
-    kUserIDFieldNumber = 1,
+    kInfoFieldNumber = 1,
   };
-  // string UserName = 2;
-  void clear_username();
-  const std::string& username() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_username(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_username();
-  PROTOBUF_NODISCARD std::string* release_username();
-  void set_allocated_username(std::string* username);
+  // .im_home_proto.UserInfo Info = 1;
+  bool has_info() const;
   private:
-  const std::string& _internal_username() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_username(const std::string& value);
-  std::string* _internal_mutable_username();
+  bool _internal_has_info() const;
   public:
-
-  // int64 UserID = 1;
-  void clear_userid();
-  int64_t userid() const;
-  void set_userid(int64_t value);
+  void clear_info();
+  const ::im_home_proto::UserInfo& info() const;
+  PROTOBUF_NODISCARD ::im_home_proto::UserInfo* release_info();
+  ::im_home_proto::UserInfo* mutable_info();
+  void set_allocated_info(::im_home_proto::UserInfo* info);
   private:
-  int64_t _internal_userid() const;
-  void _internal_set_userid(int64_t value);
+  const ::im_home_proto::UserInfo& _internal_info() const;
+  ::im_home_proto::UserInfo* _internal_mutable_info();
   public:
+  void unsafe_arena_set_allocated_info(
+      ::im_home_proto::UserInfo* info);
+  ::im_home_proto::UserInfo* unsafe_arena_release_info();
 
   // @@protoc_insertion_point(class_scope:im_home_proto.LoginRes)
  private:
@@ -446,8 +440,7 @@ class LoginRes final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr username_;
-  int64_t userid_;
+  ::im_home_proto::UserInfo* info_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_home_5faccount_2eproto;
 };
@@ -1630,74 +1623,94 @@ inline void LoginReq::set_allocated_password(std::string* password) {
 
 // LoginRes
 
-// int64 UserID = 1;
-inline void LoginRes::clear_userid() {
-  userid_ = int64_t{0};
+// .im_home_proto.UserInfo Info = 1;
+inline bool LoginRes::_internal_has_info() const {
+  return this != internal_default_instance() && info_ != nullptr;
 }
-inline int64_t LoginRes::_internal_userid() const {
-  return userid_;
+inline bool LoginRes::has_info() const {
+  return _internal_has_info();
 }
-inline int64_t LoginRes::userid() const {
-  // @@protoc_insertion_point(field_get:im_home_proto.LoginRes.UserID)
-  return _internal_userid();
+inline void LoginRes::clear_info() {
+  if (GetArenaForAllocation() == nullptr && info_ != nullptr) {
+    delete info_;
+  }
+  info_ = nullptr;
 }
-inline void LoginRes::_internal_set_userid(int64_t value) {
-  
-  userid_ = value;
+inline const ::im_home_proto::UserInfo& LoginRes::_internal_info() const {
+  const ::im_home_proto::UserInfo* p = info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::im_home_proto::UserInfo&>(
+      ::im_home_proto::_UserInfo_default_instance_);
 }
-inline void LoginRes::set_userid(int64_t value) {
-  _internal_set_userid(value);
-  // @@protoc_insertion_point(field_set:im_home_proto.LoginRes.UserID)
+inline const ::im_home_proto::UserInfo& LoginRes::info() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.LoginRes.Info)
+  return _internal_info();
 }
-
-// string UserName = 2;
-inline void LoginRes::clear_username() {
-  username_.ClearToEmpty();
-}
-inline const std::string& LoginRes::username() const {
-  // @@protoc_insertion_point(field_get:im_home_proto.LoginRes.UserName)
-  return _internal_username();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void LoginRes::set_username(ArgT0&& arg0, ArgT... args) {
- 
- username_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:im_home_proto.LoginRes.UserName)
-}
-inline std::string* LoginRes::mutable_username() {
-  std::string* _s = _internal_mutable_username();
-  // @@protoc_insertion_point(field_mutable:im_home_proto.LoginRes.UserName)
-  return _s;
-}
-inline const std::string& LoginRes::_internal_username() const {
-  return username_.Get();
-}
-inline void LoginRes::_internal_set_username(const std::string& value) {
-  
-  username_.Set(value, GetArenaForAllocation());
-}
-inline std::string* LoginRes::_internal_mutable_username() {
-  
-  return username_.Mutable(GetArenaForAllocation());
-}
-inline std::string* LoginRes::release_username() {
-  // @@protoc_insertion_point(field_release:im_home_proto.LoginRes.UserName)
-  return username_.Release();
-}
-inline void LoginRes::set_allocated_username(std::string* username) {
-  if (username != nullptr) {
+inline void LoginRes::unsafe_arena_set_allocated_info(
+    ::im_home_proto::UserInfo* info) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(info_);
+  }
+  info_ = info;
+  if (info) {
     
   } else {
     
   }
-  username_.SetAllocated(username, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (username_.IsDefault()) {
-    username_.Set("", GetArenaForAllocation());
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:im_home_proto.LoginRes.Info)
+}
+inline ::im_home_proto::UserInfo* LoginRes::release_info() {
+  
+  ::im_home_proto::UserInfo* temp = info_;
+  info_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
   }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:im_home_proto.LoginRes.UserName)
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::im_home_proto::UserInfo* LoginRes::unsafe_arena_release_info() {
+  // @@protoc_insertion_point(field_release:im_home_proto.LoginRes.Info)
+  
+  ::im_home_proto::UserInfo* temp = info_;
+  info_ = nullptr;
+  return temp;
+}
+inline ::im_home_proto::UserInfo* LoginRes::_internal_mutable_info() {
+  
+  if (info_ == nullptr) {
+    auto* p = CreateMaybeMessage<::im_home_proto::UserInfo>(GetArenaForAllocation());
+    info_ = p;
+  }
+  return info_;
+}
+inline ::im_home_proto::UserInfo* LoginRes::mutable_info() {
+  ::im_home_proto::UserInfo* _msg = _internal_mutable_info();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.LoginRes.Info)
+  return _msg;
+}
+inline void LoginRes::set_allocated_info(::im_home_proto::UserInfo* info) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete info_;
+  }
+  if (info) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(info);
+    if (message_arena != submessage_arena) {
+      info = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, info, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  info_ = info;
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.LoginRes.Info)
 }
 
 // -------------------------------------------------------------------

@@ -6,6 +6,7 @@
 #include "../../common/define/define.h"
 #include "../../common/commonproto/home_account.pb.h"
 #include "../../common/log/im_log.h"
+#include "logininfo.h"
 
 login::login(QWidget *parent) :
     QWidget(parent),
@@ -53,6 +54,8 @@ void login::LoginBack(char * recvMessage)
     im_home_proto::LoginRes *loginRes = new im_home_proto::LoginRes;
     loginRes->ParseFromString(recvMessage);
     this->hide();
+
+    LoginInfo::Instance()->SetClientUserInfo(&loginRes->info());
 
     m_pHomeWidget = new Home();
     m_pHomeWidget->show();
