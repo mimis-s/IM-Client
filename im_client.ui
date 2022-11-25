@@ -13,19 +13,9 @@
   <property name="windowTitle">
    <string>IMClient</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>250</y>
-     <width>89</width>
-     <height>25</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
-   </property>
-  </widget>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

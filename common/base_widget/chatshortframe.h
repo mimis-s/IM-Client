@@ -16,23 +16,24 @@ enum ENUM_OnLineStatus {
     ENUM_OnLine = 1,    // 在线
 };
 
-struct FriendChatBoxData {
+struct ChatShortFrameData {
     QString m_HeadPath;             // 头像路径
     ENUM_OnLineStatus m_Online;     // 在线提示
     QString m_Name;                 // 好友名字
+    int64_t m_FriendID;             // 好友id
     QString m_Message;              // 最新消息
     int m_TipsNum;                  // 未读消息提示
     QString m_Time;                 // 最后消息的时间
 };
 
-class FriendChatBox : public QWidget
+class ChatShortFrame : public QWidget
 {
     Q_OBJECT
 public:
-    explicit FriendChatBox(QWidget *parent = nullptr);
+    explicit ChatShortFrame(QWidget *parent = nullptr);
 
     // 更新数据
-    void UpdateData(FriendChatBoxData data);
+    void UpdateData(ChatShortFrameData data);
 signals:
 
 private:

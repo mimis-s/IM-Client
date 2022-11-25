@@ -8,6 +8,7 @@
 */
 
 #include <QWidget>
+#include "../chat/chat.h"
 
 namespace Ui {
 class Home;
@@ -23,6 +24,8 @@ public:
 
 private:
     Ui::Home *ui;
+
+    Chat *m_pChat;
 };
 
 #endif // HOME_H

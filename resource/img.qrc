@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/im_logo.png</file>
+        <file>img/im_logo_home.png</file>
+        <file>img/im_chat_videoChat.png</file>
+        <file>img/im_chat_phone.png</file>
+        <file>img/im_chat_emoj.png</file>
+    </qresource>
+</RCC>

@@ -24,6 +24,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    common/base_widget/chatbox.cpp \
+    common/base_widget/chatbubble.cpp \
+    common/base_widget/chatheadandbubble.cpp \
+    common/base_widget/chatshortframe.cpp \
     common/base_widget/circlelabel.cpp \
     common/commonproto/errors.pb.cc \
     common/commonproto/home_account.pb.cc \
@@ -39,10 +43,13 @@ SOURCES += \
     src/home/home.cpp \
     src/login/login.cpp \
     src/register/register.cpp \
-    common/crc32/crc32.cpp \
-    common/base_widget/friendchatbox.cpp
+    common/crc32/crc32.cpp
 
 HEADERS += \
+    common/base_widget/chatbox.h \
+    common/base_widget/chatbubble.h \
+    common/base_widget/chatheadandbubble.h \
+    common/base_widget/chatshortframe.h \
     common/base_widget/circlelabel.h \
     common/commonproto/errors.pb.h \
     common/commonproto/home_account.pb.h \
@@ -58,8 +65,7 @@ HEADERS += \
     src/home/home.h \
     src/login/login.h \
     src/register/register.h \
-    common/define/define.h \
-    common/base_widget/friendchatbox.h
+    common/define/define.h
 
 FORMS += \
         im_client.ui \
@@ -77,3 +83,6 @@ DISTFILES += \
 #protobuf lib and include
 INCLUDEPATH += /usr/local/protobuf/include
 LIBS += /usr/local/protobuf/lib/libprotobuf.a -lpthread
+
+RESOURCES += \
+    resource/img.qrc

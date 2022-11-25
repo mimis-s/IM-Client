@@ -1,9 +1,9 @@
-#include "friendchatbox.h"
+#include "chatshortframe.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
 
-FriendChatBox::FriendChatBox(QWidget *parent) : QWidget(parent)
+ChatShortFrame::ChatShortFrame(QWidget *parent) : QWidget(parent)
 {
     this->setObjectName("FriendChatBox");
     // 左边是头像,头像右上角有在线提示(用有颜色的点表示), 中间上面是好友名字,中间下面是最新消息, 右边是未读消息提示,最后消息的时间
@@ -11,8 +11,8 @@ FriendChatBox::FriendChatBox(QWidget *parent) : QWidget(parent)
 
     // 左边是头像,在线提示
     m_pLbHead = new CircleLabel(this, ENUM_CircleStyle::ENUM_Head);
-    m_pLbHead->setMinimumSize(100, 100);
-    m_pLbHead->setMaximumSize(100, 100);
+    m_pLbHead->setMinimumSize(80, 80);
+    m_pLbHead->setMaximumSize(80, 80);
 
     // 中间上面是好友名字,中间下面是最新消息
     QVBoxLayout *pMiddleVboxLayout = new QVBoxLayout();
@@ -43,7 +43,7 @@ FriendChatBox::FriendChatBox(QWidget *parent) : QWidget(parent)
     pBoxLayout->addLayout(pRightVboxLayout);
 }
 
-void FriendChatBox::UpdateData(FriendChatBoxData data)
+void ChatShortFrame::UpdateData(ChatShortFrameData data)
 {
     if (data.m_HeadPath != "") {
         // 获取头像
