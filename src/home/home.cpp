@@ -62,10 +62,38 @@ Home::Home(QWidget *parent) :
     m_pChat->AddOneChat(data);
     pVBoxLayoutRightWidget->addWidget(m_pChat);
 
+    m_pFriends = new Friends(pRightWidget);
+    pVBoxLayoutRightWidget->addWidget(m_pFriends);
+    m_pFriends->hide();
+
     pHBoxLayout->addWidget(pRightWidget, 9);
+
+    connect(pLeftBtnChat, SIGNAL(clicked()), this, SLOT(slot_btnChatClick()));
+    connect(pLeftBtnFriends, SIGNAL(clicked()), this, SLOT(slot_btnFriendsClick()));
+    connect(pLeftBtnGroup, SIGNAL(clicked()), this, SLOT(slot_btnGroupClick()));
+
 }
 
 Home::~Home()
 {
     delete ui;
 }
+
+void Home::slot_btnChatClick()
+{
+    m_pChat->show();
+    m_pFriends->hide();
+}
+
+void Home::slot_btnFriendsClick()
+{
+    m_pChat->hide();
+    m_pFriends->show();
+}
+
+void Home::slot_btnGroupClick()
+{
+    m_pChat->hide();
+    m_pFriends->hide();
+}
+

@@ -39,6 +39,7 @@ SOURCES += \
         main.cpp \
         im_client.cpp \
     src/chat/chat.cpp \
+    src/friends/frienddetails.cpp \
     src/friends/friends.cpp \
     src/home/home.cpp \
     src/login/login.cpp \
@@ -61,6 +62,7 @@ HEADERS += \
     common/crc32/crc32.h \
         im_client.h \
     src/chat/chat.h \
+    src/friends/frienddetails.h \
     src/friends/friends.h \
     src/home/home.h \
     src/login/login.h \
@@ -70,6 +72,7 @@ HEADERS += \
 FORMS += \
         im_client.ui \
     src/chat/chat.ui \
+    src/friends/frienddetails.ui \
     src/friends/friends.ui \
     src/home/home.ui \
     src/login/login.ui \

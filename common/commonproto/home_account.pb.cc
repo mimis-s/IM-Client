@@ -94,9 +94,53 @@ struct ClientOnlineInfoDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ClientOnlineInfoDefaultTypeInternal _ClientOnlineInfo_default_instance_;
+PROTOBUF_CONSTEXPR UserInfo::UserInfo(
+    ::_pbi::ConstantInitialized)
+  : username_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , autograph_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , headimg_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , userid_(int64_t{0})
+  , region_(0)
+  , status_(0)
+{}
+struct UserInfoDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UserInfoDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~UserInfoDefaultTypeInternal() {}
+  union {
+    UserInfo _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserInfoDefaultTypeInternal _UserInfo_default_instance_;
+PROTOBUF_CONSTEXPR GetUserInfoReq::GetUserInfoReq(
+    ::_pbi::ConstantInitialized)
+  : userid_(int64_t{0}){}
+struct GetUserInfoReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetUserInfoReqDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetUserInfoReqDefaultTypeInternal() {}
+  union {
+    GetUserInfoReq _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetUserInfoReqDefaultTypeInternal _GetUserInfoReq_default_instance_;
+PROTOBUF_CONSTEXPR GetUserInfoRes::GetUserInfoRes(
+    ::_pbi::ConstantInitialized)
+  : data_(nullptr)
+  , relation_(0)
+{}
+struct GetUserInfoResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR GetUserInfoResDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~GetUserInfoResDefaultTypeInternal() {}
+  union {
+    GetUserInfoRes _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetUserInfoResDefaultTypeInternal _GetUserInfoRes_default_instance_;
 }  // namespace im_home_proto
-static ::_pb::Metadata file_level_metadata_home_5faccount_2eproto[5];
-static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_home_5faccount_2eproto = nullptr;
+static ::_pb::Metadata file_level_metadata_home_5faccount_2eproto[8];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_home_5faccount_2eproto[2];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_home_5faccount_2eproto = nullptr;
 
 const uint32_t TableStruct_home_5faccount_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -148,6 +192,33 @@ const uint32_t TableStruct_home_5faccount_2eproto::offsets[] PROTOBUF_SECTION_VA
   PROTOBUF_FIELD_OFFSET(::im_home_proto::ClientOnlineInfo, prelogouttimestamp_),
   PROTOBUF_FIELD_OFFSET(::im_home_proto::ClientOnlineInfo, curlogintimestamp_),
   PROTOBUF_FIELD_OFFSET(::im_home_proto::ClientOnlineInfo, clientlocalzone_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::UserInfo, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::UserInfo, userid_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::UserInfo, username_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::UserInfo, region_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::UserInfo, autograph_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::UserInfo, status_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::UserInfo, headimg_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::GetUserInfoReq, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::GetUserInfoReq, userid_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::GetUserInfoRes, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::GetUserInfoRes, data_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::GetUserInfoRes, relation_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::im_home_proto::LoginReq)},
@@ -155,6 +226,9 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 16, -1, -1, sizeof(::im_home_proto::RegisterReq)},
   { 24, -1, -1, sizeof(::im_home_proto::RegisterRes)},
   { 32, -1, -1, sizeof(::im_home_proto::ClientOnlineInfo)},
+  { 48, -1, -1, sizeof(::im_home_proto::UserInfo)},
+  { 60, -1, -1, sizeof(::im_home_proto::GetUserInfoReq)},
+  { 67, -1, -1, sizeof(::im_home_proto::GetUserInfoRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -163,6 +237,9 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::im_home_proto::_RegisterReq_default_instance_._instance,
   &::im_home_proto::_RegisterRes_default_instance_._instance,
   &::im_home_proto::_ClientOnlineInfo_default_instance_._instance,
+  &::im_home_proto::_UserInfo_default_instance_._instance,
+  &::im_home_proto::_GetUserInfoReq_default_instance_._instance,
+  &::im_home_proto::_GetUserInfoRes_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_home_5faccount_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -177,15 +254,26 @@ const char descriptor_table_protodef_home_5faccount_2eproto[] PROTOBUF_SECTION_V
   "tType\030\005 \001(\005\022\036\n\026CreateAccountTimestamp\030\006 "
   "\001(\003\022\031\n\021PreLoginTimestamp\030\007 \001(\003\022\032\n\022PreLog"
   "outTimestamp\030\010 \001(\003\022\031\n\021CurLoginTimestamp\030"
-  "\t \001(\003\022\027\n\017ClientLocalZone\030\n \001(\005BDZBgithub"
-  ".com/mimis-s/IM-Service/src/common/commo"
-  "nproto/im_home_protob\006proto3"
+  "\t \001(\003\022\027\n\017ClientLocalZone\030\n \001(\005\"\220\001\n\010UserI"
+  "nfo\022\016\n\006UserID\030\001 \001(\003\022\020\n\010UserName\030\002 \001(\t\022\016\n"
+  "\006Region\030\003 \001(\005\022\021\n\tAutograph\030\004 \001(\t\022.\n\006Stat"
+  "us\030\005 \001(\0162\036.im_home_proto.Enum_UserStatus"
+  "\022\017\n\007HeadImg\030\006 \001(\t\" \n\016GetUserInfoReq\022\016\n\006U"
+  "serID\030\001 \001(\003\"k\n\016GetUserInfoRes\022%\n\004Data\030\001 "
+  "\001(\0132\027.im_home_proto.UserInfo\0222\n\010Relation"
+  "\030\002 \001(\0162 .im_home_proto.Enum_UserRelation"
+  "*J\n\017Enum_UserStatus\022\033\n\027Enum_UserStatus_O"
+  "utline\020\000\022\032\n\026Enum_UserStatus_Online\020\001*Q\n\021"
+  "Enum_UserRelation\022\036\n\032Enum_UserRelation_S"
+  "tranger\020\000\022\034\n\030Enum_UserRelation_Friend\020\001B"
+  "DZBgithub.com/mimis-s/IM-Service/src/com"
+  "mon/commonproto/im_home_protob\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_home_5faccount_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_home_5faccount_2eproto = {
-    false, false, 548, descriptor_table_protodef_home_5faccount_2eproto,
+    false, false, 997, descriptor_table_protodef_home_5faccount_2eproto,
     "home_account.proto",
-    &descriptor_table_home_5faccount_2eproto_once, nullptr, 0, 5,
+    &descriptor_table_home_5faccount_2eproto_once, nullptr, 0, 8,
     schemas, file_default_instances, TableStruct_home_5faccount_2eproto::offsets,
     file_level_metadata_home_5faccount_2eproto, file_level_enum_descriptors_home_5faccount_2eproto,
     file_level_service_descriptors_home_5faccount_2eproto,
@@ -197,6 +285,34 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_home_5fa
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_home_5faccount_2eproto(&descriptor_table_home_5faccount_2eproto);
 namespace im_home_proto {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Enum_UserStatus_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_home_5faccount_2eproto);
+  return file_level_enum_descriptors_home_5faccount_2eproto[0];
+}
+bool Enum_UserStatus_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Enum_UserRelation_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_home_5faccount_2eproto);
+  return file_level_enum_descriptors_home_5faccount_2eproto[1];
+}
+bool Enum_UserRelation_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+      return true;
+    default:
+      return false;
+  }
+}
+
 
 // ===================================================================
 
@@ -1539,6 +1655,775 @@ void ClientOnlineInfo::InternalSwap(ClientOnlineInfo* other) {
       file_level_metadata_home_5faccount_2eproto[4]);
 }
 
+// ===================================================================
+
+class UserInfo::_Internal {
+ public:
+};
+
+UserInfo::UserInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:im_home_proto.UserInfo)
+}
+UserInfo::UserInfo(const UserInfo& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  username_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    username_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_username().empty()) {
+    username_.Set(from._internal_username(), 
+      GetArenaForAllocation());
+  }
+  autograph_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    autograph_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_autograph().empty()) {
+    autograph_.Set(from._internal_autograph(), 
+      GetArenaForAllocation());
+  }
+  headimg_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    headimg_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_headimg().empty()) {
+    headimg_.Set(from._internal_headimg(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&userid_, &from.userid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&status_) -
+    reinterpret_cast<char*>(&userid_)) + sizeof(status_));
+  // @@protoc_insertion_point(copy_constructor:im_home_proto.UserInfo)
+}
+
+inline void UserInfo::SharedCtor() {
+username_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  username_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+autograph_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  autograph_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+headimg_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  headimg_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&userid_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&status_) -
+    reinterpret_cast<char*>(&userid_)) + sizeof(status_));
+}
+
+UserInfo::~UserInfo() {
+  // @@protoc_insertion_point(destructor:im_home_proto.UserInfo)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void UserInfo::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  username_.Destroy();
+  autograph_.Destroy();
+  headimg_.Destroy();
+}
+
+void UserInfo::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void UserInfo::Clear() {
+// @@protoc_insertion_point(message_clear_start:im_home_proto.UserInfo)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  username_.ClearToEmpty();
+  autograph_.ClearToEmpty();
+  headimg_.ClearToEmpty();
+  ::memset(&userid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&status_) -
+      reinterpret_cast<char*>(&userid_)) + sizeof(status_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* UserInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int64 UserID = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          userid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string UserName = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_username();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "im_home_proto.UserInfo.UserName"));
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 Region = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          region_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string Autograph = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_autograph();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "im_home_proto.UserInfo.Autograph"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .im_home_proto.Enum_UserStatus Status = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_status(static_cast<::im_home_proto::Enum_UserStatus>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // string HeadImg = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_headimg();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "im_home_proto.UserInfo.HeadImg"));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* UserInfo::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:im_home_proto.UserInfo)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int64 UserID = 1;
+  if (this->_internal_userid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(1, this->_internal_userid(), target);
+  }
+
+  // string UserName = 2;
+  if (!this->_internal_username().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_username().data(), static_cast<int>(this->_internal_username().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "im_home_proto.UserInfo.UserName");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_username(), target);
+  }
+
+  // int32 Region = 3;
+  if (this->_internal_region() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_region(), target);
+  }
+
+  // string Autograph = 4;
+  if (!this->_internal_autograph().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_autograph().data(), static_cast<int>(this->_internal_autograph().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "im_home_proto.UserInfo.Autograph");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_autograph(), target);
+  }
+
+  // .im_home_proto.Enum_UserStatus Status = 5;
+  if (this->_internal_status() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      5, this->_internal_status(), target);
+  }
+
+  // string HeadImg = 6;
+  if (!this->_internal_headimg().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_headimg().data(), static_cast<int>(this->_internal_headimg().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "im_home_proto.UserInfo.HeadImg");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_headimg(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:im_home_proto.UserInfo)
+  return target;
+}
+
+size_t UserInfo::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:im_home_proto.UserInfo)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string UserName = 2;
+  if (!this->_internal_username().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_username());
+  }
+
+  // string Autograph = 4;
+  if (!this->_internal_autograph().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_autograph());
+  }
+
+  // string HeadImg = 6;
+  if (!this->_internal_headimg().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_headimg());
+  }
+
+  // int64 UserID = 1;
+  if (this->_internal_userid() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_userid());
+  }
+
+  // int32 Region = 3;
+  if (this->_internal_region() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_region());
+  }
+
+  // .im_home_proto.Enum_UserStatus Status = 5;
+  if (this->_internal_status() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_status());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UserInfo::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    UserInfo::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UserInfo::GetClassData() const { return &_class_data_; }
+
+void UserInfo::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<UserInfo *>(to)->MergeFrom(
+      static_cast<const UserInfo &>(from));
+}
+
+
+void UserInfo::MergeFrom(const UserInfo& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:im_home_proto.UserInfo)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_username().empty()) {
+    _internal_set_username(from._internal_username());
+  }
+  if (!from._internal_autograph().empty()) {
+    _internal_set_autograph(from._internal_autograph());
+  }
+  if (!from._internal_headimg().empty()) {
+    _internal_set_headimg(from._internal_headimg());
+  }
+  if (from._internal_userid() != 0) {
+    _internal_set_userid(from._internal_userid());
+  }
+  if (from._internal_region() != 0) {
+    _internal_set_region(from._internal_region());
+  }
+  if (from._internal_status() != 0) {
+    _internal_set_status(from._internal_status());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void UserInfo::CopyFrom(const UserInfo& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:im_home_proto.UserInfo)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool UserInfo::IsInitialized() const {
+  return true;
+}
+
+void UserInfo::InternalSwap(UserInfo* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &username_, lhs_arena,
+      &other->username_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &autograph_, lhs_arena,
+      &other->autograph_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &headimg_, lhs_arena,
+      &other->headimg_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(UserInfo, status_)
+      + sizeof(UserInfo::status_)
+      - PROTOBUF_FIELD_OFFSET(UserInfo, userid_)>(
+          reinterpret_cast<char*>(&userid_),
+          reinterpret_cast<char*>(&other->userid_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata UserInfo::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_home_5faccount_2eproto_getter, &descriptor_table_home_5faccount_2eproto_once,
+      file_level_metadata_home_5faccount_2eproto[5]);
+}
+
+// ===================================================================
+
+class GetUserInfoReq::_Internal {
+ public:
+};
+
+GetUserInfoReq::GetUserInfoReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:im_home_proto.GetUserInfoReq)
+}
+GetUserInfoReq::GetUserInfoReq(const GetUserInfoReq& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  userid_ = from.userid_;
+  // @@protoc_insertion_point(copy_constructor:im_home_proto.GetUserInfoReq)
+}
+
+inline void GetUserInfoReq::SharedCtor() {
+userid_ = int64_t{0};
+}
+
+GetUserInfoReq::~GetUserInfoReq() {
+  // @@protoc_insertion_point(destructor:im_home_proto.GetUserInfoReq)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetUserInfoReq::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void GetUserInfoReq::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetUserInfoReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:im_home_proto.GetUserInfoReq)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  userid_ = int64_t{0};
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetUserInfoReq::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int64 UserID = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          userid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetUserInfoReq::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:im_home_proto.GetUserInfoReq)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int64 UserID = 1;
+  if (this->_internal_userid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(1, this->_internal_userid(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:im_home_proto.GetUserInfoReq)
+  return target;
+}
+
+size_t GetUserInfoReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:im_home_proto.GetUserInfoReq)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int64 UserID = 1;
+  if (this->_internal_userid() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_userid());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetUserInfoReq::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetUserInfoReq::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetUserInfoReq::GetClassData() const { return &_class_data_; }
+
+void GetUserInfoReq::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetUserInfoReq *>(to)->MergeFrom(
+      static_cast<const GetUserInfoReq &>(from));
+}
+
+
+void GetUserInfoReq::MergeFrom(const GetUserInfoReq& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:im_home_proto.GetUserInfoReq)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_userid() != 0) {
+    _internal_set_userid(from._internal_userid());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetUserInfoReq::CopyFrom(const GetUserInfoReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:im_home_proto.GetUserInfoReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetUserInfoReq::IsInitialized() const {
+  return true;
+}
+
+void GetUserInfoReq::InternalSwap(GetUserInfoReq* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(userid_, other->userid_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetUserInfoReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_home_5faccount_2eproto_getter, &descriptor_table_home_5faccount_2eproto_once,
+      file_level_metadata_home_5faccount_2eproto[6]);
+}
+
+// ===================================================================
+
+class GetUserInfoRes::_Internal {
+ public:
+  static const ::im_home_proto::UserInfo& data(const GetUserInfoRes* msg);
+};
+
+const ::im_home_proto::UserInfo&
+GetUserInfoRes::_Internal::data(const GetUserInfoRes* msg) {
+  return *msg->data_;
+}
+GetUserInfoRes::GetUserInfoRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:im_home_proto.GetUserInfoRes)
+}
+GetUserInfoRes::GetUserInfoRes(const GetUserInfoRes& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_data()) {
+    data_ = new ::im_home_proto::UserInfo(*from.data_);
+  } else {
+    data_ = nullptr;
+  }
+  relation_ = from.relation_;
+  // @@protoc_insertion_point(copy_constructor:im_home_proto.GetUserInfoRes)
+}
+
+inline void GetUserInfoRes::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&data_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&relation_) -
+    reinterpret_cast<char*>(&data_)) + sizeof(relation_));
+}
+
+GetUserInfoRes::~GetUserInfoRes() {
+  // @@protoc_insertion_point(destructor:im_home_proto.GetUserInfoRes)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void GetUserInfoRes::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete data_;
+}
+
+void GetUserInfoRes::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void GetUserInfoRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:im_home_proto.GetUserInfoRes)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && data_ != nullptr) {
+    delete data_;
+  }
+  data_ = nullptr;
+  relation_ = 0;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* GetUserInfoRes::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .im_home_proto.UserInfo Data = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_data(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .im_home_proto.Enum_UserRelation Relation = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_relation(static_cast<::im_home_proto::Enum_UserRelation>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* GetUserInfoRes::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:im_home_proto.GetUserInfoRes)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .im_home_proto.UserInfo Data = 1;
+  if (this->_internal_has_data()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::data(this),
+        _Internal::data(this).GetCachedSize(), target, stream);
+  }
+
+  // .im_home_proto.Enum_UserRelation Relation = 2;
+  if (this->_internal_relation() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_relation(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:im_home_proto.GetUserInfoRes)
+  return target;
+}
+
+size_t GetUserInfoRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:im_home_proto.GetUserInfoRes)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .im_home_proto.UserInfo Data = 1;
+  if (this->_internal_has_data()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *data_);
+  }
+
+  // .im_home_proto.Enum_UserRelation Relation = 2;
+  if (this->_internal_relation() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_relation());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GetUserInfoRes::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    GetUserInfoRes::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetUserInfoRes::GetClassData() const { return &_class_data_; }
+
+void GetUserInfoRes::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<GetUserInfoRes *>(to)->MergeFrom(
+      static_cast<const GetUserInfoRes &>(from));
+}
+
+
+void GetUserInfoRes::MergeFrom(const GetUserInfoRes& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:im_home_proto.GetUserInfoRes)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_data()) {
+    _internal_mutable_data()->::im_home_proto::UserInfo::MergeFrom(from._internal_data());
+  }
+  if (from._internal_relation() != 0) {
+    _internal_set_relation(from._internal_relation());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void GetUserInfoRes::CopyFrom(const GetUserInfoRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:im_home_proto.GetUserInfoRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool GetUserInfoRes::IsInitialized() const {
+  return true;
+}
+
+void GetUserInfoRes::InternalSwap(GetUserInfoRes* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(GetUserInfoRes, relation_)
+      + sizeof(GetUserInfoRes::relation_)
+      - PROTOBUF_FIELD_OFFSET(GetUserInfoRes, data_)>(
+          reinterpret_cast<char*>(&data_),
+          reinterpret_cast<char*>(&other->data_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata GetUserInfoRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_home_5faccount_2eproto_getter, &descriptor_table_home_5faccount_2eproto_once,
+      file_level_metadata_home_5faccount_2eproto[7]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace im_home_proto
 PROTOBUF_NAMESPACE_OPEN
@@ -1561,6 +2446,18 @@ Arena::CreateMaybeMessage< ::im_home_proto::RegisterRes >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::im_home_proto::ClientOnlineInfo*
 Arena::CreateMaybeMessage< ::im_home_proto::ClientOnlineInfo >(Arena* arena) {
   return Arena::CreateMessageInternal< ::im_home_proto::ClientOnlineInfo >(arena);
+}
+template<> PROTOBUF_NOINLINE ::im_home_proto::UserInfo*
+Arena::CreateMaybeMessage< ::im_home_proto::UserInfo >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::im_home_proto::UserInfo >(arena);
+}
+template<> PROTOBUF_NOINLINE ::im_home_proto::GetUserInfoReq*
+Arena::CreateMaybeMessage< ::im_home_proto::GetUserInfoReq >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::im_home_proto::GetUserInfoReq >(arena);
+}
+template<> PROTOBUF_NOINLINE ::im_home_proto::GetUserInfoRes*
+Arena::CreateMaybeMessage< ::im_home_proto::GetUserInfoRes >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::im_home_proto::GetUserInfoRes >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

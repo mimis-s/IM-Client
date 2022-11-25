@@ -12,3 +12,4 @@ const MessageTag MessageTag_Error =         {Res: CRC32("CommonError")};
 const MessageTag MessageTag_Login =         {Req: CRC32("LoginReq"), Res: CRC32("LoginRes")};
 const MessageTag MessageTag_Register =      {Req: CRC32("RegisterReq"), Res: CRC32("RegisterRes")};
 const MessageTag MessageTag_ChatSingle =    {Req: CRC32("ChatSingleReq"), Res: CRC32("ChatSingleRes"), Relay: CRC32("ChatSingleToReceiver")};
+const MessageTag MessageTag_GetUserInfo =    {Req: CRC32("GetUserInfoReq"), Res: CRC32("GetUserInfoRes")};

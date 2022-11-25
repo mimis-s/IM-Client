@@ -29,6 +29,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -48,6 +49,12 @@ namespace im_home_proto {
 class ClientOnlineInfo;
 struct ClientOnlineInfoDefaultTypeInternal;
 extern ClientOnlineInfoDefaultTypeInternal _ClientOnlineInfo_default_instance_;
+class GetUserInfoReq;
+struct GetUserInfoReqDefaultTypeInternal;
+extern GetUserInfoReqDefaultTypeInternal _GetUserInfoReq_default_instance_;
+class GetUserInfoRes;
+struct GetUserInfoResDefaultTypeInternal;
+extern GetUserInfoResDefaultTypeInternal _GetUserInfoRes_default_instance_;
 class LoginReq;
 struct LoginReqDefaultTypeInternal;
 extern LoginReqDefaultTypeInternal _LoginReq_default_instance_;
@@ -60,16 +67,72 @@ extern RegisterReqDefaultTypeInternal _RegisterReq_default_instance_;
 class RegisterRes;
 struct RegisterResDefaultTypeInternal;
 extern RegisterResDefaultTypeInternal _RegisterRes_default_instance_;
+class UserInfo;
+struct UserInfoDefaultTypeInternal;
+extern UserInfoDefaultTypeInternal _UserInfo_default_instance_;
 }  // namespace im_home_proto
 PROTOBUF_NAMESPACE_OPEN
 template<> ::im_home_proto::ClientOnlineInfo* Arena::CreateMaybeMessage<::im_home_proto::ClientOnlineInfo>(Arena*);
+template<> ::im_home_proto::GetUserInfoReq* Arena::CreateMaybeMessage<::im_home_proto::GetUserInfoReq>(Arena*);
+template<> ::im_home_proto::GetUserInfoRes* Arena::CreateMaybeMessage<::im_home_proto::GetUserInfoRes>(Arena*);
 template<> ::im_home_proto::LoginReq* Arena::CreateMaybeMessage<::im_home_proto::LoginReq>(Arena*);
 template<> ::im_home_proto::LoginRes* Arena::CreateMaybeMessage<::im_home_proto::LoginRes>(Arena*);
 template<> ::im_home_proto::RegisterReq* Arena::CreateMaybeMessage<::im_home_proto::RegisterReq>(Arena*);
 template<> ::im_home_proto::RegisterRes* Arena::CreateMaybeMessage<::im_home_proto::RegisterRes>(Arena*);
+template<> ::im_home_proto::UserInfo* Arena::CreateMaybeMessage<::im_home_proto::UserInfo>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace im_home_proto {
 
+enum Enum_UserStatus : int {
+  Enum_UserStatus_Outline = 0,
+  Enum_UserStatus_Online = 1,
+  Enum_UserStatus_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  Enum_UserStatus_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool Enum_UserStatus_IsValid(int value);
+constexpr Enum_UserStatus Enum_UserStatus_MIN = Enum_UserStatus_Outline;
+constexpr Enum_UserStatus Enum_UserStatus_MAX = Enum_UserStatus_Online;
+constexpr int Enum_UserStatus_ARRAYSIZE = Enum_UserStatus_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Enum_UserStatus_descriptor();
+template<typename T>
+inline const std::string& Enum_UserStatus_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, Enum_UserStatus>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function Enum_UserStatus_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    Enum_UserStatus_descriptor(), enum_t_value);
+}
+inline bool Enum_UserStatus_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Enum_UserStatus* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Enum_UserStatus>(
+    Enum_UserStatus_descriptor(), name, value);
+}
+enum Enum_UserRelation : int {
+  Enum_UserRelation_Stranger = 0,
+  Enum_UserRelation_Friend = 1,
+  Enum_UserRelation_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  Enum_UserRelation_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool Enum_UserRelation_IsValid(int value);
+constexpr Enum_UserRelation Enum_UserRelation_MIN = Enum_UserRelation_Stranger;
+constexpr Enum_UserRelation Enum_UserRelation_MAX = Enum_UserRelation_Friend;
+constexpr int Enum_UserRelation_ARRAYSIZE = Enum_UserRelation_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Enum_UserRelation_descriptor();
+template<typename T>
+inline const std::string& Enum_UserRelation_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, Enum_UserRelation>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function Enum_UserRelation_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    Enum_UserRelation_descriptor(), enum_t_value);
+}
+inline bool Enum_UserRelation_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Enum_UserRelation* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Enum_UserRelation>(
+    Enum_UserRelation_descriptor(), name, value);
+}
 // ===================================================================
 
 class LoginReq final :
@@ -963,6 +1026,525 @@ class ClientOnlineInfo final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_home_5faccount_2eproto;
 };
+// -------------------------------------------------------------------
+
+class UserInfo final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.UserInfo) */ {
+ public:
+  inline UserInfo() : UserInfo(nullptr) {}
+  ~UserInfo() override;
+  explicit PROTOBUF_CONSTEXPR UserInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  UserInfo(const UserInfo& from);
+  UserInfo(UserInfo&& from) noexcept
+    : UserInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline UserInfo& operator=(const UserInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserInfo& operator=(UserInfo&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserInfo& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const UserInfo* internal_default_instance() {
+    return reinterpret_cast<const UserInfo*>(
+               &_UserInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(UserInfo& a, UserInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(UserInfo* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserInfo* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UserInfo>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const UserInfo& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const UserInfo& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(UserInfo* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "im_home_proto.UserInfo";
+  }
+  protected:
+  explicit UserInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserNameFieldNumber = 2,
+    kAutographFieldNumber = 4,
+    kHeadImgFieldNumber = 6,
+    kUserIDFieldNumber = 1,
+    kRegionFieldNumber = 3,
+    kStatusFieldNumber = 5,
+  };
+  // string UserName = 2;
+  void clear_username();
+  const std::string& username() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_username(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_username();
+  PROTOBUF_NODISCARD std::string* release_username();
+  void set_allocated_username(std::string* username);
+  private:
+  const std::string& _internal_username() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_username(const std::string& value);
+  std::string* _internal_mutable_username();
+  public:
+
+  // string Autograph = 4;
+  void clear_autograph();
+  const std::string& autograph() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_autograph(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_autograph();
+  PROTOBUF_NODISCARD std::string* release_autograph();
+  void set_allocated_autograph(std::string* autograph);
+  private:
+  const std::string& _internal_autograph() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_autograph(const std::string& value);
+  std::string* _internal_mutable_autograph();
+  public:
+
+  // string HeadImg = 6;
+  void clear_headimg();
+  const std::string& headimg() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_headimg(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_headimg();
+  PROTOBUF_NODISCARD std::string* release_headimg();
+  void set_allocated_headimg(std::string* headimg);
+  private:
+  const std::string& _internal_headimg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_headimg(const std::string& value);
+  std::string* _internal_mutable_headimg();
+  public:
+
+  // int64 UserID = 1;
+  void clear_userid();
+  int64_t userid() const;
+  void set_userid(int64_t value);
+  private:
+  int64_t _internal_userid() const;
+  void _internal_set_userid(int64_t value);
+  public:
+
+  // int32 Region = 3;
+  void clear_region();
+  int32_t region() const;
+  void set_region(int32_t value);
+  private:
+  int32_t _internal_region() const;
+  void _internal_set_region(int32_t value);
+  public:
+
+  // .im_home_proto.Enum_UserStatus Status = 5;
+  void clear_status();
+  ::im_home_proto::Enum_UserStatus status() const;
+  void set_status(::im_home_proto::Enum_UserStatus value);
+  private:
+  ::im_home_proto::Enum_UserStatus _internal_status() const;
+  void _internal_set_status(::im_home_proto::Enum_UserStatus value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.UserInfo)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr username_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr autograph_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr headimg_;
+  int64_t userid_;
+  int32_t region_;
+  int status_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_home_5faccount_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetUserInfoReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.GetUserInfoReq) */ {
+ public:
+  inline GetUserInfoReq() : GetUserInfoReq(nullptr) {}
+  ~GetUserInfoReq() override;
+  explicit PROTOBUF_CONSTEXPR GetUserInfoReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetUserInfoReq(const GetUserInfoReq& from);
+  GetUserInfoReq(GetUserInfoReq&& from) noexcept
+    : GetUserInfoReq() {
+    *this = ::std::move(from);
+  }
+
+  inline GetUserInfoReq& operator=(const GetUserInfoReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetUserInfoReq& operator=(GetUserInfoReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetUserInfoReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetUserInfoReq* internal_default_instance() {
+    return reinterpret_cast<const GetUserInfoReq*>(
+               &_GetUserInfoReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(GetUserInfoReq& a, GetUserInfoReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetUserInfoReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetUserInfoReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetUserInfoReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetUserInfoReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetUserInfoReq& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetUserInfoReq& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetUserInfoReq* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "im_home_proto.GetUserInfoReq";
+  }
+  protected:
+  explicit GetUserInfoReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserIDFieldNumber = 1,
+  };
+  // int64 UserID = 1;
+  void clear_userid();
+  int64_t userid() const;
+  void set_userid(int64_t value);
+  private:
+  int64_t _internal_userid() const;
+  void _internal_set_userid(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.GetUserInfoReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  int64_t userid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_home_5faccount_2eproto;
+};
+// -------------------------------------------------------------------
+
+class GetUserInfoRes final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.GetUserInfoRes) */ {
+ public:
+  inline GetUserInfoRes() : GetUserInfoRes(nullptr) {}
+  ~GetUserInfoRes() override;
+  explicit PROTOBUF_CONSTEXPR GetUserInfoRes(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GetUserInfoRes(const GetUserInfoRes& from);
+  GetUserInfoRes(GetUserInfoRes&& from) noexcept
+    : GetUserInfoRes() {
+    *this = ::std::move(from);
+  }
+
+  inline GetUserInfoRes& operator=(const GetUserInfoRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GetUserInfoRes& operator=(GetUserInfoRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GetUserInfoRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GetUserInfoRes* internal_default_instance() {
+    return reinterpret_cast<const GetUserInfoRes*>(
+               &_GetUserInfoRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(GetUserInfoRes& a, GetUserInfoRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GetUserInfoRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GetUserInfoRes* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GetUserInfoRes* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GetUserInfoRes>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GetUserInfoRes& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const GetUserInfoRes& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GetUserInfoRes* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "im_home_proto.GetUserInfoRes";
+  }
+  protected:
+  explicit GetUserInfoRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+    kRelationFieldNumber = 2,
+  };
+  // .im_home_proto.UserInfo Data = 1;
+  bool has_data() const;
+  private:
+  bool _internal_has_data() const;
+  public:
+  void clear_data();
+  const ::im_home_proto::UserInfo& data() const;
+  PROTOBUF_NODISCARD ::im_home_proto::UserInfo* release_data();
+  ::im_home_proto::UserInfo* mutable_data();
+  void set_allocated_data(::im_home_proto::UserInfo* data);
+  private:
+  const ::im_home_proto::UserInfo& _internal_data() const;
+  ::im_home_proto::UserInfo* _internal_mutable_data();
+  public:
+  void unsafe_arena_set_allocated_data(
+      ::im_home_proto::UserInfo* data);
+  ::im_home_proto::UserInfo* unsafe_arena_release_data();
+
+  // .im_home_proto.Enum_UserRelation Relation = 2;
+  void clear_relation();
+  ::im_home_proto::Enum_UserRelation relation() const;
+  void set_relation(::im_home_proto::Enum_UserRelation value);
+  private:
+  ::im_home_proto::Enum_UserRelation _internal_relation() const;
+  void _internal_set_relation(::im_home_proto::Enum_UserRelation value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.GetUserInfoRes)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::im_home_proto::UserInfo* data_;
+  int relation_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_home_5faccount_2eproto;
+};
 // ===================================================================
 
 
@@ -1560,9 +2142,367 @@ inline void ClientOnlineInfo::set_clientlocalzone(int32_t value) {
   // @@protoc_insertion_point(field_set:im_home_proto.ClientOnlineInfo.ClientLocalZone)
 }
 
+// -------------------------------------------------------------------
+
+// UserInfo
+
+// int64 UserID = 1;
+inline void UserInfo::clear_userid() {
+  userid_ = int64_t{0};
+}
+inline int64_t UserInfo::_internal_userid() const {
+  return userid_;
+}
+inline int64_t UserInfo::userid() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.UserInfo.UserID)
+  return _internal_userid();
+}
+inline void UserInfo::_internal_set_userid(int64_t value) {
+  
+  userid_ = value;
+}
+inline void UserInfo::set_userid(int64_t value) {
+  _internal_set_userid(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.UserInfo.UserID)
+}
+
+// string UserName = 2;
+inline void UserInfo::clear_username() {
+  username_.ClearToEmpty();
+}
+inline const std::string& UserInfo::username() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.UserInfo.UserName)
+  return _internal_username();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UserInfo::set_username(ArgT0&& arg0, ArgT... args) {
+ 
+ username_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:im_home_proto.UserInfo.UserName)
+}
+inline std::string* UserInfo::mutable_username() {
+  std::string* _s = _internal_mutable_username();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.UserInfo.UserName)
+  return _s;
+}
+inline const std::string& UserInfo::_internal_username() const {
+  return username_.Get();
+}
+inline void UserInfo::_internal_set_username(const std::string& value) {
+  
+  username_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UserInfo::_internal_mutable_username() {
+  
+  return username_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UserInfo::release_username() {
+  // @@protoc_insertion_point(field_release:im_home_proto.UserInfo.UserName)
+  return username_.Release();
+}
+inline void UserInfo::set_allocated_username(std::string* username) {
+  if (username != nullptr) {
+    
+  } else {
+    
+  }
+  username_.SetAllocated(username, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (username_.IsDefault()) {
+    username_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.UserInfo.UserName)
+}
+
+// int32 Region = 3;
+inline void UserInfo::clear_region() {
+  region_ = 0;
+}
+inline int32_t UserInfo::_internal_region() const {
+  return region_;
+}
+inline int32_t UserInfo::region() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.UserInfo.Region)
+  return _internal_region();
+}
+inline void UserInfo::_internal_set_region(int32_t value) {
+  
+  region_ = value;
+}
+inline void UserInfo::set_region(int32_t value) {
+  _internal_set_region(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.UserInfo.Region)
+}
+
+// string Autograph = 4;
+inline void UserInfo::clear_autograph() {
+  autograph_.ClearToEmpty();
+}
+inline const std::string& UserInfo::autograph() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.UserInfo.Autograph)
+  return _internal_autograph();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UserInfo::set_autograph(ArgT0&& arg0, ArgT... args) {
+ 
+ autograph_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:im_home_proto.UserInfo.Autograph)
+}
+inline std::string* UserInfo::mutable_autograph() {
+  std::string* _s = _internal_mutable_autograph();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.UserInfo.Autograph)
+  return _s;
+}
+inline const std::string& UserInfo::_internal_autograph() const {
+  return autograph_.Get();
+}
+inline void UserInfo::_internal_set_autograph(const std::string& value) {
+  
+  autograph_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UserInfo::_internal_mutable_autograph() {
+  
+  return autograph_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UserInfo::release_autograph() {
+  // @@protoc_insertion_point(field_release:im_home_proto.UserInfo.Autograph)
+  return autograph_.Release();
+}
+inline void UserInfo::set_allocated_autograph(std::string* autograph) {
+  if (autograph != nullptr) {
+    
+  } else {
+    
+  }
+  autograph_.SetAllocated(autograph, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (autograph_.IsDefault()) {
+    autograph_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.UserInfo.Autograph)
+}
+
+// .im_home_proto.Enum_UserStatus Status = 5;
+inline void UserInfo::clear_status() {
+  status_ = 0;
+}
+inline ::im_home_proto::Enum_UserStatus UserInfo::_internal_status() const {
+  return static_cast< ::im_home_proto::Enum_UserStatus >(status_);
+}
+inline ::im_home_proto::Enum_UserStatus UserInfo::status() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.UserInfo.Status)
+  return _internal_status();
+}
+inline void UserInfo::_internal_set_status(::im_home_proto::Enum_UserStatus value) {
+  
+  status_ = value;
+}
+inline void UserInfo::set_status(::im_home_proto::Enum_UserStatus value) {
+  _internal_set_status(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.UserInfo.Status)
+}
+
+// string HeadImg = 6;
+inline void UserInfo::clear_headimg() {
+  headimg_.ClearToEmpty();
+}
+inline const std::string& UserInfo::headimg() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.UserInfo.HeadImg)
+  return _internal_headimg();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UserInfo::set_headimg(ArgT0&& arg0, ArgT... args) {
+ 
+ headimg_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:im_home_proto.UserInfo.HeadImg)
+}
+inline std::string* UserInfo::mutable_headimg() {
+  std::string* _s = _internal_mutable_headimg();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.UserInfo.HeadImg)
+  return _s;
+}
+inline const std::string& UserInfo::_internal_headimg() const {
+  return headimg_.Get();
+}
+inline void UserInfo::_internal_set_headimg(const std::string& value) {
+  
+  headimg_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UserInfo::_internal_mutable_headimg() {
+  
+  return headimg_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UserInfo::release_headimg() {
+  // @@protoc_insertion_point(field_release:im_home_proto.UserInfo.HeadImg)
+  return headimg_.Release();
+}
+inline void UserInfo::set_allocated_headimg(std::string* headimg) {
+  if (headimg != nullptr) {
+    
+  } else {
+    
+  }
+  headimg_.SetAllocated(headimg, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (headimg_.IsDefault()) {
+    headimg_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.UserInfo.HeadImg)
+}
+
+// -------------------------------------------------------------------
+
+// GetUserInfoReq
+
+// int64 UserID = 1;
+inline void GetUserInfoReq::clear_userid() {
+  userid_ = int64_t{0};
+}
+inline int64_t GetUserInfoReq::_internal_userid() const {
+  return userid_;
+}
+inline int64_t GetUserInfoReq::userid() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.GetUserInfoReq.UserID)
+  return _internal_userid();
+}
+inline void GetUserInfoReq::_internal_set_userid(int64_t value) {
+  
+  userid_ = value;
+}
+inline void GetUserInfoReq::set_userid(int64_t value) {
+  _internal_set_userid(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.GetUserInfoReq.UserID)
+}
+
+// -------------------------------------------------------------------
+
+// GetUserInfoRes
+
+// .im_home_proto.UserInfo Data = 1;
+inline bool GetUserInfoRes::_internal_has_data() const {
+  return this != internal_default_instance() && data_ != nullptr;
+}
+inline bool GetUserInfoRes::has_data() const {
+  return _internal_has_data();
+}
+inline void GetUserInfoRes::clear_data() {
+  if (GetArenaForAllocation() == nullptr && data_ != nullptr) {
+    delete data_;
+  }
+  data_ = nullptr;
+}
+inline const ::im_home_proto::UserInfo& GetUserInfoRes::_internal_data() const {
+  const ::im_home_proto::UserInfo* p = data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::im_home_proto::UserInfo&>(
+      ::im_home_proto::_UserInfo_default_instance_);
+}
+inline const ::im_home_proto::UserInfo& GetUserInfoRes::data() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.GetUserInfoRes.Data)
+  return _internal_data();
+}
+inline void GetUserInfoRes::unsafe_arena_set_allocated_data(
+    ::im_home_proto::UserInfo* data) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  data_ = data;
+  if (data) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:im_home_proto.GetUserInfoRes.Data)
+}
+inline ::im_home_proto::UserInfo* GetUserInfoRes::release_data() {
+  
+  ::im_home_proto::UserInfo* temp = data_;
+  data_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::im_home_proto::UserInfo* GetUserInfoRes::unsafe_arena_release_data() {
+  // @@protoc_insertion_point(field_release:im_home_proto.GetUserInfoRes.Data)
+  
+  ::im_home_proto::UserInfo* temp = data_;
+  data_ = nullptr;
+  return temp;
+}
+inline ::im_home_proto::UserInfo* GetUserInfoRes::_internal_mutable_data() {
+  
+  if (data_ == nullptr) {
+    auto* p = CreateMaybeMessage<::im_home_proto::UserInfo>(GetArenaForAllocation());
+    data_ = p;
+  }
+  return data_;
+}
+inline ::im_home_proto::UserInfo* GetUserInfoRes::mutable_data() {
+  ::im_home_proto::UserInfo* _msg = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.GetUserInfoRes.Data)
+  return _msg;
+}
+inline void GetUserInfoRes::set_allocated_data(::im_home_proto::UserInfo* data) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete data_;
+  }
+  if (data) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(data);
+    if (message_arena != submessage_arena) {
+      data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, data, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  data_ = data;
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.GetUserInfoRes.Data)
+}
+
+// .im_home_proto.Enum_UserRelation Relation = 2;
+inline void GetUserInfoRes::clear_relation() {
+  relation_ = 0;
+}
+inline ::im_home_proto::Enum_UserRelation GetUserInfoRes::_internal_relation() const {
+  return static_cast< ::im_home_proto::Enum_UserRelation >(relation_);
+}
+inline ::im_home_proto::Enum_UserRelation GetUserInfoRes::relation() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.GetUserInfoRes.Relation)
+  return _internal_relation();
+}
+inline void GetUserInfoRes::_internal_set_relation(::im_home_proto::Enum_UserRelation value) {
+  
+  relation_ = value;
+}
+inline void GetUserInfoRes::set_relation(::im_home_proto::Enum_UserRelation value) {
+  _internal_set_relation(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.GetUserInfoRes.Relation)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
@@ -1575,6 +2515,21 @@ inline void ClientOnlineInfo::set_clientlocalzone(int32_t value) {
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace im_home_proto
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::im_home_proto::Enum_UserStatus> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::im_home_proto::Enum_UserStatus>() {
+  return ::im_home_proto::Enum_UserStatus_descriptor();
+}
+template <> struct is_proto_enum< ::im_home_proto::Enum_UserRelation> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::im_home_proto::Enum_UserRelation>() {
+  return ::im_home_proto::Enum_UserRelation_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 
