@@ -1,6 +1,7 @@
 #include "frienddetails.h"
 #include "ui_frienddetails.h"
 #include "../../common/base_widget/circlelabel.h"
+#include "../login/logininfo.h"
 
 FriendDetails::FriendDetails(QWidget *parent, im_home_proto::GetUserInfoRes *info) :
     QDialog(parent),
@@ -29,11 +30,20 @@ FriendDetails::FriendDetails(QWidget *parent, im_home_proto::GetUserInfoRes *inf
     ui->lb_region_show->setText(QString::number(m_userInfo->data().region()));
     ui->lb_autograph_show->setText(QString::fromStdString(m_userInfo->data().autograph()));
 
-    if (m_userInfo->relation() == im_home_proto::Enum_UserRelation::Enum_UserRelation_Friend)
+    if (LoginInfo::Instance()->GetClientUserInfo()->userid() == m_userInfo->data().userid())
     {
-        ui->btn_add_friend->setText(tr(u8"删除好友"));
+        // 搜索的是自己
+        ui->btn_add_friend->hide();
+        ui->btn_trun_send_message->hide();
     }else{
-        ui->btn_add_friend->setText(tr(u8"加好友"));
+        if (m_userInfo->relation() == im_home_proto::Enum_UserRelation::Enum_UserRelation_Friend)
+        {
+            ui->btn_add_friend->setText(tr(u8"删除好友"));
+            ui->btn_trun_send_message->setDisabled(false);
+        }else{
+            ui->btn_add_friend->setText(tr(u8"加好友"));
+            ui->btn_trun_send_message->setDisabled(true);
+        }
     }
 }
 

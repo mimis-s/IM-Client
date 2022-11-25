@@ -130,6 +130,19 @@
     <string>加好友</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="btn_trun_send_message">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>280</y>
+     <width>81</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>发消息</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
