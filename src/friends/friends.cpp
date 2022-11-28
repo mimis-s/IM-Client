@@ -33,7 +33,7 @@ Friends::Friends(QWidget *parent) :
     pSearchLayout->addWidget(m_pBtnSearch, 2);
 
     // 好友列表
-    m_pFriendsList= new QListWidget(this);
+    m_pFriendsList= new QListWidget(pLeftWidget);
     m_pFriendsList->setStyleSheet("background-color:white;");
     m_pFriendsList->setResizeMode(QListView::Adjust);
     m_pFriendsList->setAutoScroll(true);
@@ -51,8 +51,8 @@ Friends::Friends(QWidget *parent) :
     m_pFriendApplyList->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_pFriendApplyList->setSizeAdjustPolicy(QListWidget::AdjustToContents);
 
-    pMainLayout->addWidget(pLeftWidget, 3);
-    pMainLayout->addWidget(m_pFriendApplyList, 7);
+    pMainLayout->addWidget(pLeftWidget);
+    pMainLayout->addWidget(m_pFriendApplyList);
 
     // connect
     connect(m_pBtnSearch, SIGNAL(clicked()), this, SLOT(slot_btnSearchClick()));
@@ -88,7 +88,6 @@ void Friends::slot_GetFriendsListRes(char * recvMessage)
     for (int i = 0 ; i < getFriendsListRes->list().size(); i++)
     {
         QListWidgetItem *Item_friend = new QListWidgetItem(m_pFriendsList);
-
         Item_friend->setSizeHint(QSize(100, 100));
 
         ChatShortFrameData data = ChatShortFrameData{};
@@ -101,10 +100,12 @@ void Friends::slot_GetFriendsListRes(char * recvMessage)
             data.m_UserStatus = im_home_proto::Enum_UserStatus::Enum_UserStatus_Outline;
         }
 
+        IMLog::Instance()->Info(QString("friend list number[%1] data[%2]").arg(i).arg(data.m_FriendID));
+
         ChatShortFrame *friendBox = new ChatShortFrame(m_pFriendsList);
         friendBox->UpdateData(data);
 
-        m_pFriendApplyList->setItemWidget(Item_friend, friendBox);
+        m_pFriendsList->setItemWidget(Item_friend, friendBox);
     }
 
 }
