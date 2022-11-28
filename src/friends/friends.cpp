@@ -1,7 +1,6 @@
 #include "friends.h"
 #include "ui_friends.h"
 #include "../../common/base_widget/chatbox.h"
-#include "../../common/base_widget/chatshortframe.h"
 #include "../../common/socket/socket.h"
 #include "../../common/define/define.h"
 #include "../../common/commonproto/home_account.pb.h"
@@ -51,8 +50,8 @@ Friends::Friends(QWidget *parent) :
     m_pFriendApplyList->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_pFriendApplyList->setSizeAdjustPolicy(QListWidget::AdjustToContents);
 
-    pMainLayout->addWidget(pLeftWidget);
-    pMainLayout->addWidget(m_pFriendApplyList);
+    pMainLayout->addWidget(pLeftWidget, 3);
+    pMainLayout->addWidget(m_pFriendApplyList, 7);
 
     // connect
     connect(m_pBtnSearch, SIGNAL(clicked()), this, SLOT(slot_btnSearchClick()));
@@ -88,6 +87,7 @@ void Friends::slot_GetFriendsListRes(char * recvMessage)
     for (int i = 0 ; i < getFriendsListRes->list().size(); i++)
     {
         QListWidgetItem *Item_friend = new QListWidgetItem(m_pFriendsList);
+        Item_friend->setFlags(Item_friend->flags() & ~Qt::ItemIsEnabled & ~Qt::ItemIsSelectable);
         Item_friend->setSizeHint(QSize(100, 100));
 
         ChatShortFrameData data = ChatShortFrameData{};
@@ -104,15 +104,15 @@ void Friends::slot_GetFriendsListRes(char * recvMessage)
 
         ChatShortFrame *friendBox = new ChatShortFrame(m_pFriendsList);
         friendBox->UpdateData(data);
+        connect(friendBox, SIGNAL(sig_mouseDoubleClick(ChatShortFrameData)), this, SLOT(slot_ChatShortFrameClickDouble(ChatShortFrameData)));
 
         m_pFriendsList->setItemWidget(Item_friend, friendBox);
     }
-
 }
 
-void Friends::GetFriendApplyList()
+void Friends::slot_ChatShortFrameClickDouble(ChatShortFrameData data)
 {
-
+    emit sig_AddOneChat(data);   // 新增一个好友聊天, 如果存在则跳转
 }
 
 void Friends::slot_btnSearchClick()

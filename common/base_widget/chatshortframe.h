@@ -30,7 +30,13 @@ public:
 
     // 更新数据
     void UpdateData(ChatShortFrameData data);
+
+    ChatShortFrameData GetInfo();
+
+    void mouseDoubleClickEvent(QMouseEvent* event);//响应鼠标双击事件
+
 signals:
+    void sig_mouseDoubleClick(ChatShortFrameData data);
 
 private:
     CircleLabel *m_pLbHead;     // 头像
@@ -40,6 +46,8 @@ private:
     QLabel *m_pLbTime;          // 最后消息的时间
 
     im_home_proto::Enum_UserStatus m_OnlineStatus;        // 在线提示
+
+    ChatShortFrameData m_chatShortFrameData = ChatShortFrameData{};
 };
 
 #endif // FRIENDCHATBOX_H

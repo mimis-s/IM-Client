@@ -52,6 +52,17 @@ void Chat::slot_ChatSingleRelay(char *pMessage)
 {
     im_home_proto::ChatSingleToReceiver *chatSingleToReceiver = new im_home_proto::ChatSingleToReceiver;
     chatSingleToReceiver->ParseFromString(pMessage);
+
+    // 这里有两种情况,收到消息的好友在当前聊天列表中,没有在当前聊天列表中
+
+    // 收到消息的好友在当前聊天列表中
+    if (m_mapOneChatBox.end() != m_mapOneChatBox.find(chatSingleToReceiver->data().senderid()))
+    {
+        OneChatBox oneChatBox = m_mapOneChatBox[chatSingleToReceiver->data().senderid()];
+        oneChatBox.Right->AddMessage(false, QString::fromStdString(chatSingleToReceiver->data().data()), oneChatBox.Left->GetInfo().m_HeadPath);
+    }
+
+    // 没有在当前聊天列表中
 }
 
 void Chat::AddOneChat(ChatShortFrameData data)
@@ -70,7 +81,7 @@ void Chat::AddOneChat(ChatShortFrameData data)
     m_pChatShortFrameList->setItemWidget(Item_left, pChatShortFrame);
 
     // 右边是聊天内容
-    ChatBox *pBox = new ChatBox(m_pRightChatBox);
+    ChatBox *pBox = new ChatBox(m_pRightChatBox, data);
     m_pChatBoxLayout->addWidget(pBox);
 
     m_mapOneChatBox[data.m_FriendID] = {pChatShortFrame, pBox};

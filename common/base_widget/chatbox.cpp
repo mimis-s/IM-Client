@@ -3,9 +3,16 @@
 #include <qdebug.h>
 #include "common/base_widget/chatheadandbubble.h"
 #include <QAbstractItemView>
+#include "../socket/socket.h"
+#include "../commonproto/home_chat.pb.h"
+#include "../define/define.h"
+#include "../../src/login/logininfo.h"
+#include "../log/im_log.h"
 
-ChatBox::ChatBox(QWidget *parent) : QWidget(parent)
+ChatBox::ChatBox(QWidget *parent, ChatShortFrameData data) : QWidget(parent)
 {
+    m_chatShortFrameData = data;
+
     QVBoxLayout *pVBoxlayout = new QVBoxLayout(this);
 
     // 上面
@@ -13,8 +20,9 @@ ChatBox::ChatBox(QWidget *parent) : QWidget(parent)
     // 头像,昵称
     m_pLbHead = new CircleLabel(this, ENUM_CircleStyle::ENUM_Solid);
     m_pLbHead->setMinimumSize(60, 60);
+    m_pLbHead->SetImgPath(m_chatShortFrameData.m_HeadPath);
 
-    m_pLbName = new QLabel("123", this);
+    m_pLbName = new QLabel(m_chatShortFrameData.m_Name, this);
 
     // 电话,视频
     m_pBtnPhone = new QPushButton();
@@ -84,9 +92,28 @@ void ChatBox::slot_btnSendClick()
 {
     if (m_pTextInput->toPlainText().trimmed() != "")
     {
-        AddMessage(true, m_pTextInput->toPlainText(), "");
+        AddMessage(true, m_pTextInput->toPlainText(), m_chatShortFrameData.m_HeadPath);
+
+        im_home_proto::ChatSingleReq *chatSingleReq = new im_home_proto::ChatSingleReq;
+
+        im_home_proto::ChatMessage *chatMessage = new im_home_proto::ChatMessage;
+        chatMessage->set_senderid(LoginInfo::Instance()->GetClientUserInfo()->userid());
+        chatMessage->set_receiverid(m_chatShortFrameData.m_FriendID);
+        chatMessage->set_messageid(1);
+        chatMessage->set_messagetype(im_home_proto::MessageType_Enum::EnumTextType);
+        chatMessage->set_sendtimestamp(QDateTime::currentDateTime().toTime_t());
+        chatMessage->set_messagestatus(im_home_proto::MessageStatus_Enum::EnumSend);
+
+        QString inputStr = m_pTextInput->toPlainText();
+        chatMessage->set_data(inputStr.toStdString());
+
+        chatSingleReq->set_allocated_data(chatMessage);
+
+        IMLog::Instance()->Info(QString("send chatSingleReq %1").arg(MessageTag_ChatSingle.Req));
+
+        Socket::Instance()->SendMessage(MessageTag_ChatSingle.Req, chatSingleReq->SerializeAsString());
+
         m_pTextInput->clear();
-        m_pMiddleListWidget->scrollToBottom();
     }
 }
 

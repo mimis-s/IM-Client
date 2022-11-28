@@ -31,6 +31,8 @@ public slots:
     void slot_btnFriendsClick();    // 按钮切换到好友界面
     void slot_btnGroupClick();      // 按钮切换到群组界面
 
+    void slot_friends_addOneChat(ChatShortFrameData data);  // 好友界面发出信号,新增一个好友聊天
+
 private:
     Ui::Home *ui;
 

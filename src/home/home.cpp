@@ -49,17 +49,7 @@ Home::Home(QWidget *parent) :
     QVBoxLayout *pVBoxLayoutRightWidget = new QVBoxLayout(pRightWidget);
 
     m_pChat  = new Chat(pRightWidget);
-    ChatShortFrameData data{
-        "",     // 好友头像路径
-        im_home_proto::Enum_UserStatus::Enum_UserStatus_Online, // 在线提示
-        "zhangbin",                     // 好友名字
-        123456,                         // 好友id
-        "hello",                        // 最新消息
-        1,                              // 未读消息提示
-        "12:03"                         // 最后消息的时间
-    };
 
-    m_pChat->AddOneChat(data);
     pVBoxLayoutRightWidget->addWidget(m_pChat);
 
     m_pFriends = new Friends(pRightWidget);
@@ -72,6 +62,7 @@ Home::Home(QWidget *parent) :
     connect(pLeftBtnFriends, SIGNAL(clicked()), this, SLOT(slot_btnFriendsClick()));
     connect(pLeftBtnGroup, SIGNAL(clicked()), this, SLOT(slot_btnGroupClick()));
 
+    connect(m_pFriends, SIGNAL(sig_AddOneChat(ChatShortFrameData)), this, SLOT(slot_friends_addOneChat(ChatShortFrameData)));
 }
 
 Home::~Home()
@@ -95,6 +86,14 @@ void Home::slot_btnFriendsClick()
 void Home::slot_btnGroupClick()
 {
     m_pChat->hide();
+    m_pFriends->hide();
+}
+
+// 好友界面发出信号,新增一个好友聊天
+void Home::slot_friends_addOneChat(ChatShortFrameData data)
+{
+    m_pChat->AddOneChat(data);
+    m_pChat->show();
     m_pFriends->hide();
 }
 

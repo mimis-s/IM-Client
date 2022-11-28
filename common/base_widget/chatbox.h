@@ -15,12 +15,13 @@
 #include <QScrollBar>
 #include <QListWidget>
 #include <QListWidgetItem>
+#include "chatshortframe.h"
 
 class ChatBox : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ChatBox(QWidget *parent = nullptr);
+    explicit ChatBox(QWidget *parent = nullptr, ChatShortFrameData data = ChatShortFrameData{});
     void AddMessage(bool bSelf, QString sMessage, QString sHeadPath);
 signals:
 
@@ -37,6 +38,8 @@ private:
     QPushButton *m_pBtnEmoj;
     QTextEdit *m_pTextInput;
     QPushButton *m_pBtnSend;
+
+    ChatShortFrameData m_chatShortFrameData;
 };
 
 #endif // CHATBOX_H

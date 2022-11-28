@@ -8,6 +8,7 @@
 #include <QListWidgetItem>
 #include <QLineEdit>
 #include <QPushButton>
+#include "../../common/base_widget/chatshortframe.h"
 
 namespace Ui {
 class Friends;
@@ -26,6 +27,9 @@ public:
     // 获取好友申请列表
     void GetFriendApplyList();
 
+signals:
+    void sig_AddOneChat(ChatShortFrameData data);   // 新增一个好友聊天, 如果存在则跳转
+
 protected slots:
     void slot_btnSearchClick();
     void slot_GetUserInfoRes(char * recvMessage);
@@ -34,6 +38,10 @@ protected slots:
     void slot_AgreeFriendApplyRelay(char * recvMessage);
     void slot_ApplyFriendsRes(char * recvMessage);
     void slot_GetFriendsListRes(char * recvMessage);
+
+    // 双击好友跳转到聊天界面
+    void slot_ChatShortFrameClickDouble(ChatShortFrameData data);
+
 
 private:
     Ui::Friends *ui;
