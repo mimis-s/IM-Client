@@ -49,7 +49,7 @@ void ChatShortFrame::UpdateData(ChatShortFrameData data)
         // 获取头像
         m_pLbHead->SetImgPath(data.m_HeadPath);
     }
-    if (data.m_Online == ENUM_OnLineStatus::ENUM_OutLine) {
+    if (data.m_UserStatus == im_home_proto::Enum_UserStatus::Enum_UserStatus_Outline) {
         //  离线
         m_pLbHead->SetCircleColor(Qt::gray);
     }else{

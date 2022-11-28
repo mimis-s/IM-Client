@@ -2,6 +2,11 @@
 #include "ui_frienddetails.h"
 #include "../../common/base_widget/circlelabel.h"
 #include "../login/logininfo.h"
+#include "../../common/socket/socket.h"
+#include "../../common/commonproto/home_friends.pb.h"
+#include "../../common/log/im_log.h"
+#include "../../common/define/define.h"
+#include <QMessageBox>
 
 FriendDetails::FriendDetails(QWidget *parent, im_home_proto::GetUserInfoRes *info) :
     QDialog(parent),
@@ -45,9 +50,21 @@ FriendDetails::FriendDetails(QWidget *parent, im_home_proto::GetUserInfoRes *inf
             ui->btn_trun_send_message->setDisabled(true);
         }
     }
+
 }
 
 FriendDetails::~FriendDetails()
 {
     delete ui;
+}
+
+// 加好友
+void FriendDetails::on_btn_add_friend_clicked()
+{
+    im_home_proto::ApplyFriendsReq *applyFriendsReq = new im_home_proto::ApplyFriendsReq;
+    applyFriendsReq->set_applyfriendsid(m_userInfo->data().userid());
+
+    IMLog::Instance()->Info(QString("send applyFriendsReq %1").arg(m_userInfo->data().userid()));
+
+    Socket::Instance()->SendMessage(MessageTag_ApplyFriends.Req, applyFriendsReq->SerializeAsString());
 }

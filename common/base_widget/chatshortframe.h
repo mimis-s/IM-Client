@@ -10,16 +10,12 @@
 #include <QDateTime>
 #include "circlelabel.h"
 #include "../define/define.h"
-
-enum ENUM_OnLineStatus {
-    ENUM_OutLine = 0,   // 离线
-    ENUM_OnLine = 1,    // 在线
-};
+#include "../commonproto/home_account.pb.h"
 
 struct ChatShortFrameData {
-    QString m_HeadPath;             // 头像路径
-    ENUM_OnLineStatus m_Online;     // 在线提示
-    QString m_Name;                 // 好友名字
+    QString m_HeadPath;                          // 头像路径
+    im_home_proto::Enum_UserStatus m_UserStatus; // 在线提示
+    QString m_Name;                              // 好友名字
     int64_t m_FriendID;             // 好友id
     QString m_Message;              // 最新消息
     int m_TipsNum;                  // 未读消息提示
@@ -43,7 +39,7 @@ private:
     CircleLabel *m_pLbTips;     // 未读消息提示
     QLabel *m_pLbTime;          // 最后消息的时间
 
-    ENUM_OnLineStatus m_OnlineStatus;        // 在线提示
+    im_home_proto::Enum_UserStatus m_OnlineStatus;        // 在线提示
 };
 
 #endif // FRIENDCHATBOX_H

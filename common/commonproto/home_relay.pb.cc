@@ -35,7 +35,8 @@ struct ChatSingleToReceiverDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ChatSingleToReceiverDefaultTypeInternal _ChatSingleToReceiver_default_instance_;
 PROTOBUF_CONSTEXPR ApplyFriendsToReceiver::ApplyFriendsToReceiver(
     ::_pbi::ConstantInitialized)
-  : senderid_(int64_t{0})
+  : applyerinfo_(nullptr)
+  , senderid_(int64_t{0})
   , receiverid_(int64_t{0}){}
 struct ApplyFriendsToReceiverDefaultTypeInternal {
   PROTOBUF_CONSTEXPR ApplyFriendsToReceiverDefaultTypeInternal()
@@ -80,6 +81,7 @@ const uint32_t TableStruct_home_5frelay_2eproto::offsets[] PROTOBUF_SECTION_VARI
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::im_home_proto::ApplyFriendsToReceiver, senderid_),
   PROTOBUF_FIELD_OFFSET(::im_home_proto::ApplyFriendsToReceiver, receiverid_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::ApplyFriendsToReceiver, applyerinfo_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::im_home_proto::AgreeApplyFriendsToReceiver, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -92,7 +94,7 @@ const uint32_t TableStruct_home_5frelay_2eproto::offsets[] PROTOBUF_SECTION_VARI
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::im_home_proto::ChatSingleToReceiver)},
   { 7, -1, -1, sizeof(::im_home_proto::ApplyFriendsToReceiver)},
-  { 15, -1, -1, sizeof(::im_home_proto::AgreeApplyFriendsToReceiver)},
+  { 16, -1, -1, sizeof(::im_home_proto::AgreeApplyFriendsToReceiver)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -103,23 +105,25 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_home_5frelay_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\020home_relay.proto\022\rim_home_proto\032\017home_"
-  "chat.proto\"@\n\024ChatSingleToReceiver\022(\n\004Da"
-  "ta\030\001 \001(\0132\032.im_home_proto.ChatMessage\">\n\026"
-  "ApplyFriendsToReceiver\022\020\n\010SenderID\030\001 \001(\003"
-  "\022\022\n\nReceiverID\030\002 \001(\003\"C\n\033AgreeApplyFriend"
-  "sToReceiver\022\020\n\010SenderID\030\001 \001(\003\022\022\n\nReceive"
-  "rID\030\002 \001(\003BDZBgithub.com/mimis-s/IM-Servi"
-  "ce/src/common/commonproto/im_home_protob"
-  "\006proto3"
+  "chat.proto\032\022home_account.proto\"@\n\024ChatSi"
+  "ngleToReceiver\022(\n\004Data\030\001 \001(\0132\032.im_home_p"
+  "roto.ChatMessage\"l\n\026ApplyFriendsToReceiv"
+  "er\022\020\n\010SenderID\030\001 \001(\003\022\022\n\nReceiverID\030\002 \001(\003"
+  "\022,\n\013ApplyerInfo\030\003 \001(\0132\027.im_home_proto.Us"
+  "erInfo\"C\n\033AgreeApplyFriendsToReceiver\022\020\n"
+  "\010SenderID\030\001 \001(\003\022\022\n\nReceiverID\030\002 \001(\003BDZBg"
+  "ithub.com/mimis-s/IM-Service/src/common/"
+  "commonproto/im_home_protob\006proto3"
   ;
-static const ::_pbi::DescriptorTable* const descriptor_table_home_5frelay_2eproto_deps[1] = {
+static const ::_pbi::DescriptorTable* const descriptor_table_home_5frelay_2eproto_deps[2] = {
+  &::descriptor_table_home_5faccount_2eproto,
   &::descriptor_table_home_5fchat_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_home_5frelay_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_home_5frelay_2eproto = {
-    false, false, 327, descriptor_table_protodef_home_5frelay_2eproto,
+    false, false, 393, descriptor_table_protodef_home_5frelay_2eproto,
     "home_relay.proto",
-    &descriptor_table_home_5frelay_2eproto_once, descriptor_table_home_5frelay_2eproto_deps, 1, 3,
+    &descriptor_table_home_5frelay_2eproto_once, descriptor_table_home_5frelay_2eproto_deps, 2, 3,
     schemas, file_default_instances, TableStruct_home_5frelay_2eproto::offsets,
     file_level_metadata_home_5frelay_2eproto, file_level_enum_descriptors_home_5frelay_2eproto,
     file_level_service_descriptors_home_5frelay_2eproto,
@@ -329,8 +333,19 @@ void ChatSingleToReceiver::InternalSwap(ChatSingleToReceiver* other) {
 
 class ApplyFriendsToReceiver::_Internal {
  public:
+  static const ::im_home_proto::UserInfo& applyerinfo(const ApplyFriendsToReceiver* msg);
 };
 
+const ::im_home_proto::UserInfo&
+ApplyFriendsToReceiver::_Internal::applyerinfo(const ApplyFriendsToReceiver* msg) {
+  return *msg->applyerinfo_;
+}
+void ApplyFriendsToReceiver::clear_applyerinfo() {
+  if (GetArenaForAllocation() == nullptr && applyerinfo_ != nullptr) {
+    delete applyerinfo_;
+  }
+  applyerinfo_ = nullptr;
+}
 ApplyFriendsToReceiver::ApplyFriendsToReceiver(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
@@ -340,6 +355,11 @@ ApplyFriendsToReceiver::ApplyFriendsToReceiver(::PROTOBUF_NAMESPACE_ID::Arena* a
 ApplyFriendsToReceiver::ApplyFriendsToReceiver(const ApplyFriendsToReceiver& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_applyerinfo()) {
+    applyerinfo_ = new ::im_home_proto::UserInfo(*from.applyerinfo_);
+  } else {
+    applyerinfo_ = nullptr;
+  }
   ::memcpy(&senderid_, &from.senderid_,
     static_cast<size_t>(reinterpret_cast<char*>(&receiverid_) -
     reinterpret_cast<char*>(&senderid_)) + sizeof(receiverid_));
@@ -348,9 +368,9 @@ ApplyFriendsToReceiver::ApplyFriendsToReceiver(const ApplyFriendsToReceiver& fro
 
 inline void ApplyFriendsToReceiver::SharedCtor() {
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
-    reinterpret_cast<char*>(&senderid_) - reinterpret_cast<char*>(this)),
+    reinterpret_cast<char*>(&applyerinfo_) - reinterpret_cast<char*>(this)),
     0, static_cast<size_t>(reinterpret_cast<char*>(&receiverid_) -
-    reinterpret_cast<char*>(&senderid_)) + sizeof(receiverid_));
+    reinterpret_cast<char*>(&applyerinfo_)) + sizeof(receiverid_));
 }
 
 ApplyFriendsToReceiver::~ApplyFriendsToReceiver() {
@@ -364,6 +384,7 @@ ApplyFriendsToReceiver::~ApplyFriendsToReceiver() {
 
 inline void ApplyFriendsToReceiver::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete applyerinfo_;
 }
 
 void ApplyFriendsToReceiver::SetCachedSize(int size) const {
@@ -376,6 +397,10 @@ void ApplyFriendsToReceiver::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  if (GetArenaForAllocation() == nullptr && applyerinfo_ != nullptr) {
+    delete applyerinfo_;
+  }
+  applyerinfo_ = nullptr;
   ::memset(&senderid_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&receiverid_) -
       reinterpret_cast<char*>(&senderid_)) + sizeof(receiverid_));
@@ -400,6 +425,14 @@ const char* ApplyFriendsToReceiver::_InternalParse(const char* ptr, ::_pbi::Pars
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           receiverid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .im_home_proto.UserInfo ApplyerInfo = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_applyerinfo(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -445,6 +478,13 @@ uint8_t* ApplyFriendsToReceiver::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt64ToArray(2, this->_internal_receiverid(), target);
   }
 
+  // .im_home_proto.UserInfo ApplyerInfo = 3;
+  if (this->_internal_has_applyerinfo()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::applyerinfo(this),
+        _Internal::applyerinfo(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -460,6 +500,13 @@ size_t ApplyFriendsToReceiver::ByteSizeLong() const {
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // .im_home_proto.UserInfo ApplyerInfo = 3;
+  if (this->_internal_has_applyerinfo()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *applyerinfo_);
+  }
 
   // int64 SenderID = 1;
   if (this->_internal_senderid() != 0) {
@@ -493,6 +540,9 @@ void ApplyFriendsToReceiver::MergeFrom(const ApplyFriendsToReceiver& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from._internal_has_applyerinfo()) {
+    _internal_mutable_applyerinfo()->::im_home_proto::UserInfo::MergeFrom(from._internal_applyerinfo());
+  }
   if (from._internal_senderid() != 0) {
     _internal_set_senderid(from._internal_senderid());
   }
@@ -519,9 +569,9 @@ void ApplyFriendsToReceiver::InternalSwap(ApplyFriendsToReceiver* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(ApplyFriendsToReceiver, receiverid_)
       + sizeof(ApplyFriendsToReceiver::receiverid_)
-      - PROTOBUF_FIELD_OFFSET(ApplyFriendsToReceiver, senderid_)>(
-          reinterpret_cast<char*>(&senderid_),
-          reinterpret_cast<char*>(&other->senderid_));
+      - PROTOBUF_FIELD_OFFSET(ApplyFriendsToReceiver, applyerinfo_)>(
+          reinterpret_cast<char*>(&applyerinfo_),
+          reinterpret_cast<char*>(&other->applyerinfo_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ApplyFriendsToReceiver::GetMetadata() const {

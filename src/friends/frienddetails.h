@@ -16,6 +16,9 @@ public:
     explicit FriendDetails(QWidget *parent = nullptr, im_home_proto::GetUserInfoRes* info = nullptr);
     ~FriendDetails();
 
+private slots:
+    void on_btn_add_friend_clicked();
+
 private:
     Ui::FriendDetails *ui;
 

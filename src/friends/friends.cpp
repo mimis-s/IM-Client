@@ -7,6 +7,10 @@
 #include "../../common/commonproto/home_account.pb.h"
 #include "../../common/log/im_log.h"
 #include "frienddetails.h"
+#include "../../common/commonproto/home_relay.pb.h"
+#include <QMessageBox>
+#include "../../common/commonproto/home_friends.pb.h"
+#include "friendapplybox.h"
 
 Friends::Friends(QWidget *parent) :
     QWidget(parent),
@@ -55,6 +59,9 @@ Friends::Friends(QWidget *parent) :
 
     // socket
     Socket::Instance()->RegisterRecvFunc(MessageTag_GetUserInfo.Res, std::bind(&Friends::slot_GetUserInfoRes, this, std::placeholders::_1));
+    Socket::Instance()->RegisterRecvFunc(MessageTag_ApplyFriends.Relay, std::bind(&Friends::slot_ApplyFriendsRelay, this, std::placeholders::_1));
+    Socket::Instance()->RegisterRecvFunc(MessageTag_ApplyFriends.Res, std::bind(&Friends::slot_ApplyFriendsRes, this, std::placeholders::_1));
+    Socket::Instance()->RegisterRecvFunc(MessageTag_GetFriendsList.Res, std::bind(&Friends::slot_GetFriendsListRes, this, std::placeholders::_1));
 
 }
 
@@ -65,9 +72,42 @@ Friends::~Friends()
 
 void Friends::GetFriendsList()
 {
+    im_home_proto::GetFriendsListReq *getFriendsListReq = new im_home_proto::GetFriendsListReq;
 
+    IMLog::Instance()->Info(QString("send getFriendsListReq"));
+    Socket::Instance()->SendMessage(MessageTag_GetFriendsList.Req, getFriendsListReq->SerializeAsString());
 }
 
+void Friends::slot_GetFriendsListRes(char * recvMessage)
+{
+    im_home_proto::GetFriendsListRes *getFriendsListRes = new im_home_proto::GetFriendsListRes;
+    getFriendsListRes->ParseFromString(recvMessage);
+
+    m_pFriendsList->clear();
+
+    for (int i = 0 ; i < getFriendsListRes->list().size(); i++)
+    {
+        QListWidgetItem *Item_friend = new QListWidgetItem(m_pFriendsList);
+
+        Item_friend->setSizeHint(QSize(100, 100));
+
+        ChatShortFrameData data = ChatShortFrameData{};
+        data.m_FriendID = getFriendsListRes->list(i).userid();
+        data.m_Name = QString::fromStdString(getFriendsListRes->list(i).username());
+        if (getFriendsListRes->list(i).status() == im_home_proto::Enum_UserStatus::Enum_UserStatus_Online)
+        {
+            data.m_UserStatus = im_home_proto::Enum_UserStatus::Enum_UserStatus_Online;
+        }else{
+            data.m_UserStatus = im_home_proto::Enum_UserStatus::Enum_UserStatus_Outline;
+        }
+
+        ChatShortFrame *friendBox = new ChatShortFrame(m_pFriendsList);
+        friendBox->UpdateData(data);
+
+        m_pFriendApplyList->setItemWidget(Item_friend, friendBox);
+    }
+
+}
 
 void Friends::GetFriendApplyList()
 {
@@ -76,7 +116,7 @@ void Friends::GetFriendApplyList()
 
 void Friends::slot_btnSearchClick()
 {
-    // send login
+    // send get user info
     im_home_proto::GetUserInfoReq *getUserInfoReq = new im_home_proto::GetUserInfoReq;
     getUserInfoReq->set_userid(m_pEditSearchFriend->text().toUInt());
 
@@ -93,4 +133,74 @@ void Friends::slot_GetUserInfoRes(char * recvMessage)
     // 展示获取到的用户信息
     FriendDetails friendDetails(this, getUserInfoRes);
     friendDetails.exec();
+}
+
+void Friends::slot_ApplyFriendsRelay(char * recvMessage)
+{
+    // 接收对方发来的好友申请
+    im_home_proto::ApplyFriendsToReceiver *applyFriendsToReceiver = new im_home_proto::ApplyFriendsToReceiver;
+    applyFriendsToReceiver->ParseFromString(recvMessage);
+
+    QListWidgetItem *Item_apply = new QListWidgetItem(m_pFriendApplyList);
+    Item_apply->setFlags(Item_apply->flags() & ~Qt::ItemIsEnabled & ~Qt::ItemIsSelectable);
+    Item_apply->setSizeHint(QSize(100, 100));
+
+    ChatShortFrameData data = ChatShortFrameData{};
+    data.m_FriendID = applyFriendsToReceiver->senderid();
+
+    FriendApplyBox *friendApplyBox = new FriendApplyBox(m_pFriendApplyList, data, false);
+
+    m_pFriendApplyList->setItemWidget(Item_apply, friendApplyBox);
+    m_mapApplyBox[data.m_FriendID] = Item_apply;
+
+}
+
+void Friends::slot_AgreeFriendApplyRes(char * recvMessage)
+{
+    im_home_proto::AgreeFriendApplyRes *agreeFriendApplyRes = new im_home_proto::AgreeFriendApplyRes;
+    agreeFriendApplyRes->ParseFromString(recvMessage);
+
+    if (m_mapApplyBox[agreeFriendApplyRes->friendsid()])
+    {
+        m_pFriendApplyList->removeItemWidget(m_mapApplyBox[agreeFriendApplyRes->friendsid()]);
+        m_mapApplyBox.erase(agreeFriendApplyRes->friendsid());
+    }else{
+        IMLog::Instance()->Warn(QString("agreeFriendApplyRes friend[%1] no item").arg(agreeFriendApplyRes->friendsid()));
+    }
+}
+
+void Friends::slot_AgreeFriendApplyRelay(char * recvMessage)
+{
+
+    im_home_proto::AgreeApplyFriendsToReceiver *agreeApplyFriendsToReceiver = new im_home_proto::AgreeApplyFriendsToReceiver;
+    agreeApplyFriendsToReceiver->ParseFromString(recvMessage);
+
+    if (m_mapApplyBox[agreeApplyFriendsToReceiver->senderid()])
+    {
+        m_pFriendApplyList->removeItemWidget(m_mapApplyBox[agreeApplyFriendsToReceiver->senderid()]);
+        m_mapApplyBox.erase(agreeApplyFriendsToReceiver->senderid());
+    }else{
+        IMLog::Instance()->Warn(QString("agreeApplyFriendsToReceiver friend[%1] no item").arg(agreeApplyFriendsToReceiver->senderid()));
+    }
+}
+
+void Friends::slot_ApplyFriendsRes(char * recvMessage)
+{
+    QMessageBox::information(nullptr, tr(u8"成功"), tr(u8"发送好友申请成功"), QMessageBox::Yes);
+    // 发送好友申请成功
+    im_home_proto::ApplyFriendsReq *applyFriendsReq = new im_home_proto::ApplyFriendsReq;
+    applyFriendsReq->ParseFromString(recvMessage);
+
+    QListWidgetItem *Item_apply = new QListWidgetItem(m_pFriendApplyList);
+    Item_apply->setFlags(Item_apply->flags() & ~Qt::ItemIsEnabled & ~Qt::ItemIsSelectable);
+    Item_apply->setSizeHint(QSize(100, 100));
+
+    ChatShortFrameData data = ChatShortFrameData{};
+    data.m_FriendID = applyFriendsReq->applyfriendsid();
+
+    FriendApplyBox *friendApplyBox = new FriendApplyBox(m_pFriendApplyList, data, true);
+
+    m_pFriendApplyList->setItemWidget(Item_apply, friendApplyBox);
+    m_mapApplyBox[data.m_FriendID] = Item_apply;
+
 }

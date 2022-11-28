@@ -31,6 +31,7 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
+#include "home_account.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_home_5ffriends_2eproto
@@ -70,9 +71,6 @@ extern GetFriendsListReqDefaultTypeInternal _GetFriendsListReq_default_instance_
 class GetFriendsListRes;
 struct GetFriendsListResDefaultTypeInternal;
 extern GetFriendsListResDefaultTypeInternal _GetFriendsListRes_default_instance_;
-class GetFriendsListRes_BriedFriends;
-struct GetFriendsListRes_BriedFriendsDefaultTypeInternal;
-extern GetFriendsListRes_BriedFriendsDefaultTypeInternal _GetFriendsListRes_BriedFriends_default_instance_;
 }  // namespace im_home_proto
 PROTOBUF_NAMESPACE_OPEN
 template<> ::im_home_proto::AgreeFriendApplyReq* Arena::CreateMaybeMessage<::im_home_proto::AgreeFriendApplyReq>(Arena*);
@@ -83,7 +81,6 @@ template<> ::im_home_proto::DelFriendsReq* Arena::CreateMaybeMessage<::im_home_p
 template<> ::im_home_proto::DelFriendsRes* Arena::CreateMaybeMessage<::im_home_proto::DelFriendsRes>(Arena*);
 template<> ::im_home_proto::GetFriendsListReq* Arena::CreateMaybeMessage<::im_home_proto::GetFriendsListReq>(Arena*);
 template<> ::im_home_proto::GetFriendsListRes* Arena::CreateMaybeMessage<::im_home_proto::GetFriendsListRes>(Arena*);
-template<> ::im_home_proto::GetFriendsListRes_BriedFriends* Arena::CreateMaybeMessage<::im_home_proto::GetFriendsListRes_BriedFriends>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace im_home_proto {
 
@@ -205,176 +202,6 @@ class GetFriendsListReq final :
 };
 // -------------------------------------------------------------------
 
-class GetFriendsListRes_BriedFriends final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.GetFriendsListRes.BriedFriends) */ {
- public:
-  inline GetFriendsListRes_BriedFriends() : GetFriendsListRes_BriedFriends(nullptr) {}
-  ~GetFriendsListRes_BriedFriends() override;
-  explicit PROTOBUF_CONSTEXPR GetFriendsListRes_BriedFriends(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  GetFriendsListRes_BriedFriends(const GetFriendsListRes_BriedFriends& from);
-  GetFriendsListRes_BriedFriends(GetFriendsListRes_BriedFriends&& from) noexcept
-    : GetFriendsListRes_BriedFriends() {
-    *this = ::std::move(from);
-  }
-
-  inline GetFriendsListRes_BriedFriends& operator=(const GetFriendsListRes_BriedFriends& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline GetFriendsListRes_BriedFriends& operator=(GetFriendsListRes_BriedFriends&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const GetFriendsListRes_BriedFriends& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const GetFriendsListRes_BriedFriends* internal_default_instance() {
-    return reinterpret_cast<const GetFriendsListRes_BriedFriends*>(
-               &_GetFriendsListRes_BriedFriends_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(GetFriendsListRes_BriedFriends& a, GetFriendsListRes_BriedFriends& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(GetFriendsListRes_BriedFriends* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(GetFriendsListRes_BriedFriends* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  GetFriendsListRes_BriedFriends* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GetFriendsListRes_BriedFriends>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const GetFriendsListRes_BriedFriends& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const GetFriendsListRes_BriedFriends& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(GetFriendsListRes_BriedFriends* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "im_home_proto.GetFriendsListRes.BriedFriends";
-  }
-  protected:
-  explicit GetFriendsListRes_BriedFriends(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kUserNameFieldNumber = 2,
-    kUserIDFieldNumber = 1,
-    kBOnlineFieldNumber = 3,
-  };
-  // string UserName = 2;
-  void clear_username();
-  const std::string& username() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_username(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_username();
-  PROTOBUF_NODISCARD std::string* release_username();
-  void set_allocated_username(std::string* username);
-  private:
-  const std::string& _internal_username() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_username(const std::string& value);
-  std::string* _internal_mutable_username();
-  public:
-
-  // int64 UserID = 1;
-  void clear_userid();
-  int64_t userid() const;
-  void set_userid(int64_t value);
-  private:
-  int64_t _internal_userid() const;
-  void _internal_set_userid(int64_t value);
-  public:
-
-  // bool bOnline = 3;
-  void clear_bonline();
-  bool bonline() const;
-  void set_bonline(bool value);
-  private:
-  bool _internal_bonline() const;
-  void _internal_set_bonline(bool value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:im_home_proto.GetFriendsListRes.BriedFriends)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr username_;
-  int64_t userid_;
-  bool bonline_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_home_5ffriends_2eproto;
-};
-// -------------------------------------------------------------------
-
 class GetFriendsListRes final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.GetFriendsListRes) */ {
  public:
@@ -423,7 +250,7 @@ class GetFriendsListRes final :
                &_GetFriendsListRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    1;
 
   friend void swap(GetFriendsListRes& a, GetFriendsListRes& b) {
     a.Swap(&b);
@@ -491,29 +318,27 @@ class GetFriendsListRes final :
 
   // nested types ----------------------------------------------------
 
-  typedef GetFriendsListRes_BriedFriends BriedFriends;
-
   // accessors -------------------------------------------------------
 
   enum : int {
     kListFieldNumber = 1,
   };
-  // repeated .im_home_proto.GetFriendsListRes.BriedFriends List = 1;
+  // repeated .im_home_proto.UserInfo List = 1;
   int list_size() const;
   private:
   int _internal_list_size() const;
   public:
   void clear_list();
-  ::im_home_proto::GetFriendsListRes_BriedFriends* mutable_list(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::GetFriendsListRes_BriedFriends >*
+  ::im_home_proto::UserInfo* mutable_list(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::UserInfo >*
       mutable_list();
   private:
-  const ::im_home_proto::GetFriendsListRes_BriedFriends& _internal_list(int index) const;
-  ::im_home_proto::GetFriendsListRes_BriedFriends* _internal_add_list();
+  const ::im_home_proto::UserInfo& _internal_list(int index) const;
+  ::im_home_proto::UserInfo* _internal_add_list();
   public:
-  const ::im_home_proto::GetFriendsListRes_BriedFriends& list(int index) const;
-  ::im_home_proto::GetFriendsListRes_BriedFriends* add_list();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::GetFriendsListRes_BriedFriends >&
+  const ::im_home_proto::UserInfo& list(int index) const;
+  ::im_home_proto::UserInfo* add_list();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::UserInfo >&
       list() const;
 
   // @@protoc_insertion_point(class_scope:im_home_proto.GetFriendsListRes)
@@ -523,7 +348,7 @@ class GetFriendsListRes final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::GetFriendsListRes_BriedFriends > list_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::UserInfo > list_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_home_5ffriends_2eproto;
 };
@@ -577,7 +402,7 @@ class ApplyFriendsReq final :
                &_ApplyFriendsReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    2;
 
   friend void swap(ApplyFriendsReq& a, ApplyFriendsReq& b) {
     a.Swap(&b);
@@ -720,7 +545,7 @@ class ApplyFriendsRes final :
                &_ApplyFriendsRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    3;
 
   friend void swap(ApplyFriendsRes& a, ApplyFriendsRes& b) {
     a.Swap(&b);
@@ -791,16 +616,25 @@ class ApplyFriendsRes final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kApplyFriendsIDFieldNumber = 1,
+    kFriendInfoFieldNumber = 1,
   };
-  // int64 ApplyFriendsID = 1;
-  void clear_applyfriendsid();
-  int64_t applyfriendsid() const;
-  void set_applyfriendsid(int64_t value);
+  // .im_home_proto.UserInfo FriendInfo = 1;
+  bool has_friendinfo() const;
   private:
-  int64_t _internal_applyfriendsid() const;
-  void _internal_set_applyfriendsid(int64_t value);
+  bool _internal_has_friendinfo() const;
   public:
+  void clear_friendinfo();
+  const ::im_home_proto::UserInfo& friendinfo() const;
+  PROTOBUF_NODISCARD ::im_home_proto::UserInfo* release_friendinfo();
+  ::im_home_proto::UserInfo* mutable_friendinfo();
+  void set_allocated_friendinfo(::im_home_proto::UserInfo* friendinfo);
+  private:
+  const ::im_home_proto::UserInfo& _internal_friendinfo() const;
+  ::im_home_proto::UserInfo* _internal_mutable_friendinfo();
+  public:
+  void unsafe_arena_set_allocated_friendinfo(
+      ::im_home_proto::UserInfo* friendinfo);
+  ::im_home_proto::UserInfo* unsafe_arena_release_friendinfo();
 
   // @@protoc_insertion_point(class_scope:im_home_proto.ApplyFriendsRes)
  private:
@@ -809,7 +643,7 @@ class ApplyFriendsRes final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  int64_t applyfriendsid_;
+  ::im_home_proto::UserInfo* friendinfo_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_home_5ffriends_2eproto;
 };
@@ -863,7 +697,7 @@ class AgreeFriendApplyReq final :
                &_AgreeFriendApplyReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    4;
 
   friend void swap(AgreeFriendApplyReq& a, AgreeFriendApplyReq& b) {
     a.Swap(&b);
@@ -1006,7 +840,7 @@ class AgreeFriendApplyRes final :
                &_AgreeFriendApplyRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    5;
 
   friend void swap(AgreeFriendApplyRes& a, AgreeFriendApplyRes& b) {
     a.Swap(&b);
@@ -1149,7 +983,7 @@ class DelFriendsReq final :
                &_DelFriendsReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    6;
 
   friend void swap(DelFriendsReq& a, DelFriendsReq& b) {
     a.Swap(&b);
@@ -1292,7 +1126,7 @@ class DelFriendsRes final :
                &_DelFriendsRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    7;
 
   friend void swap(DelFriendsRes& a, DelFriendsRes& b) {
     a.Swap(&b);
@@ -1398,137 +1232,40 @@ class DelFriendsRes final :
 
 // -------------------------------------------------------------------
 
-// GetFriendsListRes_BriedFriends
-
-// int64 UserID = 1;
-inline void GetFriendsListRes_BriedFriends::clear_userid() {
-  userid_ = int64_t{0};
-}
-inline int64_t GetFriendsListRes_BriedFriends::_internal_userid() const {
-  return userid_;
-}
-inline int64_t GetFriendsListRes_BriedFriends::userid() const {
-  // @@protoc_insertion_point(field_get:im_home_proto.GetFriendsListRes.BriedFriends.UserID)
-  return _internal_userid();
-}
-inline void GetFriendsListRes_BriedFriends::_internal_set_userid(int64_t value) {
-  
-  userid_ = value;
-}
-inline void GetFriendsListRes_BriedFriends::set_userid(int64_t value) {
-  _internal_set_userid(value);
-  // @@protoc_insertion_point(field_set:im_home_proto.GetFriendsListRes.BriedFriends.UserID)
-}
-
-// string UserName = 2;
-inline void GetFriendsListRes_BriedFriends::clear_username() {
-  username_.ClearToEmpty();
-}
-inline const std::string& GetFriendsListRes_BriedFriends::username() const {
-  // @@protoc_insertion_point(field_get:im_home_proto.GetFriendsListRes.BriedFriends.UserName)
-  return _internal_username();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void GetFriendsListRes_BriedFriends::set_username(ArgT0&& arg0, ArgT... args) {
- 
- username_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:im_home_proto.GetFriendsListRes.BriedFriends.UserName)
-}
-inline std::string* GetFriendsListRes_BriedFriends::mutable_username() {
-  std::string* _s = _internal_mutable_username();
-  // @@protoc_insertion_point(field_mutable:im_home_proto.GetFriendsListRes.BriedFriends.UserName)
-  return _s;
-}
-inline const std::string& GetFriendsListRes_BriedFriends::_internal_username() const {
-  return username_.Get();
-}
-inline void GetFriendsListRes_BriedFriends::_internal_set_username(const std::string& value) {
-  
-  username_.Set(value, GetArenaForAllocation());
-}
-inline std::string* GetFriendsListRes_BriedFriends::_internal_mutable_username() {
-  
-  return username_.Mutable(GetArenaForAllocation());
-}
-inline std::string* GetFriendsListRes_BriedFriends::release_username() {
-  // @@protoc_insertion_point(field_release:im_home_proto.GetFriendsListRes.BriedFriends.UserName)
-  return username_.Release();
-}
-inline void GetFriendsListRes_BriedFriends::set_allocated_username(std::string* username) {
-  if (username != nullptr) {
-    
-  } else {
-    
-  }
-  username_.SetAllocated(username, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (username_.IsDefault()) {
-    username_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:im_home_proto.GetFriendsListRes.BriedFriends.UserName)
-}
-
-// bool bOnline = 3;
-inline void GetFriendsListRes_BriedFriends::clear_bonline() {
-  bonline_ = false;
-}
-inline bool GetFriendsListRes_BriedFriends::_internal_bonline() const {
-  return bonline_;
-}
-inline bool GetFriendsListRes_BriedFriends::bonline() const {
-  // @@protoc_insertion_point(field_get:im_home_proto.GetFriendsListRes.BriedFriends.bOnline)
-  return _internal_bonline();
-}
-inline void GetFriendsListRes_BriedFriends::_internal_set_bonline(bool value) {
-  
-  bonline_ = value;
-}
-inline void GetFriendsListRes_BriedFriends::set_bonline(bool value) {
-  _internal_set_bonline(value);
-  // @@protoc_insertion_point(field_set:im_home_proto.GetFriendsListRes.BriedFriends.bOnline)
-}
-
-// -------------------------------------------------------------------
-
 // GetFriendsListRes
 
-// repeated .im_home_proto.GetFriendsListRes.BriedFriends List = 1;
+// repeated .im_home_proto.UserInfo List = 1;
 inline int GetFriendsListRes::_internal_list_size() const {
   return list_.size();
 }
 inline int GetFriendsListRes::list_size() const {
   return _internal_list_size();
 }
-inline void GetFriendsListRes::clear_list() {
-  list_.Clear();
-}
-inline ::im_home_proto::GetFriendsListRes_BriedFriends* GetFriendsListRes::mutable_list(int index) {
+inline ::im_home_proto::UserInfo* GetFriendsListRes::mutable_list(int index) {
   // @@protoc_insertion_point(field_mutable:im_home_proto.GetFriendsListRes.List)
   return list_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::GetFriendsListRes_BriedFriends >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::UserInfo >*
 GetFriendsListRes::mutable_list() {
   // @@protoc_insertion_point(field_mutable_list:im_home_proto.GetFriendsListRes.List)
   return &list_;
 }
-inline const ::im_home_proto::GetFriendsListRes_BriedFriends& GetFriendsListRes::_internal_list(int index) const {
+inline const ::im_home_proto::UserInfo& GetFriendsListRes::_internal_list(int index) const {
   return list_.Get(index);
 }
-inline const ::im_home_proto::GetFriendsListRes_BriedFriends& GetFriendsListRes::list(int index) const {
+inline const ::im_home_proto::UserInfo& GetFriendsListRes::list(int index) const {
   // @@protoc_insertion_point(field_get:im_home_proto.GetFriendsListRes.List)
   return _internal_list(index);
 }
-inline ::im_home_proto::GetFriendsListRes_BriedFriends* GetFriendsListRes::_internal_add_list() {
+inline ::im_home_proto::UserInfo* GetFriendsListRes::_internal_add_list() {
   return list_.Add();
 }
-inline ::im_home_proto::GetFriendsListRes_BriedFriends* GetFriendsListRes::add_list() {
-  ::im_home_proto::GetFriendsListRes_BriedFriends* _add = _internal_add_list();
+inline ::im_home_proto::UserInfo* GetFriendsListRes::add_list() {
+  ::im_home_proto::UserInfo* _add = _internal_add_list();
   // @@protoc_insertion_point(field_add:im_home_proto.GetFriendsListRes.List)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::GetFriendsListRes_BriedFriends >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::UserInfo >&
 GetFriendsListRes::list() const {
   // @@protoc_insertion_point(field_list:im_home_proto.GetFriendsListRes.List)
   return list_;
@@ -1562,24 +1299,89 @@ inline void ApplyFriendsReq::set_applyfriendsid(int64_t value) {
 
 // ApplyFriendsRes
 
-// int64 ApplyFriendsID = 1;
-inline void ApplyFriendsRes::clear_applyfriendsid() {
-  applyfriendsid_ = int64_t{0};
+// .im_home_proto.UserInfo FriendInfo = 1;
+inline bool ApplyFriendsRes::_internal_has_friendinfo() const {
+  return this != internal_default_instance() && friendinfo_ != nullptr;
 }
-inline int64_t ApplyFriendsRes::_internal_applyfriendsid() const {
-  return applyfriendsid_;
+inline bool ApplyFriendsRes::has_friendinfo() const {
+  return _internal_has_friendinfo();
 }
-inline int64_t ApplyFriendsRes::applyfriendsid() const {
-  // @@protoc_insertion_point(field_get:im_home_proto.ApplyFriendsRes.ApplyFriendsID)
-  return _internal_applyfriendsid();
+inline const ::im_home_proto::UserInfo& ApplyFriendsRes::_internal_friendinfo() const {
+  const ::im_home_proto::UserInfo* p = friendinfo_;
+  return p != nullptr ? *p : reinterpret_cast<const ::im_home_proto::UserInfo&>(
+      ::im_home_proto::_UserInfo_default_instance_);
 }
-inline void ApplyFriendsRes::_internal_set_applyfriendsid(int64_t value) {
+inline const ::im_home_proto::UserInfo& ApplyFriendsRes::friendinfo() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.ApplyFriendsRes.FriendInfo)
+  return _internal_friendinfo();
+}
+inline void ApplyFriendsRes::unsafe_arena_set_allocated_friendinfo(
+    ::im_home_proto::UserInfo* friendinfo) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(friendinfo_);
+  }
+  friendinfo_ = friendinfo;
+  if (friendinfo) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:im_home_proto.ApplyFriendsRes.FriendInfo)
+}
+inline ::im_home_proto::UserInfo* ApplyFriendsRes::release_friendinfo() {
   
-  applyfriendsid_ = value;
+  ::im_home_proto::UserInfo* temp = friendinfo_;
+  friendinfo_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
 }
-inline void ApplyFriendsRes::set_applyfriendsid(int64_t value) {
-  _internal_set_applyfriendsid(value);
-  // @@protoc_insertion_point(field_set:im_home_proto.ApplyFriendsRes.ApplyFriendsID)
+inline ::im_home_proto::UserInfo* ApplyFriendsRes::unsafe_arena_release_friendinfo() {
+  // @@protoc_insertion_point(field_release:im_home_proto.ApplyFriendsRes.FriendInfo)
+  
+  ::im_home_proto::UserInfo* temp = friendinfo_;
+  friendinfo_ = nullptr;
+  return temp;
+}
+inline ::im_home_proto::UserInfo* ApplyFriendsRes::_internal_mutable_friendinfo() {
+  
+  if (friendinfo_ == nullptr) {
+    auto* p = CreateMaybeMessage<::im_home_proto::UserInfo>(GetArenaForAllocation());
+    friendinfo_ = p;
+  }
+  return friendinfo_;
+}
+inline ::im_home_proto::UserInfo* ApplyFriendsRes::mutable_friendinfo() {
+  ::im_home_proto::UserInfo* _msg = _internal_mutable_friendinfo();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.ApplyFriendsRes.FriendInfo)
+  return _msg;
+}
+inline void ApplyFriendsRes::set_allocated_friendinfo(::im_home_proto::UserInfo* friendinfo) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(friendinfo_);
+  }
+  if (friendinfo) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(friendinfo));
+    if (message_arena != submessage_arena) {
+      friendinfo = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, friendinfo, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  friendinfo_ = friendinfo;
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.ApplyFriendsRes.FriendInfo)
 }
 
 // -------------------------------------------------------------------
@@ -1681,8 +1483,6 @@ inline void DelFriendsRes::set_friendsid(int64_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

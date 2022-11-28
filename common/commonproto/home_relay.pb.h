@@ -31,6 +31,7 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
 #include "home_chat.pb.h"
+#include "home_account.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_home_5frelay_2eproto
@@ -336,9 +337,28 @@ class ApplyFriendsToReceiver final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kApplyerInfoFieldNumber = 3,
     kSenderIDFieldNumber = 1,
     kReceiverIDFieldNumber = 2,
   };
+  // .im_home_proto.UserInfo ApplyerInfo = 3;
+  bool has_applyerinfo() const;
+  private:
+  bool _internal_has_applyerinfo() const;
+  public:
+  void clear_applyerinfo();
+  const ::im_home_proto::UserInfo& applyerinfo() const;
+  PROTOBUF_NODISCARD ::im_home_proto::UserInfo* release_applyerinfo();
+  ::im_home_proto::UserInfo* mutable_applyerinfo();
+  void set_allocated_applyerinfo(::im_home_proto::UserInfo* applyerinfo);
+  private:
+  const ::im_home_proto::UserInfo& _internal_applyerinfo() const;
+  ::im_home_proto::UserInfo* _internal_mutable_applyerinfo();
+  public:
+  void unsafe_arena_set_allocated_applyerinfo(
+      ::im_home_proto::UserInfo* applyerinfo);
+  ::im_home_proto::UserInfo* unsafe_arena_release_applyerinfo();
+
   // int64 SenderID = 1;
   void clear_senderid();
   int64_t senderid() const;
@@ -364,6 +384,7 @@ class ApplyFriendsToReceiver final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::im_home_proto::UserInfo* applyerinfo_;
   int64_t senderid_;
   int64_t receiverid_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -661,6 +682,91 @@ inline void ApplyFriendsToReceiver::_internal_set_receiverid(int64_t value) {
 inline void ApplyFriendsToReceiver::set_receiverid(int64_t value) {
   _internal_set_receiverid(value);
   // @@protoc_insertion_point(field_set:im_home_proto.ApplyFriendsToReceiver.ReceiverID)
+}
+
+// .im_home_proto.UserInfo ApplyerInfo = 3;
+inline bool ApplyFriendsToReceiver::_internal_has_applyerinfo() const {
+  return this != internal_default_instance() && applyerinfo_ != nullptr;
+}
+inline bool ApplyFriendsToReceiver::has_applyerinfo() const {
+  return _internal_has_applyerinfo();
+}
+inline const ::im_home_proto::UserInfo& ApplyFriendsToReceiver::_internal_applyerinfo() const {
+  const ::im_home_proto::UserInfo* p = applyerinfo_;
+  return p != nullptr ? *p : reinterpret_cast<const ::im_home_proto::UserInfo&>(
+      ::im_home_proto::_UserInfo_default_instance_);
+}
+inline const ::im_home_proto::UserInfo& ApplyFriendsToReceiver::applyerinfo() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.ApplyFriendsToReceiver.ApplyerInfo)
+  return _internal_applyerinfo();
+}
+inline void ApplyFriendsToReceiver::unsafe_arena_set_allocated_applyerinfo(
+    ::im_home_proto::UserInfo* applyerinfo) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(applyerinfo_);
+  }
+  applyerinfo_ = applyerinfo;
+  if (applyerinfo) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:im_home_proto.ApplyFriendsToReceiver.ApplyerInfo)
+}
+inline ::im_home_proto::UserInfo* ApplyFriendsToReceiver::release_applyerinfo() {
+  
+  ::im_home_proto::UserInfo* temp = applyerinfo_;
+  applyerinfo_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::im_home_proto::UserInfo* ApplyFriendsToReceiver::unsafe_arena_release_applyerinfo() {
+  // @@protoc_insertion_point(field_release:im_home_proto.ApplyFriendsToReceiver.ApplyerInfo)
+  
+  ::im_home_proto::UserInfo* temp = applyerinfo_;
+  applyerinfo_ = nullptr;
+  return temp;
+}
+inline ::im_home_proto::UserInfo* ApplyFriendsToReceiver::_internal_mutable_applyerinfo() {
+  
+  if (applyerinfo_ == nullptr) {
+    auto* p = CreateMaybeMessage<::im_home_proto::UserInfo>(GetArenaForAllocation());
+    applyerinfo_ = p;
+  }
+  return applyerinfo_;
+}
+inline ::im_home_proto::UserInfo* ApplyFriendsToReceiver::mutable_applyerinfo() {
+  ::im_home_proto::UserInfo* _msg = _internal_mutable_applyerinfo();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.ApplyFriendsToReceiver.ApplyerInfo)
+  return _msg;
+}
+inline void ApplyFriendsToReceiver::set_allocated_applyerinfo(::im_home_proto::UserInfo* applyerinfo) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(applyerinfo_);
+  }
+  if (applyerinfo) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(applyerinfo));
+    if (message_arena != submessage_arena) {
+      applyerinfo = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, applyerinfo, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  applyerinfo_ = applyerinfo;
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.ApplyFriendsToReceiver.ApplyerInfo)
 }
 
 // -------------------------------------------------------------------

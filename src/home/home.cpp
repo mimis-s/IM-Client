@@ -51,7 +51,7 @@ Home::Home(QWidget *parent) :
     m_pChat  = new Chat(pRightWidget);
     ChatShortFrameData data{
         "",     // 好友头像路径
-        ENUM_OnLineStatus::ENUM_OnLine, // 在线提示
+        im_home_proto::Enum_UserStatus::Enum_UserStatus_Online, // 在线提示
         "zhangbin",                     // 好友名字
         123456,                         // 好友id
         "hello",                        // 最新消息
@@ -89,6 +89,7 @@ void Home::slot_btnFriendsClick()
 {
     m_pChat->hide();
     m_pFriends->show();
+    m_pFriends->GetFriendsList();
 }
 
 void Home::slot_btnGroupClick()
