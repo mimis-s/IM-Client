@@ -210,13 +210,13 @@ char* SocketControl::BlockSendMessage(uint32_t reqType, uint32_t resType, std::s
             else
             {
                 IMLog::Instance()->Warn(QString("recv message[%1] but message is not define").arg(pBlockRes->ResType));
+                return nullptr;
             }
 
-            return nullptr;
         }
         QThread::msleep(50);
-        // 处理所有主线程阻塞的事件(预防可能出现的情况:在查询好友的时候, 来了一条消息)
-        QCoreApplication::processEvents();
+        // 处理所有主线程阻塞的事件(预防可能出现的情况:在查询好友的时候, 来了一条消息), 废弃(在上面已经规避了这个问题)
+//        QCoreApplication::processEvents();
         cnt++;
         if (cnt == 80)
         {
