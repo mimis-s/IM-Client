@@ -57,10 +57,10 @@ Friends::Friends(QWidget *parent) :
     connect(m_pBtnSearch, SIGNAL(clicked()), this, SLOT(slot_btnSearchClick()));
 
     // socket
-    Socket::Instance()->RegisterRecvFunc(MessageTag_GetUserInfo.Res, std::bind(&Friends::slot_GetUserInfoRes, this, std::placeholders::_1));
-    Socket::Instance()->RegisterRecvFunc(MessageTag_ApplyFriends.Relay, std::bind(&Friends::slot_ApplyFriendsRelay, this, std::placeholders::_1));
-    Socket::Instance()->RegisterRecvFunc(MessageTag_ApplyFriends.Res, std::bind(&Friends::slot_ApplyFriendsRes, this, std::placeholders::_1));
-    Socket::Instance()->RegisterRecvFunc(MessageTag_GetFriendsList.Res, std::bind(&Friends::slot_GetFriendsListRes, this, std::placeholders::_1));
+    SocketControl::Instance()->RegisterRecvFunc(MessageTag_GetUserInfo.Res, std::bind(&Friends::slot_GetUserInfoRes, this, std::placeholders::_1));
+    SocketControl::Instance()->RegisterRecvFunc(MessageTag_ApplyFriends.Relay, std::bind(&Friends::slot_ApplyFriendsRelay, this, std::placeholders::_1));
+    SocketControl::Instance()->RegisterRecvFunc(MessageTag_ApplyFriends.Res, std::bind(&Friends::slot_ApplyFriendsRes, this, std::placeholders::_1));
+    SocketControl::Instance()->RegisterRecvFunc(MessageTag_GetFriendsList.Res, std::bind(&Friends::slot_GetFriendsListRes, this, std::placeholders::_1));
 
 }
 
@@ -74,7 +74,7 @@ void Friends::GetFriendsList()
     im_home_proto::GetFriendsListReq *getFriendsListReq = new im_home_proto::GetFriendsListReq;
 
     IMLog::Instance()->Info(QString("send getFriendsListReq"));
-    Socket::Instance()->SendMessage(MessageTag_GetFriendsList.Req, getFriendsListReq->SerializeAsString());
+    SocketControl::Instance()->SendMessage(MessageTag_GetFriendsList.Req, getFriendsListReq->SerializeAsString());
 }
 
 void Friends::slot_GetFriendsListRes(char * recvMessage)
@@ -123,7 +123,7 @@ void Friends::slot_btnSearchClick()
 
     IMLog::Instance()->Info(QString("send getUserInfoReq %1").arg(MessageTag_GetUserInfo.Req));
 
-    Socket::Instance()->SendMessage(MessageTag_GetUserInfo.Req, getUserInfoReq->SerializeAsString());
+    SocketControl::Instance()->SendMessage(MessageTag_GetUserInfo.Req, getUserInfoReq->SerializeAsString());
 }
 
 void Friends::slot_GetUserInfoRes(char * recvMessage)

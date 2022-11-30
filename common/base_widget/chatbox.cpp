@@ -111,7 +111,7 @@ void ChatBox::slot_btnSendClick()
 
         IMLog::Instance()->Info(QString("send chatSingleReq %1").arg(MessageTag_ChatSingle.Req));
 
-        Socket::Instance()->SendMessage(MessageTag_ChatSingle.Req, chatSingleReq->SerializeAsString());
+        SocketControl::Instance()->SendMessage(MessageTag_ChatSingle.Req, chatSingleReq->SerializeAsString());
 
         m_pTextInput->clear();
     }

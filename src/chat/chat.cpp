@@ -33,8 +33,8 @@ Chat::Chat(QWidget *parent) :
     pHBoxLayout->addWidget(m_pRightChatBox, 7);
 
     // socket
-    Socket::Instance()->RegisterRecvFunc(MessageTag_ChatSingle.Res, std::bind(&Chat::slot_ChatSingleRes, this, std::placeholders::_1));
-    Socket::Instance()->RegisterRecvFunc(MessageTag_ChatSingle.Relay, std::bind(&Chat::slot_ChatSingleRelay, this, std::placeholders::_1));
+    SocketControl::Instance()->RegisterRecvFunc(MessageTag_ChatSingle.Res, std::bind(&Chat::slot_ChatSingleRes, this, std::placeholders::_1));
+    SocketControl::Instance()->RegisterRecvFunc(MessageTag_ChatSingle.Relay, std::bind(&Chat::slot_ChatSingleRelay, this, std::placeholders::_1));
 }
 
 Chat::~Chat()

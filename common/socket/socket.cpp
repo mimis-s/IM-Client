@@ -4,39 +4,64 @@
 #include "../define/define.h"
 #include "../commonproto/errors.pb.h"
 #include <QMessageBox>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <arpa/inet.h>
 
-Socket *Socket::m_this = nullptr;
+SocketControl *SocketControl::m_this = nullptr;
 
-Socket::Socket(QWidget *parent, QString ip, int port)
-    : QWidget(parent)
+Socket::Socket(QString ip, int port)
 {
-    TCP_SendMesSocket = new QTcpSocket();
-    TCP_SendMesSocket->abort();                          //终止之前的连接，重置套接字
-    TCP_SendMesSocket->connectToHost(ip, port); //给定IP和端口号，连接服务器
-
-    connect(TCP_SendMesSocket, SIGNAL(connected()), this, SLOT(slot_Connected()));
-    connect(TCP_SendMesSocket, SIGNAL(readyRead()), this, SLOT(slot_RecvMessage()));
-    connect(TCP_SendMesSocket, SIGNAL(disconnected()), this, SLOT(slot_Disconnect()));
+    m_sIP = ip;
+    m_iPort = port;
 }
 
 Socket::~Socket()
 {
 }
 
-void Socket::slot_Connected()
+void Socket::run()
 {
-    IMLog::Instance()->Info(tr(u8"connect service success"));
+    m_iSocketFD = socket(AF_INET, SOCK_STREAM, 0);   //创建和服务器连接套接字
+    if(m_iSocketFD == -1)
+        {
+            QMessageBox::information(nullptr, tr(u8"失败"), tr(u8"创建socket失败"), QMessageBox::Yes);
+            perror("socket");
+            return;
+        }
+        struct sockaddr_in addr;
+        memset(&addr, 0, sizeof(addr));
+
+        addr.sin_family = AF_INET;  /* Internet地址族 */
+        addr.sin_port = htons(m_iPort);  /* 端口号 */
+        addr.sin_addr.s_addr = htonl(INADDR_ANY);   /* IP地址 */
+        inet_aton(m_sIP.toStdString().data() , &(addr.sin_addr));
+
+        int addrlen = sizeof(addr);
+        int listen_socket = ::connect(m_iSocketFD,  (struct sockaddr *)&addr, addrlen);  //连接服务器
+        if(listen_socket == -1)
+        {
+            QMessageBox::information(nullptr, tr(u8"连接失败"), tr(u8"连接失败"), QMessageBox::Yes);
+            perror("connect");
+            return;
+        }
+
+        //接收服务器
+        while(true)
+        {
+            if (readMessage(m_iSocketFD) == 0)
+            {
+                QMessageBox::information(nullptr, tr(u8"失败"), tr(u8"和服务器断开连接"), QMessageBox::Yes);
+                break;
+            }
+        }
+        close(listen_socket);
 }
 
-void Socket::slot_Disconnect()
-{
-    IMLog::Instance()->Info(tr(u8"与服务器的连接中断"));
-    //关闭并随后删除socket
-    TCP_SendMesSocket->close();
-    TCP_SendMesSocket->deleteLater();
-}
-
-void Socket::SendMessage(uint32_t type, std::string arrayMessage)
+void Socket::slot_SendMessage(uint32_t type, std::string arrayMessage)
 {
     QByteArray messages;
     // 消息类型
@@ -55,13 +80,17 @@ void Socket::SendMessage(uint32_t type, std::string arrayMessage)
     QByteArray msg =  QByteArray::fromStdString(arrayMessage);
     messages.append(msg);
 
-    TCP_SendMesSocket->write(messages);
+    write(m_iSocketFD, messages, messages.size());
 }
 
-void Socket::slot_RecvMessage()
+int Socket::readMessage(int iSocketFD)
 {
-    // 消息类型
-    QByteArray messageType = TCP_SendMesSocket->read(4);
+    unsigned char messageType[4];
+    int ret = read(iSocketFD, messageType, 4);
+    if (ret != 4)
+    {
+        return ret;
+    }
     uint32_t type = 0;
     type += (unsigned char)messageType[3];
     type += (unsigned char)messageType[2] << 8;
@@ -69,7 +98,8 @@ void Socket::slot_RecvMessage()
     type += (unsigned char)messageType[0] << 24;
 
     // 消息长度
-    QByteArray messageLen = TCP_SendMesSocket->read(4);
+    unsigned char messageLen[4];
+    ret = read(iSocketFD, messageLen, 4);
     int byteLen = 0;
     byteLen += (unsigned char)messageLen[3];
     byteLen += (unsigned char)messageLen[2] << 8;
@@ -77,20 +107,51 @@ void Socket::slot_RecvMessage()
     byteLen += (unsigned char)messageLen[0] << 24;
 
     // 消息体
-    char *messages_recv = new char[byteLen];
-    TCP_SendMesSocket->read(messages_recv, byteLen);
+    char messages_recv[byteLen];
+    ret = read(iSocketFD, messages_recv, byteLen);
 
+    emit sig_ReadMessage(type, messages_recv);
+    return ret;
+}
+
+SocketControl::SocketControl(QWidget *parent, QString ip, int port):
+    QWidget(parent)
+{
+    qRegisterMetaType<uint32_t>("uint32_t");
+    m_pSocket = new Socket(ip, port);
+
+    connect(m_pSocket, &Socket::sig_ReadMessage, this, &SocketControl::slot_ReadMessage);
+    connect(m_pSocket, &QThread::finished, this, &QObject::deleteLater);
+    connect(this, &SocketControl::sig_SendMessage, m_pSocket, &Socket::slot_SendMessage);
+
+    m_pSocket->start();
+}
+
+SocketControl::~SocketControl()
+{
+    m_pSocket->quit();
+    m_pSocket->wait();
+}
+
+void SocketControl::slot_ReadMessage(uint32_t type, char *message)
+{
     if (MessageTag_Error.Res == type) {
-//         error
         im_error_proto::CommonError *commonError = new im_error_proto::CommonError;
-        commonError->ParseFromString(messages_recv);
+        commonError->ParseFromString(message);
         QString errMessage = QString("ErrCode:%1").arg(commonError->code());
         QMessageBox::information(NULL,  "error",  errMessage, QMessageBox::Yes);
     }
-
-    if (mapCallBackFunc[type]) {
-        mapCallBackFunc[type]->Run(messages_recv);
-    }else{
+    if (mapCallBackFunc.end() != mapCallBackFunc.find(type))
+    {
+        mapCallBackFunc[type]->Run(message);
+    }
+    else
+    {
         IMLog::Instance()->Warn(QString("recv message[%1] but message is not define").arg(type));
     }
+}
+
+void SocketControl::SendMessage(uint32_t type, std::string message)
+{
+    emit sig_SendMessage(type, message);
 }

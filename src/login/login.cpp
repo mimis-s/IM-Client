@@ -21,7 +21,7 @@ login::login(QWidget *parent) :
     ui->edit_login_password->setText("123");
 
     // socket
-    Socket::Instance()->RegisterRecvFunc(MessageTag_Login.Res, std::bind(&login::LoginBack, this, std::placeholders::_1));
+    SocketControl::Instance()->RegisterRecvFunc(MessageTag_Login.Res, std::bind(&login::LoginBack, this, std::placeholders::_1));
 }
 
 login::~login()
@@ -38,7 +38,7 @@ void login::slot_btn_login()
 
     IMLog::Instance()->Info(QString("send loginreq %1").arg(MessageTag_Login.Req));
 
-    Socket::Instance()->SendMessage(MessageTag_Login.Req, loginReq->SerializeAsString());
+    SocketControl::Instance()->SendMessage(MessageTag_Login.Req, loginReq->SerializeAsString());
 }
 
 void login::slot_btn_register()

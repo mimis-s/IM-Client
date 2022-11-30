@@ -53,7 +53,7 @@ void FriendApplyBox::slot_agreeFriendApplyClick()
 
     IMLog::Instance()->Info(QString("send agreeFriendApplyReq %1").arg(m_applyFriendData.m_FriendID));
 
-    Socket::Instance()->SendMessage(MessageTag_AgreeFriendApply.Req, agreeFriendApplyReq->SerializeAsString());
+    SocketControl::Instance()->SendMessage(MessageTag_AgreeFriendApply.Req, agreeFriendApplyReq->SerializeAsString());
 }
 
 // 忽略好友申请

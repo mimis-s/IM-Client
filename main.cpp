@@ -7,9 +7,11 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Socket::Instance("localhost", 8888);
+    SocketControl::Instance("localhost", 8888);
+
     login w;
     w.show();
+
 
 //    IMClient w;
 //    w.show();

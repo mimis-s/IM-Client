@@ -14,7 +14,7 @@ CUserRegister::CUserRegister(QDialog *parent) : QDialog(parent),
     connect(ui->btn_register, SIGNAL(clicked(void)), this, SLOT(slot_btn_register()));
 
     // socket
-    Socket::Instance()->RegisterRecvFunc(MessageTag_Register.Res, std::bind(&CUserRegister::RegisterBack, this, std::placeholders::_1));
+    SocketControl::Instance()->RegisterRecvFunc(MessageTag_Register.Res, std::bind(&CUserRegister::RegisterBack, this, std::placeholders::_1));
 }
 
 CUserRegister::~CUserRegister()
@@ -37,7 +37,7 @@ void CUserRegister::slot_btn_register()
 
         IMLog::Instance()->Info(QString("send registerReq %1").arg(MessageTag_Register.Req));
 
-        Socket::Instance()->SendMessage(MessageTag_Register.Req, registerReq->SerializeAsString());
+        SocketControl::Instance()->SendMessage(MessageTag_Register.Req, registerReq->SerializeAsString());
     }
 
 }

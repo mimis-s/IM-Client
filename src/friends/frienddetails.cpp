@@ -66,5 +66,5 @@ void FriendDetails::on_btn_add_friend_clicked()
 
     IMLog::Instance()->Info(QString("send applyFriendsReq %1").arg(m_userInfo->data().userid()));
 
-    Socket::Instance()->SendMessage(MessageTag_ApplyFriends.Req, applyFriendsReq->SerializeAsString());
+    SocketControl::Instance()->SendMessage(MessageTag_ApplyFriends.Req, applyFriendsReq->SerializeAsString());
 }

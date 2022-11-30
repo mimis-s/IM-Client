@@ -8,6 +8,7 @@
 #include <QtNetwork/QTcpServer>
 #include <QtNetwork/QTcpSocket>
 #include <map>
+#include <QThread>
 
 class Closure
 {
@@ -36,20 +37,51 @@ private:
     MethodType method_;
 };
 
-class Socket : public QWidget
+class Socket : public QThread
 {
     Q_OBJECT
 
 public:
+    explicit Socket(QString ip = "", int port = 0);
     ~Socket();
-    static Socket *Instance(QString ip = "", int port = 0)
+
+    void run() override;
+
+signals:
+    void sig_ReadMessage(uint32_t type, char* message); // 通过这个槽回发读取到的消息
+
+public slots:
+    void slot_SendMessage(uint32_t type, std::string message); // 外部通过这个槽发送消息进来
+
+
+protected:
+    int readMessage(int iSocketFD);
+
+private:
+    QString m_sIP;
+    int m_iPort;
+
+    int m_iSocketFD = 0;
+};
+
+
+// socket control
+class SocketControl : public QWidget
+{
+    Q_OBJECT
+
+public:
+    ~SocketControl();
+
+    static SocketControl *Instance(QString ip = "", int port = 0)
     {
-        if (Socket::m_this == nullptr && ip != "" && port != 0)
+        if (SocketControl::m_this == nullptr && ip != "" && port != 0)
         {
-            m_this = new Socket(nullptr, ip, port);
+            m_this = new SocketControl(nullptr, ip, port);
         }
         return m_this;
     }
+    void SendMessage(uint32_t type, std::string message);
 
     // 注册各个功能的recv函数(回调函数)
     void RegisterRecvFunc(uint32_t type, std::function<void(char *)> func)
@@ -57,17 +89,21 @@ public:
         mapCallBackFunc[type] = new MethodClosure2(func);
     }
 
-    void SendMessage(uint32_t type, std::string message); // 外部调用发送消息
-
+signals:
+    // 给socket线程发送消息的信号
+    void sig_SendMessage(uint32_t type, std::string message);
 public slots:
-    void slot_Connected();   // 处理成功连接到服务器的槽
-    void slot_RecvMessage(); // 接收来自服务器的消息的槽
-    void slot_Disconnect();  // 取消与服务器连接的槽
-private:
-    Socket(QWidget *parent = nullptr, QString ip = "", int port = 0);
+    // 从socket线程里面接收回发消息的槽
+    void slot_ReadMessage(uint32_t type, char* message);
 
-    static Socket *m_this;
-    QTcpSocket *TCP_SendMesSocket; //发送消息套接字
+private:
+    explicit SocketControl(QWidget *parent = nullptr, QString ip = "", int port = 0);
+
+    Socket *m_pSocket;
+
+    static SocketControl *m_this;
 
     std::map<uint32_t, Closure *> mapCallBackFunc;
+
 };
+
