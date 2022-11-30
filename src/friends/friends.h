@@ -32,7 +32,6 @@ signals:
 
 protected slots:
     void slot_btnSearchClick();
-    void slot_GetUserInfoRes(char * recvMessage);
     void slot_ApplyFriendsRelay(char * recvMessage);
     void slot_AgreeFriendApplyRes(char * recvMessage);
     void slot_AgreeFriendApplyRelay(char * recvMessage);

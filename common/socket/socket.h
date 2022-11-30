@@ -37,6 +37,11 @@ private:
     MethodType method_;
 };
 
+struct BlockResData {
+    uint32_t ResType;
+    QByteArray ResMessage;
+};
+
 class Socket : public QThread
 {
     Q_OBJECT
@@ -45,14 +50,16 @@ public:
     explicit Socket(QString ip = "", int port = 0);
     ~Socket();
 
+    BlockResData *GetBlockResMessage();
+
     void run() override;
 
 signals:
-    void sig_ReadMessage(uint32_t type, char* message); // 通过这个槽回发读取到的消息
+    void sig_ReadMessage(uint32_t type, QByteArray message); // 通过这个槽回发读取到的消息
 
 public slots:
-    void slot_SendMessage(uint32_t type, std::string message); // 外部通过这个槽发送消息进来
-
+    void slot_SendMessage(uint32_t type, QByteArray message); // 外部通过这个槽发送消息进来
+    void slot_SendBlockMessage(uint32_t reqType, uint32_t resType, QByteArray message); // 外部通过这个槽发送消息进来
 
 protected:
     int readMessage(int iSocketFD);
@@ -62,6 +69,10 @@ private:
     int m_iPort;
 
     int m_iSocketFD = 0;
+
+    uint32_t m_iType;
+
+    BlockResData *m_pBlockResData; // 当前阻塞调用中返回的结构
 };
 
 
@@ -81,7 +92,12 @@ public:
         }
         return m_this;
     }
+
+    // 发送消息接口, 不需要阻塞等待res回发
     void SendMessage(uint32_t type, std::string message);
+
+    // 发送消息接口, 阻塞等待res回发, 等待时间先固定为4s, 超时之后返回nullptr
+    char* BlockSendMessage(uint32_t reqType, uint32_t resType, std::string message);
 
     // 注册各个功能的recv函数(回调函数)
     void RegisterRecvFunc(uint32_t type, std::function<void(char *)> func)
@@ -91,10 +107,12 @@ public:
 
 signals:
     // 给socket线程发送消息的信号
-    void sig_SendMessage(uint32_t type, std::string message);
+    void sig_SendMessage(uint32_t type, QByteArray message);
+    void sig_SendBlockMessage(uint32_t reqType, uint32_t resType, QByteArray message);
+
 public slots:
     // 从socket线程里面接收回发消息的槽
-    void slot_ReadMessage(uint32_t type, char* message);
+    void slot_ReadMessage(uint32_t type, QByteArray message);
 
 private:
     explicit SocketControl(QWidget *parent = nullptr, QString ip = "", int port = 0);
@@ -104,6 +122,5 @@ private:
     static SocketControl *m_this;
 
     std::map<uint32_t, Closure *> mapCallBackFunc;
-
 };
 

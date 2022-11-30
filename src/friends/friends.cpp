@@ -57,7 +57,6 @@ Friends::Friends(QWidget *parent) :
     connect(m_pBtnSearch, SIGNAL(clicked()), this, SLOT(slot_btnSearchClick()));
 
     // socket
-    SocketControl::Instance()->RegisterRecvFunc(MessageTag_GetUserInfo.Res, std::bind(&Friends::slot_GetUserInfoRes, this, std::placeholders::_1));
     SocketControl::Instance()->RegisterRecvFunc(MessageTag_ApplyFriends.Relay, std::bind(&Friends::slot_ApplyFriendsRelay, this, std::placeholders::_1));
     SocketControl::Instance()->RegisterRecvFunc(MessageTag_ApplyFriends.Res, std::bind(&Friends::slot_ApplyFriendsRes, this, std::placeholders::_1));
     SocketControl::Instance()->RegisterRecvFunc(MessageTag_GetFriendsList.Res, std::bind(&Friends::slot_GetFriendsListRes, this, std::placeholders::_1));
@@ -123,11 +122,8 @@ void Friends::slot_btnSearchClick()
 
     IMLog::Instance()->Info(QString("send getUserInfoReq %1").arg(MessageTag_GetUserInfo.Req));
 
-    SocketControl::Instance()->SendMessage(MessageTag_GetUserInfo.Req, getUserInfoReq->SerializeAsString());
-}
+    char *recvMessage = SocketControl::Instance()->BlockSendMessage(MessageTag_GetUserInfo.Req, MessageTag_GetUserInfo.Res, getUserInfoReq->SerializeAsString());
 
-void Friends::slot_GetUserInfoRes(char * recvMessage)
-{
     im_home_proto::GetUserInfoRes *getUserInfoRes = new im_home_proto::GetUserInfoRes;
     getUserInfoRes->ParseFromString(recvMessage);
 

@@ -17,10 +17,17 @@ Socket::Socket(QString ip, int port)
 {
     m_sIP = ip;
     m_iPort = port;
+    m_pBlockResData = nullptr;
+    m_iType = 0;
 }
 
 Socket::~Socket()
 {
+}
+
+BlockResData *Socket::GetBlockResMessage()
+{
+    return m_pBlockResData;
 }
 
 void Socket::run()
@@ -61,7 +68,7 @@ void Socket::run()
         close(listen_socket);
 }
 
-void Socket::slot_SendMessage(uint32_t type, std::string arrayMessage)
+void Socket::slot_SendMessage(uint32_t type, QByteArray arrayMessage)
 {
     QByteArray messages;
     // 消息类型
@@ -77,10 +84,17 @@ void Socket::slot_SendMessage(uint32_t type, std::string arrayMessage)
     messages[5] = byteLen >> 16;
     messages[4] = byteLen >> 24;
 
-    QByteArray msg =  QByteArray::fromStdString(arrayMessage);
+    QByteArray msg =  arrayMessage;
     messages.append(msg);
 
     write(m_iSocketFD, messages, messages.size());
+}
+
+void Socket::slot_SendBlockMessage(uint32_t reqType, uint32_t resType, QByteArray message)
+{
+    slot_SendMessage(reqType, message);
+    m_iType = resType;
+    m_pBlockResData = nullptr;
 }
 
 int Socket::readMessage(int iSocketFD)
@@ -110,7 +124,14 @@ int Socket::readMessage(int iSocketFD)
     char messages_recv[byteLen];
     ret = read(iSocketFD, messages_recv, byteLen);
 
-    emit sig_ReadMessage(type, messages_recv);
+    if (m_iType != 0)
+    {
+        m_pBlockResData = new BlockResData{type, messages_recv};
+        m_iType = 0;
+        return ret;
+    }
+    QByteArray bArray(messages_recv);
+    emit sig_ReadMessage(type, bArray);
     return ret;
 }
 
@@ -118,11 +139,13 @@ SocketControl::SocketControl(QWidget *parent, QString ip, int port):
     QWidget(parent)
 {
     qRegisterMetaType<uint32_t>("uint32_t");
+
     m_pSocket = new Socket(ip, port);
 
-    connect(m_pSocket, &Socket::sig_ReadMessage, this, &SocketControl::slot_ReadMessage);
+    connect(m_pSocket, SIGNAL(sig_ReadMessage(uint32_t, QByteArray)), this, SLOT(slot_ReadMessage(uint32_t, QByteArray)));
     connect(m_pSocket, &QThread::finished, this, &QObject::deleteLater);
-    connect(this, &SocketControl::sig_SendMessage, m_pSocket, &Socket::slot_SendMessage);
+    connect(this, SIGNAL(sig_SendMessage(uint32_t, QByteArray)), m_pSocket, SLOT(slot_SendMessage(uint32_t, QByteArray)));
+    connect(this, &SocketControl::sig_SendBlockMessage, m_pSocket, &Socket::slot_SendBlockMessage);
 
     m_pSocket->start();
 }
@@ -133,17 +156,18 @@ SocketControl::~SocketControl()
     m_pSocket->wait();
 }
 
-void SocketControl::slot_ReadMessage(uint32_t type, char *message)
+void SocketControl::slot_ReadMessage(uint32_t type, QByteArray message)
 {
     if (MessageTag_Error.Res == type) {
         im_error_proto::CommonError *commonError = new im_error_proto::CommonError;
-        commonError->ParseFromString(message);
+        commonError->ParseFromString(message.toStdString());
         QString errMessage = QString("ErrCode:%1").arg(commonError->code());
         QMessageBox::information(NULL,  "error",  errMessage, QMessageBox::Yes);
     }
+
     if (mapCallBackFunc.end() != mapCallBackFunc.find(type))
     {
-        mapCallBackFunc[type]->Run(message);
+        mapCallBackFunc[type]->Run(message.data());
     }
     else
     {
@@ -153,5 +177,48 @@ void SocketControl::slot_ReadMessage(uint32_t type, char *message)
 
 void SocketControl::SendMessage(uint32_t type, std::string message)
 {
-    emit sig_SendMessage(type, message);
+    emit sig_SendMessage(type, QByteArray::fromStdString(message));
+}
+
+char* SocketControl::BlockSendMessage(uint32_t reqType, uint32_t resType, std::string message)
+{
+    emit sig_SendBlockMessage(reqType, resType, QByteArray::fromStdString(message));
+
+    int cnt = 0;
+    while(1)
+    {
+        BlockResData *pBlockRes = m_pSocket->GetBlockResMessage();
+        if (pBlockRes != nullptr)
+        {
+            if (MessageTag_Error.Res == pBlockRes->ResType) {
+                im_error_proto::CommonError *commonError = new im_error_proto::CommonError;
+                commonError->ParseFromString(message);
+                QString errMessage = QString("ErrCode:%1").arg(commonError->code());
+                QMessageBox::information(NULL,  "error",  errMessage, QMessageBox::Yes);
+                return nullptr;
+            }
+            if (pBlockRes->ResType == resType)
+            {
+                return pBlockRes->ResMessage.data();
+            }
+
+            if (mapCallBackFunc.end() != mapCallBackFunc.find(pBlockRes->ResType))
+            {
+                mapCallBackFunc[pBlockRes->ResType]->Run(pBlockRes->ResMessage.data());
+            }
+            else
+            {
+                IMLog::Instance()->Warn(QString("recv message[%1] but message is not define").arg(pBlockRes->ResType));
+            }
+
+            return nullptr;
+        }
+        QThread::msleep(50);
+        cnt++;
+        if (cnt == 80)
+        {
+            // 4s
+            return nullptr;
+        }
+    }
 }
