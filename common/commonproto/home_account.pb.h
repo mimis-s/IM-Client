@@ -567,6 +567,10 @@ class RegisterReq final :
   enum : int {
     kUserNameFieldNumber = 1,
     kPasswordFieldNumber = 2,
+    kHeadImgFieldNumber = 3,
+    kAutographFieldNumber = 5,
+    kPhoneNumberFieldNumber = 6,
+    kRegionFieldNumber = 4,
   };
   // string UserName = 1;
   void clear_username();
@@ -596,6 +600,57 @@ class RegisterReq final :
   std::string* _internal_mutable_password();
   public:
 
+  // string HeadImg = 3;
+  void clear_headimg();
+  const std::string& headimg() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_headimg(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_headimg();
+  PROTOBUF_NODISCARD std::string* release_headimg();
+  void set_allocated_headimg(std::string* headimg);
+  private:
+  const std::string& _internal_headimg() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_headimg(const std::string& value);
+  std::string* _internal_mutable_headimg();
+  public:
+
+  // string Autograph = 5;
+  void clear_autograph();
+  const std::string& autograph() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_autograph(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_autograph();
+  PROTOBUF_NODISCARD std::string* release_autograph();
+  void set_allocated_autograph(std::string* autograph);
+  private:
+  const std::string& _internal_autograph() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_autograph(const std::string& value);
+  std::string* _internal_mutable_autograph();
+  public:
+
+  // string PhoneNumber = 6;
+  void clear_phonenumber();
+  const std::string& phonenumber() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_phonenumber(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_phonenumber();
+  PROTOBUF_NODISCARD std::string* release_phonenumber();
+  void set_allocated_phonenumber(std::string* phonenumber);
+  private:
+  const std::string& _internal_phonenumber() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_phonenumber(const std::string& value);
+  std::string* _internal_mutable_phonenumber();
+  public:
+
+  // int32 Region = 4;
+  void clear_region();
+  int32_t region() const;
+  void set_region(int32_t value);
+  private:
+  int32_t _internal_region() const;
+  void _internal_set_region(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:im_home_proto.RegisterReq)
  private:
   class _Internal;
@@ -605,6 +660,10 @@ class RegisterReq final :
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr username_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr headimg_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr autograph_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr phonenumber_;
+  int32_t region_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_home_5faccount_2eproto;
 };
@@ -1143,6 +1202,7 @@ class UserInfo final :
     kUserNameFieldNumber = 2,
     kAutographFieldNumber = 4,
     kHeadImgFieldNumber = 6,
+    kPhoneNumberFieldNumber = 7,
     kUserIDFieldNumber = 1,
     kRegionFieldNumber = 3,
     kStatusFieldNumber = 5,
@@ -1189,6 +1249,20 @@ class UserInfo final :
   std::string* _internal_mutable_headimg();
   public:
 
+  // string PhoneNumber = 7;
+  void clear_phonenumber();
+  const std::string& phonenumber() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_phonenumber(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_phonenumber();
+  PROTOBUF_NODISCARD std::string* release_phonenumber();
+  void set_allocated_phonenumber(std::string* phonenumber);
+  private:
+  const std::string& _internal_phonenumber() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_phonenumber(const std::string& value);
+  std::string* _internal_mutable_phonenumber();
+  public:
+
   // int64 UserID = 1;
   void clear_userid();
   int64_t userid() const;
@@ -1226,6 +1300,7 @@ class UserInfo final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr username_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr autograph_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr headimg_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr phonenumber_;
   int64_t userid_;
   int32_t region_;
   int status_;
@@ -1817,6 +1892,176 @@ inline void RegisterReq::set_allocated_password(std::string* password) {
   // @@protoc_insertion_point(field_set_allocated:im_home_proto.RegisterReq.Password)
 }
 
+// string HeadImg = 3;
+inline void RegisterReq::clear_headimg() {
+  headimg_.ClearToEmpty();
+}
+inline const std::string& RegisterReq::headimg() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.RegisterReq.HeadImg)
+  return _internal_headimg();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RegisterReq::set_headimg(ArgT0&& arg0, ArgT... args) {
+ 
+ headimg_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:im_home_proto.RegisterReq.HeadImg)
+}
+inline std::string* RegisterReq::mutable_headimg() {
+  std::string* _s = _internal_mutable_headimg();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.RegisterReq.HeadImg)
+  return _s;
+}
+inline const std::string& RegisterReq::_internal_headimg() const {
+  return headimg_.Get();
+}
+inline void RegisterReq::_internal_set_headimg(const std::string& value) {
+  
+  headimg_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RegisterReq::_internal_mutable_headimg() {
+  
+  return headimg_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RegisterReq::release_headimg() {
+  // @@protoc_insertion_point(field_release:im_home_proto.RegisterReq.HeadImg)
+  return headimg_.Release();
+}
+inline void RegisterReq::set_allocated_headimg(std::string* headimg) {
+  if (headimg != nullptr) {
+    
+  } else {
+    
+  }
+  headimg_.SetAllocated(headimg, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (headimg_.IsDefault()) {
+    headimg_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.RegisterReq.HeadImg)
+}
+
+// int32 Region = 4;
+inline void RegisterReq::clear_region() {
+  region_ = 0;
+}
+inline int32_t RegisterReq::_internal_region() const {
+  return region_;
+}
+inline int32_t RegisterReq::region() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.RegisterReq.Region)
+  return _internal_region();
+}
+inline void RegisterReq::_internal_set_region(int32_t value) {
+  
+  region_ = value;
+}
+inline void RegisterReq::set_region(int32_t value) {
+  _internal_set_region(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.RegisterReq.Region)
+}
+
+// string Autograph = 5;
+inline void RegisterReq::clear_autograph() {
+  autograph_.ClearToEmpty();
+}
+inline const std::string& RegisterReq::autograph() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.RegisterReq.Autograph)
+  return _internal_autograph();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RegisterReq::set_autograph(ArgT0&& arg0, ArgT... args) {
+ 
+ autograph_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:im_home_proto.RegisterReq.Autograph)
+}
+inline std::string* RegisterReq::mutable_autograph() {
+  std::string* _s = _internal_mutable_autograph();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.RegisterReq.Autograph)
+  return _s;
+}
+inline const std::string& RegisterReq::_internal_autograph() const {
+  return autograph_.Get();
+}
+inline void RegisterReq::_internal_set_autograph(const std::string& value) {
+  
+  autograph_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RegisterReq::_internal_mutable_autograph() {
+  
+  return autograph_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RegisterReq::release_autograph() {
+  // @@protoc_insertion_point(field_release:im_home_proto.RegisterReq.Autograph)
+  return autograph_.Release();
+}
+inline void RegisterReq::set_allocated_autograph(std::string* autograph) {
+  if (autograph != nullptr) {
+    
+  } else {
+    
+  }
+  autograph_.SetAllocated(autograph, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (autograph_.IsDefault()) {
+    autograph_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.RegisterReq.Autograph)
+}
+
+// string PhoneNumber = 6;
+inline void RegisterReq::clear_phonenumber() {
+  phonenumber_.ClearToEmpty();
+}
+inline const std::string& RegisterReq::phonenumber() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.RegisterReq.PhoneNumber)
+  return _internal_phonenumber();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void RegisterReq::set_phonenumber(ArgT0&& arg0, ArgT... args) {
+ 
+ phonenumber_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:im_home_proto.RegisterReq.PhoneNumber)
+}
+inline std::string* RegisterReq::mutable_phonenumber() {
+  std::string* _s = _internal_mutable_phonenumber();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.RegisterReq.PhoneNumber)
+  return _s;
+}
+inline const std::string& RegisterReq::_internal_phonenumber() const {
+  return phonenumber_.Get();
+}
+inline void RegisterReq::_internal_set_phonenumber(const std::string& value) {
+  
+  phonenumber_.Set(value, GetArenaForAllocation());
+}
+inline std::string* RegisterReq::_internal_mutable_phonenumber() {
+  
+  return phonenumber_.Mutable(GetArenaForAllocation());
+}
+inline std::string* RegisterReq::release_phonenumber() {
+  // @@protoc_insertion_point(field_release:im_home_proto.RegisterReq.PhoneNumber)
+  return phonenumber_.Release();
+}
+inline void RegisterReq::set_allocated_phonenumber(std::string* phonenumber) {
+  if (phonenumber != nullptr) {
+    
+  } else {
+    
+  }
+  phonenumber_.SetAllocated(phonenumber, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (phonenumber_.IsDefault()) {
+    phonenumber_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.RegisterReq.PhoneNumber)
+}
+
 // -------------------------------------------------------------------
 
 // RegisterRes
@@ -2367,6 +2612,56 @@ inline void UserInfo::set_allocated_headimg(std::string* headimg) {
   }
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   // @@protoc_insertion_point(field_set_allocated:im_home_proto.UserInfo.HeadImg)
+}
+
+// string PhoneNumber = 7;
+inline void UserInfo::clear_phonenumber() {
+  phonenumber_.ClearToEmpty();
+}
+inline const std::string& UserInfo::phonenumber() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.UserInfo.PhoneNumber)
+  return _internal_phonenumber();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void UserInfo::set_phonenumber(ArgT0&& arg0, ArgT... args) {
+ 
+ phonenumber_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:im_home_proto.UserInfo.PhoneNumber)
+}
+inline std::string* UserInfo::mutable_phonenumber() {
+  std::string* _s = _internal_mutable_phonenumber();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.UserInfo.PhoneNumber)
+  return _s;
+}
+inline const std::string& UserInfo::_internal_phonenumber() const {
+  return phonenumber_.Get();
+}
+inline void UserInfo::_internal_set_phonenumber(const std::string& value) {
+  
+  phonenumber_.Set(value, GetArenaForAllocation());
+}
+inline std::string* UserInfo::_internal_mutable_phonenumber() {
+  
+  return phonenumber_.Mutable(GetArenaForAllocation());
+}
+inline std::string* UserInfo::release_phonenumber() {
+  // @@protoc_insertion_point(field_release:im_home_proto.UserInfo.PhoneNumber)
+  return phonenumber_.Release();
+}
+inline void UserInfo::set_allocated_phonenumber(std::string* phonenumber) {
+  if (phonenumber != nullptr) {
+    
+  } else {
+    
+  }
+  phonenumber_.SetAllocated(phonenumber, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (phonenumber_.IsDefault()) {
+    phonenumber_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.UserInfo.PhoneNumber)
 }
 
 // -------------------------------------------------------------------

@@ -5,6 +5,7 @@
 #include "../../common/commonproto/home_account.pb.h"
 #include "../../common/log/im_log.h"
 #include <QMessageBox>
+#include <QFileDialog>
 
 CUserRegister::CUserRegister(QDialog *parent) : QDialog(parent),
     ui(new Ui::CUserRegister)
@@ -52,4 +53,31 @@ void CUserRegister::RegisterBack(char * recvMessage)
     QMessageBox::information(nullptr, "register succssed", msg, QMessageBox::Yes);
 
     this->close();
+}
+
+void CUserRegister::on_btn_register_head_clicked()
+{
+    QString path = QFileDialog::getOpenFileName(this, tr("选择头像"), ".", tr("Image Files(*.jpg *.png)"));
+    QImage* img = new QImage;
+    QImage* scaledimg = new QImage;//分别保存原图和缩放之后的图片
+    if(!(img->load(path))) //加载图像
+    {
+       QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
+       delete img;
+       return;
+    }
+    int Owidth = img->width(), Oheight = img->height();
+    int Fwidth,Fheight;       // 缩放后的图片大小
+    int Mul;            	// 记录图片与label大小的比例，用于缩放图片
+    if(Owidth / 400 >= Oheight / 300)
+       Mul = Owidth / 400;
+    else
+       Mul = Oheight / 300;
+    Fwidth = Owidth / Mul;
+    Fheight = Oheight / Mul;
+    *scaledimg = img->scaled(Fwidth, Fheight, Qt::KeepAspectRatio);
+    ui->btn_register_head->setIcon(QPixmap::fromImage(*scaledimg));
+    ui->btn_register_head->setIconSize(QSize(Fwidth, Fheight));
+//    ui->btn_register_head->setPixmap(QPixmap::fromImage(*scaledimg));
+//    ui->btn_register->setPixmap(QPixmap::fromImage(*scaledimg));
 }

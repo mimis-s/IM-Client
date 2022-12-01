@@ -49,7 +49,11 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORIT
 PROTOBUF_CONSTEXPR RegisterReq::RegisterReq(
     ::_pbi::ConstantInitialized)
   : username_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
-  , password_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}){}
+  , password_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , headimg_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , autograph_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , phonenumber_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , region_(0){}
 struct RegisterReqDefaultTypeInternal {
   PROTOBUF_CONSTEXPR RegisterReqDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -98,6 +102,7 @@ PROTOBUF_CONSTEXPR UserInfo::UserInfo(
   : username_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , autograph_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , headimg_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , phonenumber_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , userid_(int64_t{0})
   , region_(0)
   , status_(0)
@@ -166,6 +171,10 @@ const uint32_t TableStruct_home_5faccount_2eproto::offsets[] PROTOBUF_SECTION_VA
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::im_home_proto::RegisterReq, username_),
   PROTOBUF_FIELD_OFFSET(::im_home_proto::RegisterReq, password_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::RegisterReq, headimg_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::RegisterReq, region_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::RegisterReq, autograph_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::RegisterReq, phonenumber_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::im_home_proto::RegisterRes, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -202,6 +211,7 @@ const uint32_t TableStruct_home_5faccount_2eproto::offsets[] PROTOBUF_SECTION_VA
   PROTOBUF_FIELD_OFFSET(::im_home_proto::UserInfo, autograph_),
   PROTOBUF_FIELD_OFFSET(::im_home_proto::UserInfo, status_),
   PROTOBUF_FIELD_OFFSET(::im_home_proto::UserInfo, headimg_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::UserInfo, phonenumber_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::im_home_proto::GetUserInfoReq, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -222,11 +232,11 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 0, -1, -1, sizeof(::im_home_proto::LoginReq)},
   { 8, -1, -1, sizeof(::im_home_proto::LoginRes)},
   { 15, -1, -1, sizeof(::im_home_proto::RegisterReq)},
-  { 23, -1, -1, sizeof(::im_home_proto::RegisterRes)},
-  { 31, -1, -1, sizeof(::im_home_proto::ClientOnlineInfo)},
-  { 47, -1, -1, sizeof(::im_home_proto::UserInfo)},
-  { 59, -1, -1, sizeof(::im_home_proto::GetUserInfoReq)},
-  { 66, -1, -1, sizeof(::im_home_proto::GetUserInfoRes)},
+  { 27, -1, -1, sizeof(::im_home_proto::RegisterRes)},
+  { 35, -1, -1, sizeof(::im_home_proto::ClientOnlineInfo)},
+  { 51, -1, -1, sizeof(::im_home_proto::UserInfo)},
+  { 64, -1, -1, sizeof(::im_home_proto::GetUserInfoReq)},
+  { 71, -1, -1, sizeof(::im_home_proto::GetUserInfoRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -244,33 +254,35 @@ const char descriptor_table_protodef_home_5faccount_2eproto[] PROTOBUF_SECTION_V
   "\n\022home_account.proto\022\rim_home_proto\",\n\010L"
   "oginReq\022\016\n\006UserID\030\001 \001(\003\022\020\n\010Password\030\002 \001("
   "\t\"1\n\010LoginRes\022%\n\004Info\030\001 \001(\0132\027.im_home_pr"
-  "oto.UserInfo\"1\n\013RegisterReq\022\020\n\010UserName\030"
-  "\001 \001(\t\022\020\n\010Password\030\002 \001(\t\"/\n\013RegisterRes\022\016"
-  "\n\006UserID\030\001 \001(\003\022\020\n\010UserName\030\002 \001(\t\"\360\001\n\020Cli"
-  "entOnlineInfo\022\016\n\006UserID\030\001 \001(\003\022\020\n\010UserNam"
-  "e\030\002 \001(\t\022\016\n\006Region\030\003 \001(\005\022\016\n\006IPAddr\030\004 \001(\t\022"
-  "\017\n\007NetType\030\005 \001(\005\022\036\n\026CreateAccountTimesta"
-  "mp\030\006 \001(\003\022\031\n\021PreLoginTimestamp\030\007 \001(\003\022\032\n\022P"
-  "reLogoutTimestamp\030\010 \001(\003\022\031\n\021CurLoginTimes"
-  "tamp\030\t \001(\003\022\027\n\017ClientLocalZone\030\n \001(\005\"\220\001\n\010"
-  "UserInfo\022\016\n\006UserID\030\001 \001(\003\022\020\n\010UserName\030\002 \001"
-  "(\t\022\016\n\006Region\030\003 \001(\005\022\021\n\tAutograph\030\004 \001(\t\022.\n"
-  "\006Status\030\005 \001(\0162\036.im_home_proto.Enum_UserS"
-  "tatus\022\017\n\007HeadImg\030\006 \001(\t\" \n\016GetUserInfoReq"
-  "\022\016\n\006UserID\030\001 \001(\003\"k\n\016GetUserInfoRes\022%\n\004Da"
-  "ta\030\001 \001(\0132\027.im_home_proto.UserInfo\0222\n\010Rel"
-  "ation\030\002 \001(\0162 .im_home_proto.Enum_UserRel"
-  "ation*J\n\017Enum_UserStatus\022\033\n\027Enum_UserSta"
-  "tus_Outline\020\000\022\032\n\026Enum_UserStatus_Online\020"
-  "\001*Q\n\021Enum_UserRelation\022\036\n\032Enum_UserRelat"
-  "ion_Stranger\020\000\022\034\n\030Enum_UserRelation_Frie"
-  "nd\020\001BDZBgithub.com/mimis-s/IM-Service/sr"
-  "c/common/commonproto/im_home_protob\006prot"
-  "o3"
+  "oto.UserInfo\"z\n\013RegisterReq\022\020\n\010UserName\030"
+  "\001 \001(\t\022\020\n\010Password\030\002 \001(\t\022\017\n\007HeadImg\030\003 \001(\t"
+  "\022\016\n\006Region\030\004 \001(\005\022\021\n\tAutograph\030\005 \001(\t\022\023\n\013P"
+  "honeNumber\030\006 \001(\t\"/\n\013RegisterRes\022\016\n\006UserI"
+  "D\030\001 \001(\003\022\020\n\010UserName\030\002 \001(\t\"\360\001\n\020ClientOnli"
+  "neInfo\022\016\n\006UserID\030\001 \001(\003\022\020\n\010UserName\030\002 \001(\t"
+  "\022\016\n\006Region\030\003 \001(\005\022\016\n\006IPAddr\030\004 \001(\t\022\017\n\007NetT"
+  "ype\030\005 \001(\005\022\036\n\026CreateAccountTimestamp\030\006 \001("
+  "\003\022\031\n\021PreLoginTimestamp\030\007 \001(\003\022\032\n\022PreLogou"
+  "tTimestamp\030\010 \001(\003\022\031\n\021CurLoginTimestamp\030\t "
+  "\001(\003\022\027\n\017ClientLocalZone\030\n \001(\005\"\245\001\n\010UserInf"
+  "o\022\016\n\006UserID\030\001 \001(\003\022\020\n\010UserName\030\002 \001(\t\022\016\n\006R"
+  "egion\030\003 \001(\005\022\021\n\tAutograph\030\004 \001(\t\022.\n\006Status"
+  "\030\005 \001(\0162\036.im_home_proto.Enum_UserStatus\022\017"
+  "\n\007HeadImg\030\006 \001(\t\022\023\n\013PhoneNumber\030\007 \001(\t\" \n\016"
+  "GetUserInfoReq\022\016\n\006UserID\030\001 \001(\003\"k\n\016GetUse"
+  "rInfoRes\022%\n\004Data\030\001 \001(\0132\027.im_home_proto.U"
+  "serInfo\0222\n\010Relation\030\002 \001(\0162 .im_home_prot"
+  "o.Enum_UserRelation*J\n\017Enum_UserStatus\022\033"
+  "\n\027Enum_UserStatus_Outline\020\000\022\032\n\026Enum_User"
+  "Status_Online\020\001*Q\n\021Enum_UserRelation\022\036\n\032"
+  "Enum_UserRelation_Stranger\020\000\022\034\n\030Enum_Use"
+  "rRelation_Friend\020\001BDZBgithub.com/mimis-s"
+  "/IM-Service/src/common/commonproto/im_ho"
+  "me_protob\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_home_5faccount_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_home_5faccount_2eproto = {
-    false, false, 1002, descriptor_table_protodef_home_5faccount_2eproto,
+    false, false, 1096, descriptor_table_protodef_home_5faccount_2eproto,
     "home_account.proto",
     &descriptor_table_home_5faccount_2eproto_once, nullptr, 0, 8,
     schemas, file_default_instances, TableStruct_home_5faccount_2eproto::offsets,
@@ -752,6 +764,31 @@ RegisterReq::RegisterReq(const RegisterReq& from)
     password_.Set(from._internal_password(), 
       GetArenaForAllocation());
   }
+  headimg_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    headimg_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_headimg().empty()) {
+    headimg_.Set(from._internal_headimg(), 
+      GetArenaForAllocation());
+  }
+  autograph_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    autograph_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_autograph().empty()) {
+    autograph_.Set(from._internal_autograph(), 
+      GetArenaForAllocation());
+  }
+  phonenumber_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    phonenumber_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_phonenumber().empty()) {
+    phonenumber_.Set(from._internal_phonenumber(), 
+      GetArenaForAllocation());
+  }
+  region_ = from.region_;
   // @@protoc_insertion_point(copy_constructor:im_home_proto.RegisterReq)
 }
 
@@ -764,6 +801,19 @@ password_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   password_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+headimg_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  headimg_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+autograph_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  autograph_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+phonenumber_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  phonenumber_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+region_ = 0;
 }
 
 RegisterReq::~RegisterReq() {
@@ -779,6 +829,9 @@ inline void RegisterReq::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   username_.Destroy();
   password_.Destroy();
+  headimg_.Destroy();
+  autograph_.Destroy();
+  phonenumber_.Destroy();
 }
 
 void RegisterReq::SetCachedSize(int size) const {
@@ -793,6 +846,10 @@ void RegisterReq::Clear() {
 
   username_.ClearToEmpty();
   password_.ClearToEmpty();
+  headimg_.ClearToEmpty();
+  autograph_.ClearToEmpty();
+  phonenumber_.ClearToEmpty();
+  region_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -819,6 +876,44 @@ const char* RegisterReq::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "im_home_proto.RegisterReq.Password"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string HeadImg = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          auto str = _internal_mutable_headimg();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "im_home_proto.RegisterReq.HeadImg"));
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 Region = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          region_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string Autograph = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          auto str = _internal_mutable_autograph();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "im_home_proto.RegisterReq.Autograph"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string PhoneNumber = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          auto str = _internal_mutable_phonenumber();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "im_home_proto.RegisterReq.PhoneNumber"));
         } else
           goto handle_unusual;
         continue;
@@ -871,6 +966,42 @@ uint8_t* RegisterReq::_InternalSerialize(
         2, this->_internal_password(), target);
   }
 
+  // string HeadImg = 3;
+  if (!this->_internal_headimg().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_headimg().data(), static_cast<int>(this->_internal_headimg().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "im_home_proto.RegisterReq.HeadImg");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_headimg(), target);
+  }
+
+  // int32 Region = 4;
+  if (this->_internal_region() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(4, this->_internal_region(), target);
+  }
+
+  // string Autograph = 5;
+  if (!this->_internal_autograph().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_autograph().data(), static_cast<int>(this->_internal_autograph().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "im_home_proto.RegisterReq.Autograph");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_autograph(), target);
+  }
+
+  // string PhoneNumber = 6;
+  if (!this->_internal_phonenumber().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_phonenumber().data(), static_cast<int>(this->_internal_phonenumber().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "im_home_proto.RegisterReq.PhoneNumber");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_phonenumber(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -901,6 +1032,32 @@ size_t RegisterReq::ByteSizeLong() const {
         this->_internal_password());
   }
 
+  // string HeadImg = 3;
+  if (!this->_internal_headimg().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_headimg());
+  }
+
+  // string Autograph = 5;
+  if (!this->_internal_autograph().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_autograph());
+  }
+
+  // string PhoneNumber = 6;
+  if (!this->_internal_phonenumber().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_phonenumber());
+  }
+
+  // int32 Region = 4;
+  if (this->_internal_region() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_region());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -929,6 +1086,18 @@ void RegisterReq::MergeFrom(const RegisterReq& from) {
   if (!from._internal_password().empty()) {
     _internal_set_password(from._internal_password());
   }
+  if (!from._internal_headimg().empty()) {
+    _internal_set_headimg(from._internal_headimg());
+  }
+  if (!from._internal_autograph().empty()) {
+    _internal_set_autograph(from._internal_autograph());
+  }
+  if (!from._internal_phonenumber().empty()) {
+    _internal_set_phonenumber(from._internal_phonenumber());
+  }
+  if (from._internal_region() != 0) {
+    _internal_set_region(from._internal_region());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -956,6 +1125,19 @@ void RegisterReq::InternalSwap(RegisterReq* other) {
       &password_, lhs_arena,
       &other->password_, rhs_arena
   );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &headimg_, lhs_arena,
+      &other->headimg_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &autograph_, lhs_arena,
+      &other->autograph_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &phonenumber_, lhs_arena,
+      &other->phonenumber_, rhs_arena
+  );
+  swap(region_, other->region_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RegisterReq::GetMetadata() const {
@@ -1659,6 +1841,14 @@ UserInfo::UserInfo(const UserInfo& from)
     headimg_.Set(from._internal_headimg(), 
       GetArenaForAllocation());
   }
+  phonenumber_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    phonenumber_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_phonenumber().empty()) {
+    phonenumber_.Set(from._internal_phonenumber(), 
+      GetArenaForAllocation());
+  }
   ::memcpy(&userid_, &from.userid_,
     static_cast<size_t>(reinterpret_cast<char*>(&status_) -
     reinterpret_cast<char*>(&userid_)) + sizeof(status_));
@@ -1677,6 +1867,10 @@ autograph_.InitDefault();
 headimg_.InitDefault();
 #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
   headimg_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+phonenumber_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  phonenumber_.Set("", GetArenaForAllocation());
 #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&userid_) - reinterpret_cast<char*>(this)),
@@ -1698,6 +1892,7 @@ inline void UserInfo::SharedDtor() {
   username_.Destroy();
   autograph_.Destroy();
   headimg_.Destroy();
+  phonenumber_.Destroy();
 }
 
 void UserInfo::SetCachedSize(int size) const {
@@ -1713,6 +1908,7 @@ void UserInfo::Clear() {
   username_.ClearToEmpty();
   autograph_.ClearToEmpty();
   headimg_.ClearToEmpty();
+  phonenumber_.ClearToEmpty();
   ::memset(&userid_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&status_) -
       reinterpret_cast<char*>(&userid_)) + sizeof(status_));
@@ -1777,6 +1973,16 @@ const char* UserInfo::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
           ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
           CHK_(::_pbi::VerifyUTF8(str, "im_home_proto.UserInfo.HeadImg"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string PhoneNumber = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 58)) {
+          auto str = _internal_mutable_phonenumber();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "im_home_proto.UserInfo.PhoneNumber"));
         } else
           goto handle_unusual;
         continue;
@@ -1858,6 +2064,16 @@ uint8_t* UserInfo::_InternalSerialize(
         6, this->_internal_headimg(), target);
   }
 
+  // string PhoneNumber = 7;
+  if (!this->_internal_phonenumber().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_phonenumber().data(), static_cast<int>(this->_internal_phonenumber().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "im_home_proto.UserInfo.PhoneNumber");
+    target = stream->WriteStringMaybeAliased(
+        7, this->_internal_phonenumber(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1893,6 +2109,13 @@ size_t UserInfo::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_headimg());
+  }
+
+  // string PhoneNumber = 7;
+  if (!this->_internal_phonenumber().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_phonenumber());
   }
 
   // int64 UserID = 1;
@@ -1942,6 +2165,9 @@ void UserInfo::MergeFrom(const UserInfo& from) {
   if (!from._internal_headimg().empty()) {
     _internal_set_headimg(from._internal_headimg());
   }
+  if (!from._internal_phonenumber().empty()) {
+    _internal_set_phonenumber(from._internal_phonenumber());
+  }
   if (from._internal_userid() != 0) {
     _internal_set_userid(from._internal_userid());
   }
@@ -1981,6 +2207,10 @@ void UserInfo::InternalSwap(UserInfo* other) {
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
       &headimg_, lhs_arena,
       &other->headimg_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &phonenumber_, lhs_arena,
+      &other->phonenumber_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(UserInfo, status_)

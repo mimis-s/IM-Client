@@ -21,6 +21,9 @@ public:
 public slots:
     void slot_btn_register();
 
+private slots:
+    void on_btn_register_head_clicked();
+
 private:
     Ui::CUserRegister *ui;
 };
