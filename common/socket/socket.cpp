@@ -60,7 +60,7 @@ void Socket::run()
         //接收服务器
         while(true)
         {
-            if (readMessage(m_iSocketFD) == 0)
+            if (readMessage(m_iSocketFD) == -1)
             {
                 QMessageBox::information(nullptr, tr(u8"失败"), tr(u8"和服务器断开连接"), QMessageBox::Yes);
                 break;

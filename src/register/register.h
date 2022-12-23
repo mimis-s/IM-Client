@@ -23,9 +23,12 @@ public slots:
 
 private slots:
     void on_btn_register_head_clicked();
+    void slot_cutHead(QImage);
 
 private:
     Ui::CUserRegister *ui;
+
+    QImage m_imageHead;
 };
 
 #endif // REGISTER_H

@@ -55,7 +55,10 @@ void login::LoginBack(char * recvMessage)
     loginRes->ParseFromString(recvMessage);
     this->hide();
 
-    LoginInfo::Instance()->SetClientUserInfo(&loginRes->info());
+    UserInfo::Instance()->SetSelfUserInfoV1(loginRes->info());
+
+    QString str = UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserName;
+    qDebug() << str;
 
     m_pHomeWidget = new Home();
     m_pHomeWidget->show();

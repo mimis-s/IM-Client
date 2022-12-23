@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include "../../common/commonproto/home_friends.pb.h"
 #include "friendapplybox.h"
+#include "../login/logininfo.h"
 
 Friends::Friends(QWidget *parent) :
     QWidget(parent),
@@ -98,6 +99,7 @@ void Friends::slot_GetFriendsListRes(char * recvMessage)
         }else{
             data.m_UserStatus = im_home_proto::Enum_UserStatus::Enum_UserStatus_Outline;
         }
+        data.m_HeadPath = UserInfo::Instance()->GetUserHeadPath(getFriendsListRes->list(i).userid());
 
         IMLog::Instance()->Info(QString("friend list number[%1] data[%2]").arg(i).arg(data.m_FriendID));
 

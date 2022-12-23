@@ -61,6 +61,12 @@ extern LoginReqDefaultTypeInternal _LoginReq_default_instance_;
 class LoginRes;
 struct LoginResDefaultTypeInternal;
 extern LoginResDefaultTypeInternal _LoginRes_default_instance_;
+class ModifyUserInfoReq;
+struct ModifyUserInfoReqDefaultTypeInternal;
+extern ModifyUserInfoReqDefaultTypeInternal _ModifyUserInfoReq_default_instance_;
+class ModifyUserInfoRes;
+struct ModifyUserInfoResDefaultTypeInternal;
+extern ModifyUserInfoResDefaultTypeInternal _ModifyUserInfoRes_default_instance_;
 class RegisterReq;
 struct RegisterReqDefaultTypeInternal;
 extern RegisterReqDefaultTypeInternal _RegisterReq_default_instance_;
@@ -77,6 +83,8 @@ template<> ::im_home_proto::GetUserInfoReq* Arena::CreateMaybeMessage<::im_home_
 template<> ::im_home_proto::GetUserInfoRes* Arena::CreateMaybeMessage<::im_home_proto::GetUserInfoRes>(Arena*);
 template<> ::im_home_proto::LoginReq* Arena::CreateMaybeMessage<::im_home_proto::LoginReq>(Arena*);
 template<> ::im_home_proto::LoginRes* Arena::CreateMaybeMessage<::im_home_proto::LoginRes>(Arena*);
+template<> ::im_home_proto::ModifyUserInfoReq* Arena::CreateMaybeMessage<::im_home_proto::ModifyUserInfoReq>(Arena*);
+template<> ::im_home_proto::ModifyUserInfoRes* Arena::CreateMaybeMessage<::im_home_proto::ModifyUserInfoRes>(Arena*);
 template<> ::im_home_proto::RegisterReq* Arena::CreateMaybeMessage<::im_home_proto::RegisterReq>(Arena*);
 template<> ::im_home_proto::RegisterRes* Arena::CreateMaybeMessage<::im_home_proto::RegisterRes>(Arena*);
 template<> ::im_home_proto::UserInfo* Arena::CreateMaybeMessage<::im_home_proto::UserInfo>(Arena*);
@@ -1613,6 +1621,310 @@ class GetUserInfoRes final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_home_5faccount_2eproto;
 };
+// -------------------------------------------------------------------
+
+class ModifyUserInfoReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.ModifyUserInfoReq) */ {
+ public:
+  inline ModifyUserInfoReq() : ModifyUserInfoReq(nullptr) {}
+  ~ModifyUserInfoReq() override;
+  explicit PROTOBUF_CONSTEXPR ModifyUserInfoReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ModifyUserInfoReq(const ModifyUserInfoReq& from);
+  ModifyUserInfoReq(ModifyUserInfoReq&& from) noexcept
+    : ModifyUserInfoReq() {
+    *this = ::std::move(from);
+  }
+
+  inline ModifyUserInfoReq& operator=(const ModifyUserInfoReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModifyUserInfoReq& operator=(ModifyUserInfoReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ModifyUserInfoReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ModifyUserInfoReq* internal_default_instance() {
+    return reinterpret_cast<const ModifyUserInfoReq*>(
+               &_ModifyUserInfoReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(ModifyUserInfoReq& a, ModifyUserInfoReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ModifyUserInfoReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ModifyUserInfoReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ModifyUserInfoReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ModifyUserInfoReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ModifyUserInfoReq& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ModifyUserInfoReq& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ModifyUserInfoReq* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "im_home_proto.ModifyUserInfoReq";
+  }
+  protected:
+  explicit ModifyUserInfoReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // .im_home_proto.UserInfo Data = 1;
+  bool has_data() const;
+  private:
+  bool _internal_has_data() const;
+  public:
+  void clear_data();
+  const ::im_home_proto::UserInfo& data() const;
+  PROTOBUF_NODISCARD ::im_home_proto::UserInfo* release_data();
+  ::im_home_proto::UserInfo* mutable_data();
+  void set_allocated_data(::im_home_proto::UserInfo* data);
+  private:
+  const ::im_home_proto::UserInfo& _internal_data() const;
+  ::im_home_proto::UserInfo* _internal_mutable_data();
+  public:
+  void unsafe_arena_set_allocated_data(
+      ::im_home_proto::UserInfo* data);
+  ::im_home_proto::UserInfo* unsafe_arena_release_data();
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.ModifyUserInfoReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::im_home_proto::UserInfo* data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_home_5faccount_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ModifyUserInfoRes final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.ModifyUserInfoRes) */ {
+ public:
+  inline ModifyUserInfoRes() : ModifyUserInfoRes(nullptr) {}
+  ~ModifyUserInfoRes() override;
+  explicit PROTOBUF_CONSTEXPR ModifyUserInfoRes(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ModifyUserInfoRes(const ModifyUserInfoRes& from);
+  ModifyUserInfoRes(ModifyUserInfoRes&& from) noexcept
+    : ModifyUserInfoRes() {
+    *this = ::std::move(from);
+  }
+
+  inline ModifyUserInfoRes& operator=(const ModifyUserInfoRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ModifyUserInfoRes& operator=(ModifyUserInfoRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ModifyUserInfoRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ModifyUserInfoRes* internal_default_instance() {
+    return reinterpret_cast<const ModifyUserInfoRes*>(
+               &_ModifyUserInfoRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(ModifyUserInfoRes& a, ModifyUserInfoRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ModifyUserInfoRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ModifyUserInfoRes* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ModifyUserInfoRes* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ModifyUserInfoRes>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ModifyUserInfoRes& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ModifyUserInfoRes& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ModifyUserInfoRes* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "im_home_proto.ModifyUserInfoRes";
+  }
+  protected:
+  explicit ModifyUserInfoRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // .im_home_proto.UserInfo Data = 1;
+  bool has_data() const;
+  private:
+  bool _internal_has_data() const;
+  public:
+  void clear_data();
+  const ::im_home_proto::UserInfo& data() const;
+  PROTOBUF_NODISCARD ::im_home_proto::UserInfo* release_data();
+  ::im_home_proto::UserInfo* mutable_data();
+  void set_allocated_data(::im_home_proto::UserInfo* data);
+  private:
+  const ::im_home_proto::UserInfo& _internal_data() const;
+  ::im_home_proto::UserInfo* _internal_mutable_data();
+  public:
+  void unsafe_arena_set_allocated_data(
+      ::im_home_proto::UserInfo* data);
+  ::im_home_proto::UserInfo* unsafe_arena_release_data();
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.ModifyUserInfoRes)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::im_home_proto::UserInfo* data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_home_5faccount_2eproto;
+};
 // ===================================================================
 
 
@@ -2802,9 +3114,201 @@ inline void GetUserInfoRes::set_relation(::im_home_proto::Enum_UserRelation valu
   // @@protoc_insertion_point(field_set:im_home_proto.GetUserInfoRes.Relation)
 }
 
+// -------------------------------------------------------------------
+
+// ModifyUserInfoReq
+
+// .im_home_proto.UserInfo Data = 1;
+inline bool ModifyUserInfoReq::_internal_has_data() const {
+  return this != internal_default_instance() && data_ != nullptr;
+}
+inline bool ModifyUserInfoReq::has_data() const {
+  return _internal_has_data();
+}
+inline void ModifyUserInfoReq::clear_data() {
+  if (GetArenaForAllocation() == nullptr && data_ != nullptr) {
+    delete data_;
+  }
+  data_ = nullptr;
+}
+inline const ::im_home_proto::UserInfo& ModifyUserInfoReq::_internal_data() const {
+  const ::im_home_proto::UserInfo* p = data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::im_home_proto::UserInfo&>(
+      ::im_home_proto::_UserInfo_default_instance_);
+}
+inline const ::im_home_proto::UserInfo& ModifyUserInfoReq::data() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.ModifyUserInfoReq.Data)
+  return _internal_data();
+}
+inline void ModifyUserInfoReq::unsafe_arena_set_allocated_data(
+    ::im_home_proto::UserInfo* data) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  data_ = data;
+  if (data) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:im_home_proto.ModifyUserInfoReq.Data)
+}
+inline ::im_home_proto::UserInfo* ModifyUserInfoReq::release_data() {
+  
+  ::im_home_proto::UserInfo* temp = data_;
+  data_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::im_home_proto::UserInfo* ModifyUserInfoReq::unsafe_arena_release_data() {
+  // @@protoc_insertion_point(field_release:im_home_proto.ModifyUserInfoReq.Data)
+  
+  ::im_home_proto::UserInfo* temp = data_;
+  data_ = nullptr;
+  return temp;
+}
+inline ::im_home_proto::UserInfo* ModifyUserInfoReq::_internal_mutable_data() {
+  
+  if (data_ == nullptr) {
+    auto* p = CreateMaybeMessage<::im_home_proto::UserInfo>(GetArenaForAllocation());
+    data_ = p;
+  }
+  return data_;
+}
+inline ::im_home_proto::UserInfo* ModifyUserInfoReq::mutable_data() {
+  ::im_home_proto::UserInfo* _msg = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.ModifyUserInfoReq.Data)
+  return _msg;
+}
+inline void ModifyUserInfoReq::set_allocated_data(::im_home_proto::UserInfo* data) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete data_;
+  }
+  if (data) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(data);
+    if (message_arena != submessage_arena) {
+      data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, data, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  data_ = data;
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.ModifyUserInfoReq.Data)
+}
+
+// -------------------------------------------------------------------
+
+// ModifyUserInfoRes
+
+// .im_home_proto.UserInfo Data = 1;
+inline bool ModifyUserInfoRes::_internal_has_data() const {
+  return this != internal_default_instance() && data_ != nullptr;
+}
+inline bool ModifyUserInfoRes::has_data() const {
+  return _internal_has_data();
+}
+inline void ModifyUserInfoRes::clear_data() {
+  if (GetArenaForAllocation() == nullptr && data_ != nullptr) {
+    delete data_;
+  }
+  data_ = nullptr;
+}
+inline const ::im_home_proto::UserInfo& ModifyUserInfoRes::_internal_data() const {
+  const ::im_home_proto::UserInfo* p = data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::im_home_proto::UserInfo&>(
+      ::im_home_proto::_UserInfo_default_instance_);
+}
+inline const ::im_home_proto::UserInfo& ModifyUserInfoRes::data() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.ModifyUserInfoRes.Data)
+  return _internal_data();
+}
+inline void ModifyUserInfoRes::unsafe_arena_set_allocated_data(
+    ::im_home_proto::UserInfo* data) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
+  }
+  data_ = data;
+  if (data) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:im_home_proto.ModifyUserInfoRes.Data)
+}
+inline ::im_home_proto::UserInfo* ModifyUserInfoRes::release_data() {
+  
+  ::im_home_proto::UserInfo* temp = data_;
+  data_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::im_home_proto::UserInfo* ModifyUserInfoRes::unsafe_arena_release_data() {
+  // @@protoc_insertion_point(field_release:im_home_proto.ModifyUserInfoRes.Data)
+  
+  ::im_home_proto::UserInfo* temp = data_;
+  data_ = nullptr;
+  return temp;
+}
+inline ::im_home_proto::UserInfo* ModifyUserInfoRes::_internal_mutable_data() {
+  
+  if (data_ == nullptr) {
+    auto* p = CreateMaybeMessage<::im_home_proto::UserInfo>(GetArenaForAllocation());
+    data_ = p;
+  }
+  return data_;
+}
+inline ::im_home_proto::UserInfo* ModifyUserInfoRes::mutable_data() {
+  ::im_home_proto::UserInfo* _msg = _internal_mutable_data();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.ModifyUserInfoRes.Data)
+  return _msg;
+}
+inline void ModifyUserInfoRes::set_allocated_data(::im_home_proto::UserInfo* data) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete data_;
+  }
+  if (data) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(data);
+    if (message_arena != submessage_arena) {
+      data = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, data, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  data_ = data;
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.ModifyUserInfoRes.Data)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

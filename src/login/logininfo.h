@@ -7,41 +7,118 @@
 */
 
 #include <QWidget>
+#include "../../common/define/define.h"
 #include "../../common/commonproto/home_account.pb.h"
+#include "../../common/log/im_log.h"
+#include <QImage>
+#include <QDebug>
 
-class LoginInfo : public QWidget
+// proto结构里面的值全是const, 所以不能用,日了
+
+struct UserData {
+    int64_t UserID;
+    QString UserName;
+    int Region;
+    QString Autograph;
+    int Status;
+    QString HeadImg;
+    QString PhoneNumber;
+};
+
+struct ClientUserInfo {
+    UserData mUserData;
+    QString HeadPath;   // 本地头像地址
+};
+
+class UserInfo : public QWidget
 {
     Q_OBJECT
 public:
-    explicit LoginInfo(QWidget *parent = nullptr);
+    explicit UserInfo(QWidget *parent = nullptr);
 
-    static LoginInfo *Instance()
+    static UserInfo *Instance()
     {
         if (m_info == nullptr)
         {
-            m_info = new LoginInfo();
+            m_info = new UserInfo();
         }
         return m_info;
     }
 
-    void SetClientUserInfo(const im_home_proto::UserInfo *clientUserInfo)
+    void SetSelfUserInfoV1(const im_home_proto::UserInfo clientUserInfo)
     {
-        m_clientUserInfo = clientUserInfo;
+        m_pSelfUserInfo->mUserData.UserID = clientUserInfo.userid();
+        m_pSelfUserInfo->mUserData.UserName = QString::fromStdString(clientUserInfo.username());
+        m_pSelfUserInfo->mUserData.Region = clientUserInfo.region();
+        m_pSelfUserInfo->mUserData.Autograph = QString::fromStdString(clientUserInfo.autograph());
+        m_pSelfUserInfo->mUserData.Status = clientUserInfo.status();
+        m_pSelfUserInfo->mUserData.HeadImg = QString::fromStdString(clientUserInfo.headimg());
+        m_pSelfUserInfo->mUserData.PhoneNumber = QString::fromStdString(clientUserInfo.phonenumber());
+
+        if (m_pSelfUserInfo->mUserData.HeadImg != "")
+        {
+            QString headPath = DynamicResource_Img_Head + QString::number(m_pSelfUserInfo->mUserData.UserID) + ".jpg";
+            m_pSelfUserInfo->HeadPath = headPath;
+
+            // 保存图片
+            QImage imag;
+            QByteArray data = QByteArray::fromBase64(m_pSelfUserInfo->mUserData.HeadImg.toLocal8Bit());
+            QDataStream data_stream(&data,QIODevice::ReadOnly);
+            data_stream>>imag;
+            imag.save(headPath, "JPG");
+        }
     }
 
-    const im_home_proto::UserInfo* GetClientUserInfo()
+    void AddOtherUserInfo(const im_home_proto::UserInfo clientUserInfo)
     {
-        return m_clientUserInfo;
+        ClientUserInfo *pInfo = new ClientUserInfo();
+        pInfo->mUserData.UserID = clientUserInfo.userid();
+        pInfo->mUserData.UserName = QString::fromStdString(clientUserInfo.username());
+        pInfo->mUserData.Region = clientUserInfo.region();
+        pInfo->mUserData.Autograph = QString::fromStdString(clientUserInfo.autograph());
+        pInfo->mUserData.Status = clientUserInfo.status();
+        pInfo->mUserData.HeadImg = QString::fromStdString(clientUserInfo.headimg());
+        pInfo->mUserData.PhoneNumber = QString::fromStdString(clientUserInfo.phonenumber());
+
+        if (pInfo->mUserData.HeadImg != "")
+        {
+            QString headPath = DynamicResource_Img_Head + QString::number(pInfo->mUserData.UserID) + ".jpg";
+            pInfo->HeadPath = headPath;
+
+            // 保存图片
+            QImage imag;
+            QByteArray data = QByteArray::fromBase64(pInfo->mUserData.HeadImg.toLocal8Bit());
+            QDataStream data_stream(&data,QIODevice::ReadOnly);
+            data_stream>>imag;
+            imag.save(headPath, "JPG");
+        }
+        m_mapOtherUserInfo[pInfo->mUserData.UserID] = pInfo;
     }
 
+    // 读取本地存储的头像
+    QString GetUserHeadPath(int64_t userID)
+    {
+        QString headPath = DynamicResource_Img_Head + QString::number(userID) + ".jpg";
+        return headPath;
+    }
 
+    ClientUserInfo* GetSelfUserInfo()
+    {
+        return m_pSelfUserInfo;
+    }
+
+    ClientUserInfo* GetOtherUserInfo(int64_t userID)
+    {
+        return m_mapOtherUserInfo[userID];
+    }
 
 private:
 
-    static LoginInfo *m_info;
+    static UserInfo *m_info;
 
-    const im_home_proto::UserInfo *m_clientUserInfo;
-
+    // 服务器返回的数据, head_image是图片, 需要存储到本地, 然后给外部一个存储地址读取
+    ClientUserInfo *m_pSelfUserInfo;                        // 自己的用户信息
+    std::map<int64_t, ClientUserInfo *> m_mapOtherUserInfo;   // 其他人的用户信息
 };
 
 #endif // LOGININFO_H

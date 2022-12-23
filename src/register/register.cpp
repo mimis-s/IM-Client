@@ -6,6 +6,8 @@
 #include "../../common/log/im_log.h"
 #include <QMessageBox>
 #include <QFileDialog>
+#include "./cutouthead.h"
+#include <QImage>
 
 CUserRegister::CUserRegister(QDialog *parent) : QDialog(parent),
     ui(new Ui::CUserRegister)
@@ -35,6 +37,17 @@ void CUserRegister::slot_btn_register()
         im_home_proto::RegisterReq *registerReq = new im_home_proto::RegisterReq;
         registerReq->set_username(ui->edit_register_name->text().toStdString());
         registerReq->set_password(ui->edit_register_password_again->text().toStdString());
+        registerReq->set_autograph(ui->edit_register_autograph->toPlainText().toStdString());
+        registerReq->set_phonenumber(ui->edit_register_phone->text().toStdString());
+        registerReq->set_region(ui->cb_register_region->currentText().toInt());
+
+        // head
+        QByteArray headByte;
+        QDataStream ds(&headByte, QIODevice::WriteOnly);
+        ds<<m_imageHead;
+        QString str = QString::fromLocal8Bit(headByte.toBase64());
+        registerReq->set_headimg(str.toStdString().c_str());
+
 
         IMLog::Instance()->Info(QString("send registerReq %1").arg(MessageTag_Register.Req));
 
@@ -59,25 +72,21 @@ void CUserRegister::on_btn_register_head_clicked()
 {
     QString path = QFileDialog::getOpenFileName(this, tr("选择头像"), ".", tr("Image Files(*.jpg *.png)"));
     QImage* img = new QImage;
-    QImage* scaledimg = new QImage;//分别保存原图和缩放之后的图片
     if(!(img->load(path))) //加载图像
     {
        QMessageBox::information(this, tr("打开图像失败"), tr("打开图像失败!"));
        delete img;
        return;
     }
-    int Owidth = img->width(), Oheight = img->height();
-    int Fwidth,Fheight;       // 缩放后的图片大小
-    int Mul;            	// 记录图片与label大小的比例，用于缩放图片
-    if(Owidth / 400 >= Oheight / 300)
-       Mul = Owidth / 400;
-    else
-       Mul = Oheight / 300;
-    Fwidth = Owidth / Mul;
-    Fheight = Oheight / Mul;
-    *scaledimg = img->scaled(Fwidth, Fheight, Qt::KeepAspectRatio);
-    ui->btn_register_head->setIcon(QPixmap::fromImage(*scaledimg));
-    ui->btn_register_head->setIconSize(QSize(Fwidth, Fheight));
-//    ui->btn_register_head->setPixmap(QPixmap::fromImage(*scaledimg));
-//    ui->btn_register->setPixmap(QPixmap::fromImage(*scaledimg));
+
+    CutOutHead *pHead = new CutOutHead(nullptr, *img);
+    connect(pHead, SIGNAL(sig_cutImag(QImage)), this, SLOT(slot_cutHead(QImage)));
+    pHead->exec();
+}
+
+void CUserRegister::slot_cutHead(QImage image)
+{
+    m_imageHead = image;
+    ui->btn_register_head->setIcon(QPixmap::fromImage(image));
+    ui->btn_register_head->setIconSize(QSize(ui->btn_register_head->width(), ui->btn_register_head->height()));
 }

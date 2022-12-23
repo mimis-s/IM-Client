@@ -27,6 +27,9 @@ public:
 //    QPushButton *pLeftBtnGroup = new QPushButton(tr(u8"群组"), pLeftWidget);
 
 public slots:
+    void slot_changeHeadClick();    // 修改头像框
+    void slot_cutChangeHead(QImage);
+
     void slot_btnChatClick();       // 按钮切换到聊天界面
     void slot_btnFriendsClick();    // 按钮切换到好友界面
     void slot_btnGroupClick();      // 按钮切换到群组界面
@@ -38,6 +41,8 @@ private:
 
     Chat *m_pChat;
     Friends *m_pFriends;
+
+    CircleLabel *m_pLeftLbHead;
 };
 
 #endif // HOME_H

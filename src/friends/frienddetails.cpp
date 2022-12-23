@@ -35,7 +35,7 @@ FriendDetails::FriendDetails(QWidget *parent, im_home_proto::GetUserInfoRes *inf
     ui->lb_region_show->setText(QString::number(m_userInfo->data().region()));
     ui->lb_autograph_show->setText(QString::fromStdString(m_userInfo->data().autograph()));
 
-    if (LoginInfo::Instance()->GetClientUserInfo()->userid() == m_userInfo->data().userid())
+    if (UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID == m_userInfo->data().userid())
     {
         // 搜索的是自己
         ui->btn_add_friend->hide();

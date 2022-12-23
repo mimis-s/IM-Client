@@ -45,6 +45,7 @@ SOURCES += \
     src/home/home.cpp \
     src/login/login.cpp \
     src/login/logininfo.cpp \
+    src/register/cutouthead.cpp \
     src/register/register.cpp \
     common/crc32/crc32.cpp
 
@@ -70,6 +71,7 @@ HEADERS += \
     src/home/home.h \
     src/login/login.h \
     src/login/logininfo.h \
+    src/register/cutouthead.h \
     src/register/register.h \
     common/define/define.h
 
@@ -81,6 +83,7 @@ FORMS += \
     src/friends/friends.ui \
     src/home/home.ui \
     src/login/login.ui \
+    src/register/cutouthead.ui \
     src/register/register.ui
 
 DISTFILES += \

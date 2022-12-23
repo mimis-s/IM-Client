@@ -97,7 +97,7 @@ void ChatBox::slot_btnSendClick()
         im_home_proto::ChatSingleReq *chatSingleReq = new im_home_proto::ChatSingleReq;
 
         im_home_proto::ChatMessage *chatMessage = new im_home_proto::ChatMessage;
-        chatMessage->set_senderid(LoginInfo::Instance()->GetClientUserInfo()->userid());
+        chatMessage->set_senderid(UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID);
         chatMessage->set_receiverid(m_chatShortFrameData.m_FriendID);
         chatMessage->set_messageid(1);
         chatMessage->set_messagetype(im_home_proto::MessageType_Enum::EnumTextType);
