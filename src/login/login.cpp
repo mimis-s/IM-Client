@@ -33,7 +33,7 @@ void login::slot_btn_login()
 {
     // send login
     im_home_proto::LoginReq *loginReq = new im_home_proto::LoginReq;
-    loginReq->set_userid(ui->edit_login_id->text().toInt());
+    loginReq->set_userid(ui->edit_login_id->text().toLongLong());
     loginReq->set_password(ui->edit_login_password->text().toStdString());
 
     IMLog::Instance()->Info(QString("send loginreq %1").arg(MessageTag_Login.Req));
