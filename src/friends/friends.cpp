@@ -120,7 +120,7 @@ void Friends::slot_btnSearchClick()
 {
     // send get user info
     im_home_proto::GetUserInfoReq *getUserInfoReq = new im_home_proto::GetUserInfoReq;
-    getUserInfoReq->set_userid(m_pEditSearchFriend->text().toUInt());
+    getUserInfoReq->set_userid(m_pEditSearchFriend->text().toLongLong());
 
     IMLog::Instance()->Info(QString("send getUserInfoReq %1").arg(MessageTag_GetUserInfo.Req));
 
