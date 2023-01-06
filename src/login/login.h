@@ -13,7 +13,7 @@ class login : public QWidget
     Q_OBJECT
 
 public:
-    explicit login(QWidget *parent = nullptr);
+    explicit login(QWidget *parent = nullptr, QString id = "");
     ~login();
     void LoginBack(char * recvMessage);
 

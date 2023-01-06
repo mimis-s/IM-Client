@@ -26,10 +26,10 @@ PROTOBUF_CONSTEXPR ChatMessage::ChatMessage(
   : data_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
   , senderid_(int64_t{0})
   , receiverid_(int64_t{0})
-  , messageid_(0)
+  , messageid_(int64_t{0})
+  , sendtimestamp_(int64_t{0})
   , messagetype_(0)
 
-  , sendtimestamp_(int64_t{0})
   , messagestatus_(0)
 {}
 struct ChatMessageDefaultTypeInternal {
@@ -114,7 +114,7 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_home_5fchat_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\017home_chat.proto\022\rim_home_proto\"\333\001\n\013Cha"
   "tMessage\022\020\n\010SenderID\030\001 \001(\003\022\022\n\nReceiverID"
-  "\030\002 \001(\003\022\021\n\tMessageID\030\003 \001(\005\0224\n\013MessageType"
+  "\030\002 \001(\003\022\021\n\tMessageID\030\003 \001(\003\0224\n\013MessageType"
   "\030\004 \001(\0162\037.im_home_proto.MessageType_Enum\022"
   "\025\n\rSendTimeStamp\030\005 \001(\003\0228\n\rMessageStatus\030"
   "\006 \001(\0162!.im_home_proto.MessageStatus_Enum"
@@ -272,10 +272,10 @@ const char* ChatMessage::_InternalParse(const char* ptr, ::_pbi::ParseContext* c
         } else
           goto handle_unusual;
         continue;
-      // int32 MessageID = 3;
+      // int64 MessageID = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          messageid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          messageid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -357,10 +357,10 @@ uint8_t* ChatMessage::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt64ToArray(2, this->_internal_receiverid(), target);
   }
 
-  // int32 MessageID = 3;
+  // int64 MessageID = 3;
   if (this->_internal_messageid() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_messageid(), target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(3, this->_internal_messageid(), target);
   }
 
   // .im_home_proto.MessageType_Enum MessageType = 4;
@@ -426,20 +426,20 @@ size_t ChatMessage::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_receiverid());
   }
 
-  // int32 MessageID = 3;
+  // int64 MessageID = 3;
   if (this->_internal_messageid() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_messageid());
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_messageid());
+  }
+
+  // int64 SendTimeStamp = 5;
+  if (this->_internal_sendtimestamp() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_sendtimestamp());
   }
 
   // .im_home_proto.MessageType_Enum MessageType = 4;
   if (this->_internal_messagetype() != 0) {
     total_size += 1 +
       ::_pbi::WireFormatLite::EnumSize(this->_internal_messagetype());
-  }
-
-  // int64 SendTimeStamp = 5;
-  if (this->_internal_sendtimestamp() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_sendtimestamp());
   }
 
   // .im_home_proto.MessageStatus_Enum MessageStatus = 6;
@@ -482,11 +482,11 @@ void ChatMessage::MergeFrom(const ChatMessage& from) {
   if (from._internal_messageid() != 0) {
     _internal_set_messageid(from._internal_messageid());
   }
-  if (from._internal_messagetype() != 0) {
-    _internal_set_messagetype(from._internal_messagetype());
-  }
   if (from._internal_sendtimestamp() != 0) {
     _internal_set_sendtimestamp(from._internal_sendtimestamp());
+  }
+  if (from._internal_messagetype() != 0) {
+    _internal_set_messagetype(from._internal_messagetype());
   }
   if (from._internal_messagestatus() != 0) {
     _internal_set_messagestatus(from._internal_messagestatus());

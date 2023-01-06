@@ -60,8 +60,33 @@ struct AgreeApplyFriendsToReceiverDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AgreeApplyFriendsToReceiverDefaultTypeInternal _AgreeApplyFriendsToReceiver_default_instance_;
+PROTOBUF_CONSTEXPR NotifyUserMessage::NotifyUserMessage(
+    ::_pbi::ConstantInitialized)
+  : offlinesinglechat_(){}
+struct NotifyUserMessageDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NotifyUserMessageDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NotifyUserMessageDefaultTypeInternal() {}
+  union {
+    NotifyUserMessage _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NotifyUserMessageDefaultTypeInternal _NotifyUserMessage_default_instance_;
+PROTOBUF_CONSTEXPR NotifyOfflineMessage::NotifyOfflineMessage(
+    ::_pbi::ConstantInitialized)
+  : data_()
+  , user_(nullptr){}
+struct NotifyOfflineMessageDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NotifyOfflineMessageDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~NotifyOfflineMessageDefaultTypeInternal() {}
+  union {
+    NotifyOfflineMessage _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NotifyOfflineMessageDefaultTypeInternal _NotifyOfflineMessage_default_instance_;
 }  // namespace im_home_proto
-static ::_pb::Metadata file_level_metadata_home_5frelay_2eproto[3];
+static ::_pb::Metadata file_level_metadata_home_5frelay_2eproto[5];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_home_5frelay_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_home_5frelay_2eproto = nullptr;
 
@@ -90,17 +115,36 @@ const uint32_t TableStruct_home_5frelay_2eproto::offsets[] PROTOBUF_SECTION_VARI
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::im_home_proto::AgreeApplyFriendsToReceiver, senderid_),
   PROTOBUF_FIELD_OFFSET(::im_home_proto::AgreeApplyFriendsToReceiver, receiverid_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::NotifyUserMessage, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::NotifyUserMessage, offlinesinglechat_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::NotifyOfflineMessage, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::NotifyOfflineMessage, user_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::NotifyOfflineMessage, data_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::im_home_proto::ChatSingleToReceiver)},
   { 7, -1, -1, sizeof(::im_home_proto::ApplyFriendsToReceiver)},
   { 16, -1, -1, sizeof(::im_home_proto::AgreeApplyFriendsToReceiver)},
+  { 24, -1, -1, sizeof(::im_home_proto::NotifyUserMessage)},
+  { 31, -1, -1, sizeof(::im_home_proto::NotifyOfflineMessage)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::im_home_proto::_ChatSingleToReceiver_default_instance_._instance,
   &::im_home_proto::_ApplyFriendsToReceiver_default_instance_._instance,
   &::im_home_proto::_AgreeApplyFriendsToReceiver_default_instance_._instance,
+  &::im_home_proto::_NotifyUserMessage_default_instance_._instance,
+  &::im_home_proto::_NotifyOfflineMessage_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_home_5frelay_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -111,9 +155,14 @@ const char descriptor_table_protodef_home_5frelay_2eproto[] PROTOBUF_SECTION_VAR
   "er\022\020\n\010SenderID\030\001 \001(\003\022\022\n\nReceiverID\030\002 \001(\003"
   "\022,\n\013ApplyerInfo\030\003 \001(\0132\027.im_home_proto.Us"
   "erInfo\"C\n\033AgreeApplyFriendsToReceiver\022\020\n"
-  "\010SenderID\030\001 \001(\003\022\022\n\nReceiverID\030\002 \001(\003BDZBg"
-  "ithub.com/mimis-s/IM-Service/src/common/"
-  "commonproto/im_home_protob\006proto3"
+  "\010SenderID\030\001 \001(\003\022\022\n\nReceiverID\030\002 \001(\003\"S\n\021N"
+  "otifyUserMessage\022>\n\021OfflineSingleChat\030\001 "
+  "\003(\0132#.im_home_proto.NotifyOfflineMessage"
+  "\"g\n\024NotifyOfflineMessage\022%\n\004User\030\001 \001(\0132\027"
+  ".im_home_proto.UserInfo\022(\n\004Data\030\002 \003(\0132\032."
+  "im_home_proto.ChatMessageBDZBgithub.com/"
+  "mimis-s/IM-Service/src/common/commonprot"
+  "o/im_home_protob\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_home_5frelay_2eproto_deps[2] = {
   &::descriptor_table_home_5faccount_2eproto,
@@ -121,9 +170,9 @@ static const ::_pbi::DescriptorTable* const descriptor_table_home_5frelay_2eprot
 };
 static ::_pbi::once_flag descriptor_table_home_5frelay_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_home_5frelay_2eproto = {
-    false, false, 393, descriptor_table_protodef_home_5frelay_2eproto,
+    false, false, 583, descriptor_table_protodef_home_5frelay_2eproto,
     "home_relay.proto",
-    &descriptor_table_home_5frelay_2eproto_once, descriptor_table_home_5frelay_2eproto_deps, 2, 3,
+    &descriptor_table_home_5frelay_2eproto_once, descriptor_table_home_5frelay_2eproto_deps, 2, 5,
     schemas, file_default_instances, TableStruct_home_5frelay_2eproto::offsets,
     file_level_metadata_home_5frelay_2eproto, file_level_enum_descriptors_home_5frelay_2eproto,
     file_level_service_descriptors_home_5frelay_2eproto,
@@ -785,6 +834,413 @@ void AgreeApplyFriendsToReceiver::InternalSwap(AgreeApplyFriendsToReceiver* othe
       file_level_metadata_home_5frelay_2eproto[2]);
 }
 
+// ===================================================================
+
+class NotifyUserMessage::_Internal {
+ public:
+};
+
+NotifyUserMessage::NotifyUserMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  offlinesinglechat_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:im_home_proto.NotifyUserMessage)
+}
+NotifyUserMessage::NotifyUserMessage(const NotifyUserMessage& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      offlinesinglechat_(from.offlinesinglechat_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:im_home_proto.NotifyUserMessage)
+}
+
+inline void NotifyUserMessage::SharedCtor() {
+}
+
+NotifyUserMessage::~NotifyUserMessage() {
+  // @@protoc_insertion_point(destructor:im_home_proto.NotifyUserMessage)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void NotifyUserMessage::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void NotifyUserMessage::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void NotifyUserMessage::Clear() {
+// @@protoc_insertion_point(message_clear_start:im_home_proto.NotifyUserMessage)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  offlinesinglechat_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* NotifyUserMessage::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .im_home_proto.NotifyOfflineMessage OfflineSingleChat = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_offlinesinglechat(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* NotifyUserMessage::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:im_home_proto.NotifyUserMessage)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .im_home_proto.NotifyOfflineMessage OfflineSingleChat = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_offlinesinglechat_size()); i < n; i++) {
+    const auto& repfield = this->_internal_offlinesinglechat(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:im_home_proto.NotifyUserMessage)
+  return target;
+}
+
+size_t NotifyUserMessage::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:im_home_proto.NotifyUserMessage)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .im_home_proto.NotifyOfflineMessage OfflineSingleChat = 1;
+  total_size += 1UL * this->_internal_offlinesinglechat_size();
+  for (const auto& msg : this->offlinesinglechat_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NotifyUserMessage::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    NotifyUserMessage::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NotifyUserMessage::GetClassData() const { return &_class_data_; }
+
+void NotifyUserMessage::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<NotifyUserMessage *>(to)->MergeFrom(
+      static_cast<const NotifyUserMessage &>(from));
+}
+
+
+void NotifyUserMessage::MergeFrom(const NotifyUserMessage& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:im_home_proto.NotifyUserMessage)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  offlinesinglechat_.MergeFrom(from.offlinesinglechat_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void NotifyUserMessage::CopyFrom(const NotifyUserMessage& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:im_home_proto.NotifyUserMessage)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool NotifyUserMessage::IsInitialized() const {
+  return true;
+}
+
+void NotifyUserMessage::InternalSwap(NotifyUserMessage* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  offlinesinglechat_.InternalSwap(&other->offlinesinglechat_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata NotifyUserMessage::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_home_5frelay_2eproto_getter, &descriptor_table_home_5frelay_2eproto_once,
+      file_level_metadata_home_5frelay_2eproto[3]);
+}
+
+// ===================================================================
+
+class NotifyOfflineMessage::_Internal {
+ public:
+  static const ::im_home_proto::UserInfo& user(const NotifyOfflineMessage* msg);
+};
+
+const ::im_home_proto::UserInfo&
+NotifyOfflineMessage::_Internal::user(const NotifyOfflineMessage* msg) {
+  return *msg->user_;
+}
+void NotifyOfflineMessage::clear_user() {
+  if (GetArenaForAllocation() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+}
+void NotifyOfflineMessage::clear_data() {
+  data_.Clear();
+}
+NotifyOfflineMessage::NotifyOfflineMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  data_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:im_home_proto.NotifyOfflineMessage)
+}
+NotifyOfflineMessage::NotifyOfflineMessage(const NotifyOfflineMessage& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      data_(from.data_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_user()) {
+    user_ = new ::im_home_proto::UserInfo(*from.user_);
+  } else {
+    user_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:im_home_proto.NotifyOfflineMessage)
+}
+
+inline void NotifyOfflineMessage::SharedCtor() {
+user_ = nullptr;
+}
+
+NotifyOfflineMessage::~NotifyOfflineMessage() {
+  // @@protoc_insertion_point(destructor:im_home_proto.NotifyOfflineMessage)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void NotifyOfflineMessage::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete user_;
+}
+
+void NotifyOfflineMessage::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void NotifyOfflineMessage::Clear() {
+// @@protoc_insertion_point(message_clear_start:im_home_proto.NotifyOfflineMessage)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  data_.Clear();
+  if (GetArenaForAllocation() == nullptr && user_ != nullptr) {
+    delete user_;
+  }
+  user_ = nullptr;
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* NotifyOfflineMessage::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .im_home_proto.UserInfo User = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_user(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated .im_home_proto.ChatMessage Data = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_data(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* NotifyOfflineMessage::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:im_home_proto.NotifyOfflineMessage)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .im_home_proto.UserInfo User = 1;
+  if (this->_internal_has_user()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, _Internal::user(this),
+        _Internal::user(this).GetCachedSize(), target, stream);
+  }
+
+  // repeated .im_home_proto.ChatMessage Data = 2;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_data_size()); i < n; i++) {
+    const auto& repfield = this->_internal_data(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:im_home_proto.NotifyOfflineMessage)
+  return target;
+}
+
+size_t NotifyOfflineMessage::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:im_home_proto.NotifyOfflineMessage)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .im_home_proto.ChatMessage Data = 2;
+  total_size += 1UL * this->_internal_data_size();
+  for (const auto& msg : this->data_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // .im_home_proto.UserInfo User = 1;
+  if (this->_internal_has_user()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *user_);
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NotifyOfflineMessage::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    NotifyOfflineMessage::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NotifyOfflineMessage::GetClassData() const { return &_class_data_; }
+
+void NotifyOfflineMessage::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<NotifyOfflineMessage *>(to)->MergeFrom(
+      static_cast<const NotifyOfflineMessage &>(from));
+}
+
+
+void NotifyOfflineMessage::MergeFrom(const NotifyOfflineMessage& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:im_home_proto.NotifyOfflineMessage)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  data_.MergeFrom(from.data_);
+  if (from._internal_has_user()) {
+    _internal_mutable_user()->::im_home_proto::UserInfo::MergeFrom(from._internal_user());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void NotifyOfflineMessage::CopyFrom(const NotifyOfflineMessage& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:im_home_proto.NotifyOfflineMessage)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool NotifyOfflineMessage::IsInitialized() const {
+  return true;
+}
+
+void NotifyOfflineMessage::InternalSwap(NotifyOfflineMessage* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  data_.InternalSwap(&other->data_);
+  swap(user_, other->user_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata NotifyOfflineMessage::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_home_5frelay_2eproto_getter, &descriptor_table_home_5frelay_2eproto_once,
+      file_level_metadata_home_5frelay_2eproto[4]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace im_home_proto
 PROTOBUF_NAMESPACE_OPEN
@@ -799,6 +1255,14 @@ Arena::CreateMaybeMessage< ::im_home_proto::ApplyFriendsToReceiver >(Arena* aren
 template<> PROTOBUF_NOINLINE ::im_home_proto::AgreeApplyFriendsToReceiver*
 Arena::CreateMaybeMessage< ::im_home_proto::AgreeApplyFriendsToReceiver >(Arena* arena) {
   return Arena::CreateMessageInternal< ::im_home_proto::AgreeApplyFriendsToReceiver >(arena);
+}
+template<> PROTOBUF_NOINLINE ::im_home_proto::NotifyUserMessage*
+Arena::CreateMaybeMessage< ::im_home_proto::NotifyUserMessage >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::im_home_proto::NotifyUserMessage >(arena);
+}
+template<> PROTOBUF_NOINLINE ::im_home_proto::NotifyOfflineMessage*
+Arena::CreateMaybeMessage< ::im_home_proto::NotifyOfflineMessage >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::im_home_proto::NotifyOfflineMessage >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

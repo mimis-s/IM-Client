@@ -242,8 +242,8 @@ class ChatMessage final :
     kSenderIDFieldNumber = 1,
     kReceiverIDFieldNumber = 2,
     kMessageIDFieldNumber = 3,
-    kMessageTypeFieldNumber = 4,
     kSendTimeStampFieldNumber = 5,
+    kMessageTypeFieldNumber = 4,
     kMessageStatusFieldNumber = 6,
   };
   // string Data = 7;
@@ -278,22 +278,13 @@ class ChatMessage final :
   void _internal_set_receiverid(int64_t value);
   public:
 
-  // int32 MessageID = 3;
+  // int64 MessageID = 3;
   void clear_messageid();
-  int32_t messageid() const;
-  void set_messageid(int32_t value);
+  int64_t messageid() const;
+  void set_messageid(int64_t value);
   private:
-  int32_t _internal_messageid() const;
-  void _internal_set_messageid(int32_t value);
-  public:
-
-  // .im_home_proto.MessageType_Enum MessageType = 4;
-  void clear_messagetype();
-  ::im_home_proto::MessageType_Enum messagetype() const;
-  void set_messagetype(::im_home_proto::MessageType_Enum value);
-  private:
-  ::im_home_proto::MessageType_Enum _internal_messagetype() const;
-  void _internal_set_messagetype(::im_home_proto::MessageType_Enum value);
+  int64_t _internal_messageid() const;
+  void _internal_set_messageid(int64_t value);
   public:
 
   // int64 SendTimeStamp = 5;
@@ -303,6 +294,15 @@ class ChatMessage final :
   private:
   int64_t _internal_sendtimestamp() const;
   void _internal_set_sendtimestamp(int64_t value);
+  public:
+
+  // .im_home_proto.MessageType_Enum MessageType = 4;
+  void clear_messagetype();
+  ::im_home_proto::MessageType_Enum messagetype() const;
+  void set_messagetype(::im_home_proto::MessageType_Enum value);
+  private:
+  ::im_home_proto::MessageType_Enum _internal_messagetype() const;
+  void _internal_set_messagetype(::im_home_proto::MessageType_Enum value);
   public:
 
   // .im_home_proto.MessageStatus_Enum MessageStatus = 6;
@@ -324,9 +324,9 @@ class ChatMessage final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
   int64_t senderid_;
   int64_t receiverid_;
-  int32_t messageid_;
-  int messagetype_;
+  int64_t messageid_;
   int64_t sendtimestamp_;
+  int messagetype_;
   int messagestatus_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_home_5fchat_2eproto;
@@ -686,22 +686,22 @@ inline void ChatMessage::set_receiverid(int64_t value) {
   // @@protoc_insertion_point(field_set:im_home_proto.ChatMessage.ReceiverID)
 }
 
-// int32 MessageID = 3;
+// int64 MessageID = 3;
 inline void ChatMessage::clear_messageid() {
-  messageid_ = 0;
+  messageid_ = int64_t{0};
 }
-inline int32_t ChatMessage::_internal_messageid() const {
+inline int64_t ChatMessage::_internal_messageid() const {
   return messageid_;
 }
-inline int32_t ChatMessage::messageid() const {
+inline int64_t ChatMessage::messageid() const {
   // @@protoc_insertion_point(field_get:im_home_proto.ChatMessage.MessageID)
   return _internal_messageid();
 }
-inline void ChatMessage::_internal_set_messageid(int32_t value) {
+inline void ChatMessage::_internal_set_messageid(int64_t value) {
   
   messageid_ = value;
 }
-inline void ChatMessage::set_messageid(int32_t value) {
+inline void ChatMessage::set_messageid(int64_t value) {
   _internal_set_messageid(value);
   // @@protoc_insertion_point(field_set:im_home_proto.ChatMessage.MessageID)
 }

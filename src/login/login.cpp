@@ -8,7 +8,7 @@
 #include "../../common/log/im_log.h"
 #include "logininfo.h"
 
-login::login(QWidget *parent) :
+login::login(QWidget *parent, QString id) :
     QWidget(parent),
     ui(new Ui::login)
 {
@@ -17,7 +17,7 @@ login::login(QWidget *parent) :
     connect(ui->btn_login, SIGNAL(clicked(void)), this, SLOT(slot_btn_login()));
     connect(ui->btn_login_register, SIGNAL(clicked(void)), this, SLOT(slot_btn_register()));
 
-    ui->edit_login_id->setText("1668391776");
+    ui->edit_login_id->setText(id);
     ui->edit_login_password->setText("123");
 
     // socket

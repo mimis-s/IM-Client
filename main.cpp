@@ -1,4 +1,4 @@
-#include "src/login/login.h""
+#include "src/login/login.h"
 #include <QApplication>
 #include "common/socket/socket.h"
 #include <QDebug>
@@ -9,10 +9,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     SocketControl::Instance("localhost", 8888);
 
-    login w;
+    login w(nullptr, "331784052749");
     w.show();
-
-
 //    IMClient w;
 //    w.show();
 

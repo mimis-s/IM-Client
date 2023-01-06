@@ -46,6 +46,28 @@ struct LoginResDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LoginResDefaultTypeInternal _LoginRes_default_instance_;
+PROTOBUF_CONSTEXPR LogoutReq::LogoutReq(
+    ::_pbi::ConstantInitialized){}
+struct LogoutReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LogoutReqDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LogoutReqDefaultTypeInternal() {}
+  union {
+    LogoutReq _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LogoutReqDefaultTypeInternal _LogoutReq_default_instance_;
+PROTOBUF_CONSTEXPR LogoutRes::LogoutRes(
+    ::_pbi::ConstantInitialized){}
+struct LogoutResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR LogoutResDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~LogoutResDefaultTypeInternal() {}
+  union {
+    LogoutRes _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LogoutResDefaultTypeInternal _LogoutRes_default_instance_;
 PROTOBUF_CONSTEXPR RegisterReq::RegisterReq(
     ::_pbi::ConstantInitialized)
   : username_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
@@ -167,7 +189,7 @@ struct ModifyUserInfoResDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ModifyUserInfoResDefaultTypeInternal _ModifyUserInfoRes_default_instance_;
 }  // namespace im_home_proto
-static ::_pb::Metadata file_level_metadata_home_5faccount_2eproto[10];
+static ::_pb::Metadata file_level_metadata_home_5faccount_2eproto[12];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_home_5faccount_2eproto[2];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_home_5faccount_2eproto = nullptr;
 
@@ -187,6 +209,18 @@ const uint32_t TableStruct_home_5faccount_2eproto::offsets[] PROTOBUF_SECTION_VA
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::im_home_proto::LoginRes, info_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::LogoutReq, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::LogoutRes, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::im_home_proto::RegisterReq, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -269,19 +303,23 @@ const uint32_t TableStruct_home_5faccount_2eproto::offsets[] PROTOBUF_SECTION_VA
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::im_home_proto::LoginReq)},
   { 8, -1, -1, sizeof(::im_home_proto::LoginRes)},
-  { 15, -1, -1, sizeof(::im_home_proto::RegisterReq)},
-  { 27, -1, -1, sizeof(::im_home_proto::RegisterRes)},
-  { 35, -1, -1, sizeof(::im_home_proto::ClientOnlineInfo)},
-  { 51, -1, -1, sizeof(::im_home_proto::UserInfo)},
-  { 64, -1, -1, sizeof(::im_home_proto::GetUserInfoReq)},
-  { 71, -1, -1, sizeof(::im_home_proto::GetUserInfoRes)},
-  { 79, -1, -1, sizeof(::im_home_proto::ModifyUserInfoReq)},
-  { 86, -1, -1, sizeof(::im_home_proto::ModifyUserInfoRes)},
+  { 15, -1, -1, sizeof(::im_home_proto::LogoutReq)},
+  { 21, -1, -1, sizeof(::im_home_proto::LogoutRes)},
+  { 27, -1, -1, sizeof(::im_home_proto::RegisterReq)},
+  { 39, -1, -1, sizeof(::im_home_proto::RegisterRes)},
+  { 47, -1, -1, sizeof(::im_home_proto::ClientOnlineInfo)},
+  { 63, -1, -1, sizeof(::im_home_proto::UserInfo)},
+  { 76, -1, -1, sizeof(::im_home_proto::GetUserInfoReq)},
+  { 83, -1, -1, sizeof(::im_home_proto::GetUserInfoRes)},
+  { 91, -1, -1, sizeof(::im_home_proto::ModifyUserInfoReq)},
+  { 98, -1, -1, sizeof(::im_home_proto::ModifyUserInfoRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::im_home_proto::_LoginReq_default_instance_._instance,
   &::im_home_proto::_LoginRes_default_instance_._instance,
+  &::im_home_proto::_LogoutReq_default_instance_._instance,
+  &::im_home_proto::_LogoutRes_default_instance_._instance,
   &::im_home_proto::_RegisterReq_default_instance_._instance,
   &::im_home_proto::_RegisterRes_default_instance_._instance,
   &::im_home_proto::_ClientOnlineInfo_default_instance_._instance,
@@ -296,40 +334,41 @@ const char descriptor_table_protodef_home_5faccount_2eproto[] PROTOBUF_SECTION_V
   "\n\022home_account.proto\022\rim_home_proto\",\n\010L"
   "oginReq\022\016\n\006UserID\030\001 \001(\003\022\020\n\010Password\030\002 \001("
   "\t\"1\n\010LoginRes\022%\n\004Info\030\001 \001(\0132\027.im_home_pr"
-  "oto.UserInfo\"z\n\013RegisterReq\022\020\n\010UserName\030"
-  "\001 \001(\t\022\020\n\010Password\030\002 \001(\t\022\017\n\007HeadImg\030\003 \001(\t"
-  "\022\016\n\006Region\030\004 \001(\005\022\021\n\tAutograph\030\005 \001(\t\022\023\n\013P"
-  "honeNumber\030\006 \001(\t\"/\n\013RegisterRes\022\016\n\006UserI"
-  "D\030\001 \001(\003\022\020\n\010UserName\030\002 \001(\t\"\360\001\n\020ClientOnli"
-  "neInfo\022\016\n\006UserID\030\001 \001(\003\022\020\n\010UserName\030\002 \001(\t"
-  "\022\016\n\006Region\030\003 \001(\005\022\016\n\006IPAddr\030\004 \001(\t\022\017\n\007NetT"
-  "ype\030\005 \001(\005\022\036\n\026CreateAccountTimestamp\030\006 \001("
-  "\003\022\031\n\021PreLoginTimestamp\030\007 \001(\003\022\032\n\022PreLogou"
-  "tTimestamp\030\010 \001(\003\022\031\n\021CurLoginTimestamp\030\t "
-  "\001(\003\022\027\n\017ClientLocalZone\030\n \001(\005\"\245\001\n\010UserInf"
-  "o\022\016\n\006UserID\030\001 \001(\003\022\020\n\010UserName\030\002 \001(\t\022\016\n\006R"
-  "egion\030\003 \001(\005\022\021\n\tAutograph\030\004 \001(\t\022.\n\006Status"
-  "\030\005 \001(\0162\036.im_home_proto.Enum_UserStatus\022\017"
-  "\n\007HeadImg\030\006 \001(\t\022\023\n\013PhoneNumber\030\007 \001(\t\" \n\016"
-  "GetUserInfoReq\022\016\n\006UserID\030\001 \001(\003\"k\n\016GetUse"
-  "rInfoRes\022%\n\004Data\030\001 \001(\0132\027.im_home_proto.U"
-  "serInfo\0222\n\010Relation\030\002 \001(\0162 .im_home_prot"
-  "o.Enum_UserRelation\":\n\021ModifyUserInfoReq"
-  "\022%\n\004Data\030\001 \001(\0132\027.im_home_proto.UserInfo\""
-  ":\n\021ModifyUserInfoRes\022%\n\004Data\030\001 \001(\0132\027.im_"
-  "home_proto.UserInfo*J\n\017Enum_UserStatus\022\033"
-  "\n\027Enum_UserStatus_Outline\020\000\022\032\n\026Enum_User"
-  "Status_Online\020\001*Q\n\021Enum_UserRelation\022\036\n\032"
-  "Enum_UserRelation_Stranger\020\000\022\034\n\030Enum_Use"
-  "rRelation_Friend\020\001BDZBgithub.com/mimis-s"
-  "/IM-Service/src/common/commonproto/im_ho"
-  "me_protob\006proto3"
+  "oto.UserInfo\"\013\n\tLogoutReq\"\013\n\tLogoutRes\"z"
+  "\n\013RegisterReq\022\020\n\010UserName\030\001 \001(\t\022\020\n\010Passw"
+  "ord\030\002 \001(\t\022\017\n\007HeadImg\030\003 \001(\t\022\016\n\006Region\030\004 \001"
+  "(\005\022\021\n\tAutograph\030\005 \001(\t\022\023\n\013PhoneNumber\030\006 \001"
+  "(\t\"/\n\013RegisterRes\022\016\n\006UserID\030\001 \001(\003\022\020\n\010Use"
+  "rName\030\002 \001(\t\"\360\001\n\020ClientOnlineInfo\022\016\n\006User"
+  "ID\030\001 \001(\003\022\020\n\010UserName\030\002 \001(\t\022\016\n\006Region\030\003 \001"
+  "(\005\022\016\n\006IPAddr\030\004 \001(\t\022\017\n\007NetType\030\005 \001(\005\022\036\n\026C"
+  "reateAccountTimestamp\030\006 \001(\003\022\031\n\021PreLoginT"
+  "imestamp\030\007 \001(\003\022\032\n\022PreLogoutTimestamp\030\010 \001"
+  "(\003\022\031\n\021CurLoginTimestamp\030\t \001(\003\022\027\n\017ClientL"
+  "ocalZone\030\n \001(\005\"\245\001\n\010UserInfo\022\016\n\006UserID\030\001 "
+  "\001(\003\022\020\n\010UserName\030\002 \001(\t\022\016\n\006Region\030\003 \001(\005\022\021\n"
+  "\tAutograph\030\004 \001(\t\022.\n\006Status\030\005 \001(\0162\036.im_ho"
+  "me_proto.Enum_UserStatus\022\017\n\007HeadImg\030\006 \001("
+  "\t\022\023\n\013PhoneNumber\030\007 \001(\t\" \n\016GetUserInfoReq"
+  "\022\016\n\006UserID\030\001 \001(\003\"k\n\016GetUserInfoRes\022%\n\004Da"
+  "ta\030\001 \001(\0132\027.im_home_proto.UserInfo\0222\n\010Rel"
+  "ation\030\002 \001(\0162 .im_home_proto.Enum_UserRel"
+  "ation\":\n\021ModifyUserInfoReq\022%\n\004Data\030\001 \001(\013"
+  "2\027.im_home_proto.UserInfo\":\n\021ModifyUserI"
+  "nfoRes\022%\n\004Data\030\001 \001(\0132\027.im_home_proto.Use"
+  "rInfo*J\n\017Enum_UserStatus\022\033\n\027Enum_UserSta"
+  "tus_Outline\020\000\022\032\n\026Enum_UserStatus_Online\020"
+  "\001*Q\n\021Enum_UserRelation\022\036\n\032Enum_UserRelat"
+  "ion_Stranger\020\000\022\034\n\030Enum_UserRelation_Frie"
+  "nd\020\001BDZBgithub.com/mimis-s/IM-Service/sr"
+  "c/common/commonproto/im_home_protob\006prot"
+  "o3"
   ;
 static ::_pbi::once_flag descriptor_table_home_5faccount_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_home_5faccount_2eproto = {
-    false, false, 1216, descriptor_table_protodef_home_5faccount_2eproto,
+    false, false, 1242, descriptor_table_protodef_home_5faccount_2eproto,
     "home_account.proto",
-    &descriptor_table_home_5faccount_2eproto_once, nullptr, 0, 10,
+    &descriptor_table_home_5faccount_2eproto_once, nullptr, 0, 12,
     schemas, file_default_instances, TableStruct_home_5faccount_2eproto::offsets,
     file_level_metadata_home_5faccount_2eproto, file_level_enum_descriptors_home_5faccount_2eproto,
     file_level_service_descriptors_home_5faccount_2eproto,
@@ -780,6 +819,84 @@ void LoginRes::InternalSwap(LoginRes* other) {
 
 // ===================================================================
 
+class LogoutReq::_Internal {
+ public:
+};
+
+LogoutReq::LogoutReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:im_home_proto.LogoutReq)
+}
+LogoutReq::LogoutReq(const LogoutReq& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:im_home_proto.LogoutReq)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LogoutReq::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LogoutReq::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata LogoutReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_home_5faccount_2eproto_getter, &descriptor_table_home_5faccount_2eproto_once,
+      file_level_metadata_home_5faccount_2eproto[2]);
+}
+
+// ===================================================================
+
+class LogoutRes::_Internal {
+ public:
+};
+
+LogoutRes::LogoutRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:im_home_proto.LogoutRes)
+}
+LogoutRes::LogoutRes(const LogoutRes& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:im_home_proto.LogoutRes)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LogoutRes::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LogoutRes::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata LogoutRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_home_5faccount_2eproto_getter, &descriptor_table_home_5faccount_2eproto_once,
+      file_level_metadata_home_5faccount_2eproto[3]);
+}
+
+// ===================================================================
+
 class RegisterReq::_Internal {
  public:
 };
@@ -1188,7 +1305,7 @@ void RegisterReq::InternalSwap(RegisterReq* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RegisterReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_home_5faccount_2eproto_getter, &descriptor_table_home_5faccount_2eproto_once,
-      file_level_metadata_home_5faccount_2eproto[2]);
+      file_level_metadata_home_5faccount_2eproto[4]);
 }
 
 // ===================================================================
@@ -1409,7 +1526,7 @@ void RegisterRes::InternalSwap(RegisterRes* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata RegisterRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_home_5faccount_2eproto_getter, &descriptor_table_home_5faccount_2eproto_once,
-      file_level_metadata_home_5faccount_2eproto[3]);
+      file_level_metadata_home_5faccount_2eproto[5]);
 }
 
 // ===================================================================
@@ -1844,7 +1961,7 @@ void ClientOnlineInfo::InternalSwap(ClientOnlineInfo* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ClientOnlineInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_home_5faccount_2eproto_getter, &descriptor_table_home_5faccount_2eproto_once,
-      file_level_metadata_home_5faccount_2eproto[4]);
+      file_level_metadata_home_5faccount_2eproto[6]);
 }
 
 // ===================================================================
@@ -2268,7 +2385,7 @@ void UserInfo::InternalSwap(UserInfo* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata UserInfo::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_home_5faccount_2eproto_getter, &descriptor_table_home_5faccount_2eproto_once,
-      file_level_metadata_home_5faccount_2eproto[5]);
+      file_level_metadata_home_5faccount_2eproto[7]);
 }
 
 // ===================================================================
@@ -2439,7 +2556,7 @@ void GetUserInfoReq::InternalSwap(GetUserInfoReq* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetUserInfoReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_home_5faccount_2eproto_getter, &descriptor_table_home_5faccount_2eproto_once,
-      file_level_metadata_home_5faccount_2eproto[6]);
+      file_level_metadata_home_5faccount_2eproto[8]);
 }
 
 // ===================================================================
@@ -2661,7 +2778,7 @@ void GetUserInfoRes::InternalSwap(GetUserInfoRes* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata GetUserInfoRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_home_5faccount_2eproto_getter, &descriptor_table_home_5faccount_2eproto_once,
-      file_level_metadata_home_5faccount_2eproto[7]);
+      file_level_metadata_home_5faccount_2eproto[9]);
 }
 
 // ===================================================================
@@ -2848,7 +2965,7 @@ void ModifyUserInfoReq::InternalSwap(ModifyUserInfoReq* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ModifyUserInfoReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_home_5faccount_2eproto_getter, &descriptor_table_home_5faccount_2eproto_once,
-      file_level_metadata_home_5faccount_2eproto[8]);
+      file_level_metadata_home_5faccount_2eproto[10]);
 }
 
 // ===================================================================
@@ -3035,7 +3152,7 @@ void ModifyUserInfoRes::InternalSwap(ModifyUserInfoRes* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata ModifyUserInfoRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_home_5faccount_2eproto_getter, &descriptor_table_home_5faccount_2eproto_once,
-      file_level_metadata_home_5faccount_2eproto[9]);
+      file_level_metadata_home_5faccount_2eproto[11]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -3048,6 +3165,14 @@ Arena::CreateMaybeMessage< ::im_home_proto::LoginReq >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::im_home_proto::LoginRes*
 Arena::CreateMaybeMessage< ::im_home_proto::LoginRes >(Arena* arena) {
   return Arena::CreateMessageInternal< ::im_home_proto::LoginRes >(arena);
+}
+template<> PROTOBUF_NOINLINE ::im_home_proto::LogoutReq*
+Arena::CreateMaybeMessage< ::im_home_proto::LogoutReq >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::im_home_proto::LogoutReq >(arena);
+}
+template<> PROTOBUF_NOINLINE ::im_home_proto::LogoutRes*
+Arena::CreateMaybeMessage< ::im_home_proto::LogoutRes >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::im_home_proto::LogoutRes >(arena);
 }
 template<> PROTOBUF_NOINLINE ::im_home_proto::RegisterReq*
 Arena::CreateMaybeMessage< ::im_home_proto::RegisterReq >(Arena* arena) {

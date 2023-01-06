@@ -23,6 +23,7 @@
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/arena.h>
 #include <google/protobuf/arenastring.h>
+#include <google/protobuf/generated_message_bases.h>
 #include <google/protobuf/generated_message_util.h>
 #include <google/protobuf/metadata_lite.h>
 #include <google/protobuf/generated_message_reflection.h>
@@ -61,6 +62,12 @@ extern LoginReqDefaultTypeInternal _LoginReq_default_instance_;
 class LoginRes;
 struct LoginResDefaultTypeInternal;
 extern LoginResDefaultTypeInternal _LoginRes_default_instance_;
+class LogoutReq;
+struct LogoutReqDefaultTypeInternal;
+extern LogoutReqDefaultTypeInternal _LogoutReq_default_instance_;
+class LogoutRes;
+struct LogoutResDefaultTypeInternal;
+extern LogoutResDefaultTypeInternal _LogoutRes_default_instance_;
 class ModifyUserInfoReq;
 struct ModifyUserInfoReqDefaultTypeInternal;
 extern ModifyUserInfoReqDefaultTypeInternal _ModifyUserInfoReq_default_instance_;
@@ -83,6 +90,8 @@ template<> ::im_home_proto::GetUserInfoReq* Arena::CreateMaybeMessage<::im_home_
 template<> ::im_home_proto::GetUserInfoRes* Arena::CreateMaybeMessage<::im_home_proto::GetUserInfoRes>(Arena*);
 template<> ::im_home_proto::LoginReq* Arena::CreateMaybeMessage<::im_home_proto::LoginReq>(Arena*);
 template<> ::im_home_proto::LoginRes* Arena::CreateMaybeMessage<::im_home_proto::LoginRes>(Arena*);
+template<> ::im_home_proto::LogoutReq* Arena::CreateMaybeMessage<::im_home_proto::LogoutReq>(Arena*);
+template<> ::im_home_proto::LogoutRes* Arena::CreateMaybeMessage<::im_home_proto::LogoutRes>(Arena*);
 template<> ::im_home_proto::ModifyUserInfoReq* Arena::CreateMaybeMessage<::im_home_proto::ModifyUserInfoReq>(Arena*);
 template<> ::im_home_proto::ModifyUserInfoRes* Arena::CreateMaybeMessage<::im_home_proto::ModifyUserInfoRes>(Arena*);
 template<> ::im_home_proto::RegisterReq* Arena::CreateMaybeMessage<::im_home_proto::RegisterReq>(Arena*);
@@ -454,6 +463,238 @@ class LoginRes final :
 };
 // -------------------------------------------------------------------
 
+class LogoutReq final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:im_home_proto.LogoutReq) */ {
+ public:
+  inline LogoutReq() : LogoutReq(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR LogoutReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  LogoutReq(const LogoutReq& from);
+  LogoutReq(LogoutReq&& from) noexcept
+    : LogoutReq() {
+    *this = ::std::move(from);
+  }
+
+  inline LogoutReq& operator=(const LogoutReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LogoutReq& operator=(LogoutReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LogoutReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LogoutReq* internal_default_instance() {
+    return reinterpret_cast<const LogoutReq*>(
+               &_LogoutReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(LogoutReq& a, LogoutReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(LogoutReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LogoutReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LogoutReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<LogoutReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const LogoutReq& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const LogoutReq& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "im_home_proto.LogoutReq";
+  }
+  protected:
+  explicit LogoutReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.LogoutReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_home_5faccount_2eproto;
+};
+// -------------------------------------------------------------------
+
+class LogoutRes final :
+    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:im_home_proto.LogoutRes) */ {
+ public:
+  inline LogoutRes() : LogoutRes(nullptr) {}
+  explicit PROTOBUF_CONSTEXPR LogoutRes(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  LogoutRes(const LogoutRes& from);
+  LogoutRes(LogoutRes&& from) noexcept
+    : LogoutRes() {
+    *this = ::std::move(from);
+  }
+
+  inline LogoutRes& operator=(const LogoutRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline LogoutRes& operator=(LogoutRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const LogoutRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const LogoutRes* internal_default_instance() {
+    return reinterpret_cast<const LogoutRes*>(
+               &_LogoutRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(LogoutRes& a, LogoutRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(LogoutRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(LogoutRes* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  LogoutRes* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<LogoutRes>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const LogoutRes& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const LogoutRes& from) {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
+  }
+  public:
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "im_home_proto.LogoutRes";
+  }
+  protected:
+  explicit LogoutRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.LogoutRes)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  friend struct ::TableStruct_home_5faccount_2eproto;
+};
+// -------------------------------------------------------------------
+
 class RegisterReq final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.RegisterReq) */ {
  public:
@@ -502,7 +743,7 @@ class RegisterReq final :
                &_RegisterReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   friend void swap(RegisterReq& a, RegisterReq& b) {
     a.Swap(&b);
@@ -725,7 +966,7 @@ class RegisterRes final :
                &_RegisterRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(RegisterRes& a, RegisterRes& b) {
     a.Swap(&b);
@@ -884,7 +1125,7 @@ class ClientOnlineInfo final :
                &_ClientOnlineInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(ClientOnlineInfo& a, ClientOnlineInfo& b) {
     a.Swap(&b);
@@ -1136,7 +1377,7 @@ class UserInfo final :
                &_UserInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(UserInfo& a, UserInfo& b) {
     a.Swap(&b);
@@ -1365,7 +1606,7 @@ class GetUserInfoReq final :
                &_GetUserInfoReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(GetUserInfoReq& a, GetUserInfoReq& b) {
     a.Swap(&b);
@@ -1508,7 +1749,7 @@ class GetUserInfoRes final :
                &_GetUserInfoRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(GetUserInfoRes& a, GetUserInfoRes& b) {
     a.Swap(&b);
@@ -1671,7 +1912,7 @@ class ModifyUserInfoReq final :
                &_ModifyUserInfoReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(ModifyUserInfoReq& a, ModifyUserInfoReq& b) {
     a.Swap(&b);
@@ -1823,7 +2064,7 @@ class ModifyUserInfoRes final :
                &_ModifyUserInfoRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(ModifyUserInfoRes& a, ModifyUserInfoRes& b) {
     a.Swap(&b);
@@ -2099,6 +2340,14 @@ inline void LoginRes::set_allocated_info(::im_home_proto::UserInfo* info) {
   info_ = info;
   // @@protoc_insertion_point(field_set_allocated:im_home_proto.LoginRes.Info)
 }
+
+// -------------------------------------------------------------------
+
+// LogoutReq
+
+// -------------------------------------------------------------------
+
+// LogoutRes
 
 // -------------------------------------------------------------------
 
@@ -3305,6 +3554,10 @@ inline void ModifyUserInfoRes::set_allocated_data(::im_home_proto::UserInfo* dat
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
