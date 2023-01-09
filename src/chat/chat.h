@@ -33,12 +33,12 @@ public:
     explicit Chat(QWidget *parent = nullptr);
     ~Chat();
 
-    void AddOneChat(ChatShortFrameData data);
+    OneChatBox AddOneChat(ChatShortFrameData data);
 
 protected slots:
     void slot_ChatSingleRes(char *pMessage);
     void slot_ChatSingleRelay(char *pMessage);
-
+    void slot_OfflineNotify(char *pMessage);
 
 private:
     Ui::Chat *ui;

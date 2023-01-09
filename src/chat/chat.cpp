@@ -7,6 +7,7 @@
 #include "../../common/commonproto/home_relay.pb.h"
 #include "../../common/define/define.h"
 #include "../../common/socket/socket.h"
+#include "../login/logininfo.h"
 
 Chat::Chat(QWidget *parent) :
     QWidget(parent),
@@ -35,6 +36,7 @@ Chat::Chat(QWidget *parent) :
     // socket
     SocketControl::Instance()->RegisterRecvFunc(MessageTag_ChatSingle.Res, std::bind(&Chat::slot_ChatSingleRes, this, std::placeholders::_1));
     SocketControl::Instance()->RegisterRecvFunc(MessageTag_ChatSingle.Relay, std::bind(&Chat::slot_ChatSingleRelay, this, std::placeholders::_1));
+    SocketControl::Instance()->RegisterRecvFunc(MessageTag_NotifyUserMessage.Notify, std::bind(&Chat::slot_OfflineNotify, this, std::placeholders::_1));
 }
 
 Chat::~Chat()
@@ -86,11 +88,60 @@ void Chat::slot_ChatSingleRelay(char *pMessage)
     m_mapOneChatBox[chatSingleToReceiver->data().senderid()].Right->AddMessage(false, QString::fromStdString(chatSingleToReceiver->data().data()), QString::fromStdString(getUserInfoRes->data().headimg()));
 }
 
-void Chat::AddOneChat(ChatShortFrameData data)
+void Chat::slot_OfflineNotify(char *pMessage)
+{
+    im_home_proto::NotifyUserMessage *notifyUserMessage = new im_home_proto::NotifyUserMessage;
+    notifyUserMessage->ParseFromString(pMessage);
+
+    ClientUserInfo* selfInfo = UserInfo::Instance()->GetSelfUserInfo();
+    // 登录下发离线消息
+    for (int i = 0; i < notifyUserMessage->offlinesinglechat_size(); i++){
+
+        OneChatBox oneChatBox;
+
+        // 好友信息
+        notifyUserMessage->offlinesinglechat(i).user();
+        if (m_mapOneChatBox.end() != m_mapOneChatBox.find(notifyUserMessage->offlinesinglechat(i).user().userid()))
+        {
+            oneChatBox = m_mapOneChatBox[notifyUserMessage->offlinesinglechat(i).user().userid()];
+//            oneChatBox.Right->AddMessage(false, QString::fromStdString(chatSingleToReceiver->data().data()), oneChatBox.Left->GetInfo().m_HeadPath);
+        }else{
+
+            ChatShortFrameData data;
+            data.m_Name = QString::fromStdString(notifyUserMessage->offlinesinglechat(i).user().username());
+            data.m_FriendID = notifyUserMessage->offlinesinglechat(i).user().userid();
+            data.m_HeadPath = UserInfo::Instance()->GetUserHeadPath(notifyUserMessage->offlinesinglechat(i).user().userid());
+            data.m_UserStatus = notifyUserMessage->offlinesinglechat(i).user().status();
+            oneChatBox = AddOneChat(data);
+        }
+
+        int messageNum = 0;
+
+        // 消息
+        for(int j = 0; j < notifyUserMessage->offlinesinglechat(i).data_size(); j++) {
+            ChatShortFrameData data;
+            data.m_Time = notifyUserMessage->offlinesinglechat(i).data(i).sendtimestamp();
+            data.m_TipsNum = ++messageNum;
+            data.m_Message = QString::fromStdString(notifyUserMessage->offlinesinglechat(i).data(i).data());
+
+            if (selfInfo->mUserData.UserID == notifyUserMessage->offlinesinglechat(i).data(i).senderid())
+            {
+                oneChatBox.Left->UpdateData(data);
+                oneChatBox.Right->AddMessage(true, data.m_Message, oneChatBox.Left->GetInfo().m_HeadPath);
+            }else{
+                oneChatBox.Left->UpdateData(data);
+                oneChatBox.Right->AddMessage(false, data.m_Message, oneChatBox.Left->GetInfo().m_HeadPath);
+            }
+        }
+    }
+}
+
+
+OneChatBox Chat::AddOneChat(ChatShortFrameData data)
 {
     if (m_mapOneChatBox.find(data.m_FriendID) != m_mapOneChatBox.end()) {
         // 聊天框已经存在
-        return;
+        return OneChatBox{};
     }
     // 左边是聊天简介
     QListWidgetItem *Item_left = new QListWidgetItem(m_pChatShortFrameList);
@@ -105,5 +156,8 @@ void Chat::AddOneChat(ChatShortFrameData data)
     ChatBox *pBox = new ChatBox(m_pRightChatBox, data);
     m_pChatBoxLayout->addWidget(pBox);
 
-    m_mapOneChatBox[data.m_FriendID] = {pChatShortFrame, pBox};
+    OneChatBox chatBox = OneChatBox{pChatShortFrame, pBox};
+
+    m_mapOneChatBox[data.m_FriendID] = chatBox;
+    return chatBox;
 }

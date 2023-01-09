@@ -6,6 +6,7 @@ struct MessageTag {
     uint32_t Req;
     uint32_t Res;
     uint32_t Relay;
+    uint32_t Notify;
 };
 
 const QString ClientMainPath = "/home/zhangbin/work/qt_pro/IM-Client/";
@@ -21,3 +22,5 @@ const MessageTag MessageTag_GetFriendsList      = {Req: CRC32("GetFriendsListReq
 const MessageTag MessageTag_AgreeFriendApply    = {Req: CRC32("AgreeFriendApplyReq"), Res: CRC32("AgreeFriendApplyRes"), Relay: CRC32("AgreeApplyFriendsToReceiver")};
 const MessageTag MessageTag_DelFriends          = {Req: CRC32("DelFriendsReq"), Res: CRC32("DelFriendsRes")};
 const MessageTag MessageTag_ModifyUserInfo      = {Req: CRC32("ModifyUserInfoReq"), Res: CRC32("ModifyUserInfoRes")};
+
+const MessageTag MessageTag_NotifyUserMessage   = {Notify: CRC32("NotifyUserMessage")};
