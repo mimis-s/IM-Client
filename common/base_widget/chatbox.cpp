@@ -184,15 +184,23 @@ void ChatBox::InsertMessage(const im_home_proto::ChatMessage pMessage)
 
     bool bInsert = false;
     for(int i = 0; i < itemList.size(); i++) {
-        if (pMessage.messageid() >= temp && pMessage.messageid() < m_mapToMessageID[itemList[i]]) {
-            ChatHeadAndBubble *pHeadAndBubble = funcInsert(i, pMessage, m_pMiddleListWidget);
-            m_mapToMessageID[pHeadAndBubble] = pMessage.messageid();
-            bInsert = true;
-            break;
+        if (i == 0) {
+            if (pMessage.messageid() < m_mapToMessageID[itemList[i]]) {
+                ChatHeadAndBubble *pHeadAndBubble = funcInsert(i, pMessage, m_pMiddleListWidget);
+                m_mapToMessageID[pHeadAndBubble] = pMessage.messageid();
+                bInsert = true;
+                break;
+            }
+        }else{
+            if (pMessage.messageid() > m_mapToMessageID[itemList[i - 1]] && pMessage.messageid() < m_mapToMessageID[itemList[i]]) {
+                ChatHeadAndBubble *pHeadAndBubble = funcInsert(i, pMessage, m_pMiddleListWidget);
+                m_mapToMessageID[pHeadAndBubble] = pMessage.messageid();
+                bInsert = true;
+                break;
+            }
         }
-        temp = m_mapToMessageID[itemList[i]];
     }
-    if (!bInsert) {
+    if (!bInsert && pMessage.messageid() != m_mapToMessageID[itemList[itemList.size() - 1]]) {
         ChatHeadAndBubble *pHeadAndBubble = funcInsert(itemList.size() + 1, pMessage, m_pMiddleListWidget);
         m_mapToMessageID[pHeadAndBubble] = pMessage.messageid();
     }

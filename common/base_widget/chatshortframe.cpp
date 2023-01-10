@@ -96,6 +96,12 @@ void ChatShortFrame::mouseDoubleClickEvent(QMouseEvent* event)
     QWidget::mouseDoubleClickEvent(event);
 }
 
+void ChatShortFrame::mousePressEvent(QMouseEvent *event)
+{
+    emit sig_mousePress(m_chatShortFrameData);
+    QWidget::mousePressEvent(event);
+}
+
 ChatShortFrameData ChatShortFrame::GetInfo()
 {
     return m_chatShortFrameData;

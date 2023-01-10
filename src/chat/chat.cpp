@@ -8,6 +8,7 @@
 #include "../../common/define/define.h"
 #include "../../common/socket/socket.h"
 #include "../global/userinfo.h"
+#include "../global/chathistory.h"
 
 Chat::Chat(QWidget *parent) :
     QWidget(parent),
@@ -93,7 +94,8 @@ void Chat::slot_OfflineNotify(char *pMessage)
         OneChatBox oneChatBox;
 
         // 好友信息
-        notifyUserMessage->offlinesinglechat(i).user();
+        // 是否存在离线消息<friend->true>
+        m_bmapOffline[notifyUserMessage->offlinesinglechat(i).user().userid()] = true;
         if (m_mapOneChatBox.end() != m_mapOneChatBox.find(notifyUserMessage->offlinesinglechat(i).user().userid()))
         {
             oneChatBox = m_mapOneChatBox[notifyUserMessage->offlinesinglechat(i).user().userid()];
@@ -144,6 +146,8 @@ OneChatBox Chat::AddOneChat(ChatShortFrameData data)
 
     m_pChatShortFrameList->setItemWidget(Item_left, pChatShortFrame);
 
+    connect(pChatShortFrame, SIGNAL(sig_mousePress(ChatShortFrameData)), this, SLOT(slot_ChatShortFramePress(ChatShortFrameData)));
+
     // 右边是聊天内容
     ChatBox *pBox = new ChatBox(m_pRightChatBox, data);
     m_pChatBoxLayout->addWidget(pBox);
@@ -152,4 +156,23 @@ OneChatBox Chat::AddOneChat(ChatShortFrameData data)
 
     m_mapOneChatBox[data.m_FriendID] = chatBox;
     return chatBox;
+}
+
+void Chat::slot_ChatShortFramePress(ChatShortFrameData data)
+{
+
+    ChatHistory::Instance()->ReadOfflineMessage(data.m_FriendID);
+
+    QList<ChatShortFrame*> itemList = m_pChatShortFrameList->findChildren<ChatShortFrame*>();  // 获取所有的QChatHeadAndBubble
+    QPushButton *pBtn=qobject_cast<QPushButton *>(sender());
+
+    for (int i = 0; i < m_pChatShortFrameList->count(); i++) {
+        ChatShortFrame *pWidget = (ChatShortFrame *)m_pChatShortFrameList->itemWidget(m_pChatShortFrameList->item(i));
+        if (pWidget->GetInfo().m_FriendID == data.m_FriendID) {
+            m_bmapOffline[data.m_FriendID] = false;
+            ChatShortFrameData data;
+            data.m_TipsNum = 0;
+            pWidget->UpdateData(data);
+        }
+    }
 }

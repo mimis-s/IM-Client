@@ -52,10 +52,18 @@ extern GetSingleChatHistoryReqDefaultTypeInternal _GetSingleChatHistoryReq_defau
 class GetSingleChatHistoryRes;
 struct GetSingleChatHistoryResDefaultTypeInternal;
 extern GetSingleChatHistoryResDefaultTypeInternal _GetSingleChatHistoryRes_default_instance_;
+class ReadOfflineMessageReq;
+struct ReadOfflineMessageReqDefaultTypeInternal;
+extern ReadOfflineMessageReqDefaultTypeInternal _ReadOfflineMessageReq_default_instance_;
+class ReadOfflineMessageRes;
+struct ReadOfflineMessageResDefaultTypeInternal;
+extern ReadOfflineMessageResDefaultTypeInternal _ReadOfflineMessageRes_default_instance_;
 }  // namespace im_home_proto
 PROTOBUF_NAMESPACE_OPEN
 template<> ::im_home_proto::GetSingleChatHistoryReq* Arena::CreateMaybeMessage<::im_home_proto::GetSingleChatHistoryReq>(Arena*);
 template<> ::im_home_proto::GetSingleChatHistoryRes* Arena::CreateMaybeMessage<::im_home_proto::GetSingleChatHistoryRes>(Arena*);
+template<> ::im_home_proto::ReadOfflineMessageReq* Arena::CreateMaybeMessage<::im_home_proto::ReadOfflineMessageReq>(Arena*);
+template<> ::im_home_proto::ReadOfflineMessageRes* Arena::CreateMaybeMessage<::im_home_proto::ReadOfflineMessageRes>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace im_home_proto {
 
@@ -376,6 +384,312 @@ class GetSingleChatHistoryRes final :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_home_5fmessage_2eproto;
 };
+// -------------------------------------------------------------------
+
+class ReadOfflineMessageReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.ReadOfflineMessageReq) */ {
+ public:
+  inline ReadOfflineMessageReq() : ReadOfflineMessageReq(nullptr) {}
+  ~ReadOfflineMessageReq() override;
+  explicit PROTOBUF_CONSTEXPR ReadOfflineMessageReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ReadOfflineMessageReq(const ReadOfflineMessageReq& from);
+  ReadOfflineMessageReq(ReadOfflineMessageReq&& from) noexcept
+    : ReadOfflineMessageReq() {
+    *this = ::std::move(from);
+  }
+
+  inline ReadOfflineMessageReq& operator=(const ReadOfflineMessageReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ReadOfflineMessageReq& operator=(ReadOfflineMessageReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ReadOfflineMessageReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ReadOfflineMessageReq* internal_default_instance() {
+    return reinterpret_cast<const ReadOfflineMessageReq*>(
+               &_ReadOfflineMessageReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(ReadOfflineMessageReq& a, ReadOfflineMessageReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ReadOfflineMessageReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ReadOfflineMessageReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ReadOfflineMessageReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ReadOfflineMessageReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ReadOfflineMessageReq& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ReadOfflineMessageReq& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ReadOfflineMessageReq* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "im_home_proto.ReadOfflineMessageReq";
+  }
+  protected:
+  explicit ReadOfflineMessageReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFriendIDFieldNumber = 1,
+  };
+  // int64 FriendID = 1;
+  void clear_friendid();
+  int64_t friendid() const;
+  void set_friendid(int64_t value);
+  private:
+  int64_t _internal_friendid() const;
+  void _internal_set_friendid(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.ReadOfflineMessageReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  int64_t friendid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_home_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ReadOfflineMessageRes final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.ReadOfflineMessageRes) */ {
+ public:
+  inline ReadOfflineMessageRes() : ReadOfflineMessageRes(nullptr) {}
+  ~ReadOfflineMessageRes() override;
+  explicit PROTOBUF_CONSTEXPR ReadOfflineMessageRes(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ReadOfflineMessageRes(const ReadOfflineMessageRes& from);
+  ReadOfflineMessageRes(ReadOfflineMessageRes&& from) noexcept
+    : ReadOfflineMessageRes() {
+    *this = ::std::move(from);
+  }
+
+  inline ReadOfflineMessageRes& operator=(const ReadOfflineMessageRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ReadOfflineMessageRes& operator=(ReadOfflineMessageRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const ReadOfflineMessageRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ReadOfflineMessageRes* internal_default_instance() {
+    return reinterpret_cast<const ReadOfflineMessageRes*>(
+               &_ReadOfflineMessageRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(ReadOfflineMessageRes& a, ReadOfflineMessageRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ReadOfflineMessageRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ReadOfflineMessageRes* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  ReadOfflineMessageRes* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<ReadOfflineMessageRes>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const ReadOfflineMessageRes& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const ReadOfflineMessageRes& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ReadOfflineMessageRes* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "im_home_proto.ReadOfflineMessageRes";
+  }
+  protected:
+  explicit ReadOfflineMessageRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 2,
+    kFriendIDFieldNumber = 1,
+  };
+  // repeated .im_home_proto.ChatMessage Data = 2;
+  int data_size() const;
+  private:
+  int _internal_data_size() const;
+  public:
+  void clear_data();
+  ::im_home_proto::ChatMessage* mutable_data(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::ChatMessage >*
+      mutable_data();
+  private:
+  const ::im_home_proto::ChatMessage& _internal_data(int index) const;
+  ::im_home_proto::ChatMessage* _internal_add_data();
+  public:
+  const ::im_home_proto::ChatMessage& data(int index) const;
+  ::im_home_proto::ChatMessage* add_data();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::ChatMessage >&
+      data() const;
+
+  // int64 FriendID = 1;
+  void clear_friendid();
+  int64_t friendid() const;
+  void set_friendid(int64_t value);
+  private:
+  int64_t _internal_friendid() const;
+  void _internal_set_friendid(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.ReadOfflineMessageRes)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::ChatMessage > data_;
+  int64_t friendid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_home_5fmessage_2eproto;
+};
 // ===================================================================
 
 
@@ -488,9 +802,98 @@ GetSingleChatHistoryRes::data() const {
   return data_;
 }
 
+// -------------------------------------------------------------------
+
+// ReadOfflineMessageReq
+
+// int64 FriendID = 1;
+inline void ReadOfflineMessageReq::clear_friendid() {
+  friendid_ = int64_t{0};
+}
+inline int64_t ReadOfflineMessageReq::_internal_friendid() const {
+  return friendid_;
+}
+inline int64_t ReadOfflineMessageReq::friendid() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.ReadOfflineMessageReq.FriendID)
+  return _internal_friendid();
+}
+inline void ReadOfflineMessageReq::_internal_set_friendid(int64_t value) {
+  
+  friendid_ = value;
+}
+inline void ReadOfflineMessageReq::set_friendid(int64_t value) {
+  _internal_set_friendid(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.ReadOfflineMessageReq.FriendID)
+}
+
+// -------------------------------------------------------------------
+
+// ReadOfflineMessageRes
+
+// int64 FriendID = 1;
+inline void ReadOfflineMessageRes::clear_friendid() {
+  friendid_ = int64_t{0};
+}
+inline int64_t ReadOfflineMessageRes::_internal_friendid() const {
+  return friendid_;
+}
+inline int64_t ReadOfflineMessageRes::friendid() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.ReadOfflineMessageRes.FriendID)
+  return _internal_friendid();
+}
+inline void ReadOfflineMessageRes::_internal_set_friendid(int64_t value) {
+  
+  friendid_ = value;
+}
+inline void ReadOfflineMessageRes::set_friendid(int64_t value) {
+  _internal_set_friendid(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.ReadOfflineMessageRes.FriendID)
+}
+
+// repeated .im_home_proto.ChatMessage Data = 2;
+inline int ReadOfflineMessageRes::_internal_data_size() const {
+  return data_.size();
+}
+inline int ReadOfflineMessageRes::data_size() const {
+  return _internal_data_size();
+}
+inline ::im_home_proto::ChatMessage* ReadOfflineMessageRes::mutable_data(int index) {
+  // @@protoc_insertion_point(field_mutable:im_home_proto.ReadOfflineMessageRes.Data)
+  return data_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::ChatMessage >*
+ReadOfflineMessageRes::mutable_data() {
+  // @@protoc_insertion_point(field_mutable_list:im_home_proto.ReadOfflineMessageRes.Data)
+  return &data_;
+}
+inline const ::im_home_proto::ChatMessage& ReadOfflineMessageRes::_internal_data(int index) const {
+  return data_.Get(index);
+}
+inline const ::im_home_proto::ChatMessage& ReadOfflineMessageRes::data(int index) const {
+  // @@protoc_insertion_point(field_get:im_home_proto.ReadOfflineMessageRes.Data)
+  return _internal_data(index);
+}
+inline ::im_home_proto::ChatMessage* ReadOfflineMessageRes::_internal_add_data() {
+  return data_.Add();
+}
+inline ::im_home_proto::ChatMessage* ReadOfflineMessageRes::add_data() {
+  ::im_home_proto::ChatMessage* _add = _internal_add_data();
+  // @@protoc_insertion_point(field_add:im_home_proto.ReadOfflineMessageRes.Data)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::ChatMessage >&
+ReadOfflineMessageRes::data() const {
+  // @@protoc_insertion_point(field_list:im_home_proto.ReadOfflineMessageRes.Data)
+  return data_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

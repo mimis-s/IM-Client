@@ -18,10 +18,74 @@ ChatHistory::ChatHistory(QWidget *parent) : QWidget(parent)
 
 }
 
+// 读取离线消息,服务器返回消息,存储在本地存储
+void ChatHistory::ReadOfflineMessage(int64_t friendID)
+{
+    im_home_proto::ReadOfflineMessageReq *readOfflineMessageReq = new im_home_proto::ReadOfflineMessageReq;
+    readOfflineMessageReq->set_friendid(friendID);
+    char *recvMessage = SocketControl::Instance()->BlockSendMessage(MessageTag_ReadOfflineMessage.Req, MessageTag_ReadOfflineMessage.Res, readOfflineMessageReq->SerializeAsString());
+
+    im_home_proto::ReadOfflineMessageRes *readOfflineMessageRes = new im_home_proto::ReadOfflineMessageRes;
+    readOfflineMessageRes->ParseFromString(recvMessage);
+
+
+    int64_t selfUserID = UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID;
+    QString filePath = DynamicResource_Chat_History + QString::number(selfUserID) + "/";
+
+    std::map<int64_t, LocalChatHistoryInfo> mapChatHistory;
+    QJsonArray historyArray;
+
+    QDir dir;
+    if(!dir.exists(filePath))
+    {
+        if (!dir.mkpath(filePath)) {
+            IMLog::Instance()->Warn(QString("can't create file path %1 !").arg(filePath));
+        }
+    }
+
+    filePath += QString::number(friendID) +".json";
+    // 本地查找
+    QFile file(filePath);
+    if (!file.open(QIODevice::ReadWrite)) {
+        IMLog::Instance()->Warn(QString("can't open file %1 !").arg(filePath));
+        file.close();
+    }else{
+        QString val = file.readAll();
+        historyArray = QJsonDocument::fromJson(val.toUtf8()).object().value("chat_history").toArray();
+    }
+
+    for(int i = 0; i < readOfflineMessageRes->data_size(); i++){
+        LocalChatHistoryInfo infoTemp;
+        infoTemp.SenderID = readOfflineMessageRes->data(i).senderid();
+        infoTemp.ReceiverID = readOfflineMessageRes->data(i).receiverid();
+        infoTemp.MessageID = readOfflineMessageRes->data(i).messageid();
+        infoTemp.MessageType = readOfflineMessageRes->data(i).messagetype();
+        infoTemp.SendTimeStamp = readOfflineMessageRes->data(i).sendtimestamp();
+        infoTemp.MessageStatus = readOfflineMessageRes->data(i).messagestatus();
+        infoTemp.messageData =  QString::fromStdString(readOfflineMessageRes->data(i).data());
+        mapChatHistory[infoTemp.MessageID] = infoTemp;
+    }
+
+    historyArray = AddHistoryFile(historyArray, mapChatHistory);
+
+    QFile file_2(filePath);
+    if (!file_2.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+        IMLog::Instance()->Warn(QString("can't open file %1 !").arg(filePath));
+        file_2.close();
+    }
+
+    QTextStream stream(&file);
+    stream.setCodec("UTF-8");		// 设置写入编码是UTF8
+    // 写入文件
+    QJsonDocument doc;
+    doc.setArray(historyArray);
+    stream << doc.toJson();
+    file.close();
+}
+
 // 获取历史数据(先在本地寻找, 本地没有再请求服务器数据)
 std::map<int64_t, LocalChatHistoryInfo> ChatHistory::GetHistoryChat(int64_t friendID, int64_t maxMessageID)
 {
-//DynamicResource_Chat_History
     int64_t selfUserID = UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID;
     QString filePath = DynamicResource_Chat_History + QString::number(selfUserID) + "/";
 

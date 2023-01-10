@@ -38,6 +38,7 @@ public:
 protected slots:
     void slot_ChatSingleRelay(char *pMessage);
     void slot_OfflineNotify(char *pMessage);
+    void slot_ChatShortFramePress(ChatShortFrameData data);
 
 private:
     Ui::Chat *ui;
@@ -48,6 +49,9 @@ private:
     QVBoxLayout *m_pChatBoxLayout;
 
     std::map<int64_t, OneChatBox> m_mapOneChatBox;
+
+    std::map<int64_t, bool> m_bmapOffline;   // 是否存在离线消息<friend->true>
+
 };
 
 #endif // CHAT_H

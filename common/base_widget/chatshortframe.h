@@ -34,9 +34,11 @@ public:
     ChatShortFrameData GetInfo();
 
     void mouseDoubleClickEvent(QMouseEvent* event);//响应鼠标双击事件
+    void mousePressEvent(QMouseEvent *event);
 
 signals:
     void sig_mouseDoubleClick(ChatShortFrameData data);
+    void sig_mousePress(ChatShortFrameData data);
 
 private:
     CircleLabel *m_pLbHead;     // 头像
