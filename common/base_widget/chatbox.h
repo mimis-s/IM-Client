@@ -47,8 +47,6 @@ private:
     ChatShortFrameData m_chatShortFrameData;
 
     int64_t m_maxMessageHistoryID = 0; //最大不可见历史消息id
-
-    std::map<ChatHeadAndBubble *, int> m_mapToMessageID;
 };
 
 #endif // CHATBOX_H

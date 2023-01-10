@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     SocketControl::Instance("localhost", 8888);
 
-    login w(nullptr, "331784052749");
+    login w(nullptr, "331781565453");
     w.show();
 //    IMClient w;
 //    w.show();

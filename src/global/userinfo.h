@@ -12,6 +12,7 @@
 #include "../../common/log/im_log.h"
 #include <QImage>
 #include <QDebug>
+#include <QDir>
 
 // proto结构里面的值全是const, 所以不能用,日了
 
@@ -57,7 +58,17 @@ public:
 
         if (m_pSelfUserInfo->mUserData.HeadImg != "")
         {
-            QString headPath = DynamicResource_Img_Head + QString::number(m_pSelfUserInfo->mUserData.UserID) + ".jpg";
+            QString headPath = DynamicResource_Img_Head;
+
+            QDir dir;
+            if(!dir.exists(headPath))
+            {
+                if (!dir.mkpath(headPath)) {
+                    IMLog::Instance()->Warn(QString("can't create file path %1 !").arg(headPath));
+                }
+            }
+            headPath += QString::number(m_pSelfUserInfo->mUserData.UserID) + ".jpg";
+
             m_pSelfUserInfo->HeadPath = headPath;
 
             // 保存图片
@@ -82,7 +93,17 @@ public:
 
         if (pInfo->mUserData.HeadImg != "")
         {
-            QString headPath = DynamicResource_Img_Head + QString::number(pInfo->mUserData.UserID) + ".jpg";
+            QString headPath = DynamicResource_Img_Head;
+
+            QDir dir;
+            if(!dir.exists(headPath))
+            {
+                if (!dir.mkpath(headPath)) {
+                    IMLog::Instance()->Warn(QString("can't create file path %1 !").arg(headPath));
+                }
+            }
+            headPath += QString::number(pInfo->mUserData.UserID) + ".jpg";
+
             pInfo->HeadPath = headPath;
 
             // 保存图片

@@ -143,7 +143,7 @@ void ChatBox::slot_btnQueryHistoryClick()
 
 void ChatBox::InsertMessage(const im_home_proto::ChatMessage pMessage)
 {
-    auto funcInsert = [](int i, const im_home_proto::ChatMessage pMessage, QListWidget *listWidget){
+    auto funcInsert = [](const im_home_proto::ChatMessage pMessage, QListWidget *listWidget, ChatHeadAndBubble* chatBubble){
 
         ENUM_BubbleOrient orient;
         int64_t messageSender = 0;
@@ -161,48 +161,58 @@ void ChatBox::InsertMessage(const im_home_proto::ChatMessage pMessage)
         // 头像 聊天气泡
         ChatHeadAndBubble *pHeadAndBubble = new ChatHeadAndBubble(listWidget, orient,
                                                                   QString::fromStdString(pMessage.data()),
-                                                                  UserInfo::Instance()->GetUserHeadPath(messageSender));
+                                                                  UserInfo::Instance()->GetUserHeadPath(messageSender),
+                                                                  pMessage.messageid());
         Item_1->setSizeHint(pHeadAndBubble->GetMinSize());
 
         connect(pHeadAndBubble, &ChatHeadAndBubble::sig_changeHeight, [Item_1, pHeadAndBubble]{
             Item_1->setSizeHint(pHeadAndBubble->size());
         });
-        listWidget->insertItem(i, Item_1);
+
+        int temp = listWidget->count();
+        if (chatBubble != nullptr) {
+            for (int i = 0; i < listWidget->count(); i++) {
+                ChatHeadAndBubble *bubble = (ChatHeadAndBubble *)listWidget->itemWidget(listWidget->item(i));
+                if (bubble == chatBubble) {
+                    temp = i;
+                    break;
+                }
+            }
+        }
+
+        listWidget->insertItem(temp, Item_1);
         listWidget->setItemWidget(Item_1, pHeadAndBubble);
-        return pHeadAndBubble;
     };
 
     // 插入一条数据
-    int64_t temp = 0;
     QList<ChatHeadAndBubble*> itemList = m_pMiddleListWidget->findChildren<ChatHeadAndBubble*>();  // 获取所有的QChatHeadAndBubble
 
     if (itemList.size() == 0) {
-        ChatHeadAndBubble *pHeadAndBubble = funcInsert(0, pMessage, m_pMiddleListWidget);
-        m_mapToMessageID[pHeadAndBubble] = pMessage.messageid();
+        funcInsert(pMessage, m_pMiddleListWidget, nullptr);
         return;
     }
 
+
     bool bInsert = false;
+    int64_t maxMessageID = 0;
     for(int i = 0; i < itemList.size(); i++) {
         if (i == 0) {
-            if (pMessage.messageid() < m_mapToMessageID[itemList[i]]) {
-                ChatHeadAndBubble *pHeadAndBubble = funcInsert(i, pMessage, m_pMiddleListWidget);
-                m_mapToMessageID[pHeadAndBubble] = pMessage.messageid();
+            if (pMessage.messageid() < itemList[i]->GetMessageID()) {
+                funcInsert(pMessage, m_pMiddleListWidget, itemList[i]);
                 bInsert = true;
                 break;
             }
         }else{
-            if (pMessage.messageid() > m_mapToMessageID[itemList[i - 1]] && pMessage.messageid() < m_mapToMessageID[itemList[i]]) {
-                ChatHeadAndBubble *pHeadAndBubble = funcInsert(i, pMessage, m_pMiddleListWidget);
-                m_mapToMessageID[pHeadAndBubble] = pMessage.messageid();
+            if (pMessage.messageid() > itemList[i - 1]->GetMessageID() && pMessage.messageid() < itemList[i]->GetMessageID()) {
+                funcInsert(pMessage, m_pMiddleListWidget, itemList[i]);
                 bInsert = true;
                 break;
             }
         }
+        maxMessageID = maxMessageID > itemList[i]->GetMessageID()? maxMessageID: itemList[i]->GetMessageID();
     }
-    if (!bInsert && pMessage.messageid() != m_mapToMessageID[itemList[itemList.size() - 1]]) {
-        ChatHeadAndBubble *pHeadAndBubble = funcInsert(itemList.size() + 1, pMessage, m_pMiddleListWidget);
-        m_mapToMessageID[pHeadAndBubble] = pMessage.messageid();
+    if (!bInsert && maxMessageID != pMessage.messageid()) {
+        funcInsert(pMessage, m_pMiddleListWidget, nullptr);
     }
 }
 
@@ -239,39 +249,29 @@ void ChatBox::slot_btnSendClick()
 
 void ChatBox::AddMessage(const im_home_proto::ChatMessage &pMessage)
 {
+
+    ENUM_BubbleOrient orient;
+    int64_t messageSender = 0;
     if (UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID == pMessage.senderid()) {
-        QListWidgetItem *Item_1 = new QListWidgetItem(m_pMiddleListWidget);
-        Item_1->setFlags(Item_1->flags() & ~Qt::ItemIsEnabled & ~Qt::ItemIsSelectable);
-
-        // 头像 聊天气泡
-        ChatHeadAndBubble *pHeadAndBubble = new ChatHeadAndBubble(m_pMiddleListWidget, ENUM_BubbleRight,
-                                                                  QString::fromStdString(pMessage.data()),
-                                                                  UserInfo::Instance()->GetUserHeadPath(pMessage.receiverid()));
-        Item_1->setSizeHint(pHeadAndBubble->GetMinSize());
-
-        connect(pHeadAndBubble, &ChatHeadAndBubble::sig_changeHeight, [Item_1, pHeadAndBubble]{
-            Item_1->setSizeHint(pHeadAndBubble->size());
-        });
-
-        m_pMiddleListWidget->setItemWidget(Item_1, pHeadAndBubble);
-        m_mapToMessageID[pHeadAndBubble] = pMessage.messageid();
+        orient = ENUM_BubbleRight;
+        messageSender = pMessage.senderid();
     }else{
-        QListWidgetItem *Item_1 = new QListWidgetItem(m_pMiddleListWidget);
-        Item_1->setFlags(Item_1->flags() & ~Qt::ItemIsEnabled & ~Qt::ItemIsSelectable);
-
-        // 头像 聊天气泡
-
-        ChatHeadAndBubble *pHeadAndBubble = new ChatHeadAndBubble(m_pMiddleListWidget, ENUM_BubbleLeft,
-                                                                  QString::fromStdString(pMessage.data()),
-                                                                  UserInfo::Instance()->GetUserHeadPath(pMessage.senderid()));
-        Item_1->setSizeHint(pHeadAndBubble->GetMinSize());
-
-        connect(pHeadAndBubble, &ChatHeadAndBubble::sig_changeHeight, [Item_1, pHeadAndBubble]{
-            Item_1->setSizeHint(pHeadAndBubble->size());
-        });
-
-        m_pMiddleListWidget->setItemWidget(Item_1, pHeadAndBubble);
-        m_mapToMessageID[pHeadAndBubble] = pMessage.messageid();
+        orient = ENUM_BubbleLeft;
+        messageSender = pMessage.receiverid();
     }
+    QListWidgetItem *Item_1 = new QListWidgetItem(m_pMiddleListWidget);
+    Item_1->setFlags(Item_1->flags() & ~Qt::ItemIsEnabled & ~Qt::ItemIsSelectable);
 
+    // 头像 聊天气泡
+    ChatHeadAndBubble *pHeadAndBubble = new ChatHeadAndBubble(m_pMiddleListWidget, orient,
+                                                              QString::fromStdString(pMessage.data()),
+                                                              UserInfo::Instance()->GetUserHeadPath(messageSender),
+                                                              pMessage.messageid());
+    Item_1->setSizeHint(pHeadAndBubble->GetMinSize());
+
+    connect(pHeadAndBubble, &ChatHeadAndBubble::sig_changeHeight, [Item_1, pHeadAndBubble]{
+        Item_1->setSizeHint(pHeadAndBubble->size());
+    });
+
+    m_pMiddleListWidget->setItemWidget(Item_1, pHeadAndBubble);
 }
