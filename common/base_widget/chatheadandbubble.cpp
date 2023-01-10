@@ -1,10 +1,11 @@
 #include "chatheadandbubble.h"
 #include <qdebug.h>
 
-ChatHeadAndBubble::ChatHeadAndBubble(QWidget *parent,ENUM_BubbleOrient orient, QString sText, QString headPath) : QWidget(parent)
+ChatHeadAndBubble::ChatHeadAndBubble(QWidget *parent,ENUM_BubbleOrient orient, QString sText, QString headPath, int64_t messageID) : QWidget(parent)
 {
     m_bubbleOrient = orient;
     m_sText = sText;
+    m_messageID = messageID;
 
     m_pLbHead = new CircleLabel(this, ENUM_CircleStyle::ENUM_Solid);
     m_pLbHead->SetImgPath(headPath);

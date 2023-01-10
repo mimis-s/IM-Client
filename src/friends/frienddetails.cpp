@@ -1,7 +1,7 @@
 #include "frienddetails.h"
 #include "ui_frienddetails.h"
 #include "../../common/base_widget/circlelabel.h"
-#include "../login/logininfo.h"
+#include "../global/userinfo.h"
 #include "../../common/socket/socket.h"
 #include "../../common/commonproto/home_friends.pb.h"
 #include "../../common/log/im_log.h"

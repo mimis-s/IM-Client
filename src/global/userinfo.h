@@ -1,5 +1,5 @@
-#ifndef LOGININFO_H
-#define LOGININFO_H
+#ifndef USERINFO_H
+#define USERINFO_H
 
 /*
     单例类,主要用于当客户端登录之后存储客户端的基础信息
@@ -121,4 +121,4 @@ private:
     std::map<int64_t, ClientUserInfo *> m_mapOtherUserInfo;   // 其他人的用户信息
 };
 
-#endif // LOGININFO_H
+#endif // USERINFO_H

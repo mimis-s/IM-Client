@@ -1,4 +1,4 @@
-#include "logininfo.h"
+#include "userinfo.h"
 
 UserInfo *UserInfo::m_info = nullptr;
 

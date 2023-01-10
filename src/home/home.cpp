@@ -7,7 +7,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include "../../common/base_widget/circlelabel.h"
-#include "../login/logininfo.h"
+#include "../global/userinfo.h"
 #include "../register/cutouthead.h"
 #include "../../common/socket/socket.h"
 #include "../../common/define/define.h"

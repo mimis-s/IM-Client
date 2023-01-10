@@ -10,7 +10,7 @@
 #include <QMessageBox>
 #include "../../common/commonproto/home_friends.pb.h"
 #include "friendapplybox.h"
-#include "../login/logininfo.h"
+#include "../global/userinfo.h"
 
 Friends::Friends(QWidget *parent) :
     QWidget(parent),

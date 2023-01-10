@@ -6,7 +6,7 @@
 #include "../../common/define/define.h"
 #include "../../common/commonproto/home_account.pb.h"
 #include "../../common/log/im_log.h"
-#include "logininfo.h"
+#include "../global/userinfo.h"
 
 login::login(QWidget *parent, QString id) :
     QWidget(parent),

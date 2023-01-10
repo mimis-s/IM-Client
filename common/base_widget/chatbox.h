@@ -16,17 +16,22 @@
 #include <QListWidget>
 #include <QListWidgetItem>
 #include "chatshortframe.h"
+#include "../commonproto/home_chat.pb.h"
+#include "common/base_widget/chatheadandbubble.h"
 
 class ChatBox : public QWidget
 {
     Q_OBJECT
 public:
     explicit ChatBox(QWidget *parent = nullptr, ChatShortFrameData data = ChatShortFrameData{});
-    void AddMessage(bool bSelf, QString sMessage, QString sHeadPath);
+    void AddMessage(const im_home_proto::ChatMessage &pMessage);
+    void AddOneQueryHistoryBtn(); // 添加一个查询历史记录的按钮(类似于qq那个在聊天框中的刷新按钮)
+    void InsertMessage(const im_home_proto::ChatMessage pMessage);
 signals:
 
 public slots:
     void slot_btnSendClick();
+    void slot_btnQueryHistoryClick();
 
 private:
 
@@ -40,6 +45,10 @@ private:
     QPushButton *m_pBtnSend;
 
     ChatShortFrameData m_chatShortFrameData;
+
+    int64_t m_maxMessageHistoryID = 0; //最大不可见历史消息id
+
+    std::map<ChatHeadAndBubble *, int> m_mapToMessageID;
 };
 
 #endif // CHATBOX_H

@@ -33,6 +33,7 @@ SOURCES += \
     common/commonproto/home_account.pb.cc \
     common/commonproto/home_chat.pb.cc \
     common/commonproto/home_friends.pb.cc \
+    common/commonproto/home_message.pb.cc \
     common/commonproto/home_relay.pb.cc \
     common/log/im_log.cpp \
     common/socket/socket.cpp \
@@ -42,9 +43,10 @@ SOURCES += \
     src/friends/friendapplybox.cpp \
     src/friends/frienddetails.cpp \
     src/friends/friends.cpp \
+    src/global/chathistory.cpp \
+    src/global/userinfo.cpp \
     src/home/home.cpp \
     src/login/login.cpp \
-    src/login/logininfo.cpp \
     src/register/cutouthead.cpp \
     src/register/register.cpp \
     common/crc32/crc32.cpp
@@ -59,6 +61,7 @@ HEADERS += \
     common/commonproto/home_account.pb.h \
     common/commonproto/home_chat.pb.h \
     common/commonproto/home_friends.pb.h \
+    common/commonproto/home_message.pb.h \
     common/commonproto/home_relay.pb.h \
     common/log/im_log.h \
     common/socket/socket.h \
@@ -68,9 +71,10 @@ HEADERS += \
     src/friends/friendapplybox.h \
     src/friends/frienddetails.h \
     src/friends/friends.h \
+    src/global/chathistory.h \
+    src/global/userinfo.h \
     src/home/home.h \
     src/login/login.h \
-    src/login/logininfo.h \
     src/register/cutouthead.h \
     src/register/register.h \
     common/define/define.h

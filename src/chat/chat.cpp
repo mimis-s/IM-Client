@@ -7,7 +7,7 @@
 #include "../../common/commonproto/home_relay.pb.h"
 #include "../../common/define/define.h"
 #include "../../common/socket/socket.h"
-#include "../login/logininfo.h"
+#include "../global/userinfo.h"
 
 Chat::Chat(QWidget *parent) :
     QWidget(parent),
@@ -34,7 +34,6 @@ Chat::Chat(QWidget *parent) :
     pHBoxLayout->addWidget(m_pRightChatBox, 7);
 
     // socket
-    SocketControl::Instance()->RegisterRecvFunc(MessageTag_ChatSingle.Res, std::bind(&Chat::slot_ChatSingleRes, this, std::placeholders::_1));
     SocketControl::Instance()->RegisterRecvFunc(MessageTag_ChatSingle.Relay, std::bind(&Chat::slot_ChatSingleRelay, this, std::placeholders::_1));
     SocketControl::Instance()->RegisterRecvFunc(MessageTag_NotifyUserMessage.Notify, std::bind(&Chat::slot_OfflineNotify, this, std::placeholders::_1));
 }
@@ -42,12 +41,6 @@ Chat::Chat(QWidget *parent) :
 Chat::~Chat()
 {
     delete ui;
-}
-
-void Chat::slot_ChatSingleRes(char *pMessage)
-{
-    im_home_proto::ChatSingleRes *chatSingleRes = new im_home_proto::ChatSingleRes;
-    chatSingleRes->ParseFromString(pMessage);
 }
 
 void Chat::slot_ChatSingleRelay(char *pMessage)
@@ -61,7 +54,7 @@ void Chat::slot_ChatSingleRelay(char *pMessage)
     if (m_mapOneChatBox.end() != m_mapOneChatBox.find(chatSingleToReceiver->data().senderid()))
     {
         OneChatBox oneChatBox = m_mapOneChatBox[chatSingleToReceiver->data().senderid()];
-        oneChatBox.Right->AddMessage(false, QString::fromStdString(chatSingleToReceiver->data().data()), oneChatBox.Left->GetInfo().m_HeadPath);
+        oneChatBox.Right->AddMessage(chatSingleToReceiver->data());
         return;
     }
 
@@ -85,7 +78,7 @@ void Chat::slot_ChatSingleRelay(char *pMessage)
 
     AddOneChat(data);
 
-    m_mapOneChatBox[chatSingleToReceiver->data().senderid()].Right->AddMessage(false, QString::fromStdString(chatSingleToReceiver->data().data()), QString::fromStdString(getUserInfoRes->data().headimg()));
+    m_mapOneChatBox[chatSingleToReceiver->data().senderid()].Right->AddMessage(chatSingleToReceiver->data());
 }
 
 void Chat::slot_OfflineNotify(char *pMessage)
@@ -104,7 +97,6 @@ void Chat::slot_OfflineNotify(char *pMessage)
         if (m_mapOneChatBox.end() != m_mapOneChatBox.find(notifyUserMessage->offlinesinglechat(i).user().userid()))
         {
             oneChatBox = m_mapOneChatBox[notifyUserMessage->offlinesinglechat(i).user().userid()];
-//            oneChatBox.Right->AddMessage(false, QString::fromStdString(chatSingleToReceiver->data().data()), oneChatBox.Left->GetInfo().m_HeadPath);
         }else{
 
             ChatShortFrameData data;
@@ -127,10 +119,10 @@ void Chat::slot_OfflineNotify(char *pMessage)
             if (selfInfo->mUserData.UserID == notifyUserMessage->offlinesinglechat(i).data(i).senderid())
             {
                 oneChatBox.Left->UpdateData(data);
-                oneChatBox.Right->AddMessage(true, data.m_Message, oneChatBox.Left->GetInfo().m_HeadPath);
+                oneChatBox.Right->AddMessage(notifyUserMessage->offlinesinglechat(i).data(i));
             }else{
                 oneChatBox.Left->UpdateData(data);
-                oneChatBox.Right->AddMessage(false, data.m_Message, oneChatBox.Left->GetInfo().m_HeadPath);
+                oneChatBox.Right->AddMessage(notifyUserMessage->offlinesinglechat(i).data(i));
             }
         }
     }
