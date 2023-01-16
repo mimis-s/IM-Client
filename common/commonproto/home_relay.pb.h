@@ -194,6 +194,7 @@ class ChatSingleToReceiver final :
 
   enum : int {
     kDataFieldNumber = 1,
+    kSenderInfoFieldNumber = 2,
   };
   // .im_home_proto.ChatMessage Data = 1;
   bool has_data() const;
@@ -213,6 +214,24 @@ class ChatSingleToReceiver final :
       ::im_home_proto::ChatMessage* data);
   ::im_home_proto::ChatMessage* unsafe_arena_release_data();
 
+  // .im_home_proto.UserInfo SenderInfo = 2;
+  bool has_senderinfo() const;
+  private:
+  bool _internal_has_senderinfo() const;
+  public:
+  void clear_senderinfo();
+  const ::im_home_proto::UserInfo& senderinfo() const;
+  PROTOBUF_NODISCARD ::im_home_proto::UserInfo* release_senderinfo();
+  ::im_home_proto::UserInfo* mutable_senderinfo();
+  void set_allocated_senderinfo(::im_home_proto::UserInfo* senderinfo);
+  private:
+  const ::im_home_proto::UserInfo& _internal_senderinfo() const;
+  ::im_home_proto::UserInfo* _internal_mutable_senderinfo();
+  public:
+  void unsafe_arena_set_allocated_senderinfo(
+      ::im_home_proto::UserInfo* senderinfo);
+  ::im_home_proto::UserInfo* unsafe_arena_release_senderinfo();
+
   // @@protoc_insertion_point(class_scope:im_home_proto.ChatSingleToReceiver)
  private:
   class _Internal;
@@ -221,6 +240,7 @@ class ChatSingleToReceiver final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::im_home_proto::ChatMessage* data_;
+  ::im_home_proto::UserInfo* senderinfo_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_home_5frelay_2eproto;
 };
@@ -970,6 +990,91 @@ inline void ChatSingleToReceiver::set_allocated_data(::im_home_proto::ChatMessag
   }
   data_ = data;
   // @@protoc_insertion_point(field_set_allocated:im_home_proto.ChatSingleToReceiver.Data)
+}
+
+// .im_home_proto.UserInfo SenderInfo = 2;
+inline bool ChatSingleToReceiver::_internal_has_senderinfo() const {
+  return this != internal_default_instance() && senderinfo_ != nullptr;
+}
+inline bool ChatSingleToReceiver::has_senderinfo() const {
+  return _internal_has_senderinfo();
+}
+inline const ::im_home_proto::UserInfo& ChatSingleToReceiver::_internal_senderinfo() const {
+  const ::im_home_proto::UserInfo* p = senderinfo_;
+  return p != nullptr ? *p : reinterpret_cast<const ::im_home_proto::UserInfo&>(
+      ::im_home_proto::_UserInfo_default_instance_);
+}
+inline const ::im_home_proto::UserInfo& ChatSingleToReceiver::senderinfo() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.ChatSingleToReceiver.SenderInfo)
+  return _internal_senderinfo();
+}
+inline void ChatSingleToReceiver::unsafe_arena_set_allocated_senderinfo(
+    ::im_home_proto::UserInfo* senderinfo) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(senderinfo_);
+  }
+  senderinfo_ = senderinfo;
+  if (senderinfo) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:im_home_proto.ChatSingleToReceiver.SenderInfo)
+}
+inline ::im_home_proto::UserInfo* ChatSingleToReceiver::release_senderinfo() {
+  
+  ::im_home_proto::UserInfo* temp = senderinfo_;
+  senderinfo_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::im_home_proto::UserInfo* ChatSingleToReceiver::unsafe_arena_release_senderinfo() {
+  // @@protoc_insertion_point(field_release:im_home_proto.ChatSingleToReceiver.SenderInfo)
+  
+  ::im_home_proto::UserInfo* temp = senderinfo_;
+  senderinfo_ = nullptr;
+  return temp;
+}
+inline ::im_home_proto::UserInfo* ChatSingleToReceiver::_internal_mutable_senderinfo() {
+  
+  if (senderinfo_ == nullptr) {
+    auto* p = CreateMaybeMessage<::im_home_proto::UserInfo>(GetArenaForAllocation());
+    senderinfo_ = p;
+  }
+  return senderinfo_;
+}
+inline ::im_home_proto::UserInfo* ChatSingleToReceiver::mutable_senderinfo() {
+  ::im_home_proto::UserInfo* _msg = _internal_mutable_senderinfo();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.ChatSingleToReceiver.SenderInfo)
+  return _msg;
+}
+inline void ChatSingleToReceiver::set_allocated_senderinfo(::im_home_proto::UserInfo* senderinfo) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(senderinfo_);
+  }
+  if (senderinfo) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(senderinfo));
+    if (message_arena != submessage_arena) {
+      senderinfo = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, senderinfo, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  senderinfo_ = senderinfo;
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.ChatSingleToReceiver.SenderInfo)
 }
 
 // -------------------------------------------------------------------

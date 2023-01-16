@@ -84,7 +84,7 @@ public:
         }
     }
 
-    void AddOtherUserInfo(const im_home_proto::UserInfo clientUserInfo)
+    ClientUserInfo* AddOtherUserInfo(const im_home_proto::UserInfo clientUserInfo)
     {
         ClientUserInfo *pInfo = new ClientUserInfo();
         pInfo->mUserData.UserID = clientUserInfo.userid();
@@ -119,6 +119,7 @@ public:
             imag.save(headPath, "JPG");
         }
         m_mapOtherUserInfo[pInfo->mUserData.UserID] = pInfo;
+        return pInfo;
     }
 
     // 读取本地存储的头像(如果服务器头像更新或者客户端没有存储, 则重新获取)

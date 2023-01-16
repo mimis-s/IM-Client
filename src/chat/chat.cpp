@@ -50,34 +50,31 @@ void Chat::slot_ChatSingleRelay(char *pMessage)
     im_home_proto::ChatSingleToReceiver *chatSingleToReceiver = new im_home_proto::ChatSingleToReceiver;
     chatSingleToReceiver->ParseFromString(pMessage);
 
+    ClientUserInfo* pOtherUserInfo = UserInfo::Instance()->AddOtherUserInfo(chatSingleToReceiver->senderinfo());
+
+    ChatShortFrameData data;
+    data.m_Name = pOtherUserInfo->mUserData.UserName;
+    data.m_Time = QDateTime::fromTime_t(chatSingleToReceiver->data().sendtimestamp()).toString(TimeFormat);
+    data.m_Message = QString::fromStdString(chatSingleToReceiver->data().data());
+    data.m_FriendID = chatSingleToReceiver->data().senderid();
+    data.m_HeadPath = UserInfo::Instance()->GetUserHeadPath(chatSingleToReceiver->senderinfo().userid(), false);
+    data.m_UserStatus = pOtherUserInfo->mUserData.ProtoUserInfo.status();
+
     // 这里有两种情况,收到消息的好友在当前聊天列表中,没有在当前聊天列表中
 
     // 收到消息的好友在当前聊天列表中
     if (m_mapOneChatBox.end() != m_mapOneChatBox.find(chatSingleToReceiver->data().senderid()))
     {
         OneChatBox oneChatBox = m_mapOneChatBox[chatSingleToReceiver->data().senderid()];
-        oneChatBox.Right->AddMessage(chatSingleToReceiver->data());
+        int tipsNum = oneChatBox.Left->GetInfo().m_TipsNum;
+        data.m_TipsNum = tipsNum + 1;
+        oneChatBox.Left->UpdateData(data);
+        oneChatBox.Right->InsertMessage(chatSingleToReceiver->data());
         return;
     }
 
-    // 没有在当前聊天列表中, 先获取用户信息
-    im_home_proto::GetUserInfoReq *getUserInfoReq = new im_home_proto::GetUserInfoReq;
-    getUserInfoReq->set_userid(chatSingleToReceiver->data().senderid());
-
-    char *recvMessage = SocketControl::Instance()->BlockSendMessage(MessageTag_GetUserInfo.Req, MessageTag_GetUserInfo.Res, getUserInfoReq->SerializeAsString());
-
-    im_home_proto::GetUserInfoRes *getUserInfoRes = new im_home_proto::GetUserInfoRes;
-    getUserInfoRes->ParseFromString(recvMessage);
-
-    ChatShortFrameData data;
-    data.m_Name = QString::fromStdString(getUserInfoRes->data().username());
-    data.m_Time = chatSingleToReceiver->data().sendtimestamp();
-    data.m_Message = QString::fromStdString(chatSingleToReceiver->data().data());
+    // 没有在当前聊天列表中
     data.m_TipsNum = 1;
-    data.m_FriendID = chatSingleToReceiver->data().senderid();
-    data.m_HeadPath = QString::fromStdString(getUserInfoRes->data().headimg());
-    data.m_UserStatus = getUserInfoRes->data().status();
-
     AddOneChat(data);
 
     m_mapOneChatBox[chatSingleToReceiver->data().senderid()].Right->AddMessage(chatSingleToReceiver->data());
