@@ -62,7 +62,7 @@ public:
 
         if (m_pSelfUserInfo->mUserData.HeadImg != "")
         {
-            QString headPath = DynamicResource_Img_Head;
+            QString headPath = DynamicResource + QString::number(clientUserInfo.userid()) + "/img/head/";
 
             QDir dir;
             if(!dir.exists(headPath))
@@ -98,7 +98,7 @@ public:
 
         if (pInfo->mUserData.HeadImg != "")
         {
-            QString headPath = DynamicResource_Img_Head;
+            QString headPath = DynamicResource + QString::number(m_pSelfUserInfo->mUserData.UserID) + "/img/head/";
 
             QDir dir;
             if(!dir.exists(headPath))
@@ -125,7 +125,7 @@ public:
     // 读取本地存储的头像(如果服务器头像更新或者客户端没有存储, 则重新获取)
     QString GetUserHeadPath(int64_t userID, bool bUpdateHead)
     {
-        QString headPath = DynamicResource_Img_Head;
+        QString headPath = DynamicResource + QString::number(m_pSelfUserInfo->mUserData.UserID) + "/img/head/";
 
         QDir dir;
         if(!dir.exists(headPath))

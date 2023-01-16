@@ -30,7 +30,7 @@ void ChatHistory::ReadOfflineMessage(int64_t friendID)
 
 
     int64_t selfUserID = UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID;
-    QString filePath = DynamicResource_Chat_History + QString::number(selfUserID) + "/";
+    QString filePath = DynamicResource + QString::number(selfUserID) + "/chat_history/";
 
     std::map<int64_t, LocalChatHistoryInfo> mapChatHistory;
     QJsonArray historyArray;
@@ -87,7 +87,7 @@ void ChatHistory::ReadOfflineMessage(int64_t friendID)
 std::map<int64_t, LocalChatHistoryInfo> ChatHistory::GetHistoryChat(int64_t friendID, int64_t maxMessageID)
 {
     int64_t selfUserID = UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID;
-    QString filePath = DynamicResource_Chat_History + QString::number(selfUserID) + "/";
+    QString filePath = DynamicResource + QString::number(selfUserID) + "/chat_history/";
 
     std::map<int64_t, LocalChatHistoryInfo> mapChatHistory;
 

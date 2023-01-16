@@ -13,8 +13,7 @@ struct MessageTag {
 const QString TimeFormat = "yyyy-MM-dd hh:mm:ss";
 const QString StartTime = QDateTime::currentDateTime().toString(TimeFormat);
 const QString ClientMainPath = "/home/zhangbin/work/qt_pro/IM-Client/";
-const QString DynamicResource_Img_Head = ClientMainPath + "dynamic_resource/" + StartTime + "/img/head/";
-const QString DynamicResource_Chat_History = ClientMainPath + "dynamic_resource/" + StartTime + "/chat_history/";
+const QString DynamicResource = ClientMainPath + "dynamic_resource/";
 
 const MessageTag MessageTag_Error                   = {Res: CRC32("CommonError")};
 const MessageTag MessageTag_Login                   = {Req: CRC32("LoginReq"), Res: CRC32("LoginRes")};
