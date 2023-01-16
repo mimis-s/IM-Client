@@ -23,7 +23,6 @@
 #include <google/protobuf/io/coded_stream.h>
 #include <google/protobuf/arena.h>
 #include <google/protobuf/arenastring.h>
-#include <google/protobuf/generated_message_bases.h>
 #include <google/protobuf/generated_message_util.h>
 #include <google/protobuf/metadata_lite.h>
 #include <google/protobuf/generated_message_reflection.h>
@@ -65,12 +64,12 @@ extern DelFriendsReqDefaultTypeInternal _DelFriendsReq_default_instance_;
 class DelFriendsRes;
 struct DelFriendsResDefaultTypeInternal;
 extern DelFriendsResDefaultTypeInternal _DelFriendsRes_default_instance_;
-class GetFriendsListReq;
-struct GetFriendsListReqDefaultTypeInternal;
-extern GetFriendsListReqDefaultTypeInternal _GetFriendsListReq_default_instance_;
-class GetFriendsListRes;
-struct GetFriendsListResDefaultTypeInternal;
-extern GetFriendsListResDefaultTypeInternal _GetFriendsListRes_default_instance_;
+class FriendInfoStatus;
+struct FriendInfoStatusDefaultTypeInternal;
+extern FriendInfoStatusDefaultTypeInternal _FriendInfoStatus_default_instance_;
+class FriendsStatusList;
+struct FriendsStatusListDefaultTypeInternal;
+extern FriendsStatusListDefaultTypeInternal _FriendsStatusList_default_instance_;
 }  // namespace im_home_proto
 PROTOBUF_NAMESPACE_OPEN
 template<> ::im_home_proto::AgreeFriendApplyReq* Arena::CreateMaybeMessage<::im_home_proto::AgreeFriendApplyReq>(Arena*);
@@ -79,30 +78,31 @@ template<> ::im_home_proto::ApplyFriendsReq* Arena::CreateMaybeMessage<::im_home
 template<> ::im_home_proto::ApplyFriendsRes* Arena::CreateMaybeMessage<::im_home_proto::ApplyFriendsRes>(Arena*);
 template<> ::im_home_proto::DelFriendsReq* Arena::CreateMaybeMessage<::im_home_proto::DelFriendsReq>(Arena*);
 template<> ::im_home_proto::DelFriendsRes* Arena::CreateMaybeMessage<::im_home_proto::DelFriendsRes>(Arena*);
-template<> ::im_home_proto::GetFriendsListReq* Arena::CreateMaybeMessage<::im_home_proto::GetFriendsListReq>(Arena*);
-template<> ::im_home_proto::GetFriendsListRes* Arena::CreateMaybeMessage<::im_home_proto::GetFriendsListRes>(Arena*);
+template<> ::im_home_proto::FriendInfoStatus* Arena::CreateMaybeMessage<::im_home_proto::FriendInfoStatus>(Arena*);
+template<> ::im_home_proto::FriendsStatusList* Arena::CreateMaybeMessage<::im_home_proto::FriendsStatusList>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace im_home_proto {
 
 // ===================================================================
 
-class GetFriendsListReq final :
-    public ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase /* @@protoc_insertion_point(class_definition:im_home_proto.GetFriendsListReq) */ {
+class FriendInfoStatus final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.FriendInfoStatus) */ {
  public:
-  inline GetFriendsListReq() : GetFriendsListReq(nullptr) {}
-  explicit PROTOBUF_CONSTEXPR GetFriendsListReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline FriendInfoStatus() : FriendInfoStatus(nullptr) {}
+  ~FriendInfoStatus() override;
+  explicit PROTOBUF_CONSTEXPR FriendInfoStatus(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  GetFriendsListReq(const GetFriendsListReq& from);
-  GetFriendsListReq(GetFriendsListReq&& from) noexcept
-    : GetFriendsListReq() {
+  FriendInfoStatus(const FriendInfoStatus& from);
+  FriendInfoStatus(FriendInfoStatus&& from) noexcept
+    : FriendInfoStatus() {
     *this = ::std::move(from);
   }
 
-  inline GetFriendsListReq& operator=(const GetFriendsListReq& from) {
+  inline FriendInfoStatus& operator=(const FriendInfoStatus& from) {
     CopyFrom(from);
     return *this;
   }
-  inline GetFriendsListReq& operator=(GetFriendsListReq&& from) noexcept {
+  inline FriendInfoStatus& operator=(FriendInfoStatus&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -125,20 +125,20 @@ class GetFriendsListReq final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const GetFriendsListReq& default_instance() {
+  static const FriendInfoStatus& default_instance() {
     return *internal_default_instance();
   }
-  static inline const GetFriendsListReq* internal_default_instance() {
-    return reinterpret_cast<const GetFriendsListReq*>(
-               &_GetFriendsListReq_default_instance_);
+  static inline const FriendInfoStatus* internal_default_instance() {
+    return reinterpret_cast<const FriendInfoStatus*>(
+               &_FriendInfoStatus_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(GetFriendsListReq& a, GetFriendsListReq& b) {
+  friend void swap(FriendInfoStatus& a, FriendInfoStatus& b) {
     a.Swap(&b);
   }
-  inline void Swap(GetFriendsListReq* other) {
+  inline void Swap(FriendInfoStatus* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -151,7 +151,7 @@ class GetFriendsListReq final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(GetFriendsListReq* other) {
+  void UnsafeArenaSwap(FriendInfoStatus* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -159,130 +159,13 @@ class GetFriendsListReq final :
 
   // implements Message ----------------------------------------------
 
-  GetFriendsListReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GetFriendsListReq>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const GetFriendsListReq& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl(this, from);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const GetFriendsListReq& from) {
-    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl(this, from);
-  }
-  public:
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "im_home_proto.GetFriendsListReq";
-  }
-  protected:
-  explicit GetFriendsListReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  // @@protoc_insertion_point(class_scope:im_home_proto.GetFriendsListReq)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  friend struct ::TableStruct_home_5ffriends_2eproto;
-};
-// -------------------------------------------------------------------
-
-class GetFriendsListRes final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.GetFriendsListRes) */ {
- public:
-  inline GetFriendsListRes() : GetFriendsListRes(nullptr) {}
-  ~GetFriendsListRes() override;
-  explicit PROTOBUF_CONSTEXPR GetFriendsListRes(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  GetFriendsListRes(const GetFriendsListRes& from);
-  GetFriendsListRes(GetFriendsListRes&& from) noexcept
-    : GetFriendsListRes() {
-    *this = ::std::move(from);
-  }
-
-  inline GetFriendsListRes& operator=(const GetFriendsListRes& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline GetFriendsListRes& operator=(GetFriendsListRes&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const GetFriendsListRes& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const GetFriendsListRes* internal_default_instance() {
-    return reinterpret_cast<const GetFriendsListRes*>(
-               &_GetFriendsListRes_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(GetFriendsListRes& a, GetFriendsListRes& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(GetFriendsListRes* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(GetFriendsListRes* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  GetFriendsListRes* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<GetFriendsListRes>(arena);
+  FriendInfoStatus* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FriendInfoStatus>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const GetFriendsListRes& from);
+  void CopyFrom(const FriendInfoStatus& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const GetFriendsListRes& from);
+  void MergeFrom(const FriendInfoStatus& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -299,15 +182,15 @@ class GetFriendsListRes final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(GetFriendsListRes* other);
+  void InternalSwap(FriendInfoStatus* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "im_home_proto.GetFriendsListRes";
+    return "im_home_proto.FriendInfoStatus";
   }
   protected:
-  explicit GetFriendsListRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit FriendInfoStatus(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -321,34 +204,237 @@ class GetFriendsListRes final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kListFieldNumber = 1,
+    kFriendFieldNumber = 1,
+    kIsUpdateHeadFieldNumber = 2,
   };
-  // repeated .im_home_proto.UserInfo List = 1;
-  int list_size() const;
+  // .im_home_proto.UserInfo Friend = 1;
+  bool has_friend_() const;
   private:
-  int _internal_list_size() const;
+  bool _internal_has_friend_() const;
   public:
-  void clear_list();
-  ::im_home_proto::UserInfo* mutable_list(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::UserInfo >*
-      mutable_list();
+  void clear_friend_();
+  const ::im_home_proto::UserInfo& friend_() const;
+  PROTOBUF_NODISCARD ::im_home_proto::UserInfo* release_friend_();
+  ::im_home_proto::UserInfo* mutable_friend_();
+  void set_allocated_friend_(::im_home_proto::UserInfo* friend_);
   private:
-  const ::im_home_proto::UserInfo& _internal_list(int index) const;
-  ::im_home_proto::UserInfo* _internal_add_list();
+  const ::im_home_proto::UserInfo& _internal_friend_() const;
+  ::im_home_proto::UserInfo* _internal_mutable_friend_();
   public:
-  const ::im_home_proto::UserInfo& list(int index) const;
-  ::im_home_proto::UserInfo* add_list();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::UserInfo >&
-      list() const;
+  void unsafe_arena_set_allocated_friend_(
+      ::im_home_proto::UserInfo* friend_);
+  ::im_home_proto::UserInfo* unsafe_arena_release_friend_();
 
-  // @@protoc_insertion_point(class_scope:im_home_proto.GetFriendsListRes)
+  // bool IsUpdateHead = 2;
+  void clear_isupdatehead();
+  bool isupdatehead() const;
+  void set_isupdatehead(bool value);
+  private:
+  bool _internal_isupdatehead() const;
+  void _internal_set_isupdatehead(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.FriendInfoStatus)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::UserInfo > list_;
+  ::im_home_proto::UserInfo* friend__;
+  bool isupdatehead_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_home_5ffriends_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FriendsStatusList final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.FriendsStatusList) */ {
+ public:
+  inline FriendsStatusList() : FriendsStatusList(nullptr) {}
+  ~FriendsStatusList() override;
+  explicit PROTOBUF_CONSTEXPR FriendsStatusList(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  FriendsStatusList(const FriendsStatusList& from);
+  FriendsStatusList(FriendsStatusList&& from) noexcept
+    : FriendsStatusList() {
+    *this = ::std::move(from);
+  }
+
+  inline FriendsStatusList& operator=(const FriendsStatusList& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FriendsStatusList& operator=(FriendsStatusList&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const FriendsStatusList& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const FriendsStatusList* internal_default_instance() {
+    return reinterpret_cast<const FriendsStatusList*>(
+               &_FriendsStatusList_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(FriendsStatusList& a, FriendsStatusList& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FriendsStatusList* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(FriendsStatusList* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  FriendsStatusList* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<FriendsStatusList>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const FriendsStatusList& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const FriendsStatusList& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FriendsStatusList* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "im_home_proto.FriendsStatusList";
+  }
+  protected:
+  explicit FriendsStatusList(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFriendsStatusListFieldNumber = 1,
+    kSendFriendApplyListFieldNumber = 2,
+    kReceiveFriendApplyListFieldNumber = 3,
+  };
+  // repeated .im_home_proto.FriendInfoStatus FriendsStatusList = 1;
+  int friendsstatuslist_size() const;
+  private:
+  int _internal_friendsstatuslist_size() const;
+  public:
+  void clear_friendsstatuslist();
+  ::im_home_proto::FriendInfoStatus* mutable_friendsstatuslist(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus >*
+      mutable_friendsstatuslist();
+  private:
+  const ::im_home_proto::FriendInfoStatus& _internal_friendsstatuslist(int index) const;
+  ::im_home_proto::FriendInfoStatus* _internal_add_friendsstatuslist();
+  public:
+  const ::im_home_proto::FriendInfoStatus& friendsstatuslist(int index) const;
+  ::im_home_proto::FriendInfoStatus* add_friendsstatuslist();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus >&
+      friendsstatuslist() const;
+
+  // repeated .im_home_proto.FriendInfoStatus SendFriendApplyList = 2;
+  int sendfriendapplylist_size() const;
+  private:
+  int _internal_sendfriendapplylist_size() const;
+  public:
+  void clear_sendfriendapplylist();
+  ::im_home_proto::FriendInfoStatus* mutable_sendfriendapplylist(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus >*
+      mutable_sendfriendapplylist();
+  private:
+  const ::im_home_proto::FriendInfoStatus& _internal_sendfriendapplylist(int index) const;
+  ::im_home_proto::FriendInfoStatus* _internal_add_sendfriendapplylist();
+  public:
+  const ::im_home_proto::FriendInfoStatus& sendfriendapplylist(int index) const;
+  ::im_home_proto::FriendInfoStatus* add_sendfriendapplylist();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus >&
+      sendfriendapplylist() const;
+
+  // repeated .im_home_proto.FriendInfoStatus ReceiveFriendApplyList = 3;
+  int receivefriendapplylist_size() const;
+  private:
+  int _internal_receivefriendapplylist_size() const;
+  public:
+  void clear_receivefriendapplylist();
+  ::im_home_proto::FriendInfoStatus* mutable_receivefriendapplylist(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus >*
+      mutable_receivefriendapplylist();
+  private:
+  const ::im_home_proto::FriendInfoStatus& _internal_receivefriendapplylist(int index) const;
+  ::im_home_proto::FriendInfoStatus* _internal_add_receivefriendapplylist();
+  public:
+  const ::im_home_proto::FriendInfoStatus& receivefriendapplylist(int index) const;
+  ::im_home_proto::FriendInfoStatus* add_receivefriendapplylist();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus >&
+      receivefriendapplylist() const;
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.FriendsStatusList)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus > friendsstatuslist_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus > sendfriendapplylist_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus > receivefriendapplylist_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_home_5ffriends_2eproto;
 };
@@ -1228,47 +1314,235 @@ class DelFriendsRes final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// GetFriendsListReq
+// FriendInfoStatus
+
+// .im_home_proto.UserInfo Friend = 1;
+inline bool FriendInfoStatus::_internal_has_friend_() const {
+  return this != internal_default_instance() && friend__ != nullptr;
+}
+inline bool FriendInfoStatus::has_friend_() const {
+  return _internal_has_friend_();
+}
+inline const ::im_home_proto::UserInfo& FriendInfoStatus::_internal_friend_() const {
+  const ::im_home_proto::UserInfo* p = friend__;
+  return p != nullptr ? *p : reinterpret_cast<const ::im_home_proto::UserInfo&>(
+      ::im_home_proto::_UserInfo_default_instance_);
+}
+inline const ::im_home_proto::UserInfo& FriendInfoStatus::friend_() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.FriendInfoStatus.Friend)
+  return _internal_friend_();
+}
+inline void FriendInfoStatus::unsafe_arena_set_allocated_friend_(
+    ::im_home_proto::UserInfo* friend_) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(friend__);
+  }
+  friend__ = friend_;
+  if (friend_) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:im_home_proto.FriendInfoStatus.Friend)
+}
+inline ::im_home_proto::UserInfo* FriendInfoStatus::release_friend_() {
+  
+  ::im_home_proto::UserInfo* temp = friend__;
+  friend__ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::im_home_proto::UserInfo* FriendInfoStatus::unsafe_arena_release_friend_() {
+  // @@protoc_insertion_point(field_release:im_home_proto.FriendInfoStatus.Friend)
+  
+  ::im_home_proto::UserInfo* temp = friend__;
+  friend__ = nullptr;
+  return temp;
+}
+inline ::im_home_proto::UserInfo* FriendInfoStatus::_internal_mutable_friend_() {
+  
+  if (friend__ == nullptr) {
+    auto* p = CreateMaybeMessage<::im_home_proto::UserInfo>(GetArenaForAllocation());
+    friend__ = p;
+  }
+  return friend__;
+}
+inline ::im_home_proto::UserInfo* FriendInfoStatus::mutable_friend_() {
+  ::im_home_proto::UserInfo* _msg = _internal_mutable_friend_();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.FriendInfoStatus.Friend)
+  return _msg;
+}
+inline void FriendInfoStatus::set_allocated_friend_(::im_home_proto::UserInfo* friend_) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(friend__);
+  }
+  if (friend_) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(friend_));
+    if (message_arena != submessage_arena) {
+      friend_ = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, friend_, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  friend__ = friend_;
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.FriendInfoStatus.Friend)
+}
+
+// bool IsUpdateHead = 2;
+inline void FriendInfoStatus::clear_isupdatehead() {
+  isupdatehead_ = false;
+}
+inline bool FriendInfoStatus::_internal_isupdatehead() const {
+  return isupdatehead_;
+}
+inline bool FriendInfoStatus::isupdatehead() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.FriendInfoStatus.IsUpdateHead)
+  return _internal_isupdatehead();
+}
+inline void FriendInfoStatus::_internal_set_isupdatehead(bool value) {
+  
+  isupdatehead_ = value;
+}
+inline void FriendInfoStatus::set_isupdatehead(bool value) {
+  _internal_set_isupdatehead(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.FriendInfoStatus.IsUpdateHead)
+}
 
 // -------------------------------------------------------------------
 
-// GetFriendsListRes
+// FriendsStatusList
 
-// repeated .im_home_proto.UserInfo List = 1;
-inline int GetFriendsListRes::_internal_list_size() const {
-  return list_.size();
+// repeated .im_home_proto.FriendInfoStatus FriendsStatusList = 1;
+inline int FriendsStatusList::_internal_friendsstatuslist_size() const {
+  return friendsstatuslist_.size();
 }
-inline int GetFriendsListRes::list_size() const {
-  return _internal_list_size();
+inline int FriendsStatusList::friendsstatuslist_size() const {
+  return _internal_friendsstatuslist_size();
 }
-inline ::im_home_proto::UserInfo* GetFriendsListRes::mutable_list(int index) {
-  // @@protoc_insertion_point(field_mutable:im_home_proto.GetFriendsListRes.List)
-  return list_.Mutable(index);
+inline void FriendsStatusList::clear_friendsstatuslist() {
+  friendsstatuslist_.Clear();
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::UserInfo >*
-GetFriendsListRes::mutable_list() {
-  // @@protoc_insertion_point(field_mutable_list:im_home_proto.GetFriendsListRes.List)
-  return &list_;
+inline ::im_home_proto::FriendInfoStatus* FriendsStatusList::mutable_friendsstatuslist(int index) {
+  // @@protoc_insertion_point(field_mutable:im_home_proto.FriendsStatusList.FriendsStatusList)
+  return friendsstatuslist_.Mutable(index);
 }
-inline const ::im_home_proto::UserInfo& GetFriendsListRes::_internal_list(int index) const {
-  return list_.Get(index);
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus >*
+FriendsStatusList::mutable_friendsstatuslist() {
+  // @@protoc_insertion_point(field_mutable_list:im_home_proto.FriendsStatusList.FriendsStatusList)
+  return &friendsstatuslist_;
 }
-inline const ::im_home_proto::UserInfo& GetFriendsListRes::list(int index) const {
-  // @@protoc_insertion_point(field_get:im_home_proto.GetFriendsListRes.List)
-  return _internal_list(index);
+inline const ::im_home_proto::FriendInfoStatus& FriendsStatusList::_internal_friendsstatuslist(int index) const {
+  return friendsstatuslist_.Get(index);
 }
-inline ::im_home_proto::UserInfo* GetFriendsListRes::_internal_add_list() {
-  return list_.Add();
+inline const ::im_home_proto::FriendInfoStatus& FriendsStatusList::friendsstatuslist(int index) const {
+  // @@protoc_insertion_point(field_get:im_home_proto.FriendsStatusList.FriendsStatusList)
+  return _internal_friendsstatuslist(index);
 }
-inline ::im_home_proto::UserInfo* GetFriendsListRes::add_list() {
-  ::im_home_proto::UserInfo* _add = _internal_add_list();
-  // @@protoc_insertion_point(field_add:im_home_proto.GetFriendsListRes.List)
+inline ::im_home_proto::FriendInfoStatus* FriendsStatusList::_internal_add_friendsstatuslist() {
+  return friendsstatuslist_.Add();
+}
+inline ::im_home_proto::FriendInfoStatus* FriendsStatusList::add_friendsstatuslist() {
+  ::im_home_proto::FriendInfoStatus* _add = _internal_add_friendsstatuslist();
+  // @@protoc_insertion_point(field_add:im_home_proto.FriendsStatusList.FriendsStatusList)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::UserInfo >&
-GetFriendsListRes::list() const {
-  // @@protoc_insertion_point(field_list:im_home_proto.GetFriendsListRes.List)
-  return list_;
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus >&
+FriendsStatusList::friendsstatuslist() const {
+  // @@protoc_insertion_point(field_list:im_home_proto.FriendsStatusList.FriendsStatusList)
+  return friendsstatuslist_;
+}
+
+// repeated .im_home_proto.FriendInfoStatus SendFriendApplyList = 2;
+inline int FriendsStatusList::_internal_sendfriendapplylist_size() const {
+  return sendfriendapplylist_.size();
+}
+inline int FriendsStatusList::sendfriendapplylist_size() const {
+  return _internal_sendfriendapplylist_size();
+}
+inline void FriendsStatusList::clear_sendfriendapplylist() {
+  sendfriendapplylist_.Clear();
+}
+inline ::im_home_proto::FriendInfoStatus* FriendsStatusList::mutable_sendfriendapplylist(int index) {
+  // @@protoc_insertion_point(field_mutable:im_home_proto.FriendsStatusList.SendFriendApplyList)
+  return sendfriendapplylist_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus >*
+FriendsStatusList::mutable_sendfriendapplylist() {
+  // @@protoc_insertion_point(field_mutable_list:im_home_proto.FriendsStatusList.SendFriendApplyList)
+  return &sendfriendapplylist_;
+}
+inline const ::im_home_proto::FriendInfoStatus& FriendsStatusList::_internal_sendfriendapplylist(int index) const {
+  return sendfriendapplylist_.Get(index);
+}
+inline const ::im_home_proto::FriendInfoStatus& FriendsStatusList::sendfriendapplylist(int index) const {
+  // @@protoc_insertion_point(field_get:im_home_proto.FriendsStatusList.SendFriendApplyList)
+  return _internal_sendfriendapplylist(index);
+}
+inline ::im_home_proto::FriendInfoStatus* FriendsStatusList::_internal_add_sendfriendapplylist() {
+  return sendfriendapplylist_.Add();
+}
+inline ::im_home_proto::FriendInfoStatus* FriendsStatusList::add_sendfriendapplylist() {
+  ::im_home_proto::FriendInfoStatus* _add = _internal_add_sendfriendapplylist();
+  // @@protoc_insertion_point(field_add:im_home_proto.FriendsStatusList.SendFriendApplyList)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus >&
+FriendsStatusList::sendfriendapplylist() const {
+  // @@protoc_insertion_point(field_list:im_home_proto.FriendsStatusList.SendFriendApplyList)
+  return sendfriendapplylist_;
+}
+
+// repeated .im_home_proto.FriendInfoStatus ReceiveFriendApplyList = 3;
+inline int FriendsStatusList::_internal_receivefriendapplylist_size() const {
+  return receivefriendapplylist_.size();
+}
+inline int FriendsStatusList::receivefriendapplylist_size() const {
+  return _internal_receivefriendapplylist_size();
+}
+inline void FriendsStatusList::clear_receivefriendapplylist() {
+  receivefriendapplylist_.Clear();
+}
+inline ::im_home_proto::FriendInfoStatus* FriendsStatusList::mutable_receivefriendapplylist(int index) {
+  // @@protoc_insertion_point(field_mutable:im_home_proto.FriendsStatusList.ReceiveFriendApplyList)
+  return receivefriendapplylist_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus >*
+FriendsStatusList::mutable_receivefriendapplylist() {
+  // @@protoc_insertion_point(field_mutable_list:im_home_proto.FriendsStatusList.ReceiveFriendApplyList)
+  return &receivefriendapplylist_;
+}
+inline const ::im_home_proto::FriendInfoStatus& FriendsStatusList::_internal_receivefriendapplylist(int index) const {
+  return receivefriendapplylist_.Get(index);
+}
+inline const ::im_home_proto::FriendInfoStatus& FriendsStatusList::receivefriendapplylist(int index) const {
+  // @@protoc_insertion_point(field_get:im_home_proto.FriendsStatusList.ReceiveFriendApplyList)
+  return _internal_receivefriendapplylist(index);
+}
+inline ::im_home_proto::FriendInfoStatus* FriendsStatusList::_internal_add_receivefriendapplylist() {
+  return receivefriendapplylist_.Add();
+}
+inline ::im_home_proto::FriendInfoStatus* FriendsStatusList::add_receivefriendapplylist() {
+  ::im_home_proto::FriendInfoStatus* _add = _internal_add_receivefriendapplylist();
+  // @@protoc_insertion_point(field_add:im_home_proto.FriendsStatusList.ReceiveFriendApplyList)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::FriendInfoStatus >&
+FriendsStatusList::receivefriendapplylist() const {
+  // @@protoc_insertion_point(field_list:im_home_proto.FriendsStatusList.ReceiveFriendApplyList)
+  return receivefriendapplylist_;
 }
 
 // -------------------------------------------------------------------

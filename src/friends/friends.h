@@ -21,8 +21,8 @@ class Friends : public QWidget
 public:
     explicit Friends(QWidget *parent = nullptr);
     ~Friends();
-    // 获取好友列表
-    void GetFriendsList();
+//    // 获取好友列表
+//    void GetFriendsList();
 
     // 获取好友申请列表
     void GetFriendApplyList();
@@ -36,7 +36,7 @@ protected slots:
     void slot_AgreeFriendApplyRes(char * recvMessage);
     void slot_AgreeFriendApplyRelay(char * recvMessage);
     void slot_ApplyFriendsRes(char * recvMessage);
-    void slot_GetFriendsListRes(char * recvMessage);
+    void slot_NotifyFriendsStatusList(char * recvMessage);
 
     // 双击好友跳转到聊天界面
     void slot_ChatShortFrameClickDouble(ChatShortFrameData data);

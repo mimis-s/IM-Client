@@ -3,6 +3,7 @@
 #include <QHBoxLayout>
 #include <QAbstractItemView>
 #include <QListWidgetItem>
+#include <QDateTime>
 #include "../../common/commonproto/home_chat.pb.h"
 #include "../../common/commonproto/home_relay.pb.h"
 #include "../../common/define/define.h"
@@ -104,7 +105,7 @@ void Chat::slot_OfflineNotify(char *pMessage)
             ChatShortFrameData data;
             data.m_Name = QString::fromStdString(notifyUserMessage->offlinesinglechat(i).user().username());
             data.m_FriendID = notifyUserMessage->offlinesinglechat(i).user().userid();
-            data.m_HeadPath = UserInfo::Instance()->GetUserHeadPath(notifyUserMessage->offlinesinglechat(i).user().userid());
+            data.m_HeadPath = UserInfo::Instance()->GetUserHeadPath(notifyUserMessage->offlinesinglechat(i).user().userid(), false);
             data.m_UserStatus = notifyUserMessage->offlinesinglechat(i).user().status();
             oneChatBox = AddOneChat(data);
         }
@@ -114,18 +115,12 @@ void Chat::slot_OfflineNotify(char *pMessage)
         // 消息
         for(int j = 0; j < notifyUserMessage->offlinesinglechat(i).data_size(); j++) {
             ChatShortFrameData data;
-            data.m_Time = notifyUserMessage->offlinesinglechat(i).data(i).sendtimestamp();
+            data.m_Time = QDateTime::fromTime_t(notifyUserMessage->offlinesinglechat(i).data(i).sendtimestamp()).toString(TimeFormat);
             data.m_TipsNum = ++messageNum;
             data.m_Message = QString::fromStdString(notifyUserMessage->offlinesinglechat(i).data(i).data());
 
-            if (selfInfo->mUserData.UserID == notifyUserMessage->offlinesinglechat(i).data(i).senderid())
-            {
-                oneChatBox.Left->UpdateData(data);
-                oneChatBox.Right->AddMessage(notifyUserMessage->offlinesinglechat(i).data(i));
-            }else{
-                oneChatBox.Left->UpdateData(data);
-                oneChatBox.Right->AddMessage(notifyUserMessage->offlinesinglechat(i).data(i));
-            }
+            oneChatBox.Left->UpdateData(data);
+            oneChatBox.Right->AddMessage(notifyUserMessage->offlinesinglechat(i).data(i));
         }
     }
 }

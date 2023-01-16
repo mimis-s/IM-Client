@@ -60,8 +60,7 @@ Friends::Friends(QWidget *parent) :
     // socket
     SocketControl::Instance()->RegisterRecvFunc(MessageTag_ApplyFriends.Relay, std::bind(&Friends::slot_ApplyFriendsRelay, this, std::placeholders::_1));
     SocketControl::Instance()->RegisterRecvFunc(MessageTag_ApplyFriends.Res, std::bind(&Friends::slot_ApplyFriendsRes, this, std::placeholders::_1));
-    SocketControl::Instance()->RegisterRecvFunc(MessageTag_GetFriendsList.Res, std::bind(&Friends::slot_GetFriendsListRes, this, std::placeholders::_1));
-
+    SocketControl::Instance()->RegisterRecvFunc(MessageTag_NotifyFriendsStatusList.Notify, std::bind(&Friends::slot_NotifyFriendsStatusList, this, std::placeholders::_1));
 }
 
 Friends::~Friends()
@@ -69,38 +68,39 @@ Friends::~Friends()
     delete ui;
 }
 
-void Friends::GetFriendsList()
-{
-    im_home_proto::GetFriendsListReq *getFriendsListReq = new im_home_proto::GetFriendsListReq;
+//void Friends::GetFriendsList()
+//{
+//    im_home_proto::GetFriendsListReq *getFriendsListReq = new im_home_proto::GetFriendsListReq;
 
-    IMLog::Instance()->Info(QString("send getFriendsListReq"));
-    SocketControl::Instance()->SendMessage(MessageTag_GetFriendsList.Req, getFriendsListReq->SerializeAsString());
-}
+//    IMLog::Instance()->Info(QString("send getFriendsListReq"));
+//    SocketControl::Instance()->SendMessage(MessageTag_GetFriendsList.Req, getFriendsListReq->SerializeAsString());
+//}
 
-void Friends::slot_GetFriendsListRes(char * recvMessage)
+
+void Friends::slot_NotifyFriendsStatusList(char * recvMessage)
 {
-    im_home_proto::GetFriendsListRes *getFriendsListRes = new im_home_proto::GetFriendsListRes;
-    getFriendsListRes->ParseFromString(recvMessage);
+    im_home_proto::FriendsStatusList *notifyFriendsStatusList = new im_home_proto::FriendsStatusList;
+    notifyFriendsStatusList->ParseFromString(recvMessage);
 
     m_pFriendsList->clear();
 
-    for (int i = 0 ; i < getFriendsListRes->list().size(); i++)
+    for (int i = 0 ; i < notifyFriendsStatusList->friendsstatuslist_size(); i++)
     {
         QListWidgetItem *Item_friend = new QListWidgetItem(m_pFriendsList);
         Item_friend->setFlags(Item_friend->flags() & ~Qt::ItemIsEnabled & ~Qt::ItemIsSelectable);
         Item_friend->setSizeHint(QSize(100, 100));
 
         ChatShortFrameData data = ChatShortFrameData{};
-        data.m_FriendID = getFriendsListRes->list(i).userid();
-        data.m_Name = QString::fromStdString(getFriendsListRes->list(i).username());
-        if (getFriendsListRes->list(i).status() == im_home_proto::Enum_UserStatus::Enum_UserStatus_Online)
+        data.m_FriendID = notifyFriendsStatusList->friendsstatuslist(i).friend_().userid();
+        if (notifyFriendsStatusList->friendsstatuslist(i).friend_().status() == im_home_proto::Enum_UserStatus::Enum_UserStatus_Online)
         {
             data.m_UserStatus = im_home_proto::Enum_UserStatus::Enum_UserStatus_Online;
         }else{
             data.m_UserStatus = im_home_proto::Enum_UserStatus::Enum_UserStatus_Outline;
         }
-        data.m_HeadPath = UserInfo::Instance()->GetUserHeadPath(getFriendsListRes->list(i).userid());
-
+        data.m_HeadPath = UserInfo::Instance()->GetUserHeadPath(notifyFriendsStatusList->friendsstatuslist(i).friend_().userid(),
+                                                                notifyFriendsStatusList->friendsstatuslist(i).isupdatehead());
+        data.m_Name = QString::fromStdString(notifyFriendsStatusList->friendsstatuslist(i).friend_().username());
         IMLog::Instance()->Info(QString("friend list number[%1] data[%2]").arg(i).arg(data.m_FriendID));
 
         ChatShortFrame *friendBox = new ChatShortFrame(m_pFriendsList);

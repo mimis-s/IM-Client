@@ -94,7 +94,7 @@ void Home::slot_btnFriendsClick()
 {
     m_pChat->hide();
     m_pFriends->show();
-    m_pFriends->GetFriendsList();
+//    m_pFriends->GetFriendsList();
 }
 
 void Home::slot_btnGroupClick()
@@ -151,6 +151,6 @@ void Home::slot_cutChangeHead(QImage imag)
     // 更新本地头像内存
     UserInfo::Instance()->SetSelfUserInfoV1(pModifyUserInfoRes->data());
 
-    QString headPath = UserInfo::Instance()->GetUserHeadPath(pModifyUserInfoRes->data().userid());
+    QString headPath = UserInfo::Instance()->GetUserHeadPath(pModifyUserInfoRes->data().userid(), false);
     m_pLeftLbHead->SetImgPath(headPath);
 }

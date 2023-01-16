@@ -10,9 +10,11 @@
 #include "../../common/define/define.h"
 #include "../../common/commonproto/home_account.pb.h"
 #include "../../common/log/im_log.h"
+#include "../../common/socket/socket.h"
 #include <QImage>
 #include <QDebug>
 #include <QDir>
+#include <QFile>
 
 // proto结构里面的值全是const, 所以不能用,日了
 
@@ -116,10 +118,33 @@ public:
         m_mapOtherUserInfo[pInfo->mUserData.UserID] = pInfo;
     }
 
-    // 读取本地存储的头像
-    QString GetUserHeadPath(int64_t userID)
+    // 读取本地存储的头像(如果服务器头像更新或者客户端没有存储, 则重新获取)
+    QString GetUserHeadPath(int64_t userID, bool bUpdateHead)
     {
-        QString headPath = DynamicResource_Img_Head + QString::number(userID) + ".jpg";
+        QString headPath = DynamicResource_Img_Head;
+
+        QDir dir;
+        if(!dir.exists(headPath))
+        {
+            if (!dir.mkpath(headPath)) {
+                IMLog::Instance()->Warn(QString("can't create file path %1 !").arg(headPath));
+                return "";
+            }
+        }
+
+        headPath += QString::number(userID) + ".jpg";
+
+        if (bUpdateHead || !QFile::exists(headPath)) {
+            im_home_proto::GetUserInfoReq *getUserInfoReq = new im_home_proto::GetUserInfoReq;
+            getUserInfoReq->set_userid(userID);
+
+            char *recvMessage = SocketControl::Instance()->BlockSendMessage(MessageTag_GetUserInfo.Req, MessageTag_GetUserInfo.Res, getUserInfoReq->SerializeAsString());
+
+            im_home_proto::GetUserInfoRes *getUserInfoRes = new im_home_proto::GetUserInfoRes;
+            getUserInfoRes->ParseFromString(recvMessage);
+            AddOtherUserInfo(getUserInfoRes->data());
+        }
+
         return headPath;
     }
 

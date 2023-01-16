@@ -147,12 +147,11 @@ void ChatBox::InsertMessage(const im_home_proto::ChatMessage pMessage)
 
         ENUM_BubbleOrient orient;
         int64_t messageSender = 0;
+        messageSender = pMessage.senderid();
         if (UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID == pMessage.senderid()) {
             orient = ENUM_BubbleRight;
-            messageSender = pMessage.senderid();
         }else{
             orient = ENUM_BubbleLeft;
-            messageSender = pMessage.receiverid();
         }
 
         QListWidgetItem *Item_1 = new QListWidgetItem();
@@ -161,7 +160,7 @@ void ChatBox::InsertMessage(const im_home_proto::ChatMessage pMessage)
         // 头像 聊天气泡
         ChatHeadAndBubble *pHeadAndBubble = new ChatHeadAndBubble(listWidget, orient,
                                                                   QString::fromStdString(pMessage.data()),
-                                                                  UserInfo::Instance()->GetUserHeadPath(messageSender),
+                                                                  UserInfo::Instance()->GetUserHeadPath(messageSender, false),
                                                                   pMessage.messageid());
         Item_1->setSizeHint(pHeadAndBubble->GetMinSize());
 
@@ -252,12 +251,12 @@ void ChatBox::AddMessage(const im_home_proto::ChatMessage &pMessage)
 
     ENUM_BubbleOrient orient;
     int64_t messageSender = 0;
+    messageSender = pMessage.senderid();
+
     if (UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID == pMessage.senderid()) {
         orient = ENUM_BubbleRight;
-        messageSender = pMessage.senderid();
     }else{
         orient = ENUM_BubbleLeft;
-        messageSender = pMessage.receiverid();
     }
     QListWidgetItem *Item_1 = new QListWidgetItem(m_pMiddleListWidget);
     Item_1->setFlags(Item_1->flags() & ~Qt::ItemIsEnabled & ~Qt::ItemIsSelectable);
@@ -265,7 +264,7 @@ void ChatBox::AddMessage(const im_home_proto::ChatMessage &pMessage)
     // 头像 聊天气泡
     ChatHeadAndBubble *pHeadAndBubble = new ChatHeadAndBubble(m_pMiddleListWidget, orient,
                                                               QString::fromStdString(pMessage.data()),
-                                                              UserInfo::Instance()->GetUserHeadPath(messageSender),
+                                                              UserInfo::Instance()->GetUserHeadPath(messageSender, false),
                                                               pMessage.messageid());
     Item_1->setSizeHint(pHeadAndBubble->GetMinSize());
 
