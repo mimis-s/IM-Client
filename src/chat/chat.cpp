@@ -152,19 +152,17 @@ OneChatBox Chat::AddOneChat(ChatShortFrameData data)
 
 void Chat::slot_ChatShortFramePress(ChatShortFrameData data)
 {
-
-    ChatHistory::Instance()->ReadOfflineMessage(data.m_FriendID);
-
     QList<ChatShortFrame*> itemList = m_pChatShortFrameList->findChildren<ChatShortFrame*>();  // 获取所有的QChatHeadAndBubble
-    QPushButton *pBtn=qobject_cast<QPushButton *>(sender());
 
     for (int i = 0; i < m_pChatShortFrameList->count(); i++) {
         ChatShortFrame *pWidget = (ChatShortFrame *)m_pChatShortFrameList->itemWidget(m_pChatShortFrameList->item(i));
-        if (pWidget->GetInfo().m_FriendID == data.m_FriendID) {
+        if (pWidget->GetInfo().m_FriendID == data.m_FriendID && m_bmapOffline[data.m_FriendID]) {
             m_bmapOffline[data.m_FriendID] = false;
             ChatShortFrameData data;
             data.m_TipsNum = 0;
             pWidget->UpdateData(data);
+            ChatHistory::Instance()->ReadOfflineMessage(data.m_FriendID);
+            break;
         }
     }
 }
