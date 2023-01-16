@@ -21,11 +21,9 @@ class Friends : public QWidget
 public:
     explicit Friends(QWidget *parent = nullptr);
     ~Friends();
-//    // 获取好友列表
-//    void GetFriendsList();
 
-    // 获取好友申请列表
-    void GetFriendApplyList();
+    void AddApplyFriendItem(const im_home_proto::UserInfo pUserInfo, bool isApply);
+    void AddFriendItem(const im_home_proto::UserInfo pUserInfo, bool bUpdateHead);
 
 signals:
     void sig_AddOneChat(ChatShortFrameData data);   // 新增一个好友聊天, 如果存在则跳转

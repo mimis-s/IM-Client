@@ -64,12 +64,13 @@ enum ErrCode : int {
   account_account_not_found = 1002,
   account_password_incorrect = 1003,
   friends_user_already_be_friend = 2001,
+  friends_user_already_apply_friend = 2002,
   ErrCode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   ErrCode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool ErrCode_IsValid(int value);
 constexpr ErrCode ErrCode_MIN = success;
-constexpr ErrCode ErrCode_MAX = friends_user_already_be_friend;
+constexpr ErrCode ErrCode_MAX = friends_user_already_apply_friend;
 constexpr int ErrCode_ARRAYSIZE = ErrCode_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ErrCode_descriptor();

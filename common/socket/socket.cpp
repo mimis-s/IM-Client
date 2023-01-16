@@ -122,7 +122,7 @@ int Socket::readMessage(int iSocketFD)
     byteLen += (unsigned char)messageLen[0] << 24;
 
     // 消息体
-    char messages_recv[byteLen];
+    char messages_recv[byteLen + 1];
     ret = read(iSocketFD, messages_recv, byteLen);
 
     if (m_iType != 0)
@@ -131,7 +131,7 @@ int Socket::readMessage(int iSocketFD)
         m_iType = 0;
         return ret;
     }
-    QByteArray bArray(messages_recv);
+    QByteArray bArray(messages_recv, byteLen);
     emit sig_ReadMessage(type, bArray);
     return ret;
 }
@@ -143,9 +143,9 @@ SocketControl::SocketControl(QWidget *parent, QString ip, int port):
 
     m_pSocket = new Socket(ip, port);
 
-    connect(m_pSocket, SIGNAL(sig_ReadMessage(uint32_t, QByteArray)), this, SLOT(slot_ReadMessage(uint32_t, QByteArray)));
+    connect(m_pSocket, &Socket::sig_ReadMessage, this, &SocketControl::slot_ReadMessage);
     connect(m_pSocket, &QThread::finished, this, &QObject::deleteLater);
-    connect(this, SIGNAL(sig_SendMessage(uint32_t, QByteArray)), m_pSocket, SLOT(slot_SendMessage(uint32_t, QByteArray)));
+    connect(this, &SocketControl::sig_SendMessage, m_pSocket, &Socket::slot_SendMessage);
     connect(this, &SocketControl::sig_SendBlockMessage, m_pSocket, &Socket::slot_SendBlockMessage);
 
     m_pSocket->start();
@@ -161,7 +161,7 @@ void SocketControl::slot_ReadMessage(uint32_t type, QByteArray message)
 {
     if (MessageTag_Error.Res == type) {
         im_error_proto::CommonError *commonError = new im_error_proto::CommonError;
-        commonError->ParseFromString(message.toStdString());
+        commonError->ParseFromString(message.data());
         QString errMessage = QString("ErrCode:%1").arg(commonError->code());
         QMessageBox::information(NULL,  "error",  errMessage, QMessageBox::Yes);
     }

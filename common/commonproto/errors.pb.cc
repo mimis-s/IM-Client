@@ -69,18 +69,19 @@ const char descriptor_table_protodef_errors_2eproto[] PROTOBUF_SECTION_VARIABLE(
   "nError\022%\n\004Code\030\001 \001(\0162\027.im_error_proto.Er"
   "rCode\022\020\n\010ReqMsgID\030\002 \001(\r\022\020\n\010ResMsgID\030\003 \001("
   "\r\022\022\n\nReqPayload\030\004 \001(\t\022\022\n\nResPayload\030\005 \001("
-  "\t*\331\001\n\007ErrCode\022\013\n\007success\020\000\022\031\n\025common_une"
+  "\t*\201\002\n\007ErrCode\022\013\n\007success\020\000\022\031\n\025common_une"
   "xpected_err\020\001\022\017\n\013db_read_err\020\002\022\020\n\014db_wri"
   "te_err\020\003\022\035\n\030account_user_name_repeat\020\351\007\022"
   "\036\n\031account_account_not_found\020\352\007\022\037\n\032accou"
   "nt_password_incorrect\020\353\007\022#\n\036friends_user"
-  "_already_be_friend\020\321\017BEZCgithub.com/mimi"
+  "_already_be_friend\020\321\017\022&\n!friends_user_al"
+  "ready_apply_friend\020\322\017BEZCgithub.com/mimi"
   "s-s/IM-Service/src/common/commonproto/im"
   "_error_protob\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_errors_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_errors_2eproto = {
-    false, false, 460, descriptor_table_protodef_errors_2eproto,
+    false, false, 500, descriptor_table_protodef_errors_2eproto,
     "errors.proto",
     &descriptor_table_errors_2eproto_once, nullptr, 0, 1,
     schemas, file_default_instances, TableStruct_errors_2eproto::offsets,
@@ -108,6 +109,7 @@ bool ErrCode_IsValid(int value) {
     case 1002:
     case 1003:
     case 2001:
+    case 2002:
       return true;
     default:
       return false;

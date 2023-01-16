@@ -26,6 +26,7 @@ struct UserData {
     int Status;
     QString HeadImg;
     QString PhoneNumber;
+    im_home_proto::UserInfo ProtoUserInfo;
 };
 
 struct ClientUserInfo {
@@ -57,6 +58,7 @@ public:
         m_pSelfUserInfo->mUserData.Status = clientUserInfo.status();
         m_pSelfUserInfo->mUserData.HeadImg = QString::fromStdString(clientUserInfo.headimg());
         m_pSelfUserInfo->mUserData.PhoneNumber = QString::fromStdString(clientUserInfo.phonenumber());
+        m_pSelfUserInfo->mUserData.ProtoUserInfo = clientUserInfo;
 
         if (m_pSelfUserInfo->mUserData.HeadImg != "")
         {
@@ -92,6 +94,7 @@ public:
         pInfo->mUserData.Status = clientUserInfo.status();
         pInfo->mUserData.HeadImg = QString::fromStdString(clientUserInfo.headimg());
         pInfo->mUserData.PhoneNumber = QString::fromStdString(clientUserInfo.phonenumber());
+        pInfo->mUserData.ProtoUserInfo = clientUserInfo;
 
         if (pInfo->mUserData.HeadImg != "")
         {
