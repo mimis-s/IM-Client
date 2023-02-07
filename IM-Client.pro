@@ -28,6 +28,7 @@ SOURCES += \
     common/base_widget/chatbubble.cpp \
     common/base_widget/chatheadandbubble.cpp \
     common/base_widget/chatshortframe.cpp \
+    common/base_widget/chattextedit.cpp \
     common/base_widget/circlelabel.cpp \
     common/commonproto/errors.pb.cc \
     common/commonproto/home_account.pb.cc \
@@ -56,6 +57,7 @@ HEADERS += \
     common/base_widget/chatbubble.h \
     common/base_widget/chatheadandbubble.h \
     common/base_widget/chatshortframe.h \
+    common/base_widget/chattextedit.h \
     common/base_widget/circlelabel.h \
     common/commonproto/errors.pb.h \
     common/commonproto/home_account.pb.h \

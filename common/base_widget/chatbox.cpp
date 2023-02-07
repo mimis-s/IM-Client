@@ -55,6 +55,7 @@ ChatBox::ChatBox(QWidget *parent, ChatShortFrameData data) : QWidget(parent)
 
     // 下面
     QWidget *pDownWidget = new QWidget();
+    pDownWidget->setMinimumHeight(200);
 
     QHBoxLayout *pDownHBoxLayout = new QHBoxLayout(pDownWidget);
     // 表情,发送框,发送按钮
@@ -64,16 +65,16 @@ ChatBox::ChatBox(QWidget *parent, ChatShortFrameData data) : QWidget(parent)
     m_pBtnEmoj->setStyleSheet("max-width:40px; min-width:40px;"
                              "max-height:40px; min-height:40px;"
                              "border-radius:20px;");
-    m_pTextInput = new QTextEdit();
+    m_pTextInput = new ChatTextEdit();
+    m_pTextInput->setSizeIncrement(Qt::MinimumSize, Qt::MinimumSize);
+
     m_pTextInput->setFont(QFont("", 16, QFont::Bold, true));
     m_pBtnSend = new QPushButton(tr(u8"发送"), pDownWidget);
 
     m_pBtnEmoj->setMinimumHeight(40);
-    m_pTextInput->setMinimumHeight(40);
     m_pBtnSend->setMinimumHeight(40);
 
     m_pBtnEmoj->setMaximumHeight(40);
-    m_pTextInput->setMaximumHeight(40);
     m_pBtnSend->setMaximumHeight(40);
 
 
@@ -114,7 +115,7 @@ void ChatBox::slot_btnQueryHistoryClick()
         chatMessage.set_senderid(history.second.SenderID);
         chatMessage.set_receiverid(history.second.ReceiverID);
         chatMessage.set_messageid(history.second.MessageID);
-        chatMessage.set_messagetype(im_home_proto::MessageType_Enum(history.second.MessageType));
+//        chatMessage.set_messagetype(im_home_proto::MessageType_Enum(history.second.MessageType));
         chatMessage.set_messagestatus(im_home_proto::MessageStatus_Enum(history.second.MessageStatus));
         chatMessage.set_data(history.second.messageData.toStdString());
         InsertMessage(chatMessage);
@@ -217,19 +218,24 @@ void ChatBox::InsertMessage(const im_home_proto::ChatMessage pMessage)
 
 void ChatBox::slot_btnSendClick()
 {
-    if (m_pTextInput->toPlainText().trimmed() != "")
+    InputMessage inputMessage = m_pTextInput->GetInputMessage();
+
+    if (inputMessage.messageText.trimmed() != "" || inputMessage.fileInfos.size() > 0)
     {
         im_home_proto::ChatSingleReq *chatSingleReq = new im_home_proto::ChatSingleReq;
 
         im_home_proto::ChatMessage *chatMessage = new im_home_proto::ChatMessage;
         chatMessage->set_senderid(UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID);
         chatMessage->set_receiverid(m_chatShortFrameData.m_FriendID);
-        chatMessage->set_messagetype(im_home_proto::MessageType_Enum::EnumTextType);
+//        chatMessage->set_messagetype(im_home_proto::MessageType_Enum::EnumTextType);
+        // 图片或者文件
+        for (auto fileInfo : inputMessage.fileInfos) {
+            *(chatMessage->add_messagefileinfos()) = fileInfo;
+        }
+
         chatMessage->set_sendtimestamp(QDateTime::currentDateTime().toTime_t());
         chatMessage->set_messagestatus(im_home_proto::MessageStatus_Enum::EnumSend);
-
-        QString inputStr = m_pTextInput->toPlainText();
-        chatMessage->set_data(inputStr.toStdString());
+        chatMessage->set_data(inputMessage.messageText.toStdString());
 
         chatSingleReq->set_allocated_data(chatMessage);
 
@@ -237,10 +243,10 @@ void ChatBox::slot_btnSendClick()
 
         char *recvMessage = SocketControl::Instance()->BlockSendMessage(MessageTag_ChatSingle.Req, MessageTag_ChatSingle.Res, chatSingleReq->SerializeAsString());
 
-        im_home_proto::ChatSingleRes *chatSingleRes = new im_home_proto::ChatSingleRes;
-        chatSingleRes->ParseFromString(recvMessage);
+//        im_home_proto::ChatSingleRes *chatSingleRes = new im_home_proto::ChatSingleRes;
+//        chatSingleRes->ParseFromString(recvMessage);
 
-        AddMessage(chatSingleRes->data());
+//        AddMessage(chatSingleRes->data());
 
         m_pTextInput->clear();
     }

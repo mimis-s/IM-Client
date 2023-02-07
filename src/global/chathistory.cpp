@@ -59,7 +59,7 @@ void ChatHistory::ReadOfflineMessage(int64_t friendID)
         infoTemp.SenderID = readOfflineMessageRes->data(i).senderid();
         infoTemp.ReceiverID = readOfflineMessageRes->data(i).receiverid();
         infoTemp.MessageID = readOfflineMessageRes->data(i).messageid();
-        infoTemp.MessageType = readOfflineMessageRes->data(i).messagetype();
+//        infoTemp.MessageType = readOfflineMessageRes->data(i).messagetype();
         infoTemp.SendTimeStamp = readOfflineMessageRes->data(i).sendtimestamp();
         infoTemp.MessageStatus = readOfflineMessageRes->data(i).messagestatus();
         infoTemp.messageData =  QString::fromStdString(readOfflineMessageRes->data(i).data());
@@ -148,7 +148,7 @@ std::map<int64_t, LocalChatHistoryInfo> ChatHistory::GetHistoryChat(int64_t frie
             infoTemp.SenderID = getSingleChatHistoryRes->data(i).senderid();
             infoTemp.ReceiverID = getSingleChatHistoryRes->data(i).receiverid();
             infoTemp.MessageID = getSingleChatHistoryRes->data(i).messageid();
-            infoTemp.MessageType = getSingleChatHistoryRes->data(i).messagetype();
+//            infoTemp.MessageType = getSingleChatHistoryRes->data(i).messagetype();
             infoTemp.SendTimeStamp = getSingleChatHistoryRes->data(i).sendtimestamp();
             infoTemp.MessageStatus = getSingleChatHistoryRes->data(i).messagestatus();
             infoTemp.messageData =  QString::fromStdString(getSingleChatHistoryRes->data(i).data());

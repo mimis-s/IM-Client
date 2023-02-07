@@ -18,6 +18,7 @@
 #include "chatshortframe.h"
 #include "../commonproto/home_chat.pb.h"
 #include "common/base_widget/chatheadandbubble.h"
+#include "chattextedit.h"
 
 class ChatBox : public QWidget
 {
@@ -41,7 +42,7 @@ private:
     QPushButton *m_pBtnVideo;
     QListWidget *m_pMiddleListWidget;
     QPushButton *m_pBtnEmoj;
-    QTextEdit *m_pTextInput;
+    ChatTextEdit *m_pTextInput;
     QPushButton *m_pBtnSend;
 
     ChatShortFrameData m_chatShortFrameData;

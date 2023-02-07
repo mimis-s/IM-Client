@@ -123,7 +123,13 @@ int Socket::readMessage(int iSocketFD)
 
     // 消息体
     char messages_recv[byteLen + 1];
-    ret = read(iSocketFD, messages_recv, byteLen);
+    int len = byteLen;
+    int lessLen = 0;
+    while(len > 0) {
+        ret = read(iSocketFD, messages_recv + lessLen, len);
+        len -= ret;
+        lessLen += ret;
+    }
 
     if (m_iType != 0)
     {

@@ -55,40 +55,44 @@ extern ChatSingleReqDefaultTypeInternal _ChatSingleReq_default_instance_;
 class ChatSingleRes;
 struct ChatSingleResDefaultTypeInternal;
 extern ChatSingleResDefaultTypeInternal _ChatSingleRes_default_instance_;
+class MessageFileRecap;
+struct MessageFileRecapDefaultTypeInternal;
+extern MessageFileRecapDefaultTypeInternal _MessageFileRecap_default_instance_;
 }  // namespace im_home_proto
 PROTOBUF_NAMESPACE_OPEN
 template<> ::im_home_proto::ChatMessage* Arena::CreateMaybeMessage<::im_home_proto::ChatMessage>(Arena*);
 template<> ::im_home_proto::ChatSingleReq* Arena::CreateMaybeMessage<::im_home_proto::ChatSingleReq>(Arena*);
 template<> ::im_home_proto::ChatSingleRes* Arena::CreateMaybeMessage<::im_home_proto::ChatSingleRes>(Arena*);
+template<> ::im_home_proto::MessageFileRecap* Arena::CreateMaybeMessage<::im_home_proto::MessageFileRecap>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace im_home_proto {
 
-enum MessageType_Enum : int {
-  MessageType_Enum_Default = 0,
+enum MessageFileType_Enum : int {
+  MessageFileType_Enum_Default = 0,
   EnumTextType = 1,
   EnumImgType = 2,
   EnumFileType = 3,
-  MessageType_Enum_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
-  MessageType_Enum_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+  MessageFileType_Enum_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  MessageFileType_Enum_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
-bool MessageType_Enum_IsValid(int value);
-constexpr MessageType_Enum MessageType_Enum_MIN = MessageType_Enum_Default;
-constexpr MessageType_Enum MessageType_Enum_MAX = EnumFileType;
-constexpr int MessageType_Enum_ARRAYSIZE = MessageType_Enum_MAX + 1;
+bool MessageFileType_Enum_IsValid(int value);
+constexpr MessageFileType_Enum MessageFileType_Enum_MIN = MessageFileType_Enum_Default;
+constexpr MessageFileType_Enum MessageFileType_Enum_MAX = EnumFileType;
+constexpr int MessageFileType_Enum_ARRAYSIZE = MessageFileType_Enum_MAX + 1;
 
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageType_Enum_descriptor();
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MessageFileType_Enum_descriptor();
 template<typename T>
-inline const std::string& MessageType_Enum_Name(T enum_t_value) {
-  static_assert(::std::is_same<T, MessageType_Enum>::value ||
+inline const std::string& MessageFileType_Enum_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, MessageFileType_Enum>::value ||
     ::std::is_integral<T>::value,
-    "Incorrect type passed to function MessageType_Enum_Name.");
+    "Incorrect type passed to function MessageFileType_Enum_Name.");
   return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
-    MessageType_Enum_descriptor(), enum_t_value);
+    MessageFileType_Enum_descriptor(), enum_t_value);
 }
-inline bool MessageType_Enum_Parse(
-    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MessageType_Enum* value) {
-  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MessageType_Enum>(
-    MessageType_Enum_descriptor(), name, value);
+inline bool MessageFileType_Enum_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MessageFileType_Enum* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MessageFileType_Enum>(
+    MessageFileType_Enum_descriptor(), name, value);
 }
 enum MessageStatus_Enum : int {
   MessageStatus_Enum_Default = 0,
@@ -118,6 +122,219 @@ inline bool MessageStatus_Enum_Parse(
     MessageStatus_Enum_descriptor(), name, value);
 }
 // ===================================================================
+
+class MessageFileRecap final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.MessageFileRecap) */ {
+ public:
+  inline MessageFileRecap() : MessageFileRecap(nullptr) {}
+  ~MessageFileRecap() override;
+  explicit PROTOBUF_CONSTEXPR MessageFileRecap(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MessageFileRecap(const MessageFileRecap& from);
+  MessageFileRecap(MessageFileRecap&& from) noexcept
+    : MessageFileRecap() {
+    *this = ::std::move(from);
+  }
+
+  inline MessageFileRecap& operator=(const MessageFileRecap& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MessageFileRecap& operator=(MessageFileRecap&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MessageFileRecap& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MessageFileRecap* internal_default_instance() {
+    return reinterpret_cast<const MessageFileRecap*>(
+               &_MessageFileRecap_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(MessageFileRecap& a, MessageFileRecap& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MessageFileRecap* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MessageFileRecap* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MessageFileRecap* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MessageFileRecap>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MessageFileRecap& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MessageFileRecap& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MessageFileRecap* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "im_home_proto.MessageFileRecap";
+  }
+  protected:
+  explicit MessageFileRecap(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFileNameFieldNumber = 1,
+    kFileExtensionFieldNumber = 2,
+    kFileDataFieldNumber = 4,
+    kFileSizeFieldNumber = 3,
+    kFileIndexFieldNumber = 5,
+    kMessageFileTypeFieldNumber = 6,
+  };
+  // string FileName = 1;
+  void clear_filename();
+  const std::string& filename() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_filename(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_filename();
+  PROTOBUF_NODISCARD std::string* release_filename();
+  void set_allocated_filename(std::string* filename);
+  private:
+  const std::string& _internal_filename() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filename(const std::string& value);
+  std::string* _internal_mutable_filename();
+  public:
+
+  // string FileExtension = 2;
+  void clear_fileextension();
+  const std::string& fileextension() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_fileextension(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_fileextension();
+  PROTOBUF_NODISCARD std::string* release_fileextension();
+  void set_allocated_fileextension(std::string* fileextension);
+  private:
+  const std::string& _internal_fileextension() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_fileextension(const std::string& value);
+  std::string* _internal_mutable_fileextension();
+  public:
+
+  // string FileData = 4;
+  void clear_filedata();
+  const std::string& filedata() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_filedata(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_filedata();
+  PROTOBUF_NODISCARD std::string* release_filedata();
+  void set_allocated_filedata(std::string* filedata);
+  private:
+  const std::string& _internal_filedata() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filedata(const std::string& value);
+  std::string* _internal_mutable_filedata();
+  public:
+
+  // int64 FileSize = 3;
+  void clear_filesize();
+  int64_t filesize() const;
+  void set_filesize(int64_t value);
+  private:
+  int64_t _internal_filesize() const;
+  void _internal_set_filesize(int64_t value);
+  public:
+
+  // int32 FileIndex = 5;
+  void clear_fileindex();
+  int32_t fileindex() const;
+  void set_fileindex(int32_t value);
+  private:
+  int32_t _internal_fileindex() const;
+  void _internal_set_fileindex(int32_t value);
+  public:
+
+  // .im_home_proto.MessageFileType_Enum MessageFileType = 6;
+  void clear_messagefiletype();
+  ::im_home_proto::MessageFileType_Enum messagefiletype() const;
+  void set_messagefiletype(::im_home_proto::MessageFileType_Enum value);
+  private:
+  ::im_home_proto::MessageFileType_Enum _internal_messagefiletype() const;
+  void _internal_set_messagefiletype(::im_home_proto::MessageFileType_Enum value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.MessageFileRecap)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr filename_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr fileextension_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr filedata_;
+  int64_t filesize_;
+  int32_t fileindex_;
+  int messagefiletype_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_home_5fchat_2eproto;
+};
+// -------------------------------------------------------------------
 
 class ChatMessage final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.ChatMessage) */ {
@@ -167,7 +384,7 @@ class ChatMessage final :
                &_ChatMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(ChatMessage& a, ChatMessage& b) {
     a.Swap(&b);
@@ -238,14 +455,32 @@ class ChatMessage final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kMessageFileInfosFieldNumber = 6,
     kDataFieldNumber = 7,
     kSenderIDFieldNumber = 1,
     kReceiverIDFieldNumber = 2,
     kMessageIDFieldNumber = 3,
-    kSendTimeStampFieldNumber = 5,
-    kMessageTypeFieldNumber = 4,
-    kMessageStatusFieldNumber = 6,
+    kSendTimeStampFieldNumber = 4,
+    kMessageStatusFieldNumber = 5,
   };
+  // repeated .im_home_proto.MessageFileRecap MessageFileInfos = 6;
+  int messagefileinfos_size() const;
+  private:
+  int _internal_messagefileinfos_size() const;
+  public:
+  void clear_messagefileinfos();
+  ::im_home_proto::MessageFileRecap* mutable_messagefileinfos(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::MessageFileRecap >*
+      mutable_messagefileinfos();
+  private:
+  const ::im_home_proto::MessageFileRecap& _internal_messagefileinfos(int index) const;
+  ::im_home_proto::MessageFileRecap* _internal_add_messagefileinfos();
+  public:
+  const ::im_home_proto::MessageFileRecap& messagefileinfos(int index) const;
+  ::im_home_proto::MessageFileRecap* add_messagefileinfos();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::MessageFileRecap >&
+      messagefileinfos() const;
+
   // string Data = 7;
   void clear_data();
   const std::string& data() const;
@@ -287,7 +522,7 @@ class ChatMessage final :
   void _internal_set_messageid(int64_t value);
   public:
 
-  // int64 SendTimeStamp = 5;
+  // int64 SendTimeStamp = 4;
   void clear_sendtimestamp();
   int64_t sendtimestamp() const;
   void set_sendtimestamp(int64_t value);
@@ -296,16 +531,7 @@ class ChatMessage final :
   void _internal_set_sendtimestamp(int64_t value);
   public:
 
-  // .im_home_proto.MessageType_Enum MessageType = 4;
-  void clear_messagetype();
-  ::im_home_proto::MessageType_Enum messagetype() const;
-  void set_messagetype(::im_home_proto::MessageType_Enum value);
-  private:
-  ::im_home_proto::MessageType_Enum _internal_messagetype() const;
-  void _internal_set_messagetype(::im_home_proto::MessageType_Enum value);
-  public:
-
-  // .im_home_proto.MessageStatus_Enum MessageStatus = 6;
+  // .im_home_proto.MessageStatus_Enum MessageStatus = 5;
   void clear_messagestatus();
   ::im_home_proto::MessageStatus_Enum messagestatus() const;
   void set_messagestatus(::im_home_proto::MessageStatus_Enum value);
@@ -321,12 +547,12 @@ class ChatMessage final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::MessageFileRecap > messagefileinfos_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
   int64_t senderid_;
   int64_t receiverid_;
   int64_t messageid_;
   int64_t sendtimestamp_;
-  int messagetype_;
   int messagestatus_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_home_5fchat_2eproto;
@@ -381,7 +607,7 @@ class ChatSingleReq final :
                &_ChatSingleReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(ChatSingleReq& a, ChatSingleReq& b) {
     a.Swap(&b);
@@ -533,7 +759,7 @@ class ChatSingleRes final :
                &_ChatSingleRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(ChatSingleRes& a, ChatSingleRes& b) {
     a.Swap(&b);
@@ -644,6 +870,220 @@ class ChatSingleRes final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// MessageFileRecap
+
+// string FileName = 1;
+inline void MessageFileRecap::clear_filename() {
+  filename_.ClearToEmpty();
+}
+inline const std::string& MessageFileRecap::filename() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.MessageFileRecap.FileName)
+  return _internal_filename();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MessageFileRecap::set_filename(ArgT0&& arg0, ArgT... args) {
+ 
+ filename_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:im_home_proto.MessageFileRecap.FileName)
+}
+inline std::string* MessageFileRecap::mutable_filename() {
+  std::string* _s = _internal_mutable_filename();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.MessageFileRecap.FileName)
+  return _s;
+}
+inline const std::string& MessageFileRecap::_internal_filename() const {
+  return filename_.Get();
+}
+inline void MessageFileRecap::_internal_set_filename(const std::string& value) {
+  
+  filename_.Set(value, GetArenaForAllocation());
+}
+inline std::string* MessageFileRecap::_internal_mutable_filename() {
+  
+  return filename_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MessageFileRecap::release_filename() {
+  // @@protoc_insertion_point(field_release:im_home_proto.MessageFileRecap.FileName)
+  return filename_.Release();
+}
+inline void MessageFileRecap::set_allocated_filename(std::string* filename) {
+  if (filename != nullptr) {
+    
+  } else {
+    
+  }
+  filename_.SetAllocated(filename, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (filename_.IsDefault()) {
+    filename_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.MessageFileRecap.FileName)
+}
+
+// string FileExtension = 2;
+inline void MessageFileRecap::clear_fileextension() {
+  fileextension_.ClearToEmpty();
+}
+inline const std::string& MessageFileRecap::fileextension() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.MessageFileRecap.FileExtension)
+  return _internal_fileextension();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MessageFileRecap::set_fileextension(ArgT0&& arg0, ArgT... args) {
+ 
+ fileextension_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:im_home_proto.MessageFileRecap.FileExtension)
+}
+inline std::string* MessageFileRecap::mutable_fileextension() {
+  std::string* _s = _internal_mutable_fileextension();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.MessageFileRecap.FileExtension)
+  return _s;
+}
+inline const std::string& MessageFileRecap::_internal_fileextension() const {
+  return fileextension_.Get();
+}
+inline void MessageFileRecap::_internal_set_fileextension(const std::string& value) {
+  
+  fileextension_.Set(value, GetArenaForAllocation());
+}
+inline std::string* MessageFileRecap::_internal_mutable_fileextension() {
+  
+  return fileextension_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MessageFileRecap::release_fileextension() {
+  // @@protoc_insertion_point(field_release:im_home_proto.MessageFileRecap.FileExtension)
+  return fileextension_.Release();
+}
+inline void MessageFileRecap::set_allocated_fileextension(std::string* fileextension) {
+  if (fileextension != nullptr) {
+    
+  } else {
+    
+  }
+  fileextension_.SetAllocated(fileextension, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (fileextension_.IsDefault()) {
+    fileextension_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.MessageFileRecap.FileExtension)
+}
+
+// int64 FileSize = 3;
+inline void MessageFileRecap::clear_filesize() {
+  filesize_ = int64_t{0};
+}
+inline int64_t MessageFileRecap::_internal_filesize() const {
+  return filesize_;
+}
+inline int64_t MessageFileRecap::filesize() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.MessageFileRecap.FileSize)
+  return _internal_filesize();
+}
+inline void MessageFileRecap::_internal_set_filesize(int64_t value) {
+  
+  filesize_ = value;
+}
+inline void MessageFileRecap::set_filesize(int64_t value) {
+  _internal_set_filesize(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.MessageFileRecap.FileSize)
+}
+
+// string FileData = 4;
+inline void MessageFileRecap::clear_filedata() {
+  filedata_.ClearToEmpty();
+}
+inline const std::string& MessageFileRecap::filedata() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.MessageFileRecap.FileData)
+  return _internal_filedata();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void MessageFileRecap::set_filedata(ArgT0&& arg0, ArgT... args) {
+ 
+ filedata_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:im_home_proto.MessageFileRecap.FileData)
+}
+inline std::string* MessageFileRecap::mutable_filedata() {
+  std::string* _s = _internal_mutable_filedata();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.MessageFileRecap.FileData)
+  return _s;
+}
+inline const std::string& MessageFileRecap::_internal_filedata() const {
+  return filedata_.Get();
+}
+inline void MessageFileRecap::_internal_set_filedata(const std::string& value) {
+  
+  filedata_.Set(value, GetArenaForAllocation());
+}
+inline std::string* MessageFileRecap::_internal_mutable_filedata() {
+  
+  return filedata_.Mutable(GetArenaForAllocation());
+}
+inline std::string* MessageFileRecap::release_filedata() {
+  // @@protoc_insertion_point(field_release:im_home_proto.MessageFileRecap.FileData)
+  return filedata_.Release();
+}
+inline void MessageFileRecap::set_allocated_filedata(std::string* filedata) {
+  if (filedata != nullptr) {
+    
+  } else {
+    
+  }
+  filedata_.SetAllocated(filedata, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (filedata_.IsDefault()) {
+    filedata_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.MessageFileRecap.FileData)
+}
+
+// int32 FileIndex = 5;
+inline void MessageFileRecap::clear_fileindex() {
+  fileindex_ = 0;
+}
+inline int32_t MessageFileRecap::_internal_fileindex() const {
+  return fileindex_;
+}
+inline int32_t MessageFileRecap::fileindex() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.MessageFileRecap.FileIndex)
+  return _internal_fileindex();
+}
+inline void MessageFileRecap::_internal_set_fileindex(int32_t value) {
+  
+  fileindex_ = value;
+}
+inline void MessageFileRecap::set_fileindex(int32_t value) {
+  _internal_set_fileindex(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.MessageFileRecap.FileIndex)
+}
+
+// .im_home_proto.MessageFileType_Enum MessageFileType = 6;
+inline void MessageFileRecap::clear_messagefiletype() {
+  messagefiletype_ = 0;
+}
+inline ::im_home_proto::MessageFileType_Enum MessageFileRecap::_internal_messagefiletype() const {
+  return static_cast< ::im_home_proto::MessageFileType_Enum >(messagefiletype_);
+}
+inline ::im_home_proto::MessageFileType_Enum MessageFileRecap::messagefiletype() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.MessageFileRecap.MessageFileType)
+  return _internal_messagefiletype();
+}
+inline void MessageFileRecap::_internal_set_messagefiletype(::im_home_proto::MessageFileType_Enum value) {
+  
+  messagefiletype_ = value;
+}
+inline void MessageFileRecap::set_messagefiletype(::im_home_proto::MessageFileType_Enum value) {
+  _internal_set_messagefiletype(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.MessageFileRecap.MessageFileType)
+}
+
+// -------------------------------------------------------------------
+
 // ChatMessage
 
 // int64 SenderID = 1;
@@ -706,27 +1146,7 @@ inline void ChatMessage::set_messageid(int64_t value) {
   // @@protoc_insertion_point(field_set:im_home_proto.ChatMessage.MessageID)
 }
 
-// .im_home_proto.MessageType_Enum MessageType = 4;
-inline void ChatMessage::clear_messagetype() {
-  messagetype_ = 0;
-}
-inline ::im_home_proto::MessageType_Enum ChatMessage::_internal_messagetype() const {
-  return static_cast< ::im_home_proto::MessageType_Enum >(messagetype_);
-}
-inline ::im_home_proto::MessageType_Enum ChatMessage::messagetype() const {
-  // @@protoc_insertion_point(field_get:im_home_proto.ChatMessage.MessageType)
-  return _internal_messagetype();
-}
-inline void ChatMessage::_internal_set_messagetype(::im_home_proto::MessageType_Enum value) {
-  
-  messagetype_ = value;
-}
-inline void ChatMessage::set_messagetype(::im_home_proto::MessageType_Enum value) {
-  _internal_set_messagetype(value);
-  // @@protoc_insertion_point(field_set:im_home_proto.ChatMessage.MessageType)
-}
-
-// int64 SendTimeStamp = 5;
+// int64 SendTimeStamp = 4;
 inline void ChatMessage::clear_sendtimestamp() {
   sendtimestamp_ = int64_t{0};
 }
@@ -746,7 +1166,7 @@ inline void ChatMessage::set_sendtimestamp(int64_t value) {
   // @@protoc_insertion_point(field_set:im_home_proto.ChatMessage.SendTimeStamp)
 }
 
-// .im_home_proto.MessageStatus_Enum MessageStatus = 6;
+// .im_home_proto.MessageStatus_Enum MessageStatus = 5;
 inline void ChatMessage::clear_messagestatus() {
   messagestatus_ = 0;
 }
@@ -764,6 +1184,46 @@ inline void ChatMessage::_internal_set_messagestatus(::im_home_proto::MessageSta
 inline void ChatMessage::set_messagestatus(::im_home_proto::MessageStatus_Enum value) {
   _internal_set_messagestatus(value);
   // @@protoc_insertion_point(field_set:im_home_proto.ChatMessage.MessageStatus)
+}
+
+// repeated .im_home_proto.MessageFileRecap MessageFileInfos = 6;
+inline int ChatMessage::_internal_messagefileinfos_size() const {
+  return messagefileinfos_.size();
+}
+inline int ChatMessage::messagefileinfos_size() const {
+  return _internal_messagefileinfos_size();
+}
+inline void ChatMessage::clear_messagefileinfos() {
+  messagefileinfos_.Clear();
+}
+inline ::im_home_proto::MessageFileRecap* ChatMessage::mutable_messagefileinfos(int index) {
+  // @@protoc_insertion_point(field_mutable:im_home_proto.ChatMessage.MessageFileInfos)
+  return messagefileinfos_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::MessageFileRecap >*
+ChatMessage::mutable_messagefileinfos() {
+  // @@protoc_insertion_point(field_mutable_list:im_home_proto.ChatMessage.MessageFileInfos)
+  return &messagefileinfos_;
+}
+inline const ::im_home_proto::MessageFileRecap& ChatMessage::_internal_messagefileinfos(int index) const {
+  return messagefileinfos_.Get(index);
+}
+inline const ::im_home_proto::MessageFileRecap& ChatMessage::messagefileinfos(int index) const {
+  // @@protoc_insertion_point(field_get:im_home_proto.ChatMessage.MessageFileInfos)
+  return _internal_messagefileinfos(index);
+}
+inline ::im_home_proto::MessageFileRecap* ChatMessage::_internal_add_messagefileinfos() {
+  return messagefileinfos_.Add();
+}
+inline ::im_home_proto::MessageFileRecap* ChatMessage::add_messagefileinfos() {
+  ::im_home_proto::MessageFileRecap* _add = _internal_add_messagefileinfos();
+  // @@protoc_insertion_point(field_add:im_home_proto.ChatMessage.MessageFileInfos)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::MessageFileRecap >&
+ChatMessage::messagefileinfos() const {
+  // @@protoc_insertion_point(field_list:im_home_proto.ChatMessage.MessageFileInfos)
+  return messagefileinfos_;
 }
 
 // string Data = 7;
@@ -1011,6 +1471,8 @@ inline void ChatSingleRes::set_allocated_data(::im_home_proto::ChatMessage* data
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -1018,10 +1480,10 @@ inline void ChatSingleRes::set_allocated_data(::im_home_proto::ChatMessage* data
 
 PROTOBUF_NAMESPACE_OPEN
 
-template <> struct is_proto_enum< ::im_home_proto::MessageType_Enum> : ::std::true_type {};
+template <> struct is_proto_enum< ::im_home_proto::MessageFileType_Enum> : ::std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::im_home_proto::MessageType_Enum>() {
-  return ::im_home_proto::MessageType_Enum_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor< ::im_home_proto::MessageFileType_Enum>() {
+  return ::im_home_proto::MessageFileType_Enum_descriptor();
 }
 template <> struct is_proto_enum< ::im_home_proto::MessageStatus_Enum> : ::std::true_type {};
 template <>
