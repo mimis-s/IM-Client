@@ -118,6 +118,17 @@ void ChatBox::slot_btnQueryHistoryClick()
 //        chatMessage.set_messagetype(im_home_proto::MessageType_Enum(history.second.MessageType));
         chatMessage.set_messagestatus(im_home_proto::MessageStatus_Enum(history.second.MessageStatus));
         chatMessage.set_data(history.second.messageData.toStdString());
+
+        for (auto m : history.second.MessageFileInfos) {
+            im_home_proto::MessageFileRecap messageFileRecap;
+            messageFileRecap.set_filename(m.FileName.toStdString());
+            messageFileRecap.set_fileextension(m.FileExtension.toStdString());
+            messageFileRecap.set_filesize(m.FileSize);
+            messageFileRecap.set_fileindex(m.FileIndex);
+            messageFileRecap.set_messagefiletype(m.MessageFileType);
+            *(chatMessage.add_messagefileinfos()) = messageFileRecap;
+        }
+
         InsertMessage(chatMessage);
     }
 
@@ -142,6 +153,78 @@ void ChatBox::slot_btnQueryHistoryClick()
     AddOneQueryHistoryBtn();
 }
 
+QVector<MessageFileRecap> GetVecMessageFileRecap(const im_home_proto::ChatMessage pMessage) {
+    QVector<MessageFileRecap> vecMessageFileRecap;
+    int indexAll = 0;
+    int indexStr = 0;
+
+    int64_t selfUserID = UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID;
+    QString fileChatFilePath = DynamicResource + QString::number(selfUserID) + "/chat_history/file/";
+
+    if (pMessage.messagefileinfos().size() != 0) {
+        QDir dir;
+        if(!dir.exists(fileChatFilePath))
+        {
+            if (!dir.mkpath(fileChatFilePath)) {
+                IMLog::Instance()->Warn(QString("can't create file path %1 !").arg(fileChatFilePath));
+            }
+        }
+    }
+
+    while (indexAll < int(pMessage.data().size() + pMessage.messagefileinfos().size()))
+    {
+        for (int i = 0; i < pMessage.messagefileinfos().size(); i++) {
+            if (pMessage.messagefileinfos(i).fileindex() == indexAll) {
+
+                MessageFileRecap messageFileRecap;
+                messageFileRecap.FileName = QString::fromStdString(pMessage.messagefileinfos(i).filename());
+                messageFileRecap.FileExtension = QString::fromStdString(pMessage.messagefileinfos(i).fileextension());
+                messageFileRecap.FileSize = pMessage.messagefileinfos(i).filesize();
+                messageFileRecap.MessageFileType = pMessage.messagefileinfos(i).messagefiletype();
+                messageFileRecap.FileIndex = pMessage.messagefileinfos(i).fileindex();
+
+                QString fileChatFilePathMessage = fileChatFilePath +
+                        QString::number(pMessage.senderid()) + "-" +
+                        QString::number(pMessage.receiverid()) + "-" +
+                        QString::number(pMessage.messageid()) + "-" +
+                        QString::number(pMessage.messagefileinfos(i).fileindex()) + ".jpg";
+
+                // 存储本地文件
+                QFile file2(fileChatFilePathMessage);
+                if (!file2.open(QIODevice::ReadWrite)) {
+                    IMLog::Instance()->Warn(QString("can't open file %1 !").arg(fileChatFilePathMessage));
+                    file2.close();
+                }
+                if (messageFileRecap.MessageFileType == im_home_proto::EnumImgType){
+                    QString imgData = QString::fromStdString(pMessage.messagefileinfos(i).filedata());
+                    // 保存图片
+                    QImage imag;
+                    QByteArray data = QByteArray::fromBase64(imgData.toLocal8Bit());
+                    QDataStream data_stream(&data,QIODevice::ReadOnly);
+                    data_stream>>imag;
+                    imag.save(fileChatFilePathMessage, "JPG");
+                    file2.close();
+
+                }
+                messageFileRecap.FileLocalPath = fileChatFilePathMessage;
+
+                vecMessageFileRecap.push_back(messageFileRecap);
+                indexAll++;
+            }
+        }
+
+        if (indexStr < int(pMessage.data().size())) {
+            MessageFileRecap messageFileRecap;
+            messageFileRecap.MessageFileType = im_home_proto::EnumTextType;
+            messageFileRecap.FileData = pMessage.data().at(indexStr);
+            vecMessageFileRecap.push_back(messageFileRecap);
+            indexStr++;
+            indexAll++;
+        }
+    }
+    return vecMessageFileRecap;
+}
+
 void ChatBox::InsertMessage(const im_home_proto::ChatMessage pMessage)
 {
     auto funcInsert = [](const im_home_proto::ChatMessage pMessage, QListWidget *listWidget, ChatHeadAndBubble* chatBubble){
@@ -158,15 +241,17 @@ void ChatBox::InsertMessage(const im_home_proto::ChatMessage pMessage)
         QListWidgetItem *Item_1 = new QListWidgetItem();
         Item_1->setFlags(Item_1->flags() & ~Qt::ItemIsEnabled & ~Qt::ItemIsSelectable);
 
+        QVector<MessageFileRecap> vecMessageFileRecap = GetVecMessageFileRecap(pMessage);
+
         // 头像 聊天气泡
         ChatHeadAndBubble *pHeadAndBubble = new ChatHeadAndBubble(listWidget, orient,
-                                                                  QString::fromStdString(pMessage.data()),
+                                                                  vecMessageFileRecap,
                                                                   UserInfo::Instance()->GetUserHeadPath(messageSender, false),
                                                                   pMessage.messageid());
-        Item_1->setSizeHint(pHeadAndBubble->GetMinSize());
+        Item_1->setSizeHint(QSize(60,60));
 
         connect(pHeadAndBubble, &ChatHeadAndBubble::sig_changeHeight, [Item_1, pHeadAndBubble]{
-            Item_1->setSizeHint(pHeadAndBubble->size());
+            Item_1->setSizeHint(QSize(Item_1->sizeHint().width(), pHeadAndBubble->height()));
         });
 
         int temp = listWidget->count();
@@ -241,8 +326,9 @@ void ChatBox::slot_btnSendClick()
 
         IMLog::Instance()->Info(QString("send chatSingleReq %1").arg(MessageTag_ChatSingle.Req));
 
-        char *recvMessage = SocketControl::Instance()->BlockSendMessage(MessageTag_ChatSingle.Req, MessageTag_ChatSingle.Res, chatSingleReq->SerializeAsString());
+//        char *recvMessage = SocketControl::Instance()->BlockSendMessage(MessageTag_ChatSingle.Req, MessageTag_ChatSingle.Res, chatSingleReq->SerializeAsString());
 
+        SocketControl::Instance()->SendMessage(MessageTag_ChatSingle.Req, chatSingleReq->SerializeAsString());
 //        im_home_proto::ChatSingleRes *chatSingleRes = new im_home_proto::ChatSingleRes;
 //        chatSingleRes->ParseFromString(recvMessage);
 
@@ -267,15 +353,17 @@ void ChatBox::AddMessage(const im_home_proto::ChatMessage &pMessage)
     QListWidgetItem *Item_1 = new QListWidgetItem(m_pMiddleListWidget);
     Item_1->setFlags(Item_1->flags() & ~Qt::ItemIsEnabled & ~Qt::ItemIsSelectable);
 
+    QVector<MessageFileRecap> vecMessageFileRecap = GetVecMessageFileRecap(pMessage);
+
     // 头像 聊天气泡
     ChatHeadAndBubble *pHeadAndBubble = new ChatHeadAndBubble(m_pMiddleListWidget, orient,
-                                                              QString::fromStdString(pMessage.data()),
+                                                              vecMessageFileRecap,
                                                               UserInfo::Instance()->GetUserHeadPath(messageSender, false),
                                                               pMessage.messageid());
-    Item_1->setSizeHint(pHeadAndBubble->GetMinSize());
+    Item_1->setSizeHint(QSize(60, 300));
 
     connect(pHeadAndBubble, &ChatHeadAndBubble::sig_changeHeight, [Item_1, pHeadAndBubble]{
-        Item_1->setSizeHint(pHeadAndBubble->size());
+        Item_1->setSizeHint(QSize(Item_1->sizeHint().width(), pHeadAndBubble->height()));
     });
 
     m_pMiddleListWidget->setItemWidget(Item_1, pHeadAndBubble);

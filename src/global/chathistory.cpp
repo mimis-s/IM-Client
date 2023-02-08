@@ -10,6 +10,7 @@
 #include <QJsonValue>
 #include <QJsonParseError>
 #include <QDir>
+#include <QDebug>
 
 ChatHistory *ChatHistory::m_info = nullptr;
 
@@ -31,6 +32,7 @@ void ChatHistory::ReadOfflineMessage(int64_t friendID)
 
     int64_t selfUserID = UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID;
     QString filePath = DynamicResource + QString::number(selfUserID) + "/chat_history/";
+    QString fileChatFilePath = DynamicResource + QString::number(selfUserID) + "/chat_history/file/";
 
     std::map<int64_t, LocalChatHistoryInfo> mapChatHistory;
     QJsonArray historyArray;
@@ -40,6 +42,13 @@ void ChatHistory::ReadOfflineMessage(int64_t friendID)
     {
         if (!dir.mkpath(filePath)) {
             IMLog::Instance()->Warn(QString("can't create file path %1 !").arg(filePath));
+        }
+    }
+
+    if(!dir.exists(fileChatFilePath))
+    {
+        if (!dir.mkpath(fileChatFilePath)) {
+            IMLog::Instance()->Warn(QString("can't create file path %1 !").arg(fileChatFilePath));
         }
     }
 
@@ -63,6 +72,40 @@ void ChatHistory::ReadOfflineMessage(int64_t friendID)
         infoTemp.SendTimeStamp = readOfflineMessageRes->data(i).sendtimestamp();
         infoTemp.MessageStatus = readOfflineMessageRes->data(i).messagestatus();
         infoTemp.messageData =  QString::fromStdString(readOfflineMessageRes->data(i).data());
+
+        for (int j = 0; j < readOfflineMessageRes->data(i).messagefileinfos().size(); j++){
+            MessageFileRecap messageFileRecap;
+            messageFileRecap.FileName = QString::fromStdString(readOfflineMessageRes->data(i).messagefileinfos(j).filename());
+            messageFileRecap.FileExtension = QString::fromStdString(readOfflineMessageRes->data(i).messagefileinfos(j).fileextension());
+            messageFileRecap.FileSize = readOfflineMessageRes->data(i).messagefileinfos(j).filesize();
+            messageFileRecap.MessageFileType = readOfflineMessageRes->data(i).messagefileinfos(j).messagefiletype();
+            messageFileRecap.FileIndex = readOfflineMessageRes->data(i).messagefileinfos(j).fileindex();
+
+            QString fileChatFilePathMessage = fileChatFilePath +
+                    QString::number(readOfflineMessageRes->data(i).senderid()) + "-" +
+                    QString::number(readOfflineMessageRes->data(i).receiverid()) + "-" +
+                    QString::number(readOfflineMessageRes->data(i).messageid()) + "-" +
+                    QString::number(readOfflineMessageRes->data(i).messagefileinfos(j).fileindex()) + ".jpg";
+            // 存储本地文件
+            QFile file2(fileChatFilePathMessage);
+            if (!file2.open(QIODevice::ReadWrite)) {
+                IMLog::Instance()->Warn(QString("can't open file %1 !").arg(filePath));
+                file2.close();
+            }
+            if (messageFileRecap.MessageFileType == im_home_proto::EnumImgType){
+                QString imgData = QString::fromStdString(readOfflineMessageRes->data(i).messagefileinfos(j).filedata());
+                // 保存图片
+                QImage imag;
+                QByteArray data = QByteArray::fromBase64(imgData.toLocal8Bit());
+                QDataStream data_stream(&data,QIODevice::ReadOnly);
+                data_stream>>imag;
+                imag.save(fileChatFilePathMessage, "JPG");
+            }
+            messageFileRecap.FileLocalPath = fileChatFilePathMessage;
+
+            infoTemp.MessageFileInfos.push_back(messageFileRecap);
+        }
+
         mapChatHistory[infoTemp.MessageID] = infoTemp;
     }
 
@@ -88,13 +131,21 @@ std::map<int64_t, LocalChatHistoryInfo> ChatHistory::GetHistoryChat(int64_t frie
 {
     int64_t selfUserID = UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID;
     QString filePath = DynamicResource + QString::number(selfUserID) + "/chat_history/";
+    QString fileChatFilePath = DynamicResource + QString::number(selfUserID) + "/chat_history/file/";
+
+    QDir dir;
+    if(!dir.exists(fileChatFilePath))
+    {
+        if (!dir.mkpath(fileChatFilePath)) {
+            IMLog::Instance()->Warn(QString("can't create file path %1 !").arg(fileChatFilePath));
+        }
+    }
 
     std::map<int64_t, LocalChatHistoryInfo> mapChatHistory;
 
     int64_t minMessageID = maxMessageID - 20 + 1 < 0?0:maxMessageID - 20 + 1;
     QJsonArray historyArray;
 
-    QDir dir;
     if(!dir.exists(filePath))
     {
         if (!dir.mkpath(filePath)) {
@@ -124,14 +175,29 @@ std::map<int64_t, LocalChatHistoryInfo> ChatHistory::GetHistoryChat(int64_t frie
                 infoTemp.SenderID = senderID;
                 infoTemp.ReceiverID = receiverID;
                 infoTemp.MessageID = messageID;
-                infoTemp.MessageType = chatHistoryObject.value("message_type").toInt();
+//                infoTemp.MessageType = chatHistoryObject.value("message_type").toInt();
                 infoTemp.SendTimeStamp = sendTimeStamp;
                 infoTemp.MessageStatus = chatHistoryObject.value("message_status").toInt();
                 infoTemp.messageData = chatHistoryObject.value("message_data").toString();
+
+                QJsonArray messageFileInfosArray = chatHistoryObject.value("message_file_infos").toArray();
+                for (int j = 0; j < messageFileInfosArray.size(); j++) {
+                    QJsonObject messageFileInfosObject = messageFileInfosArray.at(j).toObject();
+                    MessageFileRecap messageFileRecap;
+                    messageFileRecap.FileName = messageFileInfosObject.value("file_name").toString();
+                    messageFileRecap.FileExtension = messageFileInfosObject.value("file_extension").toString();
+                    messageFileRecap.FileSize = QString::number(messageFileInfosObject.value("file_size").toDouble(), 'f', 0).toLongLong();
+
+                    messageFileRecap.FileIndex = messageFileInfosObject.value("file_index").toInt();
+                    messageFileRecap.FileLocalPath = messageFileInfosObject.value("file_local_path").toString();
+                    messageFileRecap.MessageFileType = im_home_proto::MessageFileType_Enum(messageFileInfosObject.value("message_file_type").toInt());
+                }
+
                 mapChatHistory[messageID] = infoTemp;
             }
         }
     }
+
 
     if (mapChatHistory.size() != ulong(maxMessageID - minMessageID + 1)) {
         // 本地记录不完整(需要从服务器获取记录)
@@ -152,6 +218,44 @@ std::map<int64_t, LocalChatHistoryInfo> ChatHistory::GetHistoryChat(int64_t frie
             infoTemp.SendTimeStamp = getSingleChatHistoryRes->data(i).sendtimestamp();
             infoTemp.MessageStatus = getSingleChatHistoryRes->data(i).messagestatus();
             infoTemp.messageData =  QString::fromStdString(getSingleChatHistoryRes->data(i).data());
+
+            qDebug() <<  getSingleChatHistoryRes->data(i).messagefileinfos().size();
+            for (int j = 0; j < getSingleChatHistoryRes->data(i).messagefileinfos().size(); j++){
+
+                MessageFileRecap messageFileRecap;
+                messageFileRecap.FileName = QString::fromStdString(getSingleChatHistoryRes->data(i).messagefileinfos(j).filename());
+                messageFileRecap.FileExtension = QString::fromStdString(getSingleChatHistoryRes->data(i).messagefileinfos(j).fileextension());
+                messageFileRecap.FileSize = getSingleChatHistoryRes->data(i).messagefileinfos(j).filesize();
+                messageFileRecap.FileIndex = getSingleChatHistoryRes->data(i).messagefileinfos(j).fileindex();
+                messageFileRecap.MessageFileType = getSingleChatHistoryRes->data(i).messagefileinfos(j).messagefiletype();
+
+                QString fileChatFilePathMessage = fileChatFilePath +
+                        QString::number(getSingleChatHistoryRes->data(i).senderid()) + "-" +
+                        QString::number(getSingleChatHistoryRes->data(i).receiverid()) + "-" +
+                        QString::number(getSingleChatHistoryRes->data(i).messageid()) + "-" +
+                        QString::number(getSingleChatHistoryRes->data(i).messagefileinfos(j).fileindex()) + ".jpg";
+
+                // 存储本地文件
+                QFile file2(fileChatFilePathMessage);
+                if (!file2.open(QIODevice::ReadWrite)) {
+                    IMLog::Instance()->Warn(QString("can't open file %1 !").arg(filePath));
+                    file2.close();
+                }
+                if (messageFileRecap.MessageFileType == im_home_proto::EnumImgType){
+                    QString imgData = QString::fromStdString(getSingleChatHistoryRes->data(i).messagefileinfos(j).filedata());
+                    // 保存图片
+                    QImage imag;
+                    QByteArray data = QByteArray::fromBase64(imgData.toLocal8Bit());
+                    QDataStream data_stream(&data,QIODevice::ReadOnly);
+                    data_stream>>imag;
+                    imag.save(fileChatFilePathMessage, "JPG");
+                }
+                messageFileRecap.FileLocalPath = fileChatFilePathMessage;
+
+                infoTemp.MessageFileInfos.push_back(messageFileRecap);
+            }
+
+
             mapChatHistory[infoTemp.MessageID] = infoTemp;
         }
 
@@ -194,10 +298,23 @@ QJsonArray ChatHistory::AddHistoryFile(QJsonArray localHistoryArray, std::map<in
             jsonObject.insert("sender_id", QJsonValue(qint64(info.second.SenderID)));
             jsonObject.insert("receiver_id", QJsonValue(qint64(info.second.ReceiverID)));
             jsonObject.insert("message_id", QJsonValue(qint64(info.second.MessageID)));
-            jsonObject.insert("message_type", info.second.MessageType);
+//            jsonObject.insert("message_type", info.second.MessageType);
             jsonObject.insert("send_time_stamp", QJsonValue(qint64(info.second.SendTimeStamp)));
             jsonObject.insert("message_status", info.second.MessageStatus);
             jsonObject.insert("message_data", info.second.messageData);
+
+            QJsonArray fileInfosArray;
+            for (int i = 0; i < info.second.MessageFileInfos.size(); i++) {
+                QJsonObject fileInfoJsonObject;
+                fileInfoJsonObject.insert("file_name", QJsonValue(info.second.MessageFileInfos[i].FileName));
+                fileInfoJsonObject.insert("file_extension", QJsonValue(info.second.MessageFileInfos[i].FileExtension));
+                fileInfoJsonObject.insert("file_size", QJsonValue(qint64(info.second.MessageFileInfos[i].FileSize)));
+                fileInfoJsonObject.insert("file_index",info.second.MessageFileInfos[i].FileIndex);
+                fileInfoJsonObject.insert("file_local_path",QJsonValue(info.second.MessageFileInfos[i].FileLocalPath));
+                fileInfoJsonObject.insert("message_file_type",info.second.MessageFileInfos[i].MessageFileType);
+                fileInfosArray.append(fileInfoJsonObject);
+            }
+            jsonObject.insert("message_file_infos", fileInfosArray);
 
             localHistoryArray.append(jsonObject);
         }

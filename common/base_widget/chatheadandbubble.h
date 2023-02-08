@@ -9,7 +9,7 @@ class ChatHeadAndBubble : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ChatHeadAndBubble(QWidget *parent = nullptr, ENUM_BubbleOrient orient = ENUM_BubbleOrient::ENUM_BubbleRight, QString sText = "404", QString headPath = "", int64_t messageID = 0);
+    explicit ChatHeadAndBubble(QWidget *parent = nullptr, ENUM_BubbleOrient orient = ENUM_BubbleOrient::ENUM_BubbleRight, QVector<MessageFileRecap> vecMessageFileRecap = {}, QString headPath = "", int64_t messageID = 0);
 
     QSize GetMinSize();
 
@@ -30,7 +30,7 @@ private:
     ChatBubble *m_pChatBubble;
 
     QSize m_sMinSize;
-    QString m_sText;
+    QVector<MessageFileRecap> m_vecMessageFileRecap;
 
     ENUM_BubbleOrient m_bubbleOrient;
      int64_t m_messageID;

@@ -137,6 +137,7 @@ int Socket::readMessage(int iSocketFD)
         m_iType = 0;
         return ret;
     }
+
     QByteArray bArray(messages_recv, byteLen);
     emit sig_ReadMessage(type, bArray);
     return ret;
@@ -171,6 +172,7 @@ void SocketControl::slot_ReadMessage(uint32_t type, QByteArray message)
         QString errMessage = QString("ErrCode:%1").arg(commonError->code());
         QMessageBox::information(NULL,  "error",  errMessage, QMessageBox::Yes);
     }
+    qDebug() << strlen(message);
 
     if (mapCallBackFunc.end() != mapCallBackFunc.find(type))
     {

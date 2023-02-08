@@ -37,6 +37,7 @@ Chat::Chat(QWidget *parent) :
 
     // socket
     SocketControl::Instance()->RegisterRecvFunc(MessageTag_ChatSingle.Relay, std::bind(&Chat::slot_ChatSingleRelay, this, std::placeholders::_1));
+    SocketControl::Instance()->RegisterRecvFunc(MessageTag_ChatSingle.Notify, std::bind(&Chat::slot_ChatSingleRelay, this, std::placeholders::_1));
     SocketControl::Instance()->RegisterRecvFunc(MessageTag_NotifyUserMessage.Notify, std::bind(&Chat::slot_OfflineNotify, this, std::placeholders::_1));
 }
 
@@ -50,34 +51,45 @@ void Chat::slot_ChatSingleRelay(char *pMessage)
     im_home_proto::ChatSingleToReceiver *chatSingleToReceiver = new im_home_proto::ChatSingleToReceiver;
     chatSingleToReceiver->ParseFromString(pMessage);
 
-    ClientUserInfo* pOtherUserInfo = UserInfo::Instance()->AddOtherUserInfo(chatSingleToReceiver->senderinfo());
+    int64_t friendID = 0;
+    // 如果是自己
+    if (chatSingleToReceiver->senderinfo().userid() != UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID) {
 
-    ChatShortFrameData data;
-    data.m_Name = pOtherUserInfo->mUserData.UserName;
-    data.m_Time = QDateTime::fromTime_t(chatSingleToReceiver->data().sendtimestamp()).toString(TimeFormat);
-    data.m_Message = QString::fromStdString(chatSingleToReceiver->data().data());
-    data.m_FriendID = chatSingleToReceiver->data().senderid();
-    data.m_HeadPath = UserInfo::Instance()->GetUserHeadPath(chatSingleToReceiver->senderinfo().userid(), false);
-    data.m_UserStatus = pOtherUserInfo->mUserData.ProtoUserInfo.status();
+        ClientUserInfo* pOtherUserInfo = UserInfo::Instance()->AddOtherUserInfo(chatSingleToReceiver->senderinfo());
 
-    // 这里有两种情况,收到消息的好友在当前聊天列表中,没有在当前聊天列表中
+        ChatShortFrameData data;
+        data.m_Name = pOtherUserInfo->mUserData.UserName;
+        data.m_Time = QDateTime::fromTime_t(chatSingleToReceiver->data().sendtimestamp()).toString(TimeFormat);
+        data.m_Message = QString::fromStdString(chatSingleToReceiver->data().data());
+        data.m_FriendID = chatSingleToReceiver->data().senderid();
+        data.m_HeadPath = UserInfo::Instance()->GetUserHeadPath(chatSingleToReceiver->senderinfo().userid(), false);
+        data.m_UserStatus = pOtherUserInfo->mUserData.ProtoUserInfo.status();
 
-    // 收到消息的好友在当前聊天列表中
-    if (m_mapOneChatBox.end() != m_mapOneChatBox.find(chatSingleToReceiver->data().senderid()))
-    {
-        OneChatBox oneChatBox = m_mapOneChatBox[chatSingleToReceiver->data().senderid()];
-        int tipsNum = oneChatBox.Left->GetInfo().m_TipsNum;
-        data.m_TipsNum = tipsNum + 1;
-        oneChatBox.Left->UpdateData(data);
-        oneChatBox.Right->InsertMessage(chatSingleToReceiver->data());
-        return;
+        // 这里有两种情况,收到消息的好友在当前聊天列表中,没有在当前聊天列表中
+
+        // 收到消息的好友在当前聊天列表中
+        if (m_mapOneChatBox.end() != m_mapOneChatBox.find(chatSingleToReceiver->data().senderid()))
+        {
+            OneChatBox oneChatBox = m_mapOneChatBox[chatSingleToReceiver->data().senderid()];
+            int tipsNum = oneChatBox.Left->GetInfo().m_TipsNum;
+            data.m_TipsNum = tipsNum + 1;
+            oneChatBox.Left->UpdateData(data);
+            oneChatBox.Right->InsertMessage(chatSingleToReceiver->data());
+            return;
+        }
+
+        // 没有在当前聊天列表中
+        data.m_TipsNum = 1;
+        AddOneChat(data);
+
+        m_mapOneChatBox[chatSingleToReceiver->data().senderid()].Right->AddMessage(chatSingleToReceiver->data());
+
+    }else{
+        if (m_mapOneChatBox.end() != m_mapOneChatBox.find(chatSingleToReceiver->data().receiverid())) {
+            OneChatBox oneChatBox = m_mapOneChatBox[chatSingleToReceiver->data().receiverid()];
+            oneChatBox.Right->AddMessage(chatSingleToReceiver->data());
+        }
     }
-
-    // 没有在当前聊天列表中
-    data.m_TipsNum = 1;
-    AddOneChat(data);
-
-    m_mapOneChatBox[chatSingleToReceiver->data().senderid()].Right->AddMessage(chatSingleToReceiver->data());
 }
 
 void Chat::slot_OfflineNotify(char *pMessage)

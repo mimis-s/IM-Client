@@ -53,14 +53,19 @@ public:
                          QString imgName = imgf.name();
                         //取出图片
                          QImage image = QImage(var.value<QImage>());
-                         QPixmap map = QPixmap().fromImage(image);
                          im_home_proto::MessageFileRecap messageFileRecap;
                          messageFileRecap.set_filename(imgName.toStdString());
                          messageFileRecap.set_filesize(image.byteCount());
                          messageFileRecap.set_fileindex(i.fragment().position());
                          messageFileRecap.set_messagefiletype(im_home_proto::EnumImgType);
-                         QByteArray arr = QByteArray::fromRawData((const char*)image.bits(), image.byteCount());
-                         messageFileRecap.set_filedata(arr.toStdString());
+//                         QByteArray arr = QByteArray::fromRawData((const char*)image.bits(), image.byteCount());
+
+                         QByteArray imgByte;
+                         QDataStream ds(&imgByte, QIODevice::WriteOnly);
+                         ds<<image;
+                         QString str = QString::fromLocal8Bit(imgByte.toBase64());
+
+                         messageFileRecap.set_filedata(str.toStdString().c_str());
                          inputMsg.fileInfos.append(messageFileRecap);
                      }
                  }else{

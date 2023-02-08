@@ -7,15 +7,15 @@
 
 #include <QWidget>
 #include <QFile>
-
+#include "../../common/base_widget/chatbubble.h"
 // 本地存储结构
 struct LocalChatHistoryInfo {
     int64_t SenderID;
     int64_t ReceiverID;
     int64_t MessageID;
-    int MessageType;
     int64_t SendTimeStamp;  // 发送消息的时间戳
     int MessageStatus;      // 消息状态
+    QVector<MessageFileRecap> MessageFileInfos;      // 文件消息
     QString messageData;    // 消息
 };
 
