@@ -150,8 +150,6 @@ OneChatBox Chat::AddOneChat(ChatShortFrameData data)
 
     m_pChatShortFrameList->setItemWidget(Item_left, pChatShortFrame);
 
-    connect(pChatShortFrame, SIGNAL(sig_mousePress(ChatShortFrameData)), this, SLOT(slot_ChatShortFramePress(ChatShortFrameData)));
-
     // 右边是聊天内容
     ChatBox *pBox = new ChatBox(m_pRightChatBox, data);
     m_pChatBoxLayout->addWidget(pBox);
@@ -159,22 +157,32 @@ OneChatBox Chat::AddOneChat(ChatShortFrameData data)
     OneChatBox chatBox = OneChatBox{pChatShortFrame, pBox};
 
     m_mapOneChatBox[data.m_FriendID] = chatBox;
+    slot_ChatShortFramePress(data);
+
+    connect(pChatShortFrame, SIGNAL(sig_mousePress(ChatShortFrameData)), this, SLOT(slot_ChatShortFramePress(ChatShortFrameData)));
+
     return chatBox;
 }
 
 void Chat::slot_ChatShortFramePress(ChatShortFrameData data)
 {
-    QList<ChatShortFrame*> itemList = m_pChatShortFrameList->findChildren<ChatShortFrame*>();  // 获取所有的QChatHeadAndBubble
-
-    for (int i = 0; i < m_pChatShortFrameList->count(); i++) {
-        ChatShortFrame *pWidget = (ChatShortFrame *)m_pChatShortFrameList->itemWidget(m_pChatShortFrameList->item(i));
-        if (pWidget->GetInfo().m_FriendID == data.m_FriendID && m_bmapOffline[data.m_FriendID]) {
-            m_bmapOffline[data.m_FriendID] = false;
-            ChatShortFrameData data;
-            data.m_TipsNum = 0;
-            pWidget->UpdateData(data);
-            ChatHistory::Instance()->ReadOfflineMessage(data.m_FriendID);
-            break;
+    for(auto item : m_mapOneChatBox)
+    {
+        if (item.first == data.m_FriendID)
+        {
+            if (m_bmapOffline[data.m_FriendID])
+            {
+                m_bmapOffline[data.m_FriendID] = false;
+                ChatShortFrameData data;
+                data.m_TipsNum = 0;
+                item.second.Left->UpdateData(data);
+                ChatHistory::Instance()->ReadOfflineMessage(data.m_FriendID);
+            }
+            item.second.Right->setHidden(false);
+        }
+        else
+        {
+            item.second.Right->setHidden(true);
         }
     }
 }

@@ -65,8 +65,8 @@ ChatBox::ChatBox(QWidget *parent, ChatShortFrameData data) : QWidget(parent)
     m_pBtnEmoj->setStyleSheet("max-width:40px; min-width:40px;"
                              "max-height:40px; min-height:40px;"
                              "border-radius:20px;");
-    m_pTextInput = new ChatTextEdit();
-    m_pTextInput->setSizeIncrement(Qt::MinimumSize, Qt::MinimumSize);
+    m_pTextInput = new ChatTextEdit(pDownWidget);
+    //m_pTextInput->setSizeIncrement(Qt::MinimumSize, Qt::MinimumSize);
 
     m_pTextInput->setFont(QFont("", 16, QFont::Bold, true));
     m_pBtnSend = new QPushButton(tr(u8"发送"), pDownWidget);
