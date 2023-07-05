@@ -63,7 +63,7 @@ struct AgreeApplyFriendsToReceiverDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AgreeApplyFriendsToReceiverDefaultTypeInternal _AgreeApplyFriendsToReceiver_default_instance_;
 PROTOBUF_CONSTEXPR NotifyUserMessage::NotifyUserMessage(
     ::_pbi::ConstantInitialized)
-  : offlinesinglechat_(){}
+  : unreadsinglechat_(){}
 struct NotifyUserMessageDefaultTypeInternal {
   PROTOBUF_CONSTEXPR NotifyUserMessageDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -73,19 +73,19 @@ struct NotifyUserMessageDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NotifyUserMessageDefaultTypeInternal _NotifyUserMessage_default_instance_;
-PROTOBUF_CONSTEXPR NotifyOfflineMessage::NotifyOfflineMessage(
+PROTOBUF_CONSTEXPR NotifyUnReadMessage::NotifyUnReadMessage(
     ::_pbi::ConstantInitialized)
-  : data_()
-  , user_(nullptr){}
-struct NotifyOfflineMessageDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR NotifyOfflineMessageDefaultTypeInternal()
+  : user_(nullptr)
+  , unreadmessagesum_(0){}
+struct NotifyUnReadMessageDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR NotifyUnReadMessageDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~NotifyOfflineMessageDefaultTypeInternal() {}
+  ~NotifyUnReadMessageDefaultTypeInternal() {}
   union {
-    NotifyOfflineMessage _instance;
+    NotifyUnReadMessage _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NotifyOfflineMessageDefaultTypeInternal _NotifyOfflineMessage_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 NotifyUnReadMessageDefaultTypeInternal _NotifyUnReadMessage_default_instance_;
 }  // namespace im_home_proto
 static ::_pb::Metadata file_level_metadata_home_5frelay_2eproto[5];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_home_5frelay_2eproto = nullptr;
@@ -123,22 +123,22 @@ const uint32_t TableStruct_home_5frelay_2eproto::offsets[] PROTOBUF_SECTION_VARI
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::im_home_proto::NotifyUserMessage, offlinesinglechat_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::NotifyUserMessage, unreadsinglechat_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::im_home_proto::NotifyOfflineMessage, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::NotifyUnReadMessage, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::im_home_proto::NotifyOfflineMessage, user_),
-  PROTOBUF_FIELD_OFFSET(::im_home_proto::NotifyOfflineMessage, data_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::NotifyUnReadMessage, user_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::NotifyUnReadMessage, unreadmessagesum_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::im_home_proto::ChatSingleToReceiver)},
   { 8, -1, -1, sizeof(::im_home_proto::ApplyFriendsToReceiver)},
   { 17, -1, -1, sizeof(::im_home_proto::AgreeApplyFriendsToReceiver)},
   { 25, -1, -1, sizeof(::im_home_proto::NotifyUserMessage)},
-  { 32, -1, -1, sizeof(::im_home_proto::NotifyOfflineMessage)},
+  { 32, -1, -1, sizeof(::im_home_proto::NotifyUnReadMessage)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -146,7 +146,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::im_home_proto::_ApplyFriendsToReceiver_default_instance_._instance,
   &::im_home_proto::_AgreeApplyFriendsToReceiver_default_instance_._instance,
   &::im_home_proto::_NotifyUserMessage_default_instance_._instance,
-  &::im_home_proto::_NotifyOfflineMessage_default_instance_._instance,
+  &::im_home_proto::_NotifyUnReadMessage_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_home_5frelay_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -159,13 +159,13 @@ const char descriptor_table_protodef_home_5frelay_2eproto[] PROTOBUF_SECTION_VAR
   "\002 \001(\003\022,\n\013ApplyerInfo\030\003 \001(\0132\027.im_home_pro"
   "to.UserInfo\"C\n\033AgreeApplyFriendsToReceiv"
   "er\022\020\n\010SenderID\030\001 \001(\003\022\022\n\nReceiverID\030\002 \001(\003"
-  "\"S\n\021NotifyUserMessage\022>\n\021OfflineSingleCh"
-  "at\030\001 \003(\0132#.im_home_proto.NotifyOfflineMe"
-  "ssage\"g\n\024NotifyOfflineMessage\022%\n\004User\030\001 "
-  "\001(\0132\027.im_home_proto.UserInfo\022(\n\004Data\030\002 \003"
-  "(\0132\032.im_home_proto.ChatMessageBDZBgithub"
-  ".com/mimis-s/IM-Service/src/common/commo"
-  "nproto/im_home_protob\006proto3"
+  "\"Q\n\021NotifyUserMessage\022<\n\020UnReadSingleCha"
+  "t\030\001 \003(\0132\".im_home_proto.NotifyUnReadMess"
+  "age\"V\n\023NotifyUnReadMessage\022%\n\004User\030\001 \001(\013"
+  "2\027.im_home_proto.UserInfo\022\030\n\020UnReadMessa"
+  "geSum\030\002 \001(\005BDZBgithub.com/mimis-s/IM-Ser"
+  "vice/src/common/commonproto/im_home_prot"
+  "ob\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_home_5frelay_2eproto_deps[2] = {
   &::descriptor_table_home_5faccount_2eproto,
@@ -173,7 +173,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_home_5frelay_2eprot
 };
 static ::_pbi::once_flag descriptor_table_home_5frelay_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_home_5frelay_2eproto = {
-    false, false, 628, descriptor_table_protodef_home_5frelay_2eproto,
+    false, false, 609, descriptor_table_protodef_home_5frelay_2eproto,
     "home_relay.proto",
     &descriptor_table_home_5frelay_2eproto_once, descriptor_table_home_5frelay_2eproto_deps, 2, 5,
     schemas, file_default_instances, TableStruct_home_5frelay_2eproto::offsets,
@@ -900,13 +900,13 @@ class NotifyUserMessage::_Internal {
 NotifyUserMessage::NotifyUserMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  offlinesinglechat_(arena) {
+  unreadsinglechat_(arena) {
   SharedCtor();
   // @@protoc_insertion_point(arena_constructor:im_home_proto.NotifyUserMessage)
 }
 NotifyUserMessage::NotifyUserMessage(const NotifyUserMessage& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      offlinesinglechat_(from.offlinesinglechat_) {
+      unreadsinglechat_(from.unreadsinglechat_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:im_home_proto.NotifyUserMessage)
 }
@@ -937,7 +937,7 @@ void NotifyUserMessage::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  offlinesinglechat_.Clear();
+  unreadsinglechat_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -947,13 +947,13 @@ const char* NotifyUserMessage::_InternalParse(const char* ptr, ::_pbi::ParseCont
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // repeated .im_home_proto.NotifyOfflineMessage OfflineSingleChat = 1;
+      // repeated .im_home_proto.NotifyUnReadMessage UnReadSingleChat = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr -= 1;
           do {
             ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_offlinesinglechat(), ptr);
+            ptr = ctx->ParseMessage(_internal_add_unreadsinglechat(), ptr);
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
@@ -989,10 +989,10 @@ uint8_t* NotifyUserMessage::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .im_home_proto.NotifyOfflineMessage OfflineSingleChat = 1;
+  // repeated .im_home_proto.NotifyUnReadMessage UnReadSingleChat = 1;
   for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_offlinesinglechat_size()); i < n; i++) {
-    const auto& repfield = this->_internal_offlinesinglechat(i);
+      n = static_cast<unsigned>(this->_internal_unreadsinglechat_size()); i < n; i++) {
+    const auto& repfield = this->_internal_unreadsinglechat(i);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
         InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
   }
@@ -1013,9 +1013,9 @@ size_t NotifyUserMessage::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .im_home_proto.NotifyOfflineMessage OfflineSingleChat = 1;
-  total_size += 1UL * this->_internal_offlinesinglechat_size();
-  for (const auto& msg : this->offlinesinglechat_) {
+  // repeated .im_home_proto.NotifyUnReadMessage UnReadSingleChat = 1;
+  total_size += 1UL * this->_internal_unreadsinglechat_size();
+  for (const auto& msg : this->unreadsinglechat_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -1042,7 +1042,7 @@ void NotifyUserMessage::MergeFrom(const NotifyUserMessage& from) {
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  offlinesinglechat_.MergeFrom(from.offlinesinglechat_);
+  unreadsinglechat_.MergeFrom(from.unreadsinglechat_);
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1060,7 +1060,7 @@ bool NotifyUserMessage::IsInitialized() const {
 void NotifyUserMessage::InternalSwap(NotifyUserMessage* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  offlinesinglechat_.InternalSwap(&other->offlinesinglechat_);
+  unreadsinglechat_.InternalSwap(&other->unreadsinglechat_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata NotifyUserMessage::GetMetadata() const {
@@ -1071,49 +1071,48 @@ void NotifyUserMessage::InternalSwap(NotifyUserMessage* other) {
 
 // ===================================================================
 
-class NotifyOfflineMessage::_Internal {
+class NotifyUnReadMessage::_Internal {
  public:
-  static const ::im_home_proto::UserInfo& user(const NotifyOfflineMessage* msg);
+  static const ::im_home_proto::UserInfo& user(const NotifyUnReadMessage* msg);
 };
 
 const ::im_home_proto::UserInfo&
-NotifyOfflineMessage::_Internal::user(const NotifyOfflineMessage* msg) {
+NotifyUnReadMessage::_Internal::user(const NotifyUnReadMessage* msg) {
   return *msg->user_;
 }
-void NotifyOfflineMessage::clear_user() {
+void NotifyUnReadMessage::clear_user() {
   if (GetArenaForAllocation() == nullptr && user_ != nullptr) {
     delete user_;
   }
   user_ = nullptr;
 }
-void NotifyOfflineMessage::clear_data() {
-  data_.Clear();
-}
-NotifyOfflineMessage::NotifyOfflineMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+NotifyUnReadMessage::NotifyUnReadMessage(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  data_(arena) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:im_home_proto.NotifyOfflineMessage)
+  // @@protoc_insertion_point(arena_constructor:im_home_proto.NotifyUnReadMessage)
 }
-NotifyOfflineMessage::NotifyOfflineMessage(const NotifyOfflineMessage& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      data_(from.data_) {
+NotifyUnReadMessage::NotifyUnReadMessage(const NotifyUnReadMessage& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_user()) {
     user_ = new ::im_home_proto::UserInfo(*from.user_);
   } else {
     user_ = nullptr;
   }
-  // @@protoc_insertion_point(copy_constructor:im_home_proto.NotifyOfflineMessage)
+  unreadmessagesum_ = from.unreadmessagesum_;
+  // @@protoc_insertion_point(copy_constructor:im_home_proto.NotifyUnReadMessage)
 }
 
-inline void NotifyOfflineMessage::SharedCtor() {
-user_ = nullptr;
+inline void NotifyUnReadMessage::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&user_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&unreadmessagesum_) -
+    reinterpret_cast<char*>(&user_)) + sizeof(unreadmessagesum_));
 }
 
-NotifyOfflineMessage::~NotifyOfflineMessage() {
-  // @@protoc_insertion_point(destructor:im_home_proto.NotifyOfflineMessage)
+NotifyUnReadMessage::~NotifyUnReadMessage() {
+  // @@protoc_insertion_point(destructor:im_home_proto.NotifyUnReadMessage)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -1121,30 +1120,30 @@ NotifyOfflineMessage::~NotifyOfflineMessage() {
   SharedDtor();
 }
 
-inline void NotifyOfflineMessage::SharedDtor() {
+inline void NotifyUnReadMessage::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete user_;
 }
 
-void NotifyOfflineMessage::SetCachedSize(int size) const {
+void NotifyUnReadMessage::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void NotifyOfflineMessage::Clear() {
-// @@protoc_insertion_point(message_clear_start:im_home_proto.NotifyOfflineMessage)
+void NotifyUnReadMessage::Clear() {
+// @@protoc_insertion_point(message_clear_start:im_home_proto.NotifyUnReadMessage)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.Clear();
   if (GetArenaForAllocation() == nullptr && user_ != nullptr) {
     delete user_;
   }
   user_ = nullptr;
+  unreadmessagesum_ = 0;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* NotifyOfflineMessage::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* NotifyUnReadMessage::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -1158,16 +1157,11 @@ const char* NotifyOfflineMessage::_InternalParse(const char* ptr, ::_pbi::ParseC
         } else
           goto handle_unusual;
         continue;
-      // repeated .im_home_proto.ChatMessage Data = 2;
+      // int32 UnReadMessageSum = 2;
       case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_data(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          unreadmessagesum_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -1194,9 +1188,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* NotifyOfflineMessage::_InternalSerialize(
+uint8_t* NotifyUnReadMessage::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:im_home_proto.NotifyOfflineMessage)
+  // @@protoc_insertion_point(serialize_to_array_start:im_home_proto.NotifyUnReadMessage)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1207,36 +1201,27 @@ uint8_t* NotifyOfflineMessage::_InternalSerialize(
         _Internal::user(this).GetCachedSize(), target, stream);
   }
 
-  // repeated .im_home_proto.ChatMessage Data = 2;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_data_size()); i < n; i++) {
-    const auto& repfield = this->_internal_data(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
+  // int32 UnReadMessageSum = 2;
+  if (this->_internal_unreadmessagesum() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_unreadmessagesum(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:im_home_proto.NotifyOfflineMessage)
+  // @@protoc_insertion_point(serialize_to_array_end:im_home_proto.NotifyUnReadMessage)
   return target;
 }
 
-size_t NotifyOfflineMessage::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:im_home_proto.NotifyOfflineMessage)
+size_t NotifyUnReadMessage::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:im_home_proto.NotifyUnReadMessage)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
-
-  // repeated .im_home_proto.ChatMessage Data = 2;
-  total_size += 1UL * this->_internal_data_size();
-  for (const auto& msg : this->data_) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
-  }
 
   // .im_home_proto.UserInfo User = 1;
   if (this->_internal_has_user()) {
@@ -1245,54 +1230,65 @@ size_t NotifyOfflineMessage::ByteSizeLong() const {
         *user_);
   }
 
+  // int32 UnReadMessageSum = 2;
+  if (this->_internal_unreadmessagesum() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_unreadmessagesum());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NotifyOfflineMessage::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData NotifyUnReadMessage::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    NotifyOfflineMessage::MergeImpl
+    NotifyUnReadMessage::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NotifyOfflineMessage::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*NotifyUnReadMessage::GetClassData() const { return &_class_data_; }
 
-void NotifyOfflineMessage::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void NotifyUnReadMessage::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<NotifyOfflineMessage *>(to)->MergeFrom(
-      static_cast<const NotifyOfflineMessage &>(from));
+  static_cast<NotifyUnReadMessage *>(to)->MergeFrom(
+      static_cast<const NotifyUnReadMessage &>(from));
 }
 
 
-void NotifyOfflineMessage::MergeFrom(const NotifyOfflineMessage& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:im_home_proto.NotifyOfflineMessage)
+void NotifyUnReadMessage::MergeFrom(const NotifyUnReadMessage& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:im_home_proto.NotifyUnReadMessage)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  data_.MergeFrom(from.data_);
   if (from._internal_has_user()) {
     _internal_mutable_user()->::im_home_proto::UserInfo::MergeFrom(from._internal_user());
+  }
+  if (from._internal_unreadmessagesum() != 0) {
+    _internal_set_unreadmessagesum(from._internal_unreadmessagesum());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void NotifyOfflineMessage::CopyFrom(const NotifyOfflineMessage& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:im_home_proto.NotifyOfflineMessage)
+void NotifyUnReadMessage::CopyFrom(const NotifyUnReadMessage& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:im_home_proto.NotifyUnReadMessage)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool NotifyOfflineMessage::IsInitialized() const {
+bool NotifyUnReadMessage::IsInitialized() const {
   return true;
 }
 
-void NotifyOfflineMessage::InternalSwap(NotifyOfflineMessage* other) {
+void NotifyUnReadMessage::InternalSwap(NotifyUnReadMessage* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  data_.InternalSwap(&other->data_);
-  swap(user_, other->user_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(NotifyUnReadMessage, unreadmessagesum_)
+      + sizeof(NotifyUnReadMessage::unreadmessagesum_)
+      - PROTOBUF_FIELD_OFFSET(NotifyUnReadMessage, user_)>(
+          reinterpret_cast<char*>(&user_),
+          reinterpret_cast<char*>(&other->user_));
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata NotifyOfflineMessage::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata NotifyUnReadMessage::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_home_5frelay_2eproto_getter, &descriptor_table_home_5frelay_2eproto_once,
       file_level_metadata_home_5frelay_2eproto[4]);
@@ -1317,9 +1313,9 @@ template<> PROTOBUF_NOINLINE ::im_home_proto::NotifyUserMessage*
 Arena::CreateMaybeMessage< ::im_home_proto::NotifyUserMessage >(Arena* arena) {
   return Arena::CreateMessageInternal< ::im_home_proto::NotifyUserMessage >(arena);
 }
-template<> PROTOBUF_NOINLINE ::im_home_proto::NotifyOfflineMessage*
-Arena::CreateMaybeMessage< ::im_home_proto::NotifyOfflineMessage >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::im_home_proto::NotifyOfflineMessage >(arena);
+template<> PROTOBUF_NOINLINE ::im_home_proto::NotifyUnReadMessage*
+Arena::CreateMaybeMessage< ::im_home_proto::NotifyUnReadMessage >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::im_home_proto::NotifyUnReadMessage >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

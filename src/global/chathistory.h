@@ -36,8 +36,6 @@ public:
     explicit ChatHistory(QWidget *parent = nullptr);
     // 获取历史数据(先在本地寻找, 本地没有再请求服务器数据, 然后存储到本地存储)
     std::map<int64_t, LocalChatHistoryInfo> GetHistoryChat(int64_t friendID, int64_t maxMessageID);
-    // 读取离线消息,服务器返回消息,存储在本地存储
-    void ReadOfflineMessage(int64_t friendID);
 
 protected:
     QJsonArray AddHistoryFile(QJsonArray localHistoryArray, std::map<int64_t, LocalChatHistoryInfo> info);

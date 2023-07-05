@@ -25,7 +25,7 @@ const MessageTag MessageTag_AgreeFriendApply        = {Req: CRC32("AgreeFriendAp
 const MessageTag MessageTag_DelFriends              = {Req: CRC32("DelFriendsReq"), Res: CRC32("DelFriendsRes")};
 const MessageTag MessageTag_ModifyUserInfo          = {Req: CRC32("ModifyUserInfoReq"), Res: CRC32("ModifyUserInfoRes")};
 const MessageTag MessageTag_GetSingleChatHistory    = {Req: CRC32("GetSingleChatHistoryReq"), Res: CRC32("GetSingleChatHistoryRes")};
-const MessageTag MessageTag_ReadOfflineMessage      = {Req: CRC32("ReadOfflineMessageReq"), Res: CRC32("ReadOfflineMessageRes")};
+const MessageTag MessageTag_UnReadMessage           = {Req: CRC32("UnReadMessageReq"), Res: CRC32("UnReadMessageRes")};
 
 const MessageTag MessageTag_NotifyUserMessage       = {Notify: CRC32("NotifyUserMessage")};
 const MessageTag MessageTag_NotifyFriendsStatusList = {Notify: CRC32("FriendsStatusList")};

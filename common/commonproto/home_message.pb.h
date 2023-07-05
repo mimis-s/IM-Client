@@ -46,24 +46,32 @@ struct TableStruct_home_5fmessage_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_home_5fmessage_2eproto;
 namespace im_home_proto {
+class DownLoadFileMessageReq;
+struct DownLoadFileMessageReqDefaultTypeInternal;
+extern DownLoadFileMessageReqDefaultTypeInternal _DownLoadFileMessageReq_default_instance_;
+class DownLoadFileMessageRes;
+struct DownLoadFileMessageResDefaultTypeInternal;
+extern DownLoadFileMessageResDefaultTypeInternal _DownLoadFileMessageRes_default_instance_;
 class GetSingleChatHistoryReq;
 struct GetSingleChatHistoryReqDefaultTypeInternal;
 extern GetSingleChatHistoryReqDefaultTypeInternal _GetSingleChatHistoryReq_default_instance_;
 class GetSingleChatHistoryRes;
 struct GetSingleChatHistoryResDefaultTypeInternal;
 extern GetSingleChatHistoryResDefaultTypeInternal _GetSingleChatHistoryRes_default_instance_;
-class ReadOfflineMessageReq;
-struct ReadOfflineMessageReqDefaultTypeInternal;
-extern ReadOfflineMessageReqDefaultTypeInternal _ReadOfflineMessageReq_default_instance_;
-class ReadOfflineMessageRes;
-struct ReadOfflineMessageResDefaultTypeInternal;
-extern ReadOfflineMessageResDefaultTypeInternal _ReadOfflineMessageRes_default_instance_;
+class UnReadMessageReq;
+struct UnReadMessageReqDefaultTypeInternal;
+extern UnReadMessageReqDefaultTypeInternal _UnReadMessageReq_default_instance_;
+class UnReadMessageRes;
+struct UnReadMessageResDefaultTypeInternal;
+extern UnReadMessageResDefaultTypeInternal _UnReadMessageRes_default_instance_;
 }  // namespace im_home_proto
 PROTOBUF_NAMESPACE_OPEN
+template<> ::im_home_proto::DownLoadFileMessageReq* Arena::CreateMaybeMessage<::im_home_proto::DownLoadFileMessageReq>(Arena*);
+template<> ::im_home_proto::DownLoadFileMessageRes* Arena::CreateMaybeMessage<::im_home_proto::DownLoadFileMessageRes>(Arena*);
 template<> ::im_home_proto::GetSingleChatHistoryReq* Arena::CreateMaybeMessage<::im_home_proto::GetSingleChatHistoryReq>(Arena*);
 template<> ::im_home_proto::GetSingleChatHistoryRes* Arena::CreateMaybeMessage<::im_home_proto::GetSingleChatHistoryRes>(Arena*);
-template<> ::im_home_proto::ReadOfflineMessageReq* Arena::CreateMaybeMessage<::im_home_proto::ReadOfflineMessageReq>(Arena*);
-template<> ::im_home_proto::ReadOfflineMessageRes* Arena::CreateMaybeMessage<::im_home_proto::ReadOfflineMessageRes>(Arena*);
+template<> ::im_home_proto::UnReadMessageReq* Arena::CreateMaybeMessage<::im_home_proto::UnReadMessageReq>(Arena*);
+template<> ::im_home_proto::UnReadMessageRes* Arena::CreateMaybeMessage<::im_home_proto::UnReadMessageRes>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace im_home_proto {
 
@@ -386,24 +394,24 @@ class GetSingleChatHistoryRes final :
 };
 // -------------------------------------------------------------------
 
-class ReadOfflineMessageReq final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.ReadOfflineMessageReq) */ {
+class UnReadMessageReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.UnReadMessageReq) */ {
  public:
-  inline ReadOfflineMessageReq() : ReadOfflineMessageReq(nullptr) {}
-  ~ReadOfflineMessageReq() override;
-  explicit PROTOBUF_CONSTEXPR ReadOfflineMessageReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline UnReadMessageReq() : UnReadMessageReq(nullptr) {}
+  ~UnReadMessageReq() override;
+  explicit PROTOBUF_CONSTEXPR UnReadMessageReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  ReadOfflineMessageReq(const ReadOfflineMessageReq& from);
-  ReadOfflineMessageReq(ReadOfflineMessageReq&& from) noexcept
-    : ReadOfflineMessageReq() {
+  UnReadMessageReq(const UnReadMessageReq& from);
+  UnReadMessageReq(UnReadMessageReq&& from) noexcept
+    : UnReadMessageReq() {
     *this = ::std::move(from);
   }
 
-  inline ReadOfflineMessageReq& operator=(const ReadOfflineMessageReq& from) {
+  inline UnReadMessageReq& operator=(const UnReadMessageReq& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ReadOfflineMessageReq& operator=(ReadOfflineMessageReq&& from) noexcept {
+  inline UnReadMessageReq& operator=(UnReadMessageReq&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -426,20 +434,20 @@ class ReadOfflineMessageReq final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ReadOfflineMessageReq& default_instance() {
+  static const UnReadMessageReq& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ReadOfflineMessageReq* internal_default_instance() {
-    return reinterpret_cast<const ReadOfflineMessageReq*>(
-               &_ReadOfflineMessageReq_default_instance_);
+  static inline const UnReadMessageReq* internal_default_instance() {
+    return reinterpret_cast<const UnReadMessageReq*>(
+               &_UnReadMessageReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     2;
 
-  friend void swap(ReadOfflineMessageReq& a, ReadOfflineMessageReq& b) {
+  friend void swap(UnReadMessageReq& a, UnReadMessageReq& b) {
     a.Swap(&b);
   }
-  inline void Swap(ReadOfflineMessageReq* other) {
+  inline void Swap(UnReadMessageReq* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -452,7 +460,7 @@ class ReadOfflineMessageReq final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ReadOfflineMessageReq* other) {
+  void UnsafeArenaSwap(UnReadMessageReq* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -460,13 +468,13 @@ class ReadOfflineMessageReq final :
 
   // implements Message ----------------------------------------------
 
-  ReadOfflineMessageReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ReadOfflineMessageReq>(arena);
+  UnReadMessageReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UnReadMessageReq>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const ReadOfflineMessageReq& from);
+  void CopyFrom(const UnReadMessageReq& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const ReadOfflineMessageReq& from);
+  void MergeFrom(const UnReadMessageReq& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -483,15 +491,15 @@ class ReadOfflineMessageReq final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(ReadOfflineMessageReq* other);
+  void InternalSwap(UnReadMessageReq* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "im_home_proto.ReadOfflineMessageReq";
+    return "im_home_proto.UnReadMessageReq";
   }
   protected:
-  explicit ReadOfflineMessageReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit UnReadMessageReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -516,7 +524,7 @@ class ReadOfflineMessageReq final :
   void _internal_set_friendid(int64_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:im_home_proto.ReadOfflineMessageReq)
+  // @@protoc_insertion_point(class_scope:im_home_proto.UnReadMessageReq)
  private:
   class _Internal;
 
@@ -529,24 +537,24 @@ class ReadOfflineMessageReq final :
 };
 // -------------------------------------------------------------------
 
-class ReadOfflineMessageRes final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.ReadOfflineMessageRes) */ {
+class UnReadMessageRes final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.UnReadMessageRes) */ {
  public:
-  inline ReadOfflineMessageRes() : ReadOfflineMessageRes(nullptr) {}
-  ~ReadOfflineMessageRes() override;
-  explicit PROTOBUF_CONSTEXPR ReadOfflineMessageRes(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline UnReadMessageRes() : UnReadMessageRes(nullptr) {}
+  ~UnReadMessageRes() override;
+  explicit PROTOBUF_CONSTEXPR UnReadMessageRes(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  ReadOfflineMessageRes(const ReadOfflineMessageRes& from);
-  ReadOfflineMessageRes(ReadOfflineMessageRes&& from) noexcept
-    : ReadOfflineMessageRes() {
+  UnReadMessageRes(const UnReadMessageRes& from);
+  UnReadMessageRes(UnReadMessageRes&& from) noexcept
+    : UnReadMessageRes() {
     *this = ::std::move(from);
   }
 
-  inline ReadOfflineMessageRes& operator=(const ReadOfflineMessageRes& from) {
+  inline UnReadMessageRes& operator=(const UnReadMessageRes& from) {
     CopyFrom(from);
     return *this;
   }
-  inline ReadOfflineMessageRes& operator=(ReadOfflineMessageRes&& from) noexcept {
+  inline UnReadMessageRes& operator=(UnReadMessageRes&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()
   #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
@@ -569,20 +577,20 @@ class ReadOfflineMessageRes final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const ReadOfflineMessageRes& default_instance() {
+  static const UnReadMessageRes& default_instance() {
     return *internal_default_instance();
   }
-  static inline const ReadOfflineMessageRes* internal_default_instance() {
-    return reinterpret_cast<const ReadOfflineMessageRes*>(
-               &_ReadOfflineMessageRes_default_instance_);
+  static inline const UnReadMessageRes* internal_default_instance() {
+    return reinterpret_cast<const UnReadMessageRes*>(
+               &_UnReadMessageRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     3;
 
-  friend void swap(ReadOfflineMessageRes& a, ReadOfflineMessageRes& b) {
+  friend void swap(UnReadMessageRes& a, UnReadMessageRes& b) {
     a.Swap(&b);
   }
-  inline void Swap(ReadOfflineMessageRes* other) {
+  inline void Swap(UnReadMessageRes* other) {
     if (other == this) return;
   #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
     if (GetOwningArena() != nullptr &&
@@ -595,7 +603,7 @@ class ReadOfflineMessageRes final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(ReadOfflineMessageRes* other) {
+  void UnsafeArenaSwap(UnReadMessageRes* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -603,13 +611,13 @@ class ReadOfflineMessageRes final :
 
   // implements Message ----------------------------------------------
 
-  ReadOfflineMessageRes* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ReadOfflineMessageRes>(arena);
+  UnReadMessageRes* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<UnReadMessageRes>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const ReadOfflineMessageRes& from);
+  void CopyFrom(const UnReadMessageRes& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const ReadOfflineMessageRes& from);
+  void MergeFrom(const UnReadMessageRes& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
@@ -626,15 +634,15 @@ class ReadOfflineMessageRes final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(ReadOfflineMessageRes* other);
+  void InternalSwap(UnReadMessageRes* other);
 
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "im_home_proto.ReadOfflineMessageRes";
+    return "im_home_proto.UnReadMessageRes";
   }
   protected:
-  explicit ReadOfflineMessageRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit UnReadMessageRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   public:
 
@@ -648,26 +656,344 @@ class ReadOfflineMessageRes final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kDataFieldNumber = 2,
     kFriendIDFieldNumber = 1,
   };
-  // repeated .im_home_proto.ChatMessage Data = 2;
-  int data_size() const;
+  // int64 FriendID = 1;
+  void clear_friendid();
+  int64_t friendid() const;
+  void set_friendid(int64_t value);
   private:
-  int _internal_data_size() const;
+  int64_t _internal_friendid() const;
+  void _internal_set_friendid(int64_t value);
   public:
-  void clear_data();
-  ::im_home_proto::ChatMessage* mutable_data(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::ChatMessage >*
-      mutable_data();
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.UnReadMessageRes)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  int64_t friendid_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_home_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DownLoadFileMessageReq final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.DownLoadFileMessageReq) */ {
+ public:
+  inline DownLoadFileMessageReq() : DownLoadFileMessageReq(nullptr) {}
+  ~DownLoadFileMessageReq() override;
+  explicit PROTOBUF_CONSTEXPR DownLoadFileMessageReq(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DownLoadFileMessageReq(const DownLoadFileMessageReq& from);
+  DownLoadFileMessageReq(DownLoadFileMessageReq&& from) noexcept
+    : DownLoadFileMessageReq() {
+    *this = ::std::move(from);
+  }
+
+  inline DownLoadFileMessageReq& operator=(const DownLoadFileMessageReq& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DownLoadFileMessageReq& operator=(DownLoadFileMessageReq&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DownLoadFileMessageReq& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DownLoadFileMessageReq* internal_default_instance() {
+    return reinterpret_cast<const DownLoadFileMessageReq*>(
+               &_DownLoadFileMessageReq_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(DownLoadFileMessageReq& a, DownLoadFileMessageReq& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DownLoadFileMessageReq* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DownLoadFileMessageReq* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DownLoadFileMessageReq* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DownLoadFileMessageReq>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DownLoadFileMessageReq& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DownLoadFileMessageReq& from);
   private:
-  const ::im_home_proto::ChatMessage& _internal_data(int index) const;
-  ::im_home_proto::ChatMessage* _internal_add_data();
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
   public:
-  const ::im_home_proto::ChatMessage& data(int index) const;
-  ::im_home_proto::ChatMessage* add_data();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::ChatMessage >&
-      data() const;
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DownLoadFileMessageReq* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "im_home_proto.DownLoadFileMessageReq";
+  }
+  protected:
+  explicit DownLoadFileMessageReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFriendIDFieldNumber = 1,
+    kMessageIDFieldNumber = 2,
+    kFileIndexFieldNumber = 3,
+    kMessageFileTypeFieldNumber = 4,
+  };
+  // int64 FriendID = 1;
+  void clear_friendid();
+  int64_t friendid() const;
+  void set_friendid(int64_t value);
+  private:
+  int64_t _internal_friendid() const;
+  void _internal_set_friendid(int64_t value);
+  public:
+
+  // int64 MessageID = 2;
+  void clear_messageid();
+  int64_t messageid() const;
+  void set_messageid(int64_t value);
+  private:
+  int64_t _internal_messageid() const;
+  void _internal_set_messageid(int64_t value);
+  public:
+
+  // int32 FileIndex = 3;
+  void clear_fileindex();
+  int32_t fileindex() const;
+  void set_fileindex(int32_t value);
+  private:
+  int32_t _internal_fileindex() const;
+  void _internal_set_fileindex(int32_t value);
+  public:
+
+  // .im_home_proto.MessageFileType_Enum MessageFileType = 4;
+  void clear_messagefiletype();
+  ::im_home_proto::MessageFileType_Enum messagefiletype() const;
+  void set_messagefiletype(::im_home_proto::MessageFileType_Enum value);
+  private:
+  ::im_home_proto::MessageFileType_Enum _internal_messagefiletype() const;
+  void _internal_set_messagefiletype(::im_home_proto::MessageFileType_Enum value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.DownLoadFileMessageReq)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  int64_t friendid_;
+  int64_t messageid_;
+  int32_t fileindex_;
+  int messagefiletype_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_home_5fmessage_2eproto;
+};
+// -------------------------------------------------------------------
+
+class DownLoadFileMessageRes final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:im_home_proto.DownLoadFileMessageRes) */ {
+ public:
+  inline DownLoadFileMessageRes() : DownLoadFileMessageRes(nullptr) {}
+  ~DownLoadFileMessageRes() override;
+  explicit PROTOBUF_CONSTEXPR DownLoadFileMessageRes(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  DownLoadFileMessageRes(const DownLoadFileMessageRes& from);
+  DownLoadFileMessageRes(DownLoadFileMessageRes&& from) noexcept
+    : DownLoadFileMessageRes() {
+    *this = ::std::move(from);
+  }
+
+  inline DownLoadFileMessageRes& operator=(const DownLoadFileMessageRes& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline DownLoadFileMessageRes& operator=(DownLoadFileMessageRes&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const DownLoadFileMessageRes& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const DownLoadFileMessageRes* internal_default_instance() {
+    return reinterpret_cast<const DownLoadFileMessageRes*>(
+               &_DownLoadFileMessageRes_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(DownLoadFileMessageRes& a, DownLoadFileMessageRes& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(DownLoadFileMessageRes* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(DownLoadFileMessageRes* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  DownLoadFileMessageRes* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<DownLoadFileMessageRes>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const DownLoadFileMessageRes& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const DownLoadFileMessageRes& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(DownLoadFileMessageRes* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "im_home_proto.DownLoadFileMessageRes";
+  }
+  protected:
+  explicit DownLoadFileMessageRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFileDataFieldNumber = 4,
+    kFriendIDFieldNumber = 1,
+    kMessageIDFieldNumber = 2,
+    kFileIndexFieldNumber = 3,
+    kMessageFileTypeFieldNumber = 5,
+  };
+  // string FileData = 4;
+  void clear_filedata();
+  const std::string& filedata() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_filedata(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_filedata();
+  PROTOBUF_NODISCARD std::string* release_filedata();
+  void set_allocated_filedata(std::string* filedata);
+  private:
+  const std::string& _internal_filedata() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_filedata(const std::string& value);
+  std::string* _internal_mutable_filedata();
+  public:
 
   // int64 FriendID = 1;
   void clear_friendid();
@@ -678,15 +1004,45 @@ class ReadOfflineMessageRes final :
   void _internal_set_friendid(int64_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:im_home_proto.ReadOfflineMessageRes)
+  // int64 MessageID = 2;
+  void clear_messageid();
+  int64_t messageid() const;
+  void set_messageid(int64_t value);
+  private:
+  int64_t _internal_messageid() const;
+  void _internal_set_messageid(int64_t value);
+  public:
+
+  // int32 FileIndex = 3;
+  void clear_fileindex();
+  int32_t fileindex() const;
+  void set_fileindex(int32_t value);
+  private:
+  int32_t _internal_fileindex() const;
+  void _internal_set_fileindex(int32_t value);
+  public:
+
+  // .im_home_proto.MessageFileType_Enum MessageFileType = 5;
+  void clear_messagefiletype();
+  ::im_home_proto::MessageFileType_Enum messagefiletype() const;
+  void set_messagefiletype(::im_home_proto::MessageFileType_Enum value);
+  private:
+  ::im_home_proto::MessageFileType_Enum _internal_messagefiletype() const;
+  void _internal_set_messagefiletype(::im_home_proto::MessageFileType_Enum value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:im_home_proto.DownLoadFileMessageRes)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::ChatMessage > data_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr filedata_;
   int64_t friendid_;
+  int64_t messageid_;
+  int32_t fileindex_;
+  int messagefiletype_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_home_5fmessage_2eproto;
 };
@@ -804,92 +1160,277 @@ GetSingleChatHistoryRes::data() const {
 
 // -------------------------------------------------------------------
 
-// ReadOfflineMessageReq
+// UnReadMessageReq
 
 // int64 FriendID = 1;
-inline void ReadOfflineMessageReq::clear_friendid() {
+inline void UnReadMessageReq::clear_friendid() {
   friendid_ = int64_t{0};
 }
-inline int64_t ReadOfflineMessageReq::_internal_friendid() const {
+inline int64_t UnReadMessageReq::_internal_friendid() const {
   return friendid_;
 }
-inline int64_t ReadOfflineMessageReq::friendid() const {
-  // @@protoc_insertion_point(field_get:im_home_proto.ReadOfflineMessageReq.FriendID)
+inline int64_t UnReadMessageReq::friendid() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.UnReadMessageReq.FriendID)
   return _internal_friendid();
 }
-inline void ReadOfflineMessageReq::_internal_set_friendid(int64_t value) {
+inline void UnReadMessageReq::_internal_set_friendid(int64_t value) {
   
   friendid_ = value;
 }
-inline void ReadOfflineMessageReq::set_friendid(int64_t value) {
+inline void UnReadMessageReq::set_friendid(int64_t value) {
   _internal_set_friendid(value);
-  // @@protoc_insertion_point(field_set:im_home_proto.ReadOfflineMessageReq.FriendID)
+  // @@protoc_insertion_point(field_set:im_home_proto.UnReadMessageReq.FriendID)
 }
 
 // -------------------------------------------------------------------
 
-// ReadOfflineMessageRes
+// UnReadMessageRes
 
 // int64 FriendID = 1;
-inline void ReadOfflineMessageRes::clear_friendid() {
+inline void UnReadMessageRes::clear_friendid() {
   friendid_ = int64_t{0};
 }
-inline int64_t ReadOfflineMessageRes::_internal_friendid() const {
+inline int64_t UnReadMessageRes::_internal_friendid() const {
   return friendid_;
 }
-inline int64_t ReadOfflineMessageRes::friendid() const {
-  // @@protoc_insertion_point(field_get:im_home_proto.ReadOfflineMessageRes.FriendID)
+inline int64_t UnReadMessageRes::friendid() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.UnReadMessageRes.FriendID)
   return _internal_friendid();
 }
-inline void ReadOfflineMessageRes::_internal_set_friendid(int64_t value) {
+inline void UnReadMessageRes::_internal_set_friendid(int64_t value) {
   
   friendid_ = value;
 }
-inline void ReadOfflineMessageRes::set_friendid(int64_t value) {
+inline void UnReadMessageRes::set_friendid(int64_t value) {
   _internal_set_friendid(value);
-  // @@protoc_insertion_point(field_set:im_home_proto.ReadOfflineMessageRes.FriendID)
+  // @@protoc_insertion_point(field_set:im_home_proto.UnReadMessageRes.FriendID)
 }
 
-// repeated .im_home_proto.ChatMessage Data = 2;
-inline int ReadOfflineMessageRes::_internal_data_size() const {
-  return data_.size();
+// -------------------------------------------------------------------
+
+// DownLoadFileMessageReq
+
+// int64 FriendID = 1;
+inline void DownLoadFileMessageReq::clear_friendid() {
+  friendid_ = int64_t{0};
 }
-inline int ReadOfflineMessageRes::data_size() const {
-  return _internal_data_size();
+inline int64_t DownLoadFileMessageReq::_internal_friendid() const {
+  return friendid_;
 }
-inline ::im_home_proto::ChatMessage* ReadOfflineMessageRes::mutable_data(int index) {
-  // @@protoc_insertion_point(field_mutable:im_home_proto.ReadOfflineMessageRes.Data)
-  return data_.Mutable(index);
+inline int64_t DownLoadFileMessageReq::friendid() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.DownLoadFileMessageReq.FriendID)
+  return _internal_friendid();
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::ChatMessage >*
-ReadOfflineMessageRes::mutable_data() {
-  // @@protoc_insertion_point(field_mutable_list:im_home_proto.ReadOfflineMessageRes.Data)
-  return &data_;
+inline void DownLoadFileMessageReq::_internal_set_friendid(int64_t value) {
+  
+  friendid_ = value;
 }
-inline const ::im_home_proto::ChatMessage& ReadOfflineMessageRes::_internal_data(int index) const {
-  return data_.Get(index);
+inline void DownLoadFileMessageReq::set_friendid(int64_t value) {
+  _internal_set_friendid(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.DownLoadFileMessageReq.FriendID)
 }
-inline const ::im_home_proto::ChatMessage& ReadOfflineMessageRes::data(int index) const {
-  // @@protoc_insertion_point(field_get:im_home_proto.ReadOfflineMessageRes.Data)
-  return _internal_data(index);
+
+// int64 MessageID = 2;
+inline void DownLoadFileMessageReq::clear_messageid() {
+  messageid_ = int64_t{0};
 }
-inline ::im_home_proto::ChatMessage* ReadOfflineMessageRes::_internal_add_data() {
-  return data_.Add();
+inline int64_t DownLoadFileMessageReq::_internal_messageid() const {
+  return messageid_;
 }
-inline ::im_home_proto::ChatMessage* ReadOfflineMessageRes::add_data() {
-  ::im_home_proto::ChatMessage* _add = _internal_add_data();
-  // @@protoc_insertion_point(field_add:im_home_proto.ReadOfflineMessageRes.Data)
-  return _add;
+inline int64_t DownLoadFileMessageReq::messageid() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.DownLoadFileMessageReq.MessageID)
+  return _internal_messageid();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::im_home_proto::ChatMessage >&
-ReadOfflineMessageRes::data() const {
-  // @@protoc_insertion_point(field_list:im_home_proto.ReadOfflineMessageRes.Data)
-  return data_;
+inline void DownLoadFileMessageReq::_internal_set_messageid(int64_t value) {
+  
+  messageid_ = value;
+}
+inline void DownLoadFileMessageReq::set_messageid(int64_t value) {
+  _internal_set_messageid(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.DownLoadFileMessageReq.MessageID)
+}
+
+// int32 FileIndex = 3;
+inline void DownLoadFileMessageReq::clear_fileindex() {
+  fileindex_ = 0;
+}
+inline int32_t DownLoadFileMessageReq::_internal_fileindex() const {
+  return fileindex_;
+}
+inline int32_t DownLoadFileMessageReq::fileindex() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.DownLoadFileMessageReq.FileIndex)
+  return _internal_fileindex();
+}
+inline void DownLoadFileMessageReq::_internal_set_fileindex(int32_t value) {
+  
+  fileindex_ = value;
+}
+inline void DownLoadFileMessageReq::set_fileindex(int32_t value) {
+  _internal_set_fileindex(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.DownLoadFileMessageReq.FileIndex)
+}
+
+// .im_home_proto.MessageFileType_Enum MessageFileType = 4;
+inline void DownLoadFileMessageReq::clear_messagefiletype() {
+  messagefiletype_ = 0;
+}
+inline ::im_home_proto::MessageFileType_Enum DownLoadFileMessageReq::_internal_messagefiletype() const {
+  return static_cast< ::im_home_proto::MessageFileType_Enum >(messagefiletype_);
+}
+inline ::im_home_proto::MessageFileType_Enum DownLoadFileMessageReq::messagefiletype() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.DownLoadFileMessageReq.MessageFileType)
+  return _internal_messagefiletype();
+}
+inline void DownLoadFileMessageReq::_internal_set_messagefiletype(::im_home_proto::MessageFileType_Enum value) {
+  
+  messagefiletype_ = value;
+}
+inline void DownLoadFileMessageReq::set_messagefiletype(::im_home_proto::MessageFileType_Enum value) {
+  _internal_set_messagefiletype(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.DownLoadFileMessageReq.MessageFileType)
+}
+
+// -------------------------------------------------------------------
+
+// DownLoadFileMessageRes
+
+// int64 FriendID = 1;
+inline void DownLoadFileMessageRes::clear_friendid() {
+  friendid_ = int64_t{0};
+}
+inline int64_t DownLoadFileMessageRes::_internal_friendid() const {
+  return friendid_;
+}
+inline int64_t DownLoadFileMessageRes::friendid() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.DownLoadFileMessageRes.FriendID)
+  return _internal_friendid();
+}
+inline void DownLoadFileMessageRes::_internal_set_friendid(int64_t value) {
+  
+  friendid_ = value;
+}
+inline void DownLoadFileMessageRes::set_friendid(int64_t value) {
+  _internal_set_friendid(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.DownLoadFileMessageRes.FriendID)
+}
+
+// int64 MessageID = 2;
+inline void DownLoadFileMessageRes::clear_messageid() {
+  messageid_ = int64_t{0};
+}
+inline int64_t DownLoadFileMessageRes::_internal_messageid() const {
+  return messageid_;
+}
+inline int64_t DownLoadFileMessageRes::messageid() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.DownLoadFileMessageRes.MessageID)
+  return _internal_messageid();
+}
+inline void DownLoadFileMessageRes::_internal_set_messageid(int64_t value) {
+  
+  messageid_ = value;
+}
+inline void DownLoadFileMessageRes::set_messageid(int64_t value) {
+  _internal_set_messageid(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.DownLoadFileMessageRes.MessageID)
+}
+
+// int32 FileIndex = 3;
+inline void DownLoadFileMessageRes::clear_fileindex() {
+  fileindex_ = 0;
+}
+inline int32_t DownLoadFileMessageRes::_internal_fileindex() const {
+  return fileindex_;
+}
+inline int32_t DownLoadFileMessageRes::fileindex() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.DownLoadFileMessageRes.FileIndex)
+  return _internal_fileindex();
+}
+inline void DownLoadFileMessageRes::_internal_set_fileindex(int32_t value) {
+  
+  fileindex_ = value;
+}
+inline void DownLoadFileMessageRes::set_fileindex(int32_t value) {
+  _internal_set_fileindex(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.DownLoadFileMessageRes.FileIndex)
+}
+
+// string FileData = 4;
+inline void DownLoadFileMessageRes::clear_filedata() {
+  filedata_.ClearToEmpty();
+}
+inline const std::string& DownLoadFileMessageRes::filedata() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.DownLoadFileMessageRes.FileData)
+  return _internal_filedata();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void DownLoadFileMessageRes::set_filedata(ArgT0&& arg0, ArgT... args) {
+ 
+ filedata_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:im_home_proto.DownLoadFileMessageRes.FileData)
+}
+inline std::string* DownLoadFileMessageRes::mutable_filedata() {
+  std::string* _s = _internal_mutable_filedata();
+  // @@protoc_insertion_point(field_mutable:im_home_proto.DownLoadFileMessageRes.FileData)
+  return _s;
+}
+inline const std::string& DownLoadFileMessageRes::_internal_filedata() const {
+  return filedata_.Get();
+}
+inline void DownLoadFileMessageRes::_internal_set_filedata(const std::string& value) {
+  
+  filedata_.Set(value, GetArenaForAllocation());
+}
+inline std::string* DownLoadFileMessageRes::_internal_mutable_filedata() {
+  
+  return filedata_.Mutable(GetArenaForAllocation());
+}
+inline std::string* DownLoadFileMessageRes::release_filedata() {
+  // @@protoc_insertion_point(field_release:im_home_proto.DownLoadFileMessageRes.FileData)
+  return filedata_.Release();
+}
+inline void DownLoadFileMessageRes::set_allocated_filedata(std::string* filedata) {
+  if (filedata != nullptr) {
+    
+  } else {
+    
+  }
+  filedata_.SetAllocated(filedata, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (filedata_.IsDefault()) {
+    filedata_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:im_home_proto.DownLoadFileMessageRes.FileData)
+}
+
+// .im_home_proto.MessageFileType_Enum MessageFileType = 5;
+inline void DownLoadFileMessageRes::clear_messagefiletype() {
+  messagefiletype_ = 0;
+}
+inline ::im_home_proto::MessageFileType_Enum DownLoadFileMessageRes::_internal_messagefiletype() const {
+  return static_cast< ::im_home_proto::MessageFileType_Enum >(messagefiletype_);
+}
+inline ::im_home_proto::MessageFileType_Enum DownLoadFileMessageRes::messagefiletype() const {
+  // @@protoc_insertion_point(field_get:im_home_proto.DownLoadFileMessageRes.MessageFileType)
+  return _internal_messagefiletype();
+}
+inline void DownLoadFileMessageRes::_internal_set_messagefiletype(::im_home_proto::MessageFileType_Enum value) {
+  
+  messagefiletype_ = value;
+}
+inline void DownLoadFileMessageRes::set_messagefiletype(::im_home_proto::MessageFileType_Enum value) {
+  _internal_set_messagefiletype(value);
+  // @@protoc_insertion_point(field_set:im_home_proto.DownLoadFileMessageRes.MessageFileType)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

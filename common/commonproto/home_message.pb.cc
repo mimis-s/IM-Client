@@ -47,33 +47,65 @@ struct GetSingleChatHistoryResDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GetSingleChatHistoryResDefaultTypeInternal _GetSingleChatHistoryRes_default_instance_;
-PROTOBUF_CONSTEXPR ReadOfflineMessageReq::ReadOfflineMessageReq(
+PROTOBUF_CONSTEXPR UnReadMessageReq::UnReadMessageReq(
     ::_pbi::ConstantInitialized)
   : friendid_(int64_t{0}){}
-struct ReadOfflineMessageReqDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ReadOfflineMessageReqDefaultTypeInternal()
+struct UnReadMessageReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UnReadMessageReqDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ReadOfflineMessageReqDefaultTypeInternal() {}
+  ~UnReadMessageReqDefaultTypeInternal() {}
   union {
-    ReadOfflineMessageReq _instance;
+    UnReadMessageReq _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadOfflineMessageReqDefaultTypeInternal _ReadOfflineMessageReq_default_instance_;
-PROTOBUF_CONSTEXPR ReadOfflineMessageRes::ReadOfflineMessageRes(
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UnReadMessageReqDefaultTypeInternal _UnReadMessageReq_default_instance_;
+PROTOBUF_CONSTEXPR UnReadMessageRes::UnReadMessageRes(
     ::_pbi::ConstantInitialized)
-  : data_()
-  , friendid_(int64_t{0}){}
-struct ReadOfflineMessageResDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR ReadOfflineMessageResDefaultTypeInternal()
+  : friendid_(int64_t{0}){}
+struct UnReadMessageResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR UnReadMessageResDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~ReadOfflineMessageResDefaultTypeInternal() {}
+  ~UnReadMessageResDefaultTypeInternal() {}
   union {
-    ReadOfflineMessageRes _instance;
+    UnReadMessageRes _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 ReadOfflineMessageResDefaultTypeInternal _ReadOfflineMessageRes_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UnReadMessageResDefaultTypeInternal _UnReadMessageRes_default_instance_;
+PROTOBUF_CONSTEXPR DownLoadFileMessageReq::DownLoadFileMessageReq(
+    ::_pbi::ConstantInitialized)
+  : friendid_(int64_t{0})
+  , messageid_(int64_t{0})
+  , fileindex_(0)
+  , messagefiletype_(0)
+{}
+struct DownLoadFileMessageReqDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DownLoadFileMessageReqDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DownLoadFileMessageReqDefaultTypeInternal() {}
+  union {
+    DownLoadFileMessageReq _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DownLoadFileMessageReqDefaultTypeInternal _DownLoadFileMessageReq_default_instance_;
+PROTOBUF_CONSTEXPR DownLoadFileMessageRes::DownLoadFileMessageRes(
+    ::_pbi::ConstantInitialized)
+  : filedata_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , friendid_(int64_t{0})
+  , messageid_(int64_t{0})
+  , fileindex_(0)
+  , messagefiletype_(0)
+{}
+struct DownLoadFileMessageResDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR DownLoadFileMessageResDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~DownLoadFileMessageResDefaultTypeInternal() {}
+  union {
+    DownLoadFileMessageRes _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 DownLoadFileMessageResDefaultTypeInternal _DownLoadFileMessageRes_default_instance_;
 }  // namespace im_home_proto
-static ::_pb::Metadata file_level_metadata_home_5fmessage_2eproto[4];
+static ::_pb::Metadata file_level_metadata_home_5fmessage_2eproto[6];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_home_5fmessage_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_home_5fmessage_2eproto = nullptr;
 
@@ -95,33 +127,57 @@ const uint32_t TableStruct_home_5fmessage_2eproto::offsets[] PROTOBUF_SECTION_VA
   PROTOBUF_FIELD_OFFSET(::im_home_proto::GetSingleChatHistoryRes, friendid_),
   PROTOBUF_FIELD_OFFSET(::im_home_proto::GetSingleChatHistoryRes, data_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::im_home_proto::ReadOfflineMessageReq, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::UnReadMessageReq, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::im_home_proto::ReadOfflineMessageReq, friendid_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::UnReadMessageReq, friendid_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::im_home_proto::ReadOfflineMessageRes, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::UnReadMessageRes, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::im_home_proto::ReadOfflineMessageRes, friendid_),
-  PROTOBUF_FIELD_OFFSET(::im_home_proto::ReadOfflineMessageRes, data_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::UnReadMessageRes, friendid_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::DownLoadFileMessageReq, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::DownLoadFileMessageReq, friendid_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::DownLoadFileMessageReq, messageid_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::DownLoadFileMessageReq, fileindex_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::DownLoadFileMessageReq, messagefiletype_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::DownLoadFileMessageRes, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::DownLoadFileMessageRes, friendid_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::DownLoadFileMessageRes, messageid_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::DownLoadFileMessageRes, fileindex_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::DownLoadFileMessageRes, filedata_),
+  PROTOBUF_FIELD_OFFSET(::im_home_proto::DownLoadFileMessageRes, messagefiletype_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::im_home_proto::GetSingleChatHistoryReq)},
   { 8, -1, -1, sizeof(::im_home_proto::GetSingleChatHistoryRes)},
-  { 16, -1, -1, sizeof(::im_home_proto::ReadOfflineMessageReq)},
-  { 23, -1, -1, sizeof(::im_home_proto::ReadOfflineMessageRes)},
+  { 16, -1, -1, sizeof(::im_home_proto::UnReadMessageReq)},
+  { 23, -1, -1, sizeof(::im_home_proto::UnReadMessageRes)},
+  { 30, -1, -1, sizeof(::im_home_proto::DownLoadFileMessageReq)},
+  { 40, -1, -1, sizeof(::im_home_proto::DownLoadFileMessageRes)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::im_home_proto::_GetSingleChatHistoryReq_default_instance_._instance,
   &::im_home_proto::_GetSingleChatHistoryRes_default_instance_._instance,
-  &::im_home_proto::_ReadOfflineMessageReq_default_instance_._instance,
-  &::im_home_proto::_ReadOfflineMessageRes_default_instance_._instance,
+  &::im_home_proto::_UnReadMessageReq_default_instance_._instance,
+  &::im_home_proto::_UnReadMessageRes_default_instance_._instance,
+  &::im_home_proto::_DownLoadFileMessageReq_default_instance_._instance,
+  &::im_home_proto::_DownLoadFileMessageRes_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_home_5fmessage_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -130,21 +186,27 @@ const char descriptor_table_protodef_home_5fmessage_2eproto[] PROTOBUF_SECTION_V
   "\033\n\023MaxNotGainMessageID\030\001 \001(\003\022\020\n\010FriendID"
   "\030\002 \001(\003\"U\n\027GetSingleChatHistoryRes\022\020\n\010Fri"
   "endID\030\001 \001(\003\022(\n\004Data\030\002 \003(\0132\032.im_home_prot"
-  "o.ChatMessage\")\n\025ReadOfflineMessageReq\022\020"
-  "\n\010FriendID\030\001 \001(\003\"S\n\025ReadOfflineMessageRe"
-  "s\022\020\n\010FriendID\030\001 \001(\003\022(\n\004Data\030\002 \003(\0132\032.im_h"
-  "ome_proto.ChatMessageBDZBgithub.com/mimi"
-  "s-s/IM-Service/src/common/commonproto/im"
-  "_home_protob\006proto3"
+  "o.ChatMessage\"$\n\020UnReadMessageReq\022\020\n\010Fri"
+  "endID\030\001 \001(\003\"$\n\020UnReadMessageRes\022\020\n\010Frien"
+  "dID\030\001 \001(\003\"\216\001\n\026DownLoadFileMessageReq\022\020\n\010"
+  "FriendID\030\001 \001(\003\022\021\n\tMessageID\030\002 \001(\003\022\021\n\tFil"
+  "eIndex\030\003 \001(\005\022<\n\017MessageFileType\030\004 \001(\0162#."
+  "im_home_proto.MessageFileType_Enum\"\240\001\n\026D"
+  "ownLoadFileMessageRes\022\020\n\010FriendID\030\001 \001(\003\022"
+  "\021\n\tMessageID\030\002 \001(\003\022\021\n\tFileIndex\030\003 \001(\005\022\020\n"
+  "\010FileData\030\004 \001(\t\022<\n\017MessageFileType\030\005 \001(\016"
+  "2#.im_home_proto.MessageFileType_EnumBDZ"
+  "Bgithub.com/mimis-s/IM-Service/src/commo"
+  "n/commonproto/im_home_protob\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_home_5fmessage_2eproto_deps[1] = {
   &::descriptor_table_home_5fchat_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_home_5fmessage_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_home_5fmessage_2eproto = {
-    false, false, 419, descriptor_table_protodef_home_5fmessage_2eproto,
+    false, false, 675, descriptor_table_protodef_home_5fmessage_2eproto,
     "home_message.proto",
-    &descriptor_table_home_5fmessage_2eproto_once, descriptor_table_home_5fmessage_2eproto_deps, 1, 4,
+    &descriptor_table_home_5fmessage_2eproto_once, descriptor_table_home_5fmessage_2eproto_deps, 1, 6,
     schemas, file_default_instances, TableStruct_home_5fmessage_2eproto::offsets,
     file_level_metadata_home_5fmessage_2eproto, file_level_enum_descriptors_home_5fmessage_2eproto,
     file_level_service_descriptors_home_5fmessage_2eproto,
@@ -571,29 +633,29 @@ void GetSingleChatHistoryRes::InternalSwap(GetSingleChatHistoryRes* other) {
 
 // ===================================================================
 
-class ReadOfflineMessageReq::_Internal {
+class UnReadMessageReq::_Internal {
  public:
 };
 
-ReadOfflineMessageReq::ReadOfflineMessageReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+UnReadMessageReq::UnReadMessageReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:im_home_proto.ReadOfflineMessageReq)
+  // @@protoc_insertion_point(arena_constructor:im_home_proto.UnReadMessageReq)
 }
-ReadOfflineMessageReq::ReadOfflineMessageReq(const ReadOfflineMessageReq& from)
+UnReadMessageReq::UnReadMessageReq(const UnReadMessageReq& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   friendid_ = from.friendid_;
-  // @@protoc_insertion_point(copy_constructor:im_home_proto.ReadOfflineMessageReq)
+  // @@protoc_insertion_point(copy_constructor:im_home_proto.UnReadMessageReq)
 }
 
-inline void ReadOfflineMessageReq::SharedCtor() {
+inline void UnReadMessageReq::SharedCtor() {
 friendid_ = int64_t{0};
 }
 
-ReadOfflineMessageReq::~ReadOfflineMessageReq() {
-  // @@protoc_insertion_point(destructor:im_home_proto.ReadOfflineMessageReq)
+UnReadMessageReq::~UnReadMessageReq() {
+  // @@protoc_insertion_point(destructor:im_home_proto.UnReadMessageReq)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -601,16 +663,16 @@ ReadOfflineMessageReq::~ReadOfflineMessageReq() {
   SharedDtor();
 }
 
-inline void ReadOfflineMessageReq::SharedDtor() {
+inline void UnReadMessageReq::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
-void ReadOfflineMessageReq::SetCachedSize(int size) const {
+void UnReadMessageReq::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void ReadOfflineMessageReq::Clear() {
-// @@protoc_insertion_point(message_clear_start:im_home_proto.ReadOfflineMessageReq)
+void UnReadMessageReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:im_home_proto.UnReadMessageReq)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -619,7 +681,7 @@ void ReadOfflineMessageReq::Clear() {
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* ReadOfflineMessageReq::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* UnReadMessageReq::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -656,9 +718,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* ReadOfflineMessageReq::_InternalSerialize(
+uint8_t* UnReadMessageReq::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:im_home_proto.ReadOfflineMessageReq)
+  // @@protoc_insertion_point(serialize_to_array_start:im_home_proto.UnReadMessageReq)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -672,12 +734,12 @@ uint8_t* ReadOfflineMessageReq::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:im_home_proto.ReadOfflineMessageReq)
+  // @@protoc_insertion_point(serialize_to_array_end:im_home_proto.UnReadMessageReq)
   return target;
 }
 
-size_t ReadOfflineMessageReq::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:im_home_proto.ReadOfflineMessageReq)
+size_t UnReadMessageReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:im_home_proto.UnReadMessageReq)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -692,21 +754,21 @@ size_t ReadOfflineMessageReq::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReadOfflineMessageReq::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UnReadMessageReq::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ReadOfflineMessageReq::MergeImpl
+    UnReadMessageReq::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReadOfflineMessageReq::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UnReadMessageReq::GetClassData() const { return &_class_data_; }
 
-void ReadOfflineMessageReq::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void UnReadMessageReq::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ReadOfflineMessageReq *>(to)->MergeFrom(
-      static_cast<const ReadOfflineMessageReq &>(from));
+  static_cast<UnReadMessageReq *>(to)->MergeFrom(
+      static_cast<const UnReadMessageReq &>(from));
 }
 
 
-void ReadOfflineMessageReq::MergeFrom(const ReadOfflineMessageReq& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:im_home_proto.ReadOfflineMessageReq)
+void UnReadMessageReq::MergeFrom(const UnReadMessageReq& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:im_home_proto.UnReadMessageReq)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -717,24 +779,24 @@ void ReadOfflineMessageReq::MergeFrom(const ReadOfflineMessageReq& from) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ReadOfflineMessageReq::CopyFrom(const ReadOfflineMessageReq& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:im_home_proto.ReadOfflineMessageReq)
+void UnReadMessageReq::CopyFrom(const UnReadMessageReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:im_home_proto.UnReadMessageReq)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool ReadOfflineMessageReq::IsInitialized() const {
+bool UnReadMessageReq::IsInitialized() const {
   return true;
 }
 
-void ReadOfflineMessageReq::InternalSwap(ReadOfflineMessageReq* other) {
+void UnReadMessageReq::InternalSwap(UnReadMessageReq* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(friendid_, other->friendid_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata ReadOfflineMessageReq::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata UnReadMessageReq::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_home_5fmessage_2eproto_getter, &descriptor_table_home_5fmessage_2eproto_once,
       file_level_metadata_home_5fmessage_2eproto[2]);
@@ -742,34 +804,29 @@ void ReadOfflineMessageReq::InternalSwap(ReadOfflineMessageReq* other) {
 
 // ===================================================================
 
-class ReadOfflineMessageRes::_Internal {
+class UnReadMessageRes::_Internal {
  public:
 };
 
-void ReadOfflineMessageRes::clear_data() {
-  data_.Clear();
-}
-ReadOfflineMessageRes::ReadOfflineMessageRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+UnReadMessageRes::UnReadMessageRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
-  data_(arena) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor();
-  // @@protoc_insertion_point(arena_constructor:im_home_proto.ReadOfflineMessageRes)
+  // @@protoc_insertion_point(arena_constructor:im_home_proto.UnReadMessageRes)
 }
-ReadOfflineMessageRes::ReadOfflineMessageRes(const ReadOfflineMessageRes& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message(),
-      data_(from.data_) {
+UnReadMessageRes::UnReadMessageRes(const UnReadMessageRes& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   friendid_ = from.friendid_;
-  // @@protoc_insertion_point(copy_constructor:im_home_proto.ReadOfflineMessageRes)
+  // @@protoc_insertion_point(copy_constructor:im_home_proto.UnReadMessageRes)
 }
 
-inline void ReadOfflineMessageRes::SharedCtor() {
+inline void UnReadMessageRes::SharedCtor() {
 friendid_ = int64_t{0};
 }
 
-ReadOfflineMessageRes::~ReadOfflineMessageRes() {
-  // @@protoc_insertion_point(destructor:im_home_proto.ReadOfflineMessageRes)
+UnReadMessageRes::~UnReadMessageRes() {
+  // @@protoc_insertion_point(destructor:im_home_proto.UnReadMessageRes)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -777,26 +834,25 @@ ReadOfflineMessageRes::~ReadOfflineMessageRes() {
   SharedDtor();
 }
 
-inline void ReadOfflineMessageRes::SharedDtor() {
+inline void UnReadMessageRes::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
 }
 
-void ReadOfflineMessageRes::SetCachedSize(int size) const {
+void UnReadMessageRes::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
 
-void ReadOfflineMessageRes::Clear() {
-// @@protoc_insertion_point(message_clear_start:im_home_proto.ReadOfflineMessageRes)
+void UnReadMessageRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:im_home_proto.UnReadMessageRes)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  data_.Clear();
   friendid_ = int64_t{0};
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* ReadOfflineMessageRes::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* UnReadMessageRes::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
@@ -807,19 +863,6 @@ const char* ReadOfflineMessageRes::_InternalParse(const char* ptr, ::_pbi::Parse
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           friendid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // repeated .im_home_proto.ChatMessage Data = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_data(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -846,9 +889,9 @@ failure:
 #undef CHK_
 }
 
-uint8_t* ReadOfflineMessageRes::_InternalSerialize(
+uint8_t* UnReadMessageRes::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:im_home_proto.ReadOfflineMessageRes)
+  // @@protoc_insertion_point(serialize_to_array_start:im_home_proto.UnReadMessageRes)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -858,36 +901,21 @@ uint8_t* ReadOfflineMessageRes::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteInt64ToArray(1, this->_internal_friendid(), target);
   }
 
-  // repeated .im_home_proto.ChatMessage Data = 2;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_data_size()); i < n; i++) {
-    const auto& repfield = this->_internal_data(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(2, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:im_home_proto.ReadOfflineMessageRes)
+  // @@protoc_insertion_point(serialize_to_array_end:im_home_proto.UnReadMessageRes)
   return target;
 }
 
-size_t ReadOfflineMessageRes::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:im_home_proto.ReadOfflineMessageRes)
+size_t UnReadMessageRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:im_home_proto.UnReadMessageRes)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
-
-  // repeated .im_home_proto.ChatMessage Data = 2;
-  total_size += 1UL * this->_internal_data_size();
-  for (const auto& msg : this->data_) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
-  }
 
   // int64 FriendID = 1;
   if (this->_internal_friendid() != 0) {
@@ -897,54 +925,606 @@ size_t ReadOfflineMessageRes::ByteSizeLong() const {
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData ReadOfflineMessageRes::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData UnReadMessageRes::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    ReadOfflineMessageRes::MergeImpl
+    UnReadMessageRes::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*ReadOfflineMessageRes::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*UnReadMessageRes::GetClassData() const { return &_class_data_; }
 
-void ReadOfflineMessageRes::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+void UnReadMessageRes::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
                       const ::PROTOBUF_NAMESPACE_ID::Message& from) {
-  static_cast<ReadOfflineMessageRes *>(to)->MergeFrom(
-      static_cast<const ReadOfflineMessageRes &>(from));
+  static_cast<UnReadMessageRes *>(to)->MergeFrom(
+      static_cast<const UnReadMessageRes &>(from));
 }
 
 
-void ReadOfflineMessageRes::MergeFrom(const ReadOfflineMessageRes& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:im_home_proto.ReadOfflineMessageRes)
+void UnReadMessageRes::MergeFrom(const UnReadMessageRes& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:im_home_proto.UnReadMessageRes)
   GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  data_.MergeFrom(from.data_);
   if (from._internal_friendid() != 0) {
     _internal_set_friendid(from._internal_friendid());
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void ReadOfflineMessageRes::CopyFrom(const ReadOfflineMessageRes& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:im_home_proto.ReadOfflineMessageRes)
+void UnReadMessageRes::CopyFrom(const UnReadMessageRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:im_home_proto.UnReadMessageRes)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool ReadOfflineMessageRes::IsInitialized() const {
+bool UnReadMessageRes::IsInitialized() const {
   return true;
 }
 
-void ReadOfflineMessageRes::InternalSwap(ReadOfflineMessageRes* other) {
+void UnReadMessageRes::InternalSwap(UnReadMessageRes* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  data_.InternalSwap(&other->data_);
   swap(friendid_, other->friendid_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata ReadOfflineMessageRes::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata UnReadMessageRes::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_home_5fmessage_2eproto_getter, &descriptor_table_home_5fmessage_2eproto_once,
       file_level_metadata_home_5fmessage_2eproto[3]);
+}
+
+// ===================================================================
+
+class DownLoadFileMessageReq::_Internal {
+ public:
+};
+
+DownLoadFileMessageReq::DownLoadFileMessageReq(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:im_home_proto.DownLoadFileMessageReq)
+}
+DownLoadFileMessageReq::DownLoadFileMessageReq(const DownLoadFileMessageReq& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&friendid_, &from.friendid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&messagefiletype_) -
+    reinterpret_cast<char*>(&friendid_)) + sizeof(messagefiletype_));
+  // @@protoc_insertion_point(copy_constructor:im_home_proto.DownLoadFileMessageReq)
+}
+
+inline void DownLoadFileMessageReq::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&friendid_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&messagefiletype_) -
+    reinterpret_cast<char*>(&friendid_)) + sizeof(messagefiletype_));
+}
+
+DownLoadFileMessageReq::~DownLoadFileMessageReq() {
+  // @@protoc_insertion_point(destructor:im_home_proto.DownLoadFileMessageReq)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void DownLoadFileMessageReq::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void DownLoadFileMessageReq::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void DownLoadFileMessageReq::Clear() {
+// @@protoc_insertion_point(message_clear_start:im_home_proto.DownLoadFileMessageReq)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&friendid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&messagefiletype_) -
+      reinterpret_cast<char*>(&friendid_)) + sizeof(messagefiletype_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* DownLoadFileMessageReq::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int64 FriendID = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          friendid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int64 MessageID = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          messageid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 FileIndex = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          fileindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .im_home_proto.MessageFileType_Enum MessageFileType = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_messagefiletype(static_cast<::im_home_proto::MessageFileType_Enum>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* DownLoadFileMessageReq::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:im_home_proto.DownLoadFileMessageReq)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int64 FriendID = 1;
+  if (this->_internal_friendid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(1, this->_internal_friendid(), target);
+  }
+
+  // int64 MessageID = 2;
+  if (this->_internal_messageid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(2, this->_internal_messageid(), target);
+  }
+
+  // int32 FileIndex = 3;
+  if (this->_internal_fileindex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_fileindex(), target);
+  }
+
+  // .im_home_proto.MessageFileType_Enum MessageFileType = 4;
+  if (this->_internal_messagefiletype() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      4, this->_internal_messagefiletype(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:im_home_proto.DownLoadFileMessageReq)
+  return target;
+}
+
+size_t DownLoadFileMessageReq::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:im_home_proto.DownLoadFileMessageReq)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int64 FriendID = 1;
+  if (this->_internal_friendid() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_friendid());
+  }
+
+  // int64 MessageID = 2;
+  if (this->_internal_messageid() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_messageid());
+  }
+
+  // int32 FileIndex = 3;
+  if (this->_internal_fileindex() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_fileindex());
+  }
+
+  // .im_home_proto.MessageFileType_Enum MessageFileType = 4;
+  if (this->_internal_messagefiletype() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_messagefiletype());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DownLoadFileMessageReq::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    DownLoadFileMessageReq::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DownLoadFileMessageReq::GetClassData() const { return &_class_data_; }
+
+void DownLoadFileMessageReq::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DownLoadFileMessageReq *>(to)->MergeFrom(
+      static_cast<const DownLoadFileMessageReq &>(from));
+}
+
+
+void DownLoadFileMessageReq::MergeFrom(const DownLoadFileMessageReq& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:im_home_proto.DownLoadFileMessageReq)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_friendid() != 0) {
+    _internal_set_friendid(from._internal_friendid());
+  }
+  if (from._internal_messageid() != 0) {
+    _internal_set_messageid(from._internal_messageid());
+  }
+  if (from._internal_fileindex() != 0) {
+    _internal_set_fileindex(from._internal_fileindex());
+  }
+  if (from._internal_messagefiletype() != 0) {
+    _internal_set_messagefiletype(from._internal_messagefiletype());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DownLoadFileMessageReq::CopyFrom(const DownLoadFileMessageReq& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:im_home_proto.DownLoadFileMessageReq)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DownLoadFileMessageReq::IsInitialized() const {
+  return true;
+}
+
+void DownLoadFileMessageReq::InternalSwap(DownLoadFileMessageReq* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(DownLoadFileMessageReq, messagefiletype_)
+      + sizeof(DownLoadFileMessageReq::messagefiletype_)
+      - PROTOBUF_FIELD_OFFSET(DownLoadFileMessageReq, friendid_)>(
+          reinterpret_cast<char*>(&friendid_),
+          reinterpret_cast<char*>(&other->friendid_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DownLoadFileMessageReq::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_home_5fmessage_2eproto_getter, &descriptor_table_home_5fmessage_2eproto_once,
+      file_level_metadata_home_5fmessage_2eproto[4]);
+}
+
+// ===================================================================
+
+class DownLoadFileMessageRes::_Internal {
+ public:
+};
+
+DownLoadFileMessageRes::DownLoadFileMessageRes(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:im_home_proto.DownLoadFileMessageRes)
+}
+DownLoadFileMessageRes::DownLoadFileMessageRes(const DownLoadFileMessageRes& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  filedata_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    filedata_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_filedata().empty()) {
+    filedata_.Set(from._internal_filedata(), 
+      GetArenaForAllocation());
+  }
+  ::memcpy(&friendid_, &from.friendid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&messagefiletype_) -
+    reinterpret_cast<char*>(&friendid_)) + sizeof(messagefiletype_));
+  // @@protoc_insertion_point(copy_constructor:im_home_proto.DownLoadFileMessageRes)
+}
+
+inline void DownLoadFileMessageRes::SharedCtor() {
+filedata_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  filedata_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&friendid_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&messagefiletype_) -
+    reinterpret_cast<char*>(&friendid_)) + sizeof(messagefiletype_));
+}
+
+DownLoadFileMessageRes::~DownLoadFileMessageRes() {
+  // @@protoc_insertion_point(destructor:im_home_proto.DownLoadFileMessageRes)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void DownLoadFileMessageRes::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  filedata_.Destroy();
+}
+
+void DownLoadFileMessageRes::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void DownLoadFileMessageRes::Clear() {
+// @@protoc_insertion_point(message_clear_start:im_home_proto.DownLoadFileMessageRes)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  filedata_.ClearToEmpty();
+  ::memset(&friendid_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&messagefiletype_) -
+      reinterpret_cast<char*>(&friendid_)) + sizeof(messagefiletype_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* DownLoadFileMessageRes::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int64 FriendID = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          friendid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int64 MessageID = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          messageid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 FileIndex = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          fileindex_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // string FileData = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          auto str = _internal_mutable_filedata();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "im_home_proto.DownLoadFileMessageRes.FileData"));
+        } else
+          goto handle_unusual;
+        continue;
+      // .im_home_proto.MessageFileType_Enum MessageFileType = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_messagefiletype(static_cast<::im_home_proto::MessageFileType_Enum>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* DownLoadFileMessageRes::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:im_home_proto.DownLoadFileMessageRes)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int64 FriendID = 1;
+  if (this->_internal_friendid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(1, this->_internal_friendid(), target);
+  }
+
+  // int64 MessageID = 2;
+  if (this->_internal_messageid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(2, this->_internal_messageid(), target);
+  }
+
+  // int32 FileIndex = 3;
+  if (this->_internal_fileindex() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_fileindex(), target);
+  }
+
+  // string FileData = 4;
+  if (!this->_internal_filedata().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_filedata().data(), static_cast<int>(this->_internal_filedata().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "im_home_proto.DownLoadFileMessageRes.FileData");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_filedata(), target);
+  }
+
+  // .im_home_proto.MessageFileType_Enum MessageFileType = 5;
+  if (this->_internal_messagefiletype() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      5, this->_internal_messagefiletype(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:im_home_proto.DownLoadFileMessageRes)
+  return target;
+}
+
+size_t DownLoadFileMessageRes::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:im_home_proto.DownLoadFileMessageRes)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string FileData = 4;
+  if (!this->_internal_filedata().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_filedata());
+  }
+
+  // int64 FriendID = 1;
+  if (this->_internal_friendid() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_friendid());
+  }
+
+  // int64 MessageID = 2;
+  if (this->_internal_messageid() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_messageid());
+  }
+
+  // int32 FileIndex = 3;
+  if (this->_internal_fileindex() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_fileindex());
+  }
+
+  // .im_home_proto.MessageFileType_Enum MessageFileType = 5;
+  if (this->_internal_messagefiletype() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_messagefiletype());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData DownLoadFileMessageRes::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    DownLoadFileMessageRes::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*DownLoadFileMessageRes::GetClassData() const { return &_class_data_; }
+
+void DownLoadFileMessageRes::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<DownLoadFileMessageRes *>(to)->MergeFrom(
+      static_cast<const DownLoadFileMessageRes &>(from));
+}
+
+
+void DownLoadFileMessageRes::MergeFrom(const DownLoadFileMessageRes& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:im_home_proto.DownLoadFileMessageRes)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_filedata().empty()) {
+    _internal_set_filedata(from._internal_filedata());
+  }
+  if (from._internal_friendid() != 0) {
+    _internal_set_friendid(from._internal_friendid());
+  }
+  if (from._internal_messageid() != 0) {
+    _internal_set_messageid(from._internal_messageid());
+  }
+  if (from._internal_fileindex() != 0) {
+    _internal_set_fileindex(from._internal_fileindex());
+  }
+  if (from._internal_messagefiletype() != 0) {
+    _internal_set_messagefiletype(from._internal_messagefiletype());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void DownLoadFileMessageRes::CopyFrom(const DownLoadFileMessageRes& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:im_home_proto.DownLoadFileMessageRes)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool DownLoadFileMessageRes::IsInitialized() const {
+  return true;
+}
+
+void DownLoadFileMessageRes::InternalSwap(DownLoadFileMessageRes* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &filedata_, lhs_arena,
+      &other->filedata_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(DownLoadFileMessageRes, messagefiletype_)
+      + sizeof(DownLoadFileMessageRes::messagefiletype_)
+      - PROTOBUF_FIELD_OFFSET(DownLoadFileMessageRes, friendid_)>(
+          reinterpret_cast<char*>(&friendid_),
+          reinterpret_cast<char*>(&other->friendid_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata DownLoadFileMessageRes::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_home_5fmessage_2eproto_getter, &descriptor_table_home_5fmessage_2eproto_once,
+      file_level_metadata_home_5fmessage_2eproto[5]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -958,13 +1538,21 @@ template<> PROTOBUF_NOINLINE ::im_home_proto::GetSingleChatHistoryRes*
 Arena::CreateMaybeMessage< ::im_home_proto::GetSingleChatHistoryRes >(Arena* arena) {
   return Arena::CreateMessageInternal< ::im_home_proto::GetSingleChatHistoryRes >(arena);
 }
-template<> PROTOBUF_NOINLINE ::im_home_proto::ReadOfflineMessageReq*
-Arena::CreateMaybeMessage< ::im_home_proto::ReadOfflineMessageReq >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::im_home_proto::ReadOfflineMessageReq >(arena);
+template<> PROTOBUF_NOINLINE ::im_home_proto::UnReadMessageReq*
+Arena::CreateMaybeMessage< ::im_home_proto::UnReadMessageReq >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::im_home_proto::UnReadMessageReq >(arena);
 }
-template<> PROTOBUF_NOINLINE ::im_home_proto::ReadOfflineMessageRes*
-Arena::CreateMaybeMessage< ::im_home_proto::ReadOfflineMessageRes >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::im_home_proto::ReadOfflineMessageRes >(arena);
+template<> PROTOBUF_NOINLINE ::im_home_proto::UnReadMessageRes*
+Arena::CreateMaybeMessage< ::im_home_proto::UnReadMessageRes >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::im_home_proto::UnReadMessageRes >(arena);
+}
+template<> PROTOBUF_NOINLINE ::im_home_proto::DownLoadFileMessageReq*
+Arena::CreateMaybeMessage< ::im_home_proto::DownLoadFileMessageReq >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::im_home_proto::DownLoadFileMessageReq >(arena);
+}
+template<> PROTOBUF_NOINLINE ::im_home_proto::DownLoadFileMessageRes*
+Arena::CreateMaybeMessage< ::im_home_proto::DownLoadFileMessageRes >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::im_home_proto::DownLoadFileMessageRes >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

@@ -37,7 +37,7 @@ public:
 
 protected slots:
     void slot_ChatSingleRelay(char *pMessage);
-    void slot_OfflineNotify(char *pMessage);
+    void slot_UserMessageNotify(char *pMessage);
     void slot_ChatShortFramePress(ChatShortFrameData data);
 
 private:
