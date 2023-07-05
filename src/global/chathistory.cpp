@@ -112,7 +112,6 @@ std::map<int64_t, LocalChatHistoryInfo> ChatHistory::GetHistoryChat(int64_t frie
             infoTemp.MessageStatus = getSingleChatHistoryRes->data(i).messagestatus();
             infoTemp.messageData =  QString::fromStdString(getSingleChatHistoryRes->data(i).data());
 
-            qDebug() <<  getSingleChatHistoryRes->data(i).messagefileinfos().size();
             for (int j = 0; j < getSingleChatHistoryRes->data(i).messagefileinfos().size(); j++){
 
                 MessageFileRecap messageFileRecap;

@@ -172,7 +172,6 @@ void SocketControl::slot_ReadMessage(uint32_t type, QByteArray message)
         QString errMessage = QString("ErrCode:%1").arg(commonError->code());
         QMessageBox::information(NULL,  "error",  errMessage, QMessageBox::Yes);
     }
-    qDebug() << strlen(message);
 
     if (mapCallBackFunc.end() != mapCallBackFunc.find(type))
     {
