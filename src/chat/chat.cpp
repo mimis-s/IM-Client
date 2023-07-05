@@ -148,7 +148,6 @@ OneChatBox Chat::AddOneChat(ChatShortFrameData data)
     OneChatBox chatBox = OneChatBox{pChatShortFrame, pBox};
 
     m_mapOneChatBox[data.m_FriendID] = chatBox;
-    qDebug() << "cout " << data.m_FriendID;
 
     pBox->setHidden(true);
 
@@ -163,8 +162,6 @@ void Chat::slot_ChatShortFramePress(ChatShortFrameData data)
     {
         if (item.first == data.m_FriendID)
         {
-            qDebug() << "in " << data.m_FriendID;
-
             if (m_bmapOffline[data.m_FriendID])
             {
                 m_bmapOffline[data.m_FriendID] = false;
