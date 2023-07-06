@@ -39,6 +39,7 @@ protected:
 private:
     ENUM_BubbleOrient m_bubbleOrient;
     QVector<MessageFileRecap> m_vecMessageFileRecap;
+    QString ChooseFileIcon(QString path);
 
     int m_iMaxWidth;
     int m_iMinWidth;

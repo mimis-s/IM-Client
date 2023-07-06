@@ -45,6 +45,50 @@ int getContentHeight(QFont font, QString str)
     return nDrugNametHeight;
 }
 
+QString ChatBubble::ChooseFileIcon(QString path)
+{
+    QString strFileExtension = "";
+
+    for(int j = path.size() - 1; j >= 0; j--)
+    {
+        if (path[j] == ".")
+        {
+            strFileExtension = path.mid(j + 1);
+            break;
+        }
+    }
+
+    if (strFileExtension == "txt")
+    {
+        return ":/img/im_chat_file_txt.png";
+    }
+    if(strFileExtension == "css")
+    {
+        return ":/img/im_chat_file_css.png";
+    }
+    if(strFileExtension == "html")
+    {
+        return ":/img/im_chat_file_html.png";
+    }
+    if(strFileExtension == "mp3")
+    {
+        return ":/img/im_chat_file_mp3.png";
+    }
+    if(strFileExtension == "mp4")
+    {
+        return ":/img/im_chat_file_mp4.png";
+    }
+    if(strFileExtension == "pdf")
+    {
+        return ":/img/im_chat_file_pdf.png";
+    }
+    if(strFileExtension == "zip")
+    {
+        return ":/img/im_chat_file_zip.png";
+    }
+
+    return ":/img/im_chat_file_defalut.png";
+}
 
 void ChatBubble::paintEvent(QPaintEvent *e)
 {
@@ -89,7 +133,7 @@ void ChatBubble::paintEvent(QPaintEvent *e)
         }
         if (m_vecMessageFileRecap[i].MessageFileType == 3) {
             // 文件...
-            curHeight = 80;
+            curHeight = 100;
             curWight = 200;
         }
 
@@ -177,7 +221,7 @@ void ChatBubble::paintEvent(QPaintEvent *e)
         }
         if (m_vecMessageFileRecap[i].MessageFileType == 3) {
             // 文件...
-            curHeight = 80;
+            curHeight = 100;
             curWight = 200;
         }
 
@@ -223,12 +267,31 @@ void ChatBubble::paintEvent(QPaintEvent *e)
                 painter_file.setFont(font_file);
 
                 // 文件缩略图
-                QImage img(":/img/file");
+                QImage img(ChooseFileIcon(m_vecMessageFileRecap[i].FileName));
+
                 img = img.scaled(QSize(50,50), Qt::KeepAspectRatio);
                 painter_file.drawImage(x + 10, y + 10,img);
 
-                painter_file.drawText(QRectF(x + 70, y + 10, 100, 20), 0, m_vecMessageFileRecap[i].FileName);//字体居中
-                painter_file.drawText(QRectF(x + 70, y + 40, 100, 20), 0, QString::number(m_vecMessageFileRecap[i].FileSize));//字体居中
+                QString name = m_vecMessageFileRecap[i].FileName;
+                for (int j = m_vecMessageFileRecap[i].FileName.size() - 1; j >= 0; j--)
+                {
+                    if (m_vecMessageFileRecap[i].FileName[j] == tr("/") && j != m_vecMessageFileRecap[i].FileName.size() - 1)
+                    {
+                        name = m_vecMessageFileRecap[i].FileName.mid(j + 1);
+                        break;
+                    }
+                }
+
+                painter_file.drawText(QRectF(x + 70, y + 10, 100, 20), 0, name);//字体居中
+                painter_file.drawText(QRectF(x + 70, y + 40, 100, 20), 0, QString::number(m_vecMessageFileRecap[i].FileSize) + "B");//字体居中
+
+                QFont font_Link("", 12, QFont::Bold, true);
+                painter_file.setPen(QColor(Qt::blue));
+                painter_file.setFont(font_Link);
+
+                painter_file.drawText(QRectF(x + 30, y + 70, 100, 20), 0, tr("下载")); // 下载
+                painter_file.drawText(QRectF(x + 70, y + 70, 100, 20), 0, tr("打开")); // 打开
+                painter_file.drawText(QRectF(x + 110, y + 70, 100, 20), 0, tr("打开路径")); // 打开路径
 
             }
 

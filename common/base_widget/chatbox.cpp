@@ -46,7 +46,7 @@ ChatBox::ChatBox(QWidget *parent, ChatShortFrameData data) : QWidget(parent)
     pUpHBoxLayout->addWidget(m_pBtnVideo);
 
     // 中间
-    m_pMiddleListWidget = new QListWidget(this);
+    m_pMiddleListWidget = new ChatShowBox(this);
     m_pMiddleListWidget->setStyleSheet("background-color:white;");
     m_pMiddleListWidget->setResizeMode(QListView::Adjust);
     m_pMiddleListWidget->setAutoScroll(true);
@@ -65,7 +65,7 @@ ChatBox::ChatBox(QWidget *parent, ChatShortFrameData data) : QWidget(parent)
     m_pBtnEmoj->setStyleSheet("max-width:40px; min-width:40px;"
                              "max-height:40px; min-height:40px;"
                              "border-radius:20px;");
-    m_pTextInput = new ChatTextEdit(pDownWidget);
+    m_pTextInput = new ChatTextEdit();
     //m_pTextInput->setSizeIncrement(Qt::MinimumSize, Qt::MinimumSize);
 
     m_pTextInput->setFont(QFont("", 16, QFont::Bold, true));
@@ -87,6 +87,7 @@ ChatBox::ChatBox(QWidget *parent, ChatShortFrameData data) : QWidget(parent)
     pVBoxlayout->addWidget(pDownWidget, 1);
 
     connect(m_pBtnSend, SIGNAL(clicked()), this, SLOT(slot_btnSendClick()));
+    connect(m_pMiddleListWidget, SIGNAL(sigDropFile(InputMessage)), this, SLOT(slot_SendFile(InputMessage)));
 
     AddOneQueryHistoryBtn();
 }
@@ -300,6 +301,31 @@ void ChatBox::InsertMessage(const im_home_proto::ChatMessage pMessage)
         funcInsert(pMessage, m_pMiddleListWidget, nullptr);
     }
 }
+
+void ChatBox::slot_SendFile(InputMessage inputMessage)
+{
+    im_home_proto::ChatSingleReq *chatSingleReq = new im_home_proto::ChatSingleReq;
+
+    im_home_proto::ChatMessage *chatMessage = new im_home_proto::ChatMessage;
+    chatMessage->set_senderid(UserInfo::Instance()->GetSelfUserInfo()->mUserData.UserID);
+    chatMessage->set_receiverid(m_chatShortFrameData.m_FriendID);
+//        chatMessage->set_messagetype(im_home_proto::MessageType_Enum::EnumTextType);
+    // 文件
+    for (auto fileInfo : inputMessage.fileInfos) {
+        *(chatMessage->add_messagefileinfos()) = fileInfo;
+    }
+
+    chatMessage->set_sendtimestamp(QDateTime::currentDateTime().toTime_t());
+    chatMessage->set_messagestatus(im_home_proto::MessageStatus_Enum::EnumSend);
+    chatMessage->set_data(inputMessage.messageText.toStdString());
+
+    chatSingleReq->set_allocated_data(chatMessage);
+
+    IMLog::Instance()->Info(QString("send file chatSingleReq %1").arg(MessageTag_ChatSingle.Req));
+
+    SocketControl::Instance()->SendMessage(MessageTag_ChatSingle.Req, chatSingleReq->SerializeAsString());
+}
+
 
 void ChatBox::slot_btnSendClick()
 {

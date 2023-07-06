@@ -19,6 +19,7 @@
 #include "../commonproto/home_chat.pb.h"
 #include "common/base_widget/chatheadandbubble.h"
 #include "chattextedit.h"
+#include "chatshowbox.h"
 
 class ChatBox : public QWidget
 {
@@ -33,6 +34,8 @@ signals:
 public slots:
     void slot_btnSendClick();
     void slot_btnQueryHistoryClick();
+    void slot_SendFile(InputMessage);
+
 
 private:
 
@@ -40,7 +43,7 @@ private:
     QLabel *m_pLbName;
     QPushButton *m_pBtnPhone;
     QPushButton *m_pBtnVideo;
-    QListWidget *m_pMiddleListWidget;
+    ChatShowBox *m_pMiddleListWidget;
     QPushButton *m_pBtnEmoj;
     ChatTextEdit *m_pTextInput;
     QPushButton *m_pBtnSend;

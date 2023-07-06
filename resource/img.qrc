@@ -5,6 +5,13 @@
         <file>img/im_chat_videoChat.png</file>
         <file>img/im_chat_phone.png</file>
         <file>img/im_chat_emoj.png</file>
-        <file>img/file.png</file>
+        <file>img/im_chat_file_zip.png</file>
+        <file>img/im_chat_file_txt.png</file>
+        <file>img/im_chat_file_pdf.png</file>
+        <file>img/im_chat_file_mp4.png</file>
+        <file>img/im_chat_file_mp3.png</file>
+        <file>img/im_chat_file_html.png</file>
+        <file>img/im_chat_file_defalut.png</file>
+        <file>img/im_chat_file_css.png</file>
     </qresource>
 </RCC>
