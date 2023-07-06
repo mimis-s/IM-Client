@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QFont>
+#include <QPushButton>
 #include "../commonproto/home_chat.pb.h"
 // 气泡朝向(朝左则开口在左上角, 朝右则开口在右上角)
 enum ENUM_BubbleOrient {
@@ -40,6 +41,9 @@ private:
     ENUM_BubbleOrient m_bubbleOrient;
     QVector<MessageFileRecap> m_vecMessageFileRecap;
     QString ChooseFileIcon(QString path);
+    QPushButton *pBtnDownLoad;
+    QPushButton *pBtnOpen;
+    QPushButton *pBtnOpenPath;
 
     int m_iMaxWidth;
     int m_iMinWidth;

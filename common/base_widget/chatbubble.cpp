@@ -3,6 +3,7 @@
 #include <QLabel>
 #include <QFontMetrics>
 #include <QDebug>
+#include <QPushButton>
 
 ChatBubble::ChatBubble(QWidget *parent, ENUM_BubbleOrient orient, QVector<MessageFileRecap> vecMessageFileRecap) : QWidget(parent)
 {
@@ -12,6 +13,18 @@ ChatBubble::ChatBubble(QWidget *parent, ENUM_BubbleOrient orient, QVector<Messag
 //    this->setMaximumSize(m_iMaxWidth, 6000);
     m_bubbleOrient = orient;
     m_vecMessageFileRecap = vecMessageFileRecap;
+
+    pBtnDownLoad = new QPushButton(tr("下载"), this);
+    pBtnDownLoad->setStyleSheet("background-color:white;color:blue;border:0px solid white;");
+    pBtnOpen = new QPushButton(tr("打开"), this);
+    pBtnOpen->setStyleSheet("background-color:white;color:blue;border:0px solid white;");
+    pBtnOpenPath = new QPushButton(tr("打开路径"),this);
+    pBtnOpenPath->setStyleSheet("background-color:white;color:blue;border:0px solid white;");
+
+    pBtnDownLoad->setHidden(true);
+    pBtnOpen->setHidden(true);
+    pBtnOpenPath->setHidden(true);
+
 }
 
 void ChatBubble::SetBubbleOrient(ENUM_BubbleOrient orient)
@@ -289,10 +302,17 @@ void ChatBubble::paintEvent(QPaintEvent *e)
                 painter_file.setPen(QColor(Qt::blue));
                 painter_file.setFont(font_Link);
 
-                painter_file.drawText(QRectF(x + 30, y + 70, 100, 20), 0, tr("下载")); // 下载
-                painter_file.drawText(QRectF(x + 70, y + 70, 100, 20), 0, tr("打开")); // 打开
-                painter_file.drawText(QRectF(x + 110, y + 70, 100, 20), 0, tr("打开路径")); // 打开路径
+//                painter_file.drawText(QRectF(x + 30, y + 70, 100, 20), 0, tr("下载")); // 下载
+//                painter_file.drawText(QRectF(x + 70, y + 70, 100, 20), 0, tr("打开")); // 打开
+//                painter_file.drawText(QRectF(x + 110, y + 70, 100, 20), 0, tr("打开路径")); // 打开路径
 
+                pBtnDownLoad->setGeometry(x + 30, y + 70, 40, 20);
+                pBtnOpen->setGeometry(x + 70, y + 70, 40, 20);
+                pBtnOpenPath->setGeometry(x + 110, y + 70, 60, 20);
+
+                pBtnDownLoad->setHidden(false);
+                pBtnOpen->setHidden(false);
+                pBtnOpenPath->setHidden(false);
             }
 
             iTempWight += curWight;
